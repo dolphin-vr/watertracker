@@ -6,7 +6,8 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
-
+  const baseURL = import.meta.env.VITE_API_URL;
+  console.log(baseURL)
   return (
     <>
       <h1>Water Tracker</h1>
