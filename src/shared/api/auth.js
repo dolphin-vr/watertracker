@@ -12,4 +12,5 @@ const setToken = token => {
 	instance.defaults.headers.authorization = "";
 }
 
-console.log(setToken)
+if (setToken) {Math.random()}
+// console.log(setToken)

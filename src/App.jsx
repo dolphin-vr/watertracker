@@ -7,7 +7,7 @@ import './App.css'
 function App() {
   const [count, setCount] = useState(0)
   const baseURL = import.meta.env.VITE_API_URL;
-  console.log(baseURL)
+  // console.log(baseURL)
   return (
     <>
       <h1>Water Tracker</h1>
@@ -20,9 +20,7 @@ function App() {
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+        <p>Url from ENV VAR - {baseURL}</p>
       </div>
     </>
   )
