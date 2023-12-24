@@ -7,7 +7,7 @@ import { Routes } from "react-router-dom";
 import { Route } from "react-router-dom";
 import { SharedLayout } from "./SharedLayout";
 import { lazy } from "react";
-const SignInPage = lazy(() => import("./pages/SignInPage/SignInPage"));
+const SignInPage = lazy(() => import("./pages/Sign-InPage/SignInPage"));
 const SignUpPage = lazy(() => import("./pages/SignUpPage/SignUpPage"));
 const ForgotPasswordPage = lazy(() =>
   import("./pages/ForgotPasswordPage/ForgotPasswordPage")
