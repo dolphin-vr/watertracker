@@ -18,30 +18,33 @@ export const registerUser = createAsyncThunk(
     'auth/registerUser',
     async userData => {
         try {
-            const response = await instance.post('/api/auth/signup', userData);
+            const response = await instance.post('/auth/signup', userData);
             setToken(response.data.token);
             return response.data;
         } catch (error) {
-            throw error;
+						console.log(error)
+						throw error;
         }
     }
 );
 
 export const loginUser = createAsyncThunk('auth/loginUser', async userData => {
     try {
-        const response = await instance.post('/api/auth/signin', userData);
+        const response = await instance.post('/auth/signin', userData);
         setToken(response.data.token);
         return response.data;
     } catch (error) {
+			console.log(error)
         throw error;
     }
 });
 
 export const logoutUser = createAsyncThunk('auth/logoutUser', async () => {
     try {
-        await instance.post('/api/auth/signout');
+        await instance.post('/auth/signout');
         setToken(null);
     } catch (error) {
+			console.log(error)
         throw error;
     }
 });
@@ -55,6 +58,7 @@ export const getCurrentUser = createAsyncThunk(
             const response = await instance.get('/api/user');
             return response.data;
         } catch (error) {
+					console.log(error)
             throw error;
         }
     }
