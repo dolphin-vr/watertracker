@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { registerUser } from '../../shared/api/auth';
 import { Outlet } from 'react-router-dom';
