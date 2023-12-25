@@ -3,7 +3,7 @@ import bottle1 from "/water-plastic.svg";
 import bottle2 from "/water-blue.svg";
 import bottle3 from "/water-yellow.svg";
 import { GlobalStyle } from "./shared/styles/GlobalStyle";
-import { Routes } from "react-router-dom";
+import { Navigate, Routes } from "react-router-dom";
 import { Route } from "react-router-dom";
 import { SharedLayout } from "./SharedLayout";
 import { lazy } from "react";
@@ -20,7 +20,6 @@ function App() {
   // console.log(baseURL)
   return (
     <>
-      <div>
         <Routes>
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<HomePage />} />
@@ -29,8 +28,7 @@ function App() {
             <Route path="/forgot-password" element={<ForgotPasswordPage />} />
           </Route>
         </Routes>
-      </div>
-      <h1>Water Tracker</h1>
+      {/* <h1>Water Tracker</h1>
       <h2>drink water</h2>
       <div>
         <img src={bottle1} className="logo" alt="logo" width={200} />
@@ -42,7 +40,7 @@ function App() {
           count is {count}
         </button>
         <p>Url from ENV VAR - {baseURL}</p>
-      </div>
+      </div> */}
       <GlobalStyle />
     </>
   );
