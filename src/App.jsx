@@ -7,8 +7,6 @@ import { Routes } from "react-router-dom";
 import { Route } from "react-router-dom";
 import { SharedLayout } from "./SharedLayout";
 import { lazy } from "react";
-import Today from "./components/Today/Today";
-import AddPortion from "./components/AddPortion/AddPortion";
 const SignInPage = lazy(() => import("./pages/SignInPage/SignInPage"));
 const SignUpPage = lazy(() => import("./pages/SignUpPage/SignUpPage"));
 const ForgotPasswordPage = lazy(() =>
@@ -33,10 +31,6 @@ function App() {
         </Routes>
       </div>
       <h1>Water Tracker</h1>
-      <div>
-        <Today />
-        <AddPortion />
-      </div>
       <h2>drink water</h2>
       <div>
         <img src={bottle1} className="logo" alt="logo" width={200} />

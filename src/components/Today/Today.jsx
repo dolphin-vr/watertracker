@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getPortionsList } from "../../redux/todayOperations.js";
-import { currentDate } from "../../services/currentDate.js";
 import css from "./Today.module.css";
 
 const Today = () => {
@@ -14,10 +13,7 @@ const Today = () => {
   }, [dispath]);
 
   function getDailyPortions() {
-    const dayPortions = portions.filter(
-      (portion) => portion.date === currentDate
-    );
-    return dayPortions;
+    return portions;
   }
 
   function onChangePortion() {
@@ -29,7 +25,7 @@ const Today = () => {
   }
 
   if (getDailyPortions().length === 0) {
-    return <p>No result</p>;
+    return <p>No result about today portions</p>;
   } else {
     if (isLoading === true) {
       return <div>Loading...</div>;
@@ -41,10 +37,10 @@ const Today = () => {
         <div className={css.wrapper}>
           <h3>Today</h3>
           <ul>
-            {array[0].map(({ quantity, id, time }) => {
+            {array[0].map(({ water, id, time }) => {
               return (
                 <li key={id}>
-                  <span>{quantity}</span>
+                  <span>{water}</span>
                   <span> ml </span>
                   <span>{time}</span>
                   <button type="button" onClick={() => onChangePortion(id)}>

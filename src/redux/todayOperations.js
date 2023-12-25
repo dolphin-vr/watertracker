@@ -1,11 +1,13 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getDayPortions, addPortion } from "../shared/api/todayApiServices.js";
+import { getDayPortions } from "../shared/api/todayApiServices.js";
+import { currentDate } from "../services/currentDate.js";
 
 export const getPortionsList = createAsyncThunk(
   "portions/getPortionsList",
   async (_, thunkApi) => {
     try {
-      const { data } = await getDayPortions();
+      const { data } = await getDayPortions(currentDate);
+      console.log(data);
       return data;
     } catch (error) {
       console.log(error.message);

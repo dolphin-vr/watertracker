@@ -1,4 +1,12 @@
+import Today from "../../components/Today/Today.jsx";
+
 const HomePage = () => {
-  return <div>home</div>;
+  return (
+    <div>
+      <div>
+        <Today />
+      </div>
+    </div>
+  );
 };
 export default HomePage;
