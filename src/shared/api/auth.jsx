@@ -22,7 +22,9 @@ export const registerUser = createAsyncThunk(
                 password,
                 date,
             };
+            console.log('userData reg== ', userData)
             const response = await instance.post('/auth/signup', userData);
+            console.log('response reg == ', response)
             setToken(response.data.token);
             return response.data;
         } catch (error) {
@@ -32,16 +34,21 @@ export const registerUser = createAsyncThunk(
     }
 );
 
-export const loginUser = createAsyncThunk('auth/loginUser', async userData => {
-    try {
-        const response = await instance.post('/auth/signin', userData);
-        setToken(response.data.token);
-        return response.data;
-    } catch (error) {
-        console.log(error)
-        throw error;
+export const loginUser = createAsyncThunk(
+    'auth/loginUser', 
+    async userData => {
+        try {
+            console.log('userData in== ', userData)
+            const response = await instance.post('/auth/signin', userData);
+            console.log('response in== ', response)
+            setToken(response.data.token);
+            return response.data;
+        } catch (error) {
+            console.log(error)
+            throw error;
+        }
     }
-});
+);
 
 export const logoutUser = createAsyncThunk('auth/logoutUser', async () => {
     try {
