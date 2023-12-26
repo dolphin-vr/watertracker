@@ -28,19 +28,6 @@ function App() {
             <Route path="/forgot-password" element={<ForgotPasswordPage />} />
           </Route>
         </Routes>
-      {/* <h1>Water Tracker</h1>
-      <h2>drink water</h2>
-      <div>
-        <img src={bottle1} className="logo" alt="logo" width={200} />
-        <img src={bottle2} className="logo" alt="logo" width={200} />
-        <img src={bottle3} className="logo" alt="logo" width={200} />
-      </div>
-      <div>
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>Url from ENV VAR - {baseURL}</p>
-      </div> */}
       <GlobalStyle />
     </>
   );
