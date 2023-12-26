@@ -1,30 +1,40 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { registerUser } from '../../shared/api/auth';
-import { Outlet } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import AuthForm from '../../components/AuthForm/AuthForm';
+import { todayISO } from '../../shared/api/dates';
 
 function SignUpPage() {
     const dispatch = useDispatch();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [repeatPassword, setRepeatPassword] = useState('');
-    const [passwordMismatch, setPasswordMismatch] = useState(false); // стан для визначення невідповідності паролів
+    const [passwordMismatch, setPasswordMismatch] = useState(false);
+    const [registrationError, setRegistrationError] = useState(null); //  стан для повідомлення про помилку при реєстрації
 
-    const handleRegister = () => {
-        if (password === repeatPassword) {
-            dispatch(registerUser({ email, password }));
-            setPasswordMismatch(false); // Скидання стану, якщо паролі знову співпадають
-        } else {
-            setPasswordMismatch(true);
-            console.error('Passwords do not match');
+
+    const handleRegister = async () => {
+        try {
+            if (password === repeatPassword) {
+                const date = todayISO(new Date());
+                dispatch(registerUser({ email, password, date }));
+                setPasswordMismatch(false);
+                setRegistrationError(null); // Скидаємо стан помилки при успішній реєстрації
+                window.location.href = '/signin';
+            } else {
+                setPasswordMismatch(true);
+                console.error('Passwords do not match');
+            }
+        } catch (error) {
+            setRegistrationError(error.message); // Встановлюємо повідомлення про помилку у випадку невдалої реєстрації
         }
     };
 
     const handleAuthFormSubmit = () => {
         handleRegister();
-    }
+    };
 
     return (
         <div>
@@ -39,11 +49,12 @@ function SignUpPage() {
             <p>Repeat your password</p>
             <input
                 type="password"
-                placeholder="Repeat Password"
+                placeholder="Repeat your password"
                 value={repeatPassword}
                 onChange={(e) => setRepeatPassword(e.target.value)}
             />
             {passwordMismatch && <p style={{ color: 'red' }}>Passwords do not match</p>}
+            {registrationError && <p style={{ color: 'red' }}>{registrationError}</p>}
             <button onClick={handleRegister}>Sign Up</button>
             <Link to="/signin">Sign In</Link>
             <Outlet />
@@ -52,3 +63,6 @@ function SignUpPage() {
 }
 
 export default SignUpPage;
+
+
+
