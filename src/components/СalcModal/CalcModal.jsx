@@ -15,6 +15,7 @@ const CalcModal = ({ onClose }) => {
     e.preventDefault();
     console.log('request daily rate', rate);
     // Dispatch (addWaterThunk)
+    
   };
 
   const handleInputChange = e => {
