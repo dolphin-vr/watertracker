@@ -1,20 +1,17 @@
 import React, { useState, useEffect } from 'react';
 
 const SettingModal = () => {
-    const [userData, setUserData] = useState({
-        photo: null,
-        gender: '',
-        name: '',
-        email: '',
-        password: '',
-
-    });
+    const [photo, setPhoto] = useState(null);
+    const [gender, setGender] = useState('');
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     useEffect(() => {
 
     }, []);
 
-    //   const handleEscKeyPress = event => {
+      //   const handleEscKeyPress = event => {
     //     if (event.key === 'Escape' && isOpen) {
     //       onClose();
     //     }
@@ -25,7 +22,6 @@ const SettingModal = () => {
     //       onClose();
     //     }
     //   };
-
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -47,29 +43,24 @@ const SettingModal = () => {
 
             <input
                 type="radio"
-
-                checked={userData.gender === 'Man'}
-
+                checked={gender === 'Man'}
             />
             <label htmlFor="man">Man</label>
 
             <input
                 type="radio"
-                checked={userData.gender === 'Woman'} />
+                checked={gender === 'Woman'}
+            />
             <label>Your name</label>
             <input
                 type="text"
                 name="name"
-
-
                 placeholder="Enter your name"
             />
             <label>E-mail</label>
             <input
                 type="email"
                 name="email"
-
-
                 placeholder="Enter your email"
             />
             <h2>Password</h2>
@@ -91,12 +82,9 @@ const SettingModal = () => {
                 name="repeatNewPassword"
                 placeholder="Repeat your new password"
             />
-
-
-
-
             <button type="submit">Save</button>
         </div>
-    )
-}
-export default SettingModal
+    );
+};
+
+export default SettingModal;
