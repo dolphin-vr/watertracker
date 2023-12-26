@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getPortionsList } from "../../redux/todayOperations.js";
 import css from "./Today.module.css";
 
-const Today = () => {
+export const Today = () => {
   const portions = useSelector((state) => state.portions.portions);
   const isLoading = useSelector((state) => state.isLoading);
   const dispath = useDispatch();
@@ -59,4 +59,4 @@ const Today = () => {
   }
 };
 
-export default Today;
+// export default Today;
