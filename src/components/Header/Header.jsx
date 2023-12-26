@@ -12,7 +12,7 @@ const Header = () => {
   return (
     <div>
       <Logo />
-      <LogOutBtn/>
+      <LogOutBtn />
       {isLoggedIn ? <UserLogo /> : <UserAuth />}
     </div>
   );

@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { registerUser } from '../../shared/api/auth';
-import { Link } from 'react-router-dom';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate, Link} from 'react-router-dom';
 import AuthForm from '../../components/AuthForm/AuthForm';
 import { todayISO } from '../../shared/api/dates';
 
 function SignUpPage() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [repeatPassword, setRepeatPassword] = useState('');
@@ -22,7 +22,7 @@ function SignUpPage() {
                 dispatch(registerUser({ email, password, date }));
                 setPasswordMismatch(false);
                 setRegistrationError(null); // Скидаємо стан помилки при успішній реєстрації
-                window.location.href = '/signin';
+                navigate('/signin');
             } else {
                 setPasswordMismatch(true);
                 console.error('Passwords do not match');

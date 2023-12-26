@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectCurrentUser } from '../../redux/selectors';
-import { getCurrentUser } from '../../shared/api/auth';
+import {React, useState,  } from 'react';
+// import { useEffect } from 'react';
+// import { useDispatch } from 'react-redux';
+// import { useSelector } from 'react-redux';
+// import { selectCurrentUser } from '../../redux/selectors';
+// import { getCurrentUser } from '../../shared/api/auth';
 import UserLogoModal from '../UserLogoModal/UserLogoModal';
 
 const UserLogo = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const dispatch = useDispatch();
-    const currentUser = useSelector(selectCurrentUser);
+    // const dispatch = useDispatch();
+    // const currentUser = useSelector(selectCurrentUser);
 
-    useEffect(() => {
-        dispatch(getCurrentUser());
-    }, [dispatch]);
+    // useEffect(() => {
+    //     dispatch(getCurrentUser());
+    // }, [dispatch]);
 
     const handleButtonClick = () => {
         setIsModalOpen(!isModalOpen);
@@ -19,7 +21,9 @@ const UserLogo = () => {
 
     return (
         <div>
-            <button onClick={handleButtonClick}>
+            <button onClick={handleButtonClick}>VVV</button>
+            {isModalOpen && <UserLogoModal onClose={() => setIsModalOpen(false)} />}
+            {/* <button onClick={handleButtonClick}>
                 {currentUser.userAvatar ? (
                     <>
                         <img src={currentUser.userAvatar} alt={currentUser.userName} />
@@ -35,7 +39,7 @@ const UserLogo = () => {
                 )}
             </button>
 
-            {isModalOpen && <UserLogoModal userName={currentUser.userName} userAvatar={currentUser.userAvatar} onClose={() => setIsModalOpen(false)} />}
+            {isModalOpen && <UserLogoModal userName={currentUser.userName} userAvatar={currentUser.userAvatar} onClose={() => setIsModalOpen(false)} />} */}
         </div>
     );
 };
