@@ -28,7 +28,8 @@ const authSlice = createSlice({
             state.error = null;
         })
         .addCase(auth.registerUser.fulfilled, (state, action) => {
-            state.isAuthenticated = true;
+            // state.isAuthenticated = true; // змінити назад потім як зробимо автоматичну логінізацію після реєстрації
+            state.isAuthenticated = false;
             state.user = action.payload.user;
             state.token = action.payload.token;
             state.error = null;
