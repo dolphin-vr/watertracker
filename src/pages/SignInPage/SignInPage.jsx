@@ -12,8 +12,9 @@ function SignInPage() {
     const [password, setPassword] = useState('');
 
     const handleLogin = () => {
-        dispatch(loginUser({ email, password }));
-    }
+            dispatch(loginUser({ email, password }));
+            window.location.href = '/';
+    } 
 
     const handleAuthFormSubmit = () => {
         handleLogin();

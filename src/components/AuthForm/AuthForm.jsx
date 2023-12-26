@@ -21,7 +21,6 @@ function AuthForm({ email, setEmail, password, setPassword, onSubmit }) {
         if (isEmailValid && isPasswordValid) {
             onSubmit();
         } else {
-            // Відобразити повідомлення про помилку
             console.error('Invalid data. Please check your input.');
         }
     };

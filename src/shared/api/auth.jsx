@@ -5,7 +5,6 @@ const instance = axios.create({
     baseURL: import.meta.env.VITE_API_URL,
 });
 
-// Функція для встановлення токену в заголовок авторизації
 export const setToken = token => {
     if (token) {
         instance.defaults.headers.authorization = `Bearer ${token}`;
@@ -16,14 +15,19 @@ export const setToken = token => {
 
 export const registerUser = createAsyncThunk(
     'auth/registerUser',
-    async userData => {
+    async ({ email, password, date }) => {
         try {
+            const userData = {
+                email,
+                password,
+                date,
+            };
             const response = await instance.post('/auth/signup', userData);
             setToken(response.data.token);
             return response.data;
         } catch (error) {
-						console.log(error)
-						throw error;
+            console.log(error)
+            throw error;
         }
     }
 );
@@ -34,7 +38,7 @@ export const loginUser = createAsyncThunk('auth/loginUser', async userData => {
         setToken(response.data.token);
         return response.data;
     } catch (error) {
-			console.log(error)
+        console.log(error)
         throw error;
     }
 });
@@ -55,7 +59,7 @@ export const getCurrentUser = createAsyncThunk(
         try {
             const token = thunkApi.getState().auth.token;
             setToken(token);
-            const response = await instance.get('/api/user');
+            const response = await instance.get('/user');
             return response.data;
         } catch (error) {
 					console.log(error)
