@@ -1,29 +1,29 @@
-import {React, useState,  } from 'react';
+import { useState } from "react";
 // import { useEffect } from 'react';
 // import { useDispatch } from 'react-redux';
 // import { useSelector } from 'react-redux';
-// import { selectCurrentUser } from '../../redux/selectors';
+// import { selectCurrentUser } from '../../redux/auth/selectors';
 // import { getCurrentUser } from '../../shared/api/auth';
-import UserLogoModal from '../UserLogoModal/UserLogoModal';
+import UserLogoModal from "../UserLogoModal/UserLogoModal";
 
 const UserLogo = () => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    // const dispatch = useDispatch();
-    // const currentUser = useSelector(selectCurrentUser);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  // const dispatch = useDispatch();
+  // const currentUser = useSelector(selectCurrentUser);
 
-    // useEffect(() => {
-    //     dispatch(getCurrentUser());
-    // }, [dispatch]);
+  // useEffect(() => {
+  //     dispatch(getCurrentUser());
+  // }, [dispatch]);
 
-    const handleButtonClick = () => {
-        setIsModalOpen(!isModalOpen);
-    };
+  const handleButtonClick = () => {
+    setIsModalOpen(!isModalOpen);
+  };
 
-    return (
-        <div>
-            <button onClick={handleButtonClick}>VVV</button>
-            {isModalOpen && <UserLogoModal onClose={() => setIsModalOpen(false)} />}
-            {/* <button onClick={handleButtonClick}>
+  return (
+    <div>
+      <button onClick={handleButtonClick}>VVV</button>
+      {isModalOpen && <UserLogoModal onClose={() => setIsModalOpen(false)} />}
+      {/* <button onClick={handleButtonClick}>
                 {currentUser.userAvatar ? (
                     <>
                         <img src={currentUser.userAvatar} alt={currentUser.userName} />
@@ -40,8 +40,8 @@ const UserLogo = () => {
             </button>
 
             {isModalOpen && <UserLogoModal userName={currentUser.userName} userAvatar={currentUser.userAvatar} onClose={() => setIsModalOpen(false)} />} */}
-        </div>
-    );
+    </div>
+  );
 };
 
 export default UserLogo;

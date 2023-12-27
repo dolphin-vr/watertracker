@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getDayPortions } from "../shared/api/todayApiServices.js";
-import { currentDate } from "../services/currentDate.js";
+import { getDayPortions } from "../../shared/api/todayApiServices.js";
+import { currentDate } from "../../services/currentDate.js";
 
 export const getPortionsList = createAsyncThunk(
   "portions/getPortionsList",
