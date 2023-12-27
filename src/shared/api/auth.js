@@ -60,7 +60,7 @@ export const registerUser = createAsyncThunk(
             console.log('userData reg== ', userData)
             const response = await instance.post('/auth/signup', userData);
             console.log('response reg == ', response)
-            setAuthHeader (response.data.token);
+            // setAuthHeader (response.data.token);
             return response.data;
         } catch (error) {
             console.log(error)

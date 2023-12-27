@@ -2,8 +2,8 @@ import { useSelector } from "react-redux";
 import Logo from "../Logo/Logo";
 import UserAuth from "../UserAuth/UserAuth";
 import UserLogo from "../UserLogo/UserLogo";
-import { selectIsLoggedIn } from "../../redux/auth/selectors";
-import LogOutBtn from "../LogOutBtn";
+import { selectIsLoggedIn } from '../../redux/selectors'; 
+import LogOutBtn from '../LogOutBtn';
 
 const Header = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -11,7 +11,7 @@ const Header = () => {
   return (
     <div>
       <Logo />
-      <LogOutBtn />
+      {/* <LogOutBtn /> */}
       {isLoggedIn ? <UserLogo /> : <UserAuth />}
     </div>
   );
