@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getPortionsList } from "../../redux/todayOperations.js";
+import { getPortionsList } from "../../redux/water/todayOperations.js";
 import css from "./Today.module.css";
 
 export const Today = () => {

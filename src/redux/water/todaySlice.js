@@ -10,7 +10,7 @@ export const todaySlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getPortionsList.pending, (state, action) => {
+      .addCase(getPortionsList.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(getPortionsList.fulfilled, (state, action) => {
@@ -21,7 +21,7 @@ export const todaySlice = createSlice({
         state.error = action.payload;
         state.isLoading = false;
       })
-      .addCase(addNewPortion.pending, (state, action) => {
+      .addCase(addNewPortion.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(addNewPortion.fulfilled, (state, action) => {
