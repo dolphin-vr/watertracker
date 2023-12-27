@@ -3,7 +3,7 @@ import Modal from 'react-modal';
 import UserInfoModal from '../UserInfoModal/UserInfoModal'; 
 import UserLogoutModal from '../UserLogoutModal/UserLogoutModal';
 
-Modal.setAppElement('#root'); // Вказуємо кореневий елемент вашого додатку
+Modal.setAppElement('#root'); 
 
 const UserLogoModal = ({ onClose }) => {
     const [isUserInfoModalOpen, setIsUserInfoModalOpen] = useState(false);
@@ -26,7 +26,7 @@ const UserLogoModal = ({ onClose }) => {
             contentLabel="User Modal"
         >
             <div>
-                <button className="close-button" onClick={onClose}>Закрити</button>
+                <button className="close-button" onClick={onClose}>X</button>
                 <div>
                     <button onClick={openUserInfoModal}>Setting</button>
                     <button onClick={openUserLogoutModal}>Log out</button>
