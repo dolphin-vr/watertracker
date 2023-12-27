@@ -16,7 +16,7 @@ import { todaySlice } from "./todaySlice";
 const authPersistConfig = {
   key: "auth",
   storage,
-  whitelist: ["token"],
+  whitelist: ["isAuthenticated", "user", "token"],
 };
 
 export const store = configureStore({

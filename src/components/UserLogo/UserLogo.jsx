@@ -13,7 +13,7 @@ const UserLogo = () => {
 
     // useEffect(() => {
     //     dispatch(getCurrentUser());
-    // }, [dispatch]);
+    // }, [dispatch]);  
 
     const handleButtonClick = () => {
         setIsModalOpen(!isModalOpen);
@@ -24,22 +24,22 @@ const UserLogo = () => {
             <button onClick={handleButtonClick}>VVV</button>
             {isModalOpen && <UserLogoModal onClose={() => setIsModalOpen(false)} />}
             {/* <button onClick={handleButtonClick}>
-                {currentUser.userAvatar ? (
+                {currentUser.avatarURL ? (
                     <>
-                        <img src={currentUser.userAvatar} alt={currentUser.userName} />
-                        <span>{currentUser.userName}</span>
+                        <img src={currentUser.avatarURL} alt={currentUser.username} />
+                        <span>{currentUser.username}</span>
                     </>
-                ) : currentUser.userName ? (
+                ) : currentUser.username ? (
                     <>
-                        <div className="initial-avatar">{currentUser.userName.charAt(0).toUpperCase()}</div>
-                        <span>{currentUser.userName}</span>
+                        <div className="initial-avatar">{currentUser.username.charAt(0).toUpperCase()}</div>
+                        <span>{currentUser.username}</span>
                     </>
                 ) : (
                     <div className="initial-avatar">V</div>
                 )}
             </button>
 
-            {isModalOpen && <UserLogoModal userName={currentUser.userName} userAvatar={currentUser.userAvatar} onClose={() => setIsModalOpen(false)} />} */}
+            {isModalOpen && <UserLogoModal userName={currentUser.username} userAvatar={currentUser.avatarURL} onClose={() => setIsModalOpen(false)} />} */}
         </div>
     );
 };
