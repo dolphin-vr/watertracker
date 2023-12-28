@@ -9,18 +9,20 @@ const ForgotPasswordPage = lazy(() =>
   import("./pages/ForgotPasswordPage/ForgotPasswordPage")
 );
 const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
+const MainHomepage = lazy(() => import("./pages/MainHomepage/MainHomepage"));
 
 function App() {
   return (
     <>
-        <Routes>
-          <Route path="/" element={<SharedLayout />}>
-            <Route index element={<HomePage />} />
-            <Route path="/signup" element={<SignUpPage />} />
-            <Route path="/signin" element={<SignInPage />} />
-            <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-          </Route>
-        </Routes>
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<HomePage />} />
+          <Route path="/main-homepage" element={<MainHomepage />} />
+          <Route path="/signup" element={<SignUpPage />} />
+          <Route path="/signin" element={<SignInPage />} />
+          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+        </Route>
+      </Routes>
       <GlobalStyle />
     </>
   );
