@@ -18,7 +18,7 @@ const MainHomepage = () => {
         <AddPortion />
       </MainHomepageStatistic>
       <MainHomepagePortions>
-        {/* <Today /> */}
+        <Today />
         <Calendar />
       </MainHomepagePortions>
     </MainHomepageContainer>
