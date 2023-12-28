@@ -30,7 +30,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <BrowserRouter basename="/">
         <ThemeProvider theme={theme}>
           <Provider store = {store}>
-            <App /> 
+            <App />
           </Provider>
         </ThemeProvider>
       </BrowserRouter>
@@ -38,5 +38,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   </React.StrictMode>
 );
 
-//Віка внесла Провайдер та зробила імпорт стору (п.с. так видавало в браузеру помилку що треба провайдер обгорнути навколо додатку)
-// стор і персістор теж 
+
+
