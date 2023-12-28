@@ -4,7 +4,7 @@ import {
   updateUserAvatar,
   updateUserInfo,
   updateWaterNorma,
-} from "./userSelectors";
+} from "./userOperations";
 
 const userInitialState = {
   user: null,
