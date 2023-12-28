@@ -22,7 +22,6 @@ function SignUpPage() {
 
     try {
         const date = todayISO(new Date());
-        // const response =
         await dispatch(
             registerUser({
                 email: email,
@@ -31,12 +30,9 @@ function SignUpPage() {
             })
         );
 
-        // console.log('Registration successful:', response);
-
         form.reset();
         navigate('/');
     } catch (error) {
-        // Ваш код для обробки помилки реєстрації
         console.error('Registration error:', error);
     }
 };

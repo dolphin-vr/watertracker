@@ -2,8 +2,8 @@ import { useDispatch } from "react-redux";
 import { loginUser } from "../../redux/auth/auth";
 import { Link, Outlet } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-// import { useSelector } from "react-redux";
-// import { selectToken } from "../../redux/auth/selectors";
+import { useSelector } from "react-redux";
+import { selectToken } from "../../redux/auth/selectors";
 
 
 export const SignInPage = () => {
@@ -22,13 +22,13 @@ export const SignInPage = () => {
     navigate("/");
   };
 
-  // // // перевірка чи токен зберігається в  редакс
-  // const tokenInRedux = useSelector((state) => selectToken(state));
-  // console.log("Token in Redux state:", tokenInRedux);
+  // // перевірка чи токен зберігається в  редакс
+  const tokenInRedux = useSelector((state) => selectToken(state));
+  console.log("Token in Redux state:", tokenInRedux);
 
-  // // перевірка чи токен зберігається в локальному сховищі
-  // const tokenInLocalStorage = localStorage.getItem("token");
-  // console.log("Token in localStorage:", tokenInLocalStorage);
+  // перевірка чи токен зберігається в локальному сховищі
+  const tokenInLocalStorage = localStorage.getItem("persist:auth");
+  console.log("Token in localStorage:", tokenInLocalStorage);
 
   return (
     <div>

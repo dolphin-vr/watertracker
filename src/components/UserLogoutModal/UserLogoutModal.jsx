@@ -8,15 +8,15 @@ Modal.setAppElement('#root');
 const UserLogoutModal = ({ onClose }) => {
     const dispatch = useDispatch();
 
-    const handleLogout = async () => {
-        try {
-            // відправка запиту на бекенд для видалення сесії користувача
-            await dispatch(logoutUser());
-            onClose();
-        } catch (error) {
-            console.error('Logout error:', error);
-        }
-    };
+    const handleLogout = () => {
+    // Викликати асинхронний танк logoutUser при натисканні кнопки "Вийти"
+    dispatch(logoutUser()).then((result) => {
+      if (result) {
+        // Закрити модальне вікно після успішного виходу
+        onClose();
+      }
+    });
+  };
 
     return (
         <Modal
