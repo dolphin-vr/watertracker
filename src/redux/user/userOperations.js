@@ -1,9 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-
-const instance = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
-});
+import { instance } from "../../shared/api/auth";
 
 export const getUserInfo = createAsyncThunk(
   "users/getInfo",

@@ -1,37 +1,68 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getPortionsList, addNewPortion } from "./todayOperations";
+import {
+  getPortionsList,
+  addNewPortion,
+  updatePortion,
+  deletePortion,
+} from "./todayOperations";
+
+const handlePending = (state) => {
+  state.isLoading = true;
+  state.error = null;
+};
+
+const handleRejected = (state, action) => {
+  state.isLoading = false;
+  state.error = action.payload;
+};
 
 export const todaySlice = createSlice({
   name: "portions",
   initialState: {
-    portions: [],
+    portions: null,
     isLoading: false,
+    error: null,
   },
-  reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getPortionsList.pending, (state) => {
-        state.isLoading = true;
-      })
+      .addCase(getPortionsList.pending, handlePending)
       .addCase(getPortionsList.fulfilled, (state, action) => {
+        state.error = null;
         state.isLoading = false;
         state.portions = action.payload;
       })
-      .addCase(getPortionsList.rejected, (state, action) => {
-        state.error = action.payload;
-        state.isLoading = false;
-      })
-      .addCase(addNewPortion.pending, (state) => {
-        state.isLoading = true;
-      })
+      .addCase(getPortionsList.rejected, handleRejected)
+      .addCase(addNewPortion.pending, handlePending)
       .addCase(addNewPortion.fulfilled, (state, action) => {
+        state.error = null;
         state.isLoading = false;
-        state.portions.push(action.payload);
+        state.portions.dailyPortions.push(action.payload.water);
       })
-      .addCase(addNewPortion.rejected, (state, action) => {
-        state.error = action.payload;
+      .addCase(addNewPortion.rejected, handleRejected)
+      .addCase(updatePortion.pending, handlePending)
+      .addCase(updatePortion.fulfilled, (state, action) => {
+        state.error = null;
         state.isLoading = false;
-      });
+        state.portions.dailyPortions = state.portions.dailyPortions.map(
+          (water) => {
+            if (water.id === action.payload.id) {
+              return action.payload;
+            }
+            return water;
+          }
+        );
+      })
+      .addCase(updatePortion.rejected, handleRejected)
+      .addCase(deletePortion.pending, handlePending)
+      .addCase(deletePortion.fulfilled, (state, action) => {
+        state.error = null;
+        state.isLoading = false;
+        const index = state.portions.dailyPortions.findIndex(
+          (water) => water.id === action.payload.id
+        );
+        state.portions.dailyPortions.splice(index, 1);
+      })
+      .addCase(deletePortion.rejected, handleRejected);
   },
 });
 
