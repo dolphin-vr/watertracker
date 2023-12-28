@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
-import UserInfoModal from '../UserInfoModal/UserInfoModal'; 
 import UserLogoutModal from '../UserLogoutModal/UserLogoutModal';
+import SettingModal from '../SettingModal/SettingModal'
 
 Modal.setAppElement('#root'); 
 
@@ -33,7 +33,7 @@ const UserLogoModal = ({ onClose }) => {
                 </div>
             </div>
 
-            {isUserInfoModalOpen && <UserInfoModal onClose={() => setIsUserInfoModalOpen(false)} />}
+            {isUserInfoModalOpen && <SettingModal onClose={() => setIsUserInfoModalOpen(false)} />}
             {isUserLogoutModalOpen && <UserLogoutModal onClose={() => setIsUserLogoutModalOpen(false)} />}
         </Modal>
     );

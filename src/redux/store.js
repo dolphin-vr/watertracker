@@ -16,7 +16,7 @@ import { todaySlice } from "./water/todaySlice";
 const authPersistConfig = {
   key: "auth",
   storage,
-  whitelist: ["isAuthenticated", "user", "token"],
+  whitelist: ["token"],
 };
 
 export const store = configureStore({
@@ -36,3 +36,4 @@ export const store = configureStore({
 export const persistor = persistStore(store);
 
 export default store;
+
