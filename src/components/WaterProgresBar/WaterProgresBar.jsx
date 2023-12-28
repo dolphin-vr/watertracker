@@ -1,30 +1,43 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // import { getPortionsList } from "../../redux/todayOperations.js";
+import {
+  WaterProgresBarContainer,
+  WaterProgresBarTitle,
+  ProgressContainer,
+  ProgressBar,
+  WaterProgresBarText,
+} from "./WaterProgresBar.styled";
 
 export const WaterProgresBar = () => {
-  const quantity = 50;
+  const quantity = 70;
 
   return (
-    <div
-      className="progress-container"
-      style={{
-        width: "360px",
-        height: "8px",
-        backgroundColor: "#D7E3FF",
-        position: "relative",
-      }}
-    >
-      <div
-        className="progress-bar"
-        id="myProgressBar"
+    <WaterProgresBarContainer>
+      <WaterProgresBarTitle>Today</WaterProgresBarTitle>
+      <ProgressContainer
         style={{
-          width: `${quantity}%`,
-          height: "100%",
-          backgroundColor: "#9EBBFF",
-          position: "absolute",
+          width: "100%",
+          height: "8px",
+          backgroundColor: "#C6D7FF",
+          position: "relative",
+          borderRadius: "5px",
         }}
-      ></div>
-    </div>
+      >
+        <ProgressBar
+          style={{
+            width: `${quantity}%`,
+            height: "8px",
+            position: "absolute",
+            backgroundColor: "#8BAEFF",
+            borderRadius: "5px",
+          }}
+        ></ProgressBar>
+      </ProgressContainer>
+      <WaterProgresBarText>
+        <span>0%</span>
+        <span>100%</span>
+      </WaterProgresBarText>
+    </WaterProgresBarContainer>
   );
 };
