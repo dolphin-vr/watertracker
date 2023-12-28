@@ -46,7 +46,8 @@ export const loginUser = createAsyncThunk(
 export const logoutUser = createAsyncThunk('auth/logoutUser', async (_, thunkAPI) => {
     try {
         await instance.post('/auth/signout');
-        clearAuthHeader ();
+        clearAuthHeader();
+        return true;
     } catch (error) {
 			return thunkAPI.rejectWithValue(error.message);
     }
@@ -67,7 +68,7 @@ export const refreshUser = createAsyncThunk(
     try {
       // If there is a token, add it to the HTTP header and perform the request
         setAuthHeader(persistedToken);
-        const response = await instance.get('/user');
+        const response = await instance.get('/auth/refresh');
         return response.data;
     } catch (error) {
         return thunkAPI.rejectWithValue(error.message);
@@ -75,18 +76,4 @@ export const refreshUser = createAsyncThunk(
     }
 );
 
-// export const getCurrentUser = createAsyncThunk(
-//     'auth/getCurrentUser',
-//     async (_, thunkApi) => {
-//         try {
-//             const token = thunkApi.getState().auth.token;
-//             setAuthHeader (token);
-//             const response = await instance.get('/user');
-//             return response.data;
-//         } catch (error) {
-// 					console.log(error)
-//             throw error;
-//         }
-//     }
-// );
 

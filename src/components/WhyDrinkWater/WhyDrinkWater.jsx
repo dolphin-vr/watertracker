@@ -10,7 +10,6 @@ import {
 
 export const WhyDrinkWater = () => {
   return (
-    <div>
       <StyledDiv>
         <StyledHeader>Why drink water</StyledHeader>
         <StyledUl>
@@ -54,7 +53,7 @@ export const WhyDrinkWater = () => {
               Maintaining within the normal temperature
             </StyledParagraph>
           </StyledLi>
-          <StyledLi lastelementli="true">
+          <StyledLi>
             <StyledSvg>
               <StyledCircle cx="4" cy="4" r="4" />
             </StyledSvg>
@@ -64,6 +63,5 @@ export const WhyDrinkWater = () => {
           </StyledLi>
         </StyledUl>
       </StyledDiv>
-    </div>
   );
 };
