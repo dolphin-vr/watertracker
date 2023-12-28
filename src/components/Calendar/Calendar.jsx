@@ -1,9 +1,9 @@
 import { useState, useEffect, useCallback } from "react";
 import Modal from "react-modal";
 import toast from "react-hot-toast";
-import axios from "axios";
-import { useSelector } from "react-redux";
-import { selectToken } from "../../redux/auth/selectors";
+// import axios from "axios";
+// import { useSelector } from "react-redux";
+// import { selectToken } from "../../redux/auth/selectors";
 
 import {
   CalendarContainer,
@@ -19,28 +19,30 @@ import {
   CompletionText,
   DayNotCompelete,
 } from "./Calendar.styled";
+import { instance } from "../../shared/api/auth";
 
 export const Calendar = () => {
-  const token = useSelector(selectToken);
+  // const token = useSelector(selectToken);
   const [date, setDate] = useState(new Date());
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [clickedDayData, setClickedDayData] = useState(null);
 
   const fetchData = useCallback(async () => {
     try {
-      const apiBaseUrl = import.meta.env.VITE_API_URL;
+      // const apiBaseUrl = import.meta.env.VITE_API_URL;
       const endpoint = "water/month";
       const currentDate = `${date.getFullYear()}-${(date.getMonth() + 1)
         .toString()
         .padStart(2, "0")}-${date.getDate().toString().padStart(2, "0")}`;
 
-      const apiUrl = `${apiBaseUrl}/${endpoint}/${currentDate}`;
+      const apiUrl = `/${endpoint}/${currentDate}`;
 
-      const response = await axios.get(apiUrl, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await instance.get(apiUrl);
+      // , {
+      //   headers: {
+      //     Authorization: `Bearer ${token}`,
+      //   },
+      // }
 
       setClickedDayData(response.data);
     } catch (error) {
@@ -48,7 +50,7 @@ export const Calendar = () => {
       toast.error("Error fetching data. Please try again.");
       setClickedDayData(null);
     }
-  }, [date, token]);
+  }, [date]);
 
   useEffect(() => {
     fetchData();
