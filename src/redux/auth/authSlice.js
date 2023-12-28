@@ -1,11 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import * as auth from "../../shared/api/auth";
+import * as auth from "./auth";
 
 const initialState = {
-  isAuthenticated: false,
   user: null,
   token: null,
-  error: null,
+  isLoggedIn: false,
   isRefreshing: false,
 };
 
@@ -15,49 +14,31 @@ const authSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(auth.loginUser.fulfilled, (state, action) => {
-        state.isAuthenticated = true;
-        state.user = action.payload.user;
+      .addCase(auth.registerUser.fulfilled, (state, action) => {
+        state.user = action.payload;
         state.token = action.payload.token;
-        state.error = null;
+        state.isLoggedIn = true;
+      })
+      .addCase(auth.loginUser.fulfilled, (state, action) => {
+        state.user = action.payload;
+        state.token = action.payload.token;
+        state.isLoggedIn = true;
       })
       .addCase(auth.logoutUser.fulfilled, (state) => {
-        state.isAuthenticated = false;
         state.user = null;
         state.token = null;
-        state.error = null;
+        state.isLoggedIn = false;
       })
-      .addCase(auth.registerUser.fulfilled, (state, action) => {
-        // state.isAuthenticated = true; // змінити назад потім як зробимо автоматичну логінізацію після реєстрації
-        state.isAuthenticated = false;
-        state.user = action.payload.user;
-        state.token = action.payload.token;
-        state.error = null;
-      })
-      .addCase(auth.loginUser.rejected, (state, action) => {
-        state.isAuthenticated = false;
-        state.user = null;
-        state.token = null;
-        state.error = action.error.message;
-      })
-      .addCase(auth.logoutUser.rejected, (state, action) => {
-        state.error = action.error.message;
-      })
-      .addCase(auth.registerUser.rejected, (state, action) => {
-        state.error = action.error.message;
-      })
-      .addCase(auth.getCurrentUser.pending, (state, action) => {
+      .addCase(auth.refreshUser.pending, state => {
         state.isRefreshing = true;
       })
-      .addCase(auth.getCurrentUser.fulfilled, (state, action) => {
-        state.isRefreshing = false;
-        state.isAuthenticated = true;
+      .addCase(auth.refreshUser.fulfilled, (state, action) => {
         state.user = action.payload;
-      })
-      .addCase(auth.getCurrentUser.rejected, (state, action) => {
+        state.isLoggedIn = true;
         state.isRefreshing = false;
-        state.error = action.error.message;
-        state.isAuthenticated = false;
+      })
+      .addCase(auth.refreshUser.rejected, state => {
+        state.isRefreshing = false;
       });
   },
 });

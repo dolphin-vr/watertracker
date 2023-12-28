@@ -19,20 +19,20 @@ const UserLogo = () => {
     setIsModalOpen(!isModalOpen);
   };
 
-  return (
-    <div>
-      <button onClick={handleButtonClick}>VVV</button>
-      {isModalOpen && <UserLogoModal onClose={() => setIsModalOpen(false)} />}
-      {/* <button onClick={handleButtonClick}>
-                {currentUser.userAvatar ? (
+    return (
+        <div>
+            <button onClick={handleButtonClick}>VVV</button>
+            {isModalOpen && <UserLogoModal onClose={() => setIsModalOpen(false)} />}
+            {/* <button onClick={handleButtonClick}>
+                {currentUser.avatarURL ? (
                     <>
-                        <img src={currentUser.userAvatar} alt={currentUser.userName} />
-                        <span>{currentUser.userName}</span>
+                        <img src={currentUser.avatarURL} alt={currentUser.username} />
+                        <span>{currentUser.username}</span>
                     </>
-                ) : currentUser.userName ? (
+                ) : currentUser.username ? (
                     <>
-                        <div className="initial-avatar">{currentUser.userName.charAt(0).toUpperCase()}</div>
-                        <span>{currentUser.userName}</span>
+                        <div className="initial-avatar">{currentUser.username.charAt(0).toUpperCase()}</div>
+                        <span>{currentUser.username}</span>
                     </>
                 ) : (
                     <div className="initial-avatar">V</div>
