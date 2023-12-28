@@ -10,8 +10,9 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import { authSliceReducer } from "./authSlice";
-import { todaySlice } from "./todaySlice";
+import { authSliceReducer } from "./auth/authSlice";
+import { todaySlice } from "./water/todaySlice";
+import { userReducer } from "./user/userSlice";
 
 const authPersistConfig = {
   key: "auth",
@@ -23,6 +24,7 @@ export const store = configureStore({
   reducer: {
     portions: todaySlice.reducer,
     auth: persistReducer(authPersistConfig, authSliceReducer),
+    users: userReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -34,3 +36,6 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
+
+export default store;
+

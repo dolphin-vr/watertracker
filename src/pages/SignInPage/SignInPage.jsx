@@ -1,37 +1,52 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { loginUser } from '../../shared/api/auth';
-import { Outlet } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-import AuthForm from '../../components/AuthForm/AuthForm';
+import { useDispatch } from "react-redux";
+import { loginUser } from "../../redux/auth/auth";
+import { Link, Outlet } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+// import { useSelector } from "react-redux";
+// import { selectToken } from "../../redux/auth/selectors";
 
-function SignInPage() {
 
-    const dispatch = useDispatch();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+export const SignInPage = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleLogin = e => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    dispatch(
+      loginUser({
+        email: form.elements.email.value,
+        password: form.elements.password.value,
+      })
+    );
+    form.reset();
+    navigate("/");
+  };
 
-    const handleLogin = () => {
-            dispatch(loginUser({ email, password }));
-            window.location.href = '/';
-    } 
+  // // // перевірка чи токен зберігається в  редакс
+  // const tokenInRedux = useSelector((state) => selectToken(state));
+  // console.log("Token in Redux state:", tokenInRedux);
 
-    const handleAuthFormSubmit = () => {
-        handleLogin();
-    }
+  // // перевірка чи токен зберігається в локальному сховищі
+  // const tokenInLocalStorage = localStorage.getItem("token");
+  // console.log("Token in localStorage:", tokenInLocalStorage);
 
-    return (
-        <div>
+  return (
+    <div>
         <h1>Sign In</h1>
-        <AuthForm email={email}
-                setEmail={setEmail}
-                password={password}
-                setPassword={setPassword}
-                onSubmit={handleAuthFormSubmit}/>
-        <button onClick={handleLogin}>Sign In</button>
+        <form onSubmit={handleLogin} autoComplete="off">
+            <label>
+                Enter your email
+                <input type="email" name="email" placeholder="E-mail"/>
+            </label>
+            <label>
+                Enter your password
+                <input type="password" name="password" placeholder="Password"/>
+            </label>
+            <button>Sign In</button> 
+        </form>
         <Link to="/signup">Sign Up</Link>
         <Outlet />
-        </div>
+    </div>
     );
 }
 
