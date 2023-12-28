@@ -12,7 +12,8 @@ const HomePage = () => {
   return (
     <section> 
       <button onClick={handleButtonClick}>{isLoggedIn? "logOut" : "signIn"}</button>
-      {isLoggedIn? <MainHomepage/>: <UnSignedHomePage />}
+      {isLoggedIn ? <MainHomepage /> : <UnSignedHomePage />}
+      
     </section>
   );
 };
