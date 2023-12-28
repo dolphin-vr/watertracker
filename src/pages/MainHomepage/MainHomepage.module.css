@@ -1,0 +1,15 @@
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.statistic {
+  width: 300px;
+  background-color: aquamarine;
+}
+
+.portions {
+  width: 300px;
+  border-radius: 10px;
+  background-color: aqua;
+}
