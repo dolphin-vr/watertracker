@@ -1,61 +1,64 @@
-import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { registerUser } from '../../shared/api/auth';
-import { Outlet, useNavigate, Link} from 'react-router-dom';
-import AuthForm from '../../components/AuthForm/AuthForm';
+import { registerUser } from '../../redux/auth/auth';
+import { Outlet, useNavigate, Link } from 'react-router-dom';
 import { todayISO } from '../../shared/api/dates';
 
 function SignUpPage() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [repeatPassword, setRepeatPassword] = useState('');
-    const [passwordMismatch, setPasswordMismatch] = useState(false);
-    const [registrationError, setRegistrationError] = useState(null); //  стан для повідомлення про помилку при реєстрації
 
+    const handleRegister = async (e) => {
+    e.preventDefault();
+    const form = e.currentTarget;
 
-    const handleRegister = async () => {
-        try {
-            if (password === repeatPassword) {
-                const date = todayISO(new Date());
-                dispatch(registerUser({ email, password, date }));
-                setPasswordMismatch(false);
-                setRegistrationError(null); // Скидаємо стан помилки при успішній реєстрації
-                navigate('/signin');
-            } else {
-                setPasswordMismatch(true);
-                console.error('Passwords do not match');
-            }
-        } catch (error) {
-            setRegistrationError(error.message); // Встановлюємо повідомлення про помилку у випадку невдалої реєстрації
-        }
-    };
+    const email = form.elements.email.value;
+    const password = form.elements.password.value;
+    const repeatPassword = form.elements.repeatPassword.value;
 
-    const handleAuthFormSubmit = () => {
-        handleRegister();
-    };
+    if (password !== repeatPassword) {
+        console.error('Passwords do not match');
+        return;
+    }
+
+    try {
+        const date = todayISO(new Date());
+        // const response =
+        await dispatch(
+            registerUser({
+                email: email,
+                password: password,
+                date
+            })
+        );
+
+        // console.log('Registration successful:', response);
+
+        form.reset();
+        navigate('/');
+    } catch (error) {
+        // Ваш код для обробки помилки реєстрації
+        console.error('Registration error:', error);
+    }
+};
 
     return (
         <div>
             <h1>Sign Up</h1>
-            <AuthForm
-                email={email}
-                setEmail={setEmail}
-                password={password}
-                setPassword={setPassword}
-                onSubmit={handleAuthFormSubmit}
-            />
-            <p>Repeat your password</p>
-            <input
-                type="password"
-                placeholder="Repeat your password"
-                value={repeatPassword}
-                onChange={(e) => setRepeatPassword(e.target.value)}
-            />
-            {passwordMismatch && <p style={{ color: 'red' }}>Passwords do not match</p>}
-            {registrationError && <p style={{ color: 'red' }}>{registrationError}</p>}
-            <button onClick={handleRegister}>Sign Up</button>
+            <form onSubmit={handleRegister} autoComplete="off">
+                <label>
+                    Enter your email
+                    <input type="email" name="email" placeholder="E-mail"/>
+                </label>
+                <label>
+                    Enter your password
+                    <input type="password" name="password" placeholder="Password"/>
+                </label>
+                <label>
+                    Repeat your password
+                    <input type="password" name="repeatPassword" placeholder="Repeat your password"/>
+                </label>
+                <button>Sign Up</button> 
+            </form>
             <Link to="/signin">Sign In</Link>
             <Outlet />
         </div>
@@ -63,6 +66,5 @@ function SignUpPage() {
 }
 
 export default SignUpPage;
-
 
 
