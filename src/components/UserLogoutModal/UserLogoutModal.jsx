@@ -9,10 +9,8 @@ const UserLogoutModal = ({ onClose }) => {
     const dispatch = useDispatch();
 
     const handleLogout = () => {
-    // Викликати асинхронний танк logoutUser при натисканні кнопки "Вийти"
     dispatch(logoutUser()).then((result) => {
       if (result) {
-        // Закрити модальне вікно після успішного виходу
         onClose();
       }
     });

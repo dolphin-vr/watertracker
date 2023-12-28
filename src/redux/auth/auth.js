@@ -76,18 +76,4 @@ export const refreshUser = createAsyncThunk(
     }
 );
 
-// export const getCurrentUser = createAsyncThunk(
-//     'auth/getCurrentUser',
-//     async (_, thunkApi) => {
-//         try {
-//             const token = thunkApi.getState().auth.token;
-//             setAuthHeader (token);
-//             const response = await instance.get('/user');
-//             return response.data;
-//         } catch (error) {
-// 					console.log(error)
-//             throw error;
-//         }
-//     }
-// );
 
