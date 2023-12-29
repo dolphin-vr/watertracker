@@ -7,7 +7,6 @@ const UnSignedHomePage = () => {
     <Container>
       <WaterСonsumptionTracker />
       <WhyDrinkWater />
-      <Today />
     </Container>
   );
 };
