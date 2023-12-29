@@ -17,7 +17,7 @@ const handleRejected = (state, action) => {
 };
 
 export const todaySlice = createSlice({
-  name: "portions",
+  name: "water",
   initialState: {
     portions: null,
     isLoading: false,
@@ -27,16 +27,18 @@ export const todaySlice = createSlice({
     builder
       .addCase(getPortionsList.pending, handlePending)
       .addCase(getPortionsList.fulfilled, (state, action) => {
+        console.log(action.payload);
         state.error = null;
         state.isLoading = false;
         state.portions = action.payload;
+        console.log(state.portions.dailyPortions);
       })
       .addCase(getPortionsList.rejected, handleRejected)
       .addCase(addNewPortion.pending, handlePending)
       .addCase(addNewPortion.fulfilled, (state, action) => {
         state.error = null;
         state.isLoading = false;
-        state.portions.dailyPortions.push(action.payload.water);
+        state.portions.dailyPortions.push(action.payload);
       })
       .addCase(addNewPortion.rejected, handleRejected)
       .addCase(updatePortion.pending, handlePending)
@@ -44,11 +46,11 @@ export const todaySlice = createSlice({
         state.error = null;
         state.isLoading = false;
         state.portions.dailyPortions = state.portions.dailyPortions.map(
-          (water) => {
-            if (water.id === action.payload.id) {
+          (portion) => {
+            if (portion.id === action.payload.id) {
               return action.payload;
             }
-            return water;
+            return portion;
           }
         );
       })
@@ -57,13 +59,13 @@ export const todaySlice = createSlice({
       .addCase(deletePortion.fulfilled, (state, action) => {
         state.error = null;
         state.isLoading = false;
-        const index = state.portions.dailyPortions.findIndex(
-          (water) => water.id === action.payload.id
+        const index = state.portions[0].dailyPortions.findIndex(
+          (portion) => portion.id === action.payload.id
         );
-        state.portions.dailyPortions.splice(index, 1);
+        state.portions[0].dailyPortions.splice(index, 1);
       })
       .addCase(deletePortion.rejected, handleRejected);
   },
 });
 
-export const { add, remove } = todaySlice.actions;
+export const todayReducer = todaySlice.reducer;

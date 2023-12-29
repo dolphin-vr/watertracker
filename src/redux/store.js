@@ -11,7 +11,7 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { authSliceReducer } from "./auth/authSlice";
-import { todaySlice } from "./water/todaySlice";
+import { todayReducer } from "./water/todaySlice";
 import { userReducer } from "./user/userSlice";
 
 const authPersistConfig = {
@@ -22,7 +22,7 @@ const authPersistConfig = {
 
 export const store = configureStore({
   reducer: {
-    portions: todaySlice.reducer,
+    water: todayReducer,
     auth: persistReducer(authPersistConfig, authSliceReducer),
     users: userReducer,
   },
@@ -38,4 +38,3 @@ export const store = configureStore({
 export const persistor = persistStore(store);
 
 export default store;
-
