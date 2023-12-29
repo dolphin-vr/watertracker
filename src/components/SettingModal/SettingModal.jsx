@@ -21,69 +21,69 @@ const SettingModal = () => {
     };
 
 
-    return (
-            <Modal
-                isOpen={isOpen}
-                onRequestClose={closeModal}
-                contentLabel="Setting Modal"
-            >
-                <h1>Setting</h1>
-                <p>Your photo</p>
+    return (isModalOpen && (
+        <Modal
+            isOpen={isOpen}
+            onRequestClose={closeModal}
+            contentLabel="Setting Modal"
+        >
+            <h1>Setting</h1>
+            <p>Your photo</p>
 
-                <img alt="User" />
-                <input
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => handleInputChange({ target: { name: 'photo', value: e.target.files[0] } })}
-                />
-                <h2>Your gender identity</h2>
+            <img alt="User" />
+            <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => handleInputChange({ target: { name: 'photo', value: e.target.files[0] } })}
+            />
+            <h2>Your gender identity</h2>
 
-                <input
-                    type="radio"
-                    checked={gender === 'Man'}
-                />
-                <label htmlFor="man">Man</label>
+            <input
+                type="radio"
+                checked={gender === 'Man'}
+            />
+            <label htmlFor="man">Man</label>
 
-                <input
-                    type="radio"
-                    checked={gender === 'Woman'}
-                />
-                <label>Your name</label>
-                <input
-                    type="text"
-                    name="name"
-                    placeholder="Enter your name"
-                />
-                <label>E-mail</label>
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="Enter your email"
-                />
-                <h2>Password</h2>
-                <label>Outdated password</label>
-                <input
-                    type="password"
-                    name="outdatedPassword"
-                    placeholder="Enter your outdated password"
-                />
-                <label>New password</label>
-                <input
-                    type="password"
-                    name="newPassword"
-                    placeholder="Enter your new password"
-                />
-                <label>Repeat new password</label>
-                <input
-                    type="password"
-                    name="repeatNewPassword"
-                    placeholder="Repeat your new password"
-                />
-                <button type="submit">Save</button>
+            <input
+                type="radio"
+                checked={gender === 'Woman'}
+            />
+            <label>Your name</label>
+            <input
+                type="text"
+                name="name"
+                placeholder="Enter your name"
+            />
+            <label>E-mail</label>
+            <input
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+            />
+            <h2>Password</h2>
+            <label>Outdated password</label>
+            <input
+                type="password"
+                name="outdatedPassword"
+                placeholder="Enter your outdated password"
+            />
+            <label>New password</label>
+            <input
+                type="password"
+                name="newPassword"
+                placeholder="Enter your new password"
+            />
+            <label>Repeat new password</label>
+            <input
+                type="password"
+                name="repeatNewPassword"
+                placeholder="Repeat your new password"
+            />
+            <button type="submit">Save</button>
 
-                <button onClick={closeModal}>Close Modal</button>
-            </Modal>
-        
+            <button onClick={closeModal}>Close Modal</button>
+        </Modal>
+    );  
     );
 };
 
