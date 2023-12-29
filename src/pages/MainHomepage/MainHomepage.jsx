@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import { AddPortion } from "../../components/AddPortion/AddPortion";
 import { Calendar } from "../../components/Calendar/Calendar";
 import { DailyNorma } from "../../components/DailyNorma/DailyNorma";
@@ -18,7 +19,7 @@ const MainHomepage = () => {
         <AddPortion />
       </MainHomepageStatistic>
       <MainHomepagePortions>
-        <Today />
+        {/* <Today /> */}
         <Calendar />
       </MainHomepagePortions>
     </MainHomepageContainer>

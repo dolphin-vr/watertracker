@@ -1,8 +1,9 @@
 import { GlobalStyle } from "./shared/styles/GlobalStyle";
 import { Routes } from "react-router-dom";
 import { Route } from "react-router-dom";
-import { SharedLayout } from "./SharedLayout";
+import { SharedLayout } from "./SharedLayout/SharedLayout";
 import { lazy } from "react";
+import { UserRoutes } from "./UserRoutes/UserRoutes";
 const SignInPage = lazy(() => import("./pages/SignInPage/SignInPage"));
 const SignUpPage = lazy(() => import("./pages/SignUpPage/SignUpPage"));
 const ForgotPasswordPage = lazy(() =>
@@ -14,15 +15,15 @@ const MainHomepage = lazy(() => import("./pages/MainHomepage/MainHomepage"));
 function App() {
   return (
     <>
-      <Routes>
+      {/* <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<HomePage />} />
-          <Route path="/main-homepage" element={<MainHomepage />} />
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/signin" element={<SignInPage />} />
           <Route path="/forgot-password" element={<ForgotPasswordPage />} />
         </Route>
-      </Routes>
+      </Routes> */}
+      <UserRoutes/>
       <GlobalStyle />
     </>
   );

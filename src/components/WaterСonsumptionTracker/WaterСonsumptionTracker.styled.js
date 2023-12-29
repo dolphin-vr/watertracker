@@ -88,6 +88,7 @@ display: flex;
 flex-direction: column;
 gap: 16px;
 @media screen and (min-width: 767px) {
+  flex-direction: row;
     justify-content: space-between;
     gap: 0px;
   }
