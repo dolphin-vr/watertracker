@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { currentDate } from "../../services/currentDate.js";
-import { instance } from "../../shared/api/auth";
+import { instance } from "../auth/auth.js";
 
 export const getPortionsList = createAsyncThunk(
   "portions/getPortionsList",
