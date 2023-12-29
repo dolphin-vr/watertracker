@@ -1,20 +1,17 @@
 import { lazy, useState } from "react";
 import MainHomepage from "../MainHomepage/MainHomepage";
 import { StyledSection } from "./HomePage.styled";
+import { useSelector } from "react-redux";
 const UnSignedHomePage = lazy(() => import("../UnSignedHomePage/UnSignedHomePage")
 );
 
 const HomePage = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-  // isLoggedIn = true
-  const handleButtonClick = () => {
-    setIsLoggedIn(prev => !prev)
-  }
+  const isLoggedIn = useSelector(state => state.auth.isLoggedIn)
+  console.log(isLoggedIn);
   return (
-    <StyledSection> 
-      <button onClick={handleButtonClick}>{isLoggedIn? "logOut" : "signIn"}</button>
+    <>
       {isLoggedIn? <MainHomepage/>: <UnSignedHomePage />}
-    </StyledSection>
+      </>
   );
 };
 export default HomePage;

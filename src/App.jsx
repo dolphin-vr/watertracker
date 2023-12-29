@@ -1,8 +1,9 @@
 import { GlobalStyle } from "./shared/styles/GlobalStyle";
 import { Routes } from "react-router-dom";
 import { Route } from "react-router-dom";
-import { SharedLayout } from "./SharedLayout";
+import { SharedLayout } from "./SharedLayout/SharedLayout";
 import { lazy, useEffect } from "react";
+import { UserRoutes } from "./UserRoutes/UserRoutes";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsRefreshing } from "./redux/auth/selectors";
 import { refreshUser } from "./redux/auth/auth";
@@ -21,20 +22,10 @@ function App() {
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
-
   return isRefreshing ? (
-    <span>Loading...</span>
-  ) : (
-    <>
-      <Routes>
-        <Route path="/" element={<SharedLayout />}>
-          <Route index element={<HomePage />} />
-          <Route path="/signup" element={<SignUpPage />} />
-          <Route path="/main-homepage" element={<MainHomepage />} />
-          <Route path="/signin" element={<SignInPage />} />
-          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-        </Route>
-      </Routes>
+    <b>Refreshing user...</b>
+  ) : ( <>
+      <UserRoutes/>
       <GlobalStyle />
     </>
   );
