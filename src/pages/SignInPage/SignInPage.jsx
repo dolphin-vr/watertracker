@@ -1,53 +1,72 @@
-import { useDispatch } from "react-redux";
-import { loginUser } from "../../redux/auth/auth";
-import { Link, Outlet } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-// import { useSelector } from "react-redux";
-// import { selectToken } from "../../redux/auth/selectors";
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+import { loginUser } from '../../redux/auth/auth';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux'; //перевірка для токену, видалити потім цей рядок, він не потрібен
+import { selectToken } from '../../redux/auth/selectors'; //перевірка для токену, видалити потім цей рядок, він не потрібен
 
+const validationSchema = Yup.object().shape({
+  email: Yup.string().email('Enter a valid email').required('Email is required'),
+  password: Yup.string().min(8, 'Password must be at least 8 characters').max(64, 'Password must be at most 64 characters').required('Password is required'),
+});
 
 export const SignInPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const handleLogin = e => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    dispatch(
-      loginUser({
-        email: form.elements.email.value,
-        password: form.elements.password.value,
-      })
-    );
-    form.reset();
-    navigate("/");
+
+  const initialValues = {
+    email: '',
+    password: '',
   };
 
-  // // // перевірка чи токен зберігається в  редакс
-  // const tokenInRedux = useSelector((state) => selectToken(state));
-  // console.log("Token in Redux state:", tokenInRedux);
+  const handleLogin = async (values) => {
+    try {
+      await dispatch(
+        loginUser({
+          email: values.email,
+          password: values.password,
+        })
+      );
+      navigate('/');
+    } catch (error) {
+      console.error('Login error:', error);
+    }
+  };
 
-  // // перевірка чи токен зберігається в локальному сховищі
-  // const tokenInLocalStorage = localStorage.getItem("token");
-  // console.log("Token in localStorage:", tokenInLocalStorage);
+  const tokenInRedux = useSelector((state) => selectToken(state)); //перевірка для токену, видалити потім цей рядок, він не потрібен
+  console.log('Token in Redux state:', tokenInRedux); //перевірка для токену, видалити потім цей рядок, він не потрібен 
+
+  const tokenInLocalStorage = localStorage.getItem('persist:auth'); //перевірка для токену, видалити потім цей рядок, він не потрібен 
+  console.log('Token in localStorage:', tokenInLocalStorage); //перевірка для токену, видалити потім цей рядок, він не потрібен
 
   return (
     <div>
-        <h1>Sign In</h1>
-        <form onSubmit={handleLogin} autoComplete="off">
-            <label>
-                Enter your email
-                <input type="email" name="email" placeholder="E-mail"/>
-            </label>
-            <label>
-                Enter your password
-                <input type="password" name="password" placeholder="Password"/>
-            </label>
-            <button>Sign In</button> 
-        </form>
-        <Link to="/signup">Sign Up</Link>
-        <Outlet />
+      <h1>Sign In</h1>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={handleLogin}
+      >
+        <Form autoComplete="off">
+          <label>
+            Enter your email
+            <Field type="email" name="email" placeholder="E-mail" />
+            <ErrorMessage name="email" component="div" />
+          </label>
+          <label>
+            Enter your password
+            <Field type="password" name="password" placeholder="Password" />
+            <ErrorMessage name="password" component="div" />
+          </label>
+          <button type="submit">Sign In</button>
+        </Form>
+      </Formik>
+      <Link to="/signup">Sign Up</Link>
+      <Outlet />
     </div>
-    );
-}
+  );
+};
 
 export default SignInPage;

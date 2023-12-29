@@ -7,6 +7,7 @@ import {
   StyledNavLink,
   StyledParagraph,
   StyledPreHeader,
+  StyledUl,
 } from "./WaterСonsumptionTracker.styled";
 export const WaterСonsumptionTracker = () => {
   return (
@@ -14,7 +15,7 @@ export const WaterСonsumptionTracker = () => {
       <StyledHeader>Water consumption tracker</StyledHeader>
       <StyledPreHeader>Record daily water intake and track</StyledPreHeader>
       <StyledParagraph>Tracker Benefits</StyledParagraph>
-      <ul>
+      <StyledUl>
         <StyledLi>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -51,7 +52,7 @@ export const WaterСonsumptionTracker = () => {
           </svg>
           <StyledListParagraph>View statistics</StyledListParagraph>
         </StyledLi>
-        <StyledLi lastelementli="true">
+        <StyledLi>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="40"
@@ -69,7 +70,7 @@ export const WaterСonsumptionTracker = () => {
           </svg>
           <StyledListParagraph>Personal rate setting</StyledListParagraph>
         </StyledLi>
-      </ul>
+      </StyledUl>
       <StyledNavLink to={"/signup"}>Try tracker</StyledNavLink>
     </StyledDiv>
   );

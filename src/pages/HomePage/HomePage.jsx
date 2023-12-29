@@ -1,5 +1,6 @@
 import { lazy, useState } from "react";
 import MainHomepage from "../MainHomepage/MainHomepage";
+import { StyledSection } from "./HomePage.styled";
 const UnSignedHomePage = lazy(() => import("../UnSignedHomePage/UnSignedHomePage")
 );
 
@@ -10,10 +11,10 @@ const HomePage = () => {
     setIsLoggedIn(prev => !prev)
   }
   return (
-    <section> 
+    <StyledSection> 
       <button onClick={handleButtonClick}>{isLoggedIn? "logOut" : "signIn"}</button>
       {isLoggedIn? <MainHomepage/>: <UnSignedHomePage />}
-    </section>
+    </StyledSection>
   );
 };
 export default HomePage;

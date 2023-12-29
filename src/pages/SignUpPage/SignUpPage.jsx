@@ -1,66 +1,73 @@
+import React from 'react';
 import { useDispatch } from 'react-redux';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 import { registerUser } from '../../redux/auth/auth';
 import { Outlet, useNavigate, Link } from 'react-router-dom';
 import { todayISO } from '../../shared/api/dates';
+
+const validationSchema = Yup.object().shape({
+    email: Yup.string().email('Enter a valid email').required('Email is required'),
+    password: Yup.string().min(8, 'Password must be at least 8 characters').max(64, 'Password must be at most 64 characters').required('Password is required'),
+    repeatPassword: Yup.string().min(8, 'Password must be at least 8 characters').max(64, 'Password must be at most 64 characters').required('Repeat Password is required').oneOf([Yup.ref('password'), null], 'Passwords must match'),
+});
 
 function SignUpPage() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const handleRegister = async (e) => {
-    e.preventDefault();
-    const form = e.currentTarget;
+    const initialValues = {
+        email: '',
+        password: '',
+        repeatPassword: '',
+    };
 
-    const email = form.elements.email.value;
-    const password = form.elements.password.value;
-    const repeatPassword = form.elements.repeatPassword.value;
-
-    if (password !== repeatPassword) {
-        console.error('Passwords do not match');
-        return;
-    }
-
-    try {
+    const handleRegister = async (values) => {
+        try {
         const date = todayISO(new Date());
-        // const response =
         await dispatch(
             registerUser({
-                email: email,
-                password: password,
-                date
+            email: values.email,
+            password: values.password,
+            date,
             })
         );
 
-        // console.log('Registration successful:', response);
-
-        form.reset();
         navigate('/');
-    } catch (error) {
-        // Ваш код для обробки помилки реєстрації
+        } catch (error) {
         console.error('Registration error:', error);
-    }
-};
+        }
+    };
 
     return (
         <div>
-            <h1>Sign Up</h1>
-            <form onSubmit={handleRegister} autoComplete="off">
-                <label>
-                    Enter your email
-                    <input type="email" name="email" placeholder="E-mail"/>
-                </label>
-                <label>
-                    Enter your password
-                    <input type="password" name="password" placeholder="Password"/>
-                </label>
-                <label>
-                    Repeat your password
-                    <input type="password" name="repeatPassword" placeholder="Repeat your password"/>
-                </label>
-                <button>Sign Up</button> 
-            </form>
-            <Link to="/signin">Sign In</Link>
-            <Outlet />
+        <h1>Sign Up</h1>
+        <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={handleRegister}
+        >
+            <Form autoComplete="off">
+            <label>
+                Enter your email
+                <Field type="email" name="email" placeholder="E-mail" />
+                <ErrorMessage name="email" component="div" />
+            </label>
+            <label>
+                Enter your password
+                <Field type="password" name="password" placeholder="Password" />
+                <ErrorMessage name="password" component="div" />
+            </label>
+            <label>
+                Repeat your password
+                <Field type="password" name="repeatPassword" placeholder="Repeat your password" />
+                <ErrorMessage name="repeatPassword" component="div" />
+            </label>
+            <button type="submit">Sign Up</button>
+            </Form>
+        </Formik>
+        <Link to="/signin">Sign In</Link>
+        <Outlet />
         </div>
     );
 }
