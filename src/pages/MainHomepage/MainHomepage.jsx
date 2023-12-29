@@ -7,7 +7,12 @@ import {
   MainHomepageContainer,
   MainHomepageStatistic,
   MainHomepagePortions,
+  AddPortionButton,
 } from "./MainHomepage.styled";
+
+function onOpenModalWindow() {
+  console.log("Modal vindow is open");
+}
 
 const MainHomepage = () => {
   return (
@@ -15,7 +20,9 @@ const MainHomepage = () => {
       <MainHomepageStatistic>
         <DailyNorma />
         <WaterProgresBar />
-        <AddPortion />
+        <AddPortionButton type="button" onClick={() => onOpenModalWindow()}>
+          Add water
+        </AddPortionButton>
       </MainHomepageStatistic>
       <MainHomepagePortions>
         <Today />

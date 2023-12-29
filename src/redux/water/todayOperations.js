@@ -6,9 +6,8 @@ export const getPortionsList = createAsyncThunk(
   "portions/getPortionsList",
   async (_, thunkAPI) => {
     try {
-      const date = currentDate();
+      const date = currentDate;
       const { data } = await instance.get(`/water/today/${date}`);
-      console.log(data);
       return data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

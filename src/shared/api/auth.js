@@ -5,6 +5,8 @@ export const instance = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
 });
 
+// instance.defaults.headers.common.Authorization = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OGVhNWMzZDc4YzU0YzBlOTJkMWQzNyIsImlhdCI6MTcwMzg0NzM2MywiZXhwIjoxNzA2NDM5MzYzfQ.EmDjm-Bx7ijBmpBMYk-b61KhHx69dI7roIpAlgELYcs`;
+
 const setAuthHeader = (token) => {
   instance.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
