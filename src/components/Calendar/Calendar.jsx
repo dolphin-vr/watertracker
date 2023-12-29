@@ -19,7 +19,7 @@ import {
   CompletionText,
   DayNotCompelete,
 } from "./Calendar.styled";
-import { instance } from "../../shared/api/auth";
+import { instance } from "../../redux/auth/auth";
 
 export const Calendar = () => {
   // const token = useSelector(selectToken);
@@ -123,7 +123,7 @@ export const Calendar = () => {
       .toString()
       .padStart(2, "0")}-${day.toString().padStart(2, "0")}`;
 
-    const clickedDayDataForClick = clickedDayData?.daily.find(
+    const clickedDayDataForClick = clickedDayData.daily.find(
       (data) => data.date === clickedDateString
     );
 
