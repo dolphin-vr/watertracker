@@ -29,7 +29,7 @@ export const SignInPage = () => {
           password: values.password,
         })
       );
-      navigate('/');
+      navigate('/main');
     } catch (error) {
       console.error('Login error:', error);
     }

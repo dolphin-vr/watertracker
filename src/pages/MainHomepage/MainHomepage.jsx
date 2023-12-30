@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import { AddPortion } from "../../components/AddPortion/AddPortion";
 import { Calendar } from "../../components/Calendar/Calendar";
 import { DailyNorma } from "../../components/DailyNorma/DailyNorma";
@@ -18,14 +19,14 @@ const MainHomepage = () => {
   return (
     <MainHomepageContainer>
       <MainHomepageStatistic>
-        <DailyNorma />
+        {/* <DailyNorma /> */}
         <WaterProgresBar />
         <AddPortionButton type="button" onClick={() => onOpenModalWindow()}>
           Add water
         </AddPortionButton>
       </MainHomepageStatistic>
       <MainHomepagePortions>
-        <Today />
+        {/* <Today /> */}
         <Calendar />
       </MainHomepagePortions>
     </MainHomepageContainer>

@@ -1,9 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { currentDate } from "../../services/currentDate.js";
-import { instance } from "../../shared/api/auth";
+import { instance } from "../auth/auth.js";
 
 export const getPortionsList = createAsyncThunk(
-  "portions/getPortionsList",
+  "water/getPortionsList",
   async (_, thunkAPI) => {
     try {
       const date = currentDate;
@@ -16,7 +16,7 @@ export const getPortionsList = createAsyncThunk(
 );
 
 export const addNewPortion = createAsyncThunk(
-  "portions/addNewPortion",
+  "water/addNewPortion",
   async (portion, thunkAPI) => {
     try {
       const { data } = await instance.post("/water", portion);
@@ -28,7 +28,7 @@ export const addNewPortion = createAsyncThunk(
 );
 
 export const updatePortion = createAsyncThunk(
-  "portions/updatePortion",
+  "water/updatePortion",
   async ({ id, portion }, thunkAPI) => {
     try {
       const { data } = await instance.put(`/water/${id}`, portion);
@@ -40,7 +40,7 @@ export const updatePortion = createAsyncThunk(
 );
 
 export const deletePortion = createAsyncThunk(
-  "portions/deletePortion",
+  "water/deletePortion",
   async (id, thunkAPI) => {
     try {
       const { data } = await instance.delete(`/water/${id}`);

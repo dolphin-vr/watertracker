@@ -11,27 +11,38 @@ import {
   TodayTime,
   AddWaterButton,
 } from "./Today.styled.js";
+import {
+  selectDailyPortions,
+  selectIsLoading,
+} from "../../redux/water/todaySelectors.js";
+import { getUserInfo } from "../../redux/user/userOperations.js";
+import { selectIsLoggedIn } from "../../redux/auth/selectors.js";
 
 export const Today = () => {
-  const portions = useSelector((state) => state.portions.portions);
-  const isLoading = useSelector((state) => state.isLoading);
+  // const isLogedin = useSelector(selectIsLoggedIn);
+  // console.log(isLogedin);
   const dispath = useDispatch();
+  // const isLoading = useSelector(selectIsLoading);
+  // console.log(isLoading);
 
   useEffect(() => {
+    dispath(getUserInfo());
     dispath(getPortionsList());
   }, [dispath]);
+  // const portions = useSelector(selectDailyPortions);
+  // console.log(portions);
 
   function getDailyPortions() {
     return portions;
   }
 
-  function onChangePortion() {
-    console.log("Open modal window and need change portion");
-  }
+  // function onChangePortion() {
+  //   console.log("Open modal window and need change portion");
+  // }
 
-  function onDeletePortion() {
-    console.log("Delete portion");
-  }
+  // function onDeletePortion() {
+  //   console.log("Delete portion");
+  // }
 
   return (
     <TodayWrapper>

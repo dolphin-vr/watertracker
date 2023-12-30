@@ -33,7 +33,7 @@ function SignUpPage() {
             })
         );
 
-        navigate('/');
+        navigate('/main');
         } catch (error) {
         console.error('Registration error:', error);
         }
