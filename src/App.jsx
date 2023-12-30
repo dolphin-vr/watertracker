@@ -32,11 +32,12 @@ function App() {
     //     console.error("Помилка під час оновлення користувача", error);
     //   }
     // }
+    // fetchData()
     dispatch(getUserInfo());
     dispatch(refreshUser());
   }, [dispatch]);
   return isRefreshing ? (
-    <b>Loading</b>
+    <p>Loading</p>
   ) : (
     <>
       <UserRoutes />
