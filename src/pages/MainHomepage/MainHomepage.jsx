@@ -14,9 +14,9 @@ const MainHomepage = () => {
   return (
     <MainHomepageContainer>
       <MainHomepageStatistic>
-        <DailyNorma />
+        {/* <DailyNorma /> */}
         <WaterProgresBar />
-        <AddPortion />
+        {/* <AddPortion /> */}
       </MainHomepageStatistic>
       <MainHomepagePortions>
         {/* <Today /> */}

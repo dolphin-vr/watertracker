@@ -40,6 +40,7 @@ const authSlice = createSlice({
       })
       .addCase(auth.refreshUser.rejected, (state) => {
         state.isRefreshing = false;
+        state.isLoggedIn = false;
       });
   },
 });

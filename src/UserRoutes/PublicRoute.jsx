@@ -5,7 +5,7 @@ const PublicRoute = () => {
     const isLogin = useSelector(state => state.auth.isLoggedIn);
 
     if(isLogin) {
-        return <Navigate to={"/main"} replace/>
+        return <Navigate to={"/main"}/>
     }
 
     return <Outlet/>
