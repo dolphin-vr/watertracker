@@ -12,14 +12,10 @@ import { selectIsLoggedIn } from "../../redux/auth/selectors.js";
 export const Today = () => {
   // const isLogedin = useSelector(selectIsLoggedIn);
   // console.log(isLogedin);
-  const dispath = useDispatch();
+  // const dispatch = useDispatch();
   // const isLoading = useSelector(selectIsLoading);
   // console.log(isLoading);
 
-  useEffect(() => {
-    dispath(getUserInfo());
-    dispath(getPortionsList());
-  }, [dispath]);
   // const portions = useSelector(selectDailyPortions);
   // console.log(portions);
 

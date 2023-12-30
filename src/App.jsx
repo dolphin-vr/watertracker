@@ -7,6 +7,7 @@ import { UserRoutes } from "./UserRoutes/UserRoutes";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsRefreshing } from "./redux/auth/selectors";
 import { refreshUser } from "./redux/auth/auth";
+import { getUserInfo } from "./redux/user/userOperations";
 const SignInPage = lazy(() => import("./pages/SignInPage/SignInPage"));
 const SignUpPage = lazy(() => import("./pages/SignUpPage/SignUpPage"));
 const ForgotPasswordPage = lazy(() =>
@@ -31,14 +32,17 @@ function App() {
     //     console.error("Помилка під час оновлення користувача", error);
     //   }
     // }
-    // fetchData()
-    dispatch(refreshUser())
-  }, []);
-  return isRefreshing ? <b>Loading</b> : <>
-      <UserRoutes/>
+    dispatch(getUserInfo());
+    dispatch(refreshUser());
+  }, [dispatch]);
+  return isRefreshing ? (
+    <b>Loading</b>
+  ) : (
+    <>
+      <UserRoutes />
       <GlobalStyle />
     </>
-  ;
+  );
 }
 
 export default App;
