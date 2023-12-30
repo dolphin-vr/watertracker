@@ -20,15 +20,25 @@ function App() {
   const isRefreshing = useSelector(selectIsRefreshing);
 
   useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
-  return isRefreshing ? (
-    <b>Refreshing user...</b>
-  ) : ( <>
+    // const fetchData = async () => {
+    //   try {
+    //     // Викликати асинхронну функцію
+    //     await dispatch(refreshUser());
+
+    //     // Інші дії після оновлення користувача (якщо потрібно)
+    //     console.log("Користувач оновлено!");
+    //   } catch (error) {
+    //     console.error("Помилка під час оновлення користувача", error);
+    //   }
+    // }
+    // fetchData()
+    dispatch(refreshUser())
+  }, []);
+  return isRefreshing ? <b>Loading</b> : <>
       <UserRoutes/>
       <GlobalStyle />
     </>
-  );
+  ;
 }
 
 export default App;
