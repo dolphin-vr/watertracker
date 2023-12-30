@@ -25,5 +25,5 @@ export const UserRoutes = () => {
       </Route>
       <Route path="*" element={<Navigate to="/main" />} />
     </Routes>
-  );
+  )
 };
