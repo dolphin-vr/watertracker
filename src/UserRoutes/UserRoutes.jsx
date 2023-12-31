@@ -16,14 +16,14 @@ export const UserRoutes = () => {
       <Route path="/" element={<SharedLayout />}>
         <Route element={<PublicRoute />}>
           <Route index element={<UnSignedHomePage />} />
-          <Route path="signup" element={<SignUpPage />} />
-          <Route path="signin" element={<SignInPage />} />
+          <Route path="/signup" element={<SignUpPage />} />
+          <Route path="/signin" element={<SignInPage />} />
         </Route>
         <Route element={<PrivateRoute />}>
-          <Route path="main" element={<MainHomepage />} />
+          <Route path="/main" element={<MainHomepage />} />
         </Route>
       </Route>
       <Route path="*" element={<Navigate to="/main" />} />
     </Routes>
-  );
+  )
 };
