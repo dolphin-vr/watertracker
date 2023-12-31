@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AddPortion } from "../../components/AddPortion/AddPortion";
 import { Calendar } from "../../components/Calendar/Calendar";
 import { DailyNorma } from "../../components/DailyNorma/DailyNorma";
@@ -9,17 +9,25 @@ import {
   MainHomepageStatistic,
   MainHomepagePortions,
 } from "./MainHomepage.styled";
+import { useEffect } from "react";
+import { getUserInfo } from "../../redux/user/userOperations";
+import { getPortionsList } from "../../redux/water/todayOperations";
 
 const MainHomepage = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getUserInfo());
+    dispatch(getPortionsList());
+  }, [dispatch]);
   return (
     <MainHomepageContainer>
       <MainHomepageStatistic>
         {/* <DailyNorma /> */}
         <WaterProgresBar />
-        {/* <AddPortion /> */}
+        <AddPortion />
       </MainHomepageStatistic>
       <MainHomepagePortions>
-        {/* <Today /> */}
+        <Today />
         <Calendar />
       </MainHomepagePortions>
     </MainHomepageContainer>
