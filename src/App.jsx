@@ -33,7 +33,6 @@ function App() {
     //   }
     // }
     // fetchData()
-    dispatch(getUserInfo());
     dispatch(refreshUser());
   }, [dispatch]);
   return isRefreshing ? (

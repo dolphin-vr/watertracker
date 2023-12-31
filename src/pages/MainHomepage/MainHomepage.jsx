@@ -24,7 +24,7 @@ const MainHomepage = () => {
       <MainHomepageStatistic>
         {/* <DailyNorma /> */}
         <WaterProgresBar />
-        {/* <AddPortion /> */}
+        <AddPortion />
       </MainHomepageStatistic>
       <MainHomepagePortions>
         <Today />

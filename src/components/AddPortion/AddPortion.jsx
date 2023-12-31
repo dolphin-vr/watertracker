@@ -3,10 +3,11 @@
 // import { nanoid } from 'nanoid';
 // import { Button } from '@mui/material';
 import { useSelector, useDispatch } from "react-redux";
+import { selectDailyPortions } from "../../redux/water/todaySelectors";
 // import { addNewPortion } from "../../redux/todayOperations.js";
 
 export const AddPortion = () => {
-  const portions = useSelector((state) => state.portions.portions);
+  const portions = useSelector(selectDailyPortions);
   const dispath = useDispatch();
 
   function onOpenModalWindow() {
