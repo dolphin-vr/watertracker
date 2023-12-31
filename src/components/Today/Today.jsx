@@ -36,13 +36,13 @@ export const Today = () => {
     return portions;
   }
 
-  // function onChangePortion() {
-  //   console.log("Open modal window and need change portion");
-  // }
+  function onChangePortion() {
+    console.log("Open modal window and need change portion");
+  }
 
-  // function onDeletePortion() {
-  //   console.log("Delete portion");
-  // }
+  function onDeletePortion() {
+    console.log("Delete portion");
+  }
 
   return (
     <TodayWrapper>
