@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { AddPortion } from "../../components/AddPortion/AddPortion";
 import { Calendar } from "../../components/Calendar/Calendar";
 import { DailyNorma } from "../../components/DailyNorma/DailyNorma";
@@ -22,7 +22,7 @@ const MainHomepage = () => {
   return (
     <MainHomepageContainer>
       <MainHomepageStatistic>
-        {/* <DailyNorma /> */}
+        <DailyNorma />
         <WaterProgresBar />
         <AddPortion />
       </MainHomepageStatistic>

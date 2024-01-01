@@ -6,4 +6,3 @@ export const selectUserEmail = (state) => state.users.user.email;
 export const selectUserNorma = (state) => state.users.user.waterNorma;
 export const selectUserGender = (state) => state.users.user.gender;
 export const selectUserAvatar = (state) => state.users.user.avatarURL;
-export const selectUserDate = (state) => state.users.user.date;

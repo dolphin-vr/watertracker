@@ -7,7 +7,7 @@ import {
 } from "./userOperations";
 
 const userInitialState = {
-  user: null,
+  user: { email: "", gender: "", avatarURL: "", username: "", waterNorma: "" },
   isLoading: false,
   error: null,
 };
@@ -38,7 +38,7 @@ const userSlice = createSlice({
       .addCase(updateUserAvatar.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.user.avatarUrl = action.payload;
+        state.user.avatarURL = action.payload;
       })
       .addCase(updateUserAvatar.rejected, handleRejected)
       .addCase(updateUserInfo.pending, handlePending)
