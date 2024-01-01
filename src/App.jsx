@@ -7,6 +7,7 @@ import { UserRoutes } from "./UserRoutes/UserRoutes";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsRefreshing } from "./redux/auth/selectors";
 import { refreshUser } from "./redux/auth/auth";
+import { getUserInfo } from "./redux/user/userOperations";
 const SignInPage = lazy(() => import("./pages/SignInPage/SignInPage"));
 const SignUpPage = lazy(() => import("./pages/SignUpPage/SignUpPage"));
 const ForgotPasswordPage = lazy(() =>
@@ -18,6 +19,10 @@ const MainHomepage = lazy(() => import("./pages/MainHomepage/MainHomepage"));
 function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
+
+      useEffect(() => {
+        dispatch(getUserInfo());
+    }, [dispatch]); 
 
   useEffect(() => {
     // const fetchData = async () => {
