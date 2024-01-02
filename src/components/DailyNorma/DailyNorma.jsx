@@ -1,7 +1,7 @@
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 // import { getPortionsList } from "../../redux/todayOperations.js";
 import bottleImg from "../../images/bottle-mainPage-mobile.png";
+import { selectUserNorma } from "../../redux/user/userSelectors";
 import {
   DailyNormaContainer,
   DailyNormaTitle,
@@ -12,7 +12,7 @@ import {
 } from "./DailyNorma.styled";
 
 export const DailyNorma = () => {
-  // const dailyNorma = useSelector((state) => state.portions.dailyNorma);
+  const dailyNorma = useSelector(selectUserNorma);
 
   function onChangeDailyNorma() {
     console.log("change dailyNorma");
@@ -23,7 +23,7 @@ export const DailyNorma = () => {
       <DailyNormaContainer>
         <DailyNormaTitle>My daily norma</DailyNormaTitle>
         <DailyNormaInfo>
-          <span>1.5</span>
+          <span>{dailyNorma}</span>
           <DailyNormaSpan>L</DailyNormaSpan>
           <DailyNormaBth type="button" onClick={() => onChangeDailyNorma()}>
             Edit

@@ -8,9 +8,9 @@ export const AddPortion = () => {
   const portions = useSelector(selectDailyPortions);
   const dispath = useDispatch();
 
-  function onOpenModalWindow() {
-    console.log("Modal window is open");
-  }
+  // function onOpenModalWindow() {
+  //   console.log("Modal window is open");
+  // }
 
   return;
 };

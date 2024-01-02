@@ -37,6 +37,10 @@ export const Today = () => {
     console.log("Delete portion");
   }
 
+  function onAddPortion() {
+    console.log("Add portion");
+  }
+
   return (
     <TodayWrapper>
       <TodayTitle>Today</TodayTitle>
@@ -72,7 +76,7 @@ export const Today = () => {
               </TodayItem>
             ))}
           </TodayList>
-          <AddWaterButton type="button" onClick={() => onDeletePortion()}>
+          <AddWaterButton type="button" onClick={() => onAddPortion()}>
             Add water
           </AddWaterButton>
         </>
@@ -113,28 +117,28 @@ export const Today = () => {
   // );
   //   }
   // }
-  return (
-    <div className={css.wrapper}>
-      <h3>Today</h3>
-      {/* <ul>
-        {portions.map(({ water, id, time }) => {
-          return (
-            <li key={id}>
-              <span>{water}</span>
-              <span> ml </span>
-              <span>{time}</span>
-              <button type="button" onClick={() => onChangePortion(id)}>
-                Change
-              </button>
-              <button type="button" onClick={() => onDeletePortion(id)}>
-                Delete
-              </button>
-            </li>
-          );
-        })}
-      </ul> */}
-    </div>
-  );
+  // return (
+  //   <div className={css.wrapper}>
+  //     <h3>Today</h3>
+  //     {/* <ul>
+  //       {portions.map(({ water, id, time }) => {
+  //         return (
+  //           <li key={id}>
+  //             <span>{water}</span>
+  //             <span> ml </span>
+  //             <span>{time}</span>
+  //             <button type="button" onClick={() => onChangePortion(id)}>
+  //               Change
+  //             </button>
+  //             <button type="button" onClick={() => onDeletePortion(id)}>
+  //               Delete
+  //             </button>
+  //           </li>
+  //         );
+  //       })}
+  //     </ul> */}
+  //   </div>
+  // );
 };
 
 export default Today;

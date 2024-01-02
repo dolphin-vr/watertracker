@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { AddPortion } from "../../components/AddPortion/AddPortion";
 import { Calendar } from "../../components/Calendar/Calendar";
 import { DailyNorma } from "../../components/DailyNorma/DailyNorma";
@@ -21,6 +21,11 @@ const MainHomepage = () => {
     dispatch(getUserInfo());
     dispatch(getPortionsList());
   }, [dispatch]);
+
+  function onOpenModalWindow() {
+    console.log("Modal window is open");
+  }
+
   return (
     <MainHomepageContainer>
       <MainHomepageStatistic>

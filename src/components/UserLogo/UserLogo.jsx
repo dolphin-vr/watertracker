@@ -1,49 +1,40 @@
-import { useState } from "react";
-// import { useEffect } from 'react';
-// import { useDispatch } from 'react-redux';
-// import { useSelector } from 'react-redux';
-// import { selectCurrentUser } from '../../redux/auth/selectors';
-// import { getCurrentUser } from '../../shared/api/auth';
-import UserLogoModal from "../UserLogoModal/UserLogoModal";
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { selectUserName, selectUserAvatar } from '../../redux/user/userSelectors';
+import UserLogoModal from '../UserLogoModal/UserLogoModal';
 
 const UserLogo = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  // const dispatch = useDispatch();
-  // const currentUser = useSelector(selectCurrentUser);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const userName = useSelector(selectUserName);
+    const userAvatar = useSelector(selectUserAvatar);
 
-  // useEffect(() => {
-  //     dispatch(getCurrentUser());
-  // }, [dispatch]);
-
-  const handleButtonClick = () => {
-    setIsModalOpen(!isModalOpen);
-  };
+    const handleButtonClick = () => {
+        setIsModalOpen(!isModalOpen);
+    };
 
     return (
-        <div>
-            <button onClick={handleButtonClick}>VVV</button>
-            {isModalOpen && <UserLogoModal onClose={() => setIsModalOpen(false)} />}
-            {/* <button onClick={handleButtonClick}>
-                {currentUser.avatarURL ? (
-                    <>
-                        <img src={currentUser.avatarURL} alt={currentUser.username} />
-                        <span>{currentUser.username}</span>
-                    </>
-                ) : currentUser.username ? (
-                    <>
-                        <div className="initial-avatar">{currentUser.username.charAt(0).toUpperCase()}</div>
-                        <span>{currentUser.username}</span>
-                    </>
-                ) : (
-                    <div className="initial-avatar">V</div>
-                )}
-            </button>
+    <div>
+        <button onClick={handleButtonClick}>
+            {userAvatar ? (
+            <>
+                <img src={userAvatar} alt={userName} />
+                <span>{userName}</span>
+            </>
+            ) : userName ? (
+            <>
+                <div className="initial-avatar">{userName.charAt(0).toUpperCase()}</div>
+                <span>{userName}</span>
+            </>
+            ) : (
+            <div className="initial-avatar">V</div>
+            )}
+        </button>
 
-            {isModalOpen && <UserLogoModal userName={currentUser.userName} userAvatar={currentUser.userAvatar} onClose={() => setIsModalOpen(false)} />} */}
+        {isModalOpen && (
+            <UserLogoModal userName={userName} userAvatar={userAvatar} onClose={() => setIsModalOpen(false)} />
+        )}
     </div>
-  );
+    );
 };
 
 export default UserLogo;
-
-//тут треба буде переправити назви в залежності від того як зберігатимуться дані на бек
