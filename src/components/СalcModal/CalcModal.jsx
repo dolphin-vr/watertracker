@@ -1,171 +1,213 @@
-import React, { useState } from 'react';
+import React, { useEffect, } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Form, FormikProvider, useFormik } from 'formik';
+import * as Yup from 'yup';
+import { toast } from 'react-toastify';
+import { updateWaterNorma } from '../../redux/user/userSlice';
+import {  selectError, selectUserInfo} from '../../redux/user/userSelectors';
+import CalcField from './CalcField';
+import { NumberFeedback } from './NumberFeedback/NumberFeedback';
+
+import {
+  BoxButton,
+  BoxForm,
+  BoxFormula,
+  BoxGender,
+  BoxRate,
+  BoxRequiredLitresPerDay,
+  BoxTextPostScriptum,
+  BoxTime,
+  BoxWaterDrink,
+  BoxWeight,
+  ButtonSave,
+  FieldGenger,
+  Formula,
+  FormulaColorText,
+  ItemFormula,
+  LabelGender,
+  ListFormula,
+  MarkPSText,
+  PSText,
+  SubTitle,
+  Text,
+  Title,
+} from './CalcModal.styled';
 
 
-const CalcModal = ({ onClose }) => {
-  const [result, setResult] = useState(1.5);
-  const [values, setValues] = useState({
-    gender: 'girl',
-    weight: 0,
-    time: 0,
+const CalcModal = ({ closeModal, dailyNormalVolume, ...props }) => {
+  const dispatch = useDispatch();
+
+  const error = useSelector(selectError);
+  const authetification = useSelector(selectUserInfo);
+  const initialDailyNorma = (dailyNormalVolume ?? authetification.dailyWaterRequirement ?? 2) / 1000;
+
+  useEffect(() => {
+    if (!authetification) return;
+    if (error) return toast.error(error.message);
+
+
+  }, [authetification, error, dispatch,]);
+
+    // ==== configFormik
+  const configFormik = useFormik({
+    initialValues: {
+      gender: '',
+      weight: '',
+      activeTraningHours: '',
+      waterVolume: initialDailyNorma,
+    },
+    onSubmit: async values => handleSubmit(values),
+    validationSchema: Yup.object({
+      gender: Yup.string(),
+      weight: Yup
+        .number('Only number')
+        .integer('Only integer number')
+        .positive('Only positive')
+        .lessThan(700, 'You have a lot hard weigth')
+        .required('Required'),
+      activeTraningHours: Yup
+        .number('Only number')
+        .positive('Only positive')
+        .lessThan(24, 'You cannot active more 24 hours')
+        .integer('Only integer number'),
+      waterVolume: Yup.number().lessThan(15, 'You can could drown in that much water'),
+    }),
   });
 
-  const [isModalOpen, setIsModalOpen] = useState(true);
-  const [rate, setRate] = useState('');
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    console.log('request daily rate', rate);
-    
-    
-  };
+  // Press Save
+  const handleSubmit = async values => {
+    console.log(values);
+    const { waterVolume } = values;
+    dispatch(updateWaterNorma({ dailyWaterRequirement: waterVolume * 1000 }));
 
-  const handleInputChange = e => {
-    const { name, value } = e.target;
-    setValues({ ...values, [name]: value });
-  };
-
-  const handleRate = e => {
-    setRate(e.target.value);
-  };
-
-  const handleBlur = () => {
-    calculate(values.gender, values.weight, values.time);
-  };
-
-  const handleClose = () => {
-    setIsModalOpen(false);
-    onClose();
-  };
-
-  const calculate = (gender, weight = 0, time = 0) => {
-    let calculatedResult = 0;
-    switch (gender) {
-      case 'girl':
-        if (weight >= 0 && time >= 0) {
-          calculatedResult = weight * 0.03 + time * 0.4;
-        }
-        break;
-      case 'man':
-        if (weight >= 0 && time >= 0) {
-          calculatedResult = weight * 0.04 + time * 0.6;
-        }
-        break;
-      default:
-        break;
+    if (!error) {
+      toast.success('Goal set! Stay hydrated and track your progress!');
+      console.log('Goal set! Stay hydrated and track your progress!');
+      
+      setTimeout(() => { closeModal(); }, 3000);
     }
-    setResult(calculatedResult.toFixed(1));
   };
+  
 
   return (
-    isModalOpen && (
-      <div>
-        <div>
-          <p>My daily norma</p>
-
-          <button type="button" onClick={handleClose}>
-            <svg
-              xmlns="x"
-              width="24"
-              height="24"
-             
-            >
+    <>
+      <Modal 
+          closeModal={closeModal} 
           
-            </svg>
-          </button>
+        >      
+          <Title>My daily norma</Title>
 
-          <ul>
-            <li>
-              <p>
-                For girl:
-                <span>V=(M*0.03)+(T*0.4)</span>
-              </p>
-            </li>
-            <li>
-              <p>
-                For man:
-                <span>V=(M*0.04)+(T*0.6)</span>
-              </p>
-            </li>
-          </ul>
+          <BoxFormula>
+            <ListFormula>
+              <ItemFormula>
+                <Formula>
+                  For girl:&nbsp;
+                  <FormulaColorText>V=(M*0,03) + (T*0,4)</FormulaColorText>
+                </Formula>
+              </ItemFormula>
 
-          <p>
-            <span>*</span>V is the volume of the water
-            norm in liters per day, M is your body weight, T is the time of
-            active sports, or another type of activity commensurate in terms of
-            loads (in the absence of these, you must set 0)
-          </p>
+              <ItemFormula>
+                <Formula>
+                  For man:&nbsp;
+                  <FormulaColorText>V=(M*0,04) + (T*0,6)</FormulaColorText>
+                </Formula>
+              </ItemFormula>
+            </ListFormula>
 
-          <p>Calculate your rate:</p>
-          <div>
-            <div>
-              <input
-                type="radio"
-                value="girl"
-                name="gender"
-              />
-              <label htmlFor="Woman">For girl</label>
-            </div>
-            <div>
-              <input
-                type="radio"
-                value="man"
-                name="gender"
-              />
-              <label htmlFor="Man">For man</label>
-            </div>
-          </div>
+            <BoxTextPostScriptum>
+              <PSText>
+                <MarkPSText>*&nbsp;</MarkPSText>V is the volume of the water norm
+                in liters per day, M is your body weight, T is the time of active
+                sports, or another type of activity commensurate in terms of loads
+                (in the absence of these, you must set 0)
+              </PSText>
+            </BoxTextPostScriptum>
+          </BoxFormula>
 
-          <form onSubmit={handleSubmit}>
-            <div>
-              <label>Your weight in kilograms:</label>
-              <input
-                onBlur={handleBlur}
-                type="number"
-                name="weight"
-                value={values.weight}
-                onChange={handleInputChange}
-              />
-            </div>
-            <div>
-              <label>
-                The time of active participation in sports or other activities
-                with a high physical. load:
-              </label>
-              <input
-                onBlur={handleBlur}
-                type="number"
-                name="time"
-                value={values.time}
-                onChange={handleInputChange}
-              />
-            </div>
-            <div>
-              <p>
-                The required amount of water in liters per day:
-              </p>
-              <p>{result}L</p>
-            </div>
+          <FormikProvider value={configFormik}>
+            <Form>
+              <BoxForm>
+                <BoxRate>
+                  <SubTitle>Calculate your rate:</SubTitle>
 
-            <div>
-              <label>
-                The required amount of water in liters per day:
-              </label>
-              <input
-                type="number"
-                id="water"
-                name="rate"
-                onChange={handleRate}
-                onBlur={handleBlur}
-                value={rate}
-              />
-            </div>
-            <button type="submit">
-              Save
-            </button>
-          </form>
-        </div>
-      </div>
-    )
+                  <BoxGender id="my-radio-group">
+                    <div role="group" aria-labelledby="my-radio-group">
+                      <LabelGender>
+                        <FieldGenger
+                          id="girl"
+                          value="girl"
+                          name="gender"
+                          type="radio"
+                        />
+                        For girl
+                      </LabelGender>
+
+                      <LabelGender>
+                        <FieldGenger
+                          type="radio"
+                          id="man"
+                          name="gender"
+                          value="man"
+                        />
+                        For man
+                      </LabelGender>
+                    </div>
+                  </BoxGender>
+
+                  <BoxWeight>
+                    <NumberFeedback
+                      aboveText="Your weight in kilograms:"
+                      label=""
+                      type="number"
+                      id="weight"
+                      name="weight"
+                      placeholder="0"
+                      helpText="Press your weight in kilograms"
+                    />
+                  </BoxWeight>
+
+                  <BoxTime>
+                    <NumberFeedback
+                      aboveText="The time of active participation in sports or other activities with a high physical. load:"
+                      label=""
+                      type="number"
+                      id="activeTraningHours"
+                      name="activeTraningHours"
+                      placeholder="0"
+                      helpText="How many hours per day you active"
+                    />
+                  </BoxTime>
+
+                  <BoxRequiredLitresPerDay>
+                    <Text>The required amount of water in liters per day:</Text>
+                    <CalcFieldDailyNormal name="calcDailyNormal" />
+                  </BoxRequiredLitresPerDay>
+                </BoxRate>
+
+                <BoxWaterDrink>
+                  <SubTitle>Write down how much water you will drink:</SubTitle>
+
+                  <NumberFeedback
+                    aboveText=""
+                    label=""
+                    type="number"
+                    id="waterVolume"
+                    name="waterVolume"
+                    placeholder="0"
+                    helpText="Enter daily normal water in Litre"
+                  />
+                </BoxWaterDrink>
+
+                <BoxButton>
+                  <ButtonSave type="submit" onSubmit={handleSubmit}>Save</ButtonSave>
+                </BoxButton>
+
+              </BoxForm>
+            </Form>
+          </FormikProvider>
+      </Modal>
+    </>
   );
 };
 
