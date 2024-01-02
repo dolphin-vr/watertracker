@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+
 const CalcModal = ({ onClose }) => {
   const [result, setResult] = useState(1.5);
   const [values, setValues] = useState({
