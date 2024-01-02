@@ -6,14 +6,24 @@ import {
   TodayText,
   TodayList,
   TodayItem,
+  QuantityWrap,
   TodayQuantity,
   TodayTime,
+  ButtonsWrap,
+  SvgButtonCreate,
+  SvgButtonDel,
   AddWaterButton,
 } from "./Today.styled.js";
 import {
   selectDailyPortions,
   selectIsLoading,
 } from "../../redux/water/todaySelectors.js";
+// import IconClass from "../../images/today/Today_class.svg";
+import {
+  IconGlass,
+  IconPencil,
+  IconTrash,
+} from "../../images/today/TodayIcons.jsx";
 
 export const Today = () => {
   const isLoading = useSelector(selectIsLoading);
@@ -37,17 +47,28 @@ export const Today = () => {
           <TodayList>
             {dailyPortions.map(({ water, id, time }) => (
               <TodayItem key={id}>
-                <TodayQuantity>
-                  {water}
-                  <span> ml</span>
-                </TodayQuantity>
-                <TodayTime>{time}</TodayTime>
-                <button type="button" onClick={() => onChangePortion(id)}>
-                  Change
-                </button>
-                <button type="button" onClick={() => onDeletePortion(id)}>
-                  Delete
-                </button>
+                <QuantityWrap>
+                  <IconGlass />
+                  <TodayQuantity>
+                    {water}
+                    <span> ml</span>
+                  </TodayQuantity>
+                  <TodayTime>{time}</TodayTime>
+                </QuantityWrap>
+                <ButtonsWrap>
+                  <SvgButtonCreate
+                    type="button"
+                    onClick={() => onChangePortion(id)}
+                  >
+                    <IconPencil />
+                  </SvgButtonCreate>
+                  <SvgButtonDel
+                    type="button"
+                    onClick={() => onDeletePortion(id)}
+                  >
+                    <IconTrash />
+                  </SvgButtonDel>
+                </ButtonsWrap>
               </TodayItem>
             ))}
           </TodayList>

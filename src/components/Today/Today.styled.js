@@ -1,23 +1,19 @@
 import styled from "styled-components";
 
 const TodayWrapper = styled.div`
-  max-width: 400px;
-  padding: 24px 8px;
-  border-radius: 10px;
-  background: var(--Secondary-color-2, #ecf2ff);
-  box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.3);
+  margin-bottom: 24px;
 
-  @media (min-width: 768px) {
+  @media (min-width: 767px) {
     width: 656px;
   }
 
-  @media (min-width: 1440px) {
+  @media (min-width: 1439px) {
     width: 544px;
   }
 `;
 
 const TodayTitle = styled.p`
-  color: var(--Primery-Color-Black, #2f2f2f);
+  color: ${(props) => props.theme.colors.primary.primaryBlack};
   font-size: 24px;
   font-weight: 500;
   line-height: 1.25;
@@ -26,7 +22,7 @@ const TodayTitle = styled.p`
 `;
 
 const TodayText = styled.p`
-  color: var(--Primery-Color-Blue, #407bff);
+  color: ${(props) => props.theme.colors.primary.primaryBlue};
   font-size: 18px;
   font-weight: 400;
   line-height: 1.33;
@@ -36,6 +32,9 @@ const TodayText = styled.p`
 const TodayList = styled.ul`
   display: flex;
   flex-direction: column;
+  padding-right: 10px;
+  max-height: 200px;
+  overflow-y: scroll;
   margin-bottom: 8px;
 `;
 
@@ -43,27 +42,60 @@ const TodayItem = styled.li`
   padding: 12px 0;
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid #d7e3ff;
+  border-bottom: 1px solid
+    ${(props) => props.theme.colors.secondary.secondaryWhiteBlue};
+`;
+
+const QuantityWrap = styled.span`
+  display: flex;
+  gap: 16px;
+`;
+
+const ButtonsWrap = styled.span`
+  display: flex;
+  gap: 18px;
 `;
 
 const TodayQuantity = styled.span`
-  color: var(--Primery-Color-Blue, #407bff);
+  color: ${(props) => props.theme.colors.primary.primaryBlue};
   font-size: 18px;
   font-weight: 400;
   line-height: 1.33;
 `;
 
 const TodayTime = styled.span`
-  color: var(--Primery-Color-Black, #2f2f2f);
+  color: ${(props) => props.theme.colors.primary.primaryBlack};
   font-size: 12px;
   font-weight: 400;
   line-height: 2;
 `;
 
+const SvgButtonCreate = styled.button`
+  border: none;
+  border: 1px solid transparent;
+  background-color: transparent;
+  cursor: pointer;
+
+  // :hover {
+  //   border-bottom: ${(props) => props.theme.colors.secondary.secondaryBlue};
+  // }
+`;
+
+const SvgButtonDel = styled.button`
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+
+  // :hover {
+  //   border-bottom: 1px solid
+  //     ${(props) => props.theme.colors.secondary.secondaryRed};
+  // }
+`;
+
 const AddWaterButton = styled.button`
   border: none;
   background-color: transparent;
-  color: var(--Primery-Color-Blue, #407bff);
+  color: ${(props) => props.theme.colors.primary.primaryBlue};
   font-size: 16px;
   font-weight: 500;
   line-height: 1.25;
@@ -75,7 +107,11 @@ export {
   TodayText,
   TodayList,
   TodayItem,
+  QuantityWrap,
+  ButtonsWrap,
   TodayQuantity,
   TodayTime,
+  SvgButtonCreate,
+  SvgButtonDel,
   AddWaterButton,
 };

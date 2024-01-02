@@ -7,6 +7,7 @@ import { WaterProgresBar } from "../../components/WaterProgresBar/WaterProgresBa
 import {
   MainHomepageContainer,
   MainHomepageStatistic,
+  WaterProgressWrap,
   MainHomepagePortions,
   AddPortionButton,
 } from "./MainHomepage.styled";
@@ -23,11 +24,13 @@ const MainHomepage = () => {
   return (
     <MainHomepageContainer>
       <MainHomepageStatistic>
-        {/* <DailyNorma /> */}
-        <WaterProgresBar />
-        <AddPortionButton type="button" onClick={() => onOpenModalWindow()}>
-          Add water
-        </AddPortionButton>
+        <DailyNorma />
+        <WaterProgressWrap>
+          <WaterProgresBar />
+          <AddPortionButton type="button" onClick={() => onOpenModalWindow()}>
+            Add water
+          </AddPortionButton>
+        </WaterProgressWrap>
       </MainHomepageStatistic>
       <MainHomepagePortions>
         <Today />
