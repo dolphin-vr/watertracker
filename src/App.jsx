@@ -22,7 +22,7 @@ function App() {
 
       useEffect(() => {
         dispatch(getUserInfo());
-    }, [dispatch]); 
+    }, [dispatch]);  /// Віка додала, через це видає одразу при завантаженні сайту в консолі помилку 401  
 
   useEffect(() => {
     // const fetchData = async () => {

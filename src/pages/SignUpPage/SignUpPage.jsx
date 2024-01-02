@@ -71,21 +71,21 @@ const SignUpPage = () => {
                 <IconContainer>
                     <Label>Enter your password</Label>
                     <FieldStyled type={showPassword ? 'text' : 'password'} placeholder="Password" name="password" className="input-field" />
-                    <IconBtn onClick={() => setShowPassword(!showPassword)}>
+                    <IconBtn type="button" onClick={() => setShowPassword(!showPassword)}>
                         {showPassword ? <EyeOpenedIcon /> : <EyeClosedIcon />}
                     </IconBtn>
                     <div style={{ color: '#EF5050' }}>
-                        <ErrorMessageStyled name="email" className="error-message"/>
+                        <ErrorMessageStyled name="password" className="error-message"/>
                     </div>
                 </IconContainer>    
                 <IconContainer>
                     <Label>Repeat your password</Label>
                     <FieldStyled type={showPassword ? 'text' : 'password'} placeholder="Repeat password" name="repeatPassword" className="input-field" />
-                    <IconBtn onClick={() => setShowPassword(!showPassword)}>
+                    <IconBtn type="button" onClick={() => setShowPassword(!showPassword)}>
                         {showPassword ? <EyeOpenedIcon /> : <EyeClosedIcon />}
                     </IconBtn>
                     <div style={{ color: '#EF5050' }}>
-                        <ErrorMessageStyled name="email" className="error-message"/>
+                        <ErrorMessageStyled name="repeatPassword" className="error-message"/>
                     </div>
                 </IconContainer>
                 <AuthBtn type="submit">Sign Up</AuthBtn>

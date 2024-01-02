@@ -34,7 +34,8 @@ export const SignInPage = () => {
               })
           );
           navigate('/main');
-          } catch (error) {
+          }
+          catch (error) {
           console.error('Login error:', error);
           }
       };
@@ -67,11 +68,11 @@ export const SignInPage = () => {
         <IconContainer>
             <Label>Enter your password</Label>
             <FieldStyled type={showPassword ? 'text' : 'password'} placeholder="Password" name="password" className="input-field" />
-            <IconBtn onClick={() => setShowPassword(!showPassword)}>
+            <IconBtn type="button" onClick={() => setShowPassword(!showPassword)}>
                 {showPassword ? <EyeOpenedIcon /> : <EyeClosedIcon />}
             </IconBtn>
             <div style={{ color: '#EF5050' }}>
-                <ErrorMessageStyled name="email" className="error-message"/>
+                <ErrorMessageStyled name="password" className="error-message"/>
             </div>
         </IconContainer>    
         <AuthBtn type="submit">Sign In</AuthBtn>
