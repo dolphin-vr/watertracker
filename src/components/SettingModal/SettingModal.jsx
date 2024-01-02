@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUserAvatar } from "../../redux/user/userOperations";
+import {selectUser} from"../../redux/auth/selectors";
 import {
   Container,
   TitleContainer,
@@ -10,11 +11,12 @@ import {
   LinkImgUpload,
   TitleH5,
 } from "./SettingModal.syled";
-import { selectUser } from "../../redux/auth/selectors";
+
 import SettingForm from "./SettingForm";
 
 
 const SettingModal = () => {
+  
   const { avatarURL } = useSelector(selectUser);
   const fileInputRef = React.useRef();
   const dispatch = useDispatch();
