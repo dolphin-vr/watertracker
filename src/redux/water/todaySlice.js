@@ -16,7 +16,7 @@ const handleRejected = (state, action) => {
   state.error = action.payload;
 };
 const initialState = {
-  portions: null,
+  portions: { doses: "", percentage: "" },
   dailyPortions: [],
   isLoading: false,
   error: null,
@@ -25,7 +25,6 @@ const initialState = {
 export const todaySlice = createSlice({
   name: "water",
   initialState,
-  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(getPortionsList.pending, handlePending)

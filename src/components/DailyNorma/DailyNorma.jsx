@@ -1,10 +1,10 @@
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 // import { getPortionsList } from "../../redux/todayOperations.js";
 import bottleImg from "../../images/bottle-mainPage-mobile.png";
+import { selectUserNorma } from "../../redux/user/userSelectors";
 
 export const DailyNorma = () => {
-  const dailyNorma = useSelector((state) => state.portions.dailyNorma);
+  const dailyNorma = useSelector(selectUserNorma);
 
   function onChangeDailyNorma() {
     console.log("change dailyNorma");
@@ -47,7 +47,7 @@ export const DailyNorma = () => {
             lineHeight: "100%",
           }}
         >
-          <span>1.5</span>
+          <span>{dailyNorma}</span>
           <span
             style={{
               padding: "0px 12px 0px 5px",
