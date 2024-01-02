@@ -37,12 +37,16 @@ function App() {
     //   }
     // }
     // fetchData()
-    dispatch(refreshUser())
+    dispatch(refreshUser());
   }, [dispatch]);
-  return isRefreshing ? <p>Loading</p> : <>
-      <UserRoutes/>
+  return isRefreshing ? (
+    <p>Loading</p>
+  ) : (
+    <>
+      <UserRoutes />
       <GlobalStyle />
     </>
+  );
 }
 
 export default App;
