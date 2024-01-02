@@ -36,13 +36,15 @@ const SignUpPage = () => {
     const handleRegister = async (values) => {
         try {
         const date = todayISO(new Date());
-        await dispatch(
+        console.log('Data sent to the server:', values); 
+        const response = await dispatch(
             registerUser({
                 email: values.email,
                 password: values.password,
                 date
             })
         );
+        console.log('Server response:', response);
         navigate('/main');
         } catch (error) {
         console.error('Register error:', error);
@@ -80,7 +82,7 @@ const SignUpPage = () => {
                 </IconContainer>    
                 <IconContainer>
                     <Label>Repeat your password</Label>
-                    <FieldStyled type={showPassword ? 'text' : 'password'} placeholder="Repeat password" name="repeatPassword" className="input-field" />
+                    <FieldStyled type={showPassword ? 'text' : 'password'} placeholder="Repeat password" name="repeatPassword" className="input-field"  />
                     <IconBtn type="button" onClick={() => setShowPassword(!showPassword)}>
                         {showPassword ? <EyeOpenedIcon /> : <EyeClosedIcon />}
                     </IconBtn>
