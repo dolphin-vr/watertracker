@@ -7,3 +7,5 @@ const minutes = date.getMinutes();
 
 export const currentDate = `${year}-${month}-${day}`;
 export const currentTime = `${hours}:${minutes};`;
+
+export default currentDate;

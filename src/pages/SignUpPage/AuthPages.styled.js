@@ -1,9 +1,5 @@
-// @media(min - width: 768px) { }
-// @media (min-width: 1440px) { }
-
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { ErrorMessage, Form, Field } from 'formik';
 
 export const AuthStyled = styled.div`
   @media (min-width: 320px) {
@@ -31,7 +27,7 @@ export const BackgroundStyled = styled.div`
   background-repeat: no-repeat;
   background-size: auto;
   z-index: -2;
-  @media (min-width: 321px) {
+  @media (min-width: 320px) {
     background-size: cover;
   }
   @media (min-width: 768px) {
@@ -49,7 +45,7 @@ export const BackgroundStyled = styled.div`
 
 export const Bottle = styled.div`
   background-image: url("/public/auth/BottleAuth-min.png");
-  background-size: bottom/contain; 
+  background-size: bottom contain; 
   background-repeat: no-repeat;
   z-index: -1;
   position: fixed;
@@ -60,17 +56,18 @@ export const Bottle = styled.div`
   height: 210px;
   @media (min-width: 768px) {
     background-image: url("/public/auth/BottleAuthTablet-min.png");
-    background-size: center/contain; 
+    background-size: center contain; 
     background-repeat: no-repeat;
     top: calc(100% - 564px);
-    left: 112px;
+    left: 302px;
+    right: auto;
     height: 548px;
     width: 736px;
     transform: translateX(0);
   }
   @media (min-width: 1440px) {
     background-image: url("/public/auth/BottleAuthDesktop-min.png");
-    background-size: center/contain; 
+    background-size: center contain; 
     background-repeat: no-repeat;
     left: -50px;
     top: calc(100% - 720px);
@@ -84,7 +81,7 @@ export const Title = styled.h1`
   color: #2F2F2F;
 `;
 
-export const FormStyled = styled(Form)`
+export const FormStyled = styled.form`
   width: 280px;
   margin-left: auto;
   margin-right: auto;
@@ -108,7 +105,7 @@ export const Label = styled.label`
   line-height: 1.33;
 `;
 
-export const FieldStyled = styled(Field)`
+export const Input = styled.input`
   margin-bottom: 16px;
   padding: 12px 10px;
   border-radius: 6px;
@@ -121,8 +118,13 @@ export const FieldStyled = styled(Field)`
   line-height: 1.25;
   width: 280px;
   outline: none;
+
+  &:focus {
+    color: #407BFF;
+  }
+
   &::placeholder {
-    color: #407BFF; //var(--Primery-Color-Blue)
+    color: #9EBBFF; //var(--Secondary-color-4)
   }
   &.input-error {
     margin-bottom: 4px;
@@ -138,7 +140,7 @@ export const FieldStyled = styled(Field)`
   }
 `;
 
-export const ErrorMessageStyled = styled(ErrorMessage)`
+export const ErrorMessageStyled = styled.div`
   color: #EF5050; //var(--Secondary-color-3)
   font-size: 14px;
   line-height: 1.28;
@@ -152,7 +154,7 @@ export const IconContainer = styled.div`
 export const IconBtn = styled.button`
   position: absolute;
   left: calc(280px - 26px);
-  top: 47px;
+  top: 13px;
   background-color: transparent;
   border: none;
   width: 16px;
@@ -191,8 +193,7 @@ export const AuthLink = styled(Link)`
   line-height: 1.25;
 
   &:hover {
-      color: #FF9D43; ///var(--Secondary-color-5)
+    color: #FF9D43; ///var(--Secondary-color-5)
   }
 `;
-
 

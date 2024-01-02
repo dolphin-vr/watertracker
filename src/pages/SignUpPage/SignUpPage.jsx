@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Formik } from 'formik';
+import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { registerUser } from '../../redux/auth/auth';
 import { Outlet, useNavigate } from 'react-router-dom';
-import { todayISO } from '../../shared/api/dates';
-import {AuthStyled, BackgroundStyled, Bottle, FormContainer, FormStyled, Title, Label, FieldStyled, ErrorMessageStyled, IconContainer, IconBtn, AuthBtn, AuthLink} from '../SignUpPage/AuthPages.styled';
-import EyeOpenedIcon from '../../components/EyeComponentSvg/EyeOpenedIcon';
+import {AuthStyled, BackgroundStyled, FormContainer, FormStyled, Title, Label, Input, ErrorMessageStyled, IconContainer, IconBtn, AuthBtn, AuthLink, Bottle} from './AuthPages.styled';
 import EyeClosedIcon from '../../components/EyeComponentSvg/EyeClosedIcon';
+import EyeOpenedIcon from '../../components/EyeComponentSvg/EyeOpenedIcon';
+// import {todayISO} from '../../shared/api/dates';
+import currentDate from '../../services/currentDate';
 
 const validationSchema = Yup.object().shape({
     email: Yup.string().email('Enter a valid email').required('Email is required'),
@@ -22,81 +23,113 @@ const validationSchema = Yup.object().shape({
         .oneOf([Yup.ref('password'), null], 'Passwords must match'),
     });
 
-const SignUpPage = () => {
+export const SignUpPage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
 
-    const initialValues = {
-        email: '',
-        password: '',
-        repeatPassword: ''
-    };
+    const formik = useFormik({
+        initialValues: { email: '', password: '', repeatPassword: ''},
+        validationSchema: validationSchema,
+        onSubmit: async (values) => {
+            try {
+                // const date = todayISO(new Date());
+                const date = currentDate;
+                
+                const formData = {
+                    email: values.email,
+                    password: values.password,
+                    date,
+                };
 
-    const handleRegister = async (values) => {
-        try {
-        const date = todayISO(new Date());
-        console.log('Data sent to the server:', values); 
-        const response = await dispatch(
-            registerUser({
-                email: values.email,
-                password: values.password,
-                date
-            })
-        );
-        console.log('Server response:', response);
-        navigate('/main');
-        } catch (error) {
-        console.error('Register error:', error);
-        }
-    };
+            // console.log('Data sent to the server:', formData); 
+
+            // const response = 
+            await dispatch(registerUser(formData));
+            // console.log('Server response:', response);
+
+            navigate('/');
+            } catch (error) {
+            console.error('Registration error:', error);
+            }
+        },
+    });
 
     return (
         <AuthStyled>
-            <BackgroundStyled />
-            <Bottle /> 
+            <BackgroundStyled/>
+            <Bottle/>  
             <FormContainer>
-                <Formik
-                initialValues={initialValues}
-                validationSchema={validationSchema}
-                onSubmit={handleRegister}
-                >
-                <FormStyled>
-                <Title>Sign Up</Title>
-                <div>
+                <FormStyled onSubmit={formik.handleSubmit}>
+                    <Title>Sign Up</Title>
                     <Label>Enter your email</Label>
-                    <FieldStyled type="email" name="email" placeholder="E-mail" className="input-field" />
-                    <div style={{ color: '#EF5050' }}>
-                        <ErrorMessageStyled name="email" className="error-message"/>
-                    </div>
-                </div>
-                <IconContainer>
+                    <Input
+                    type="email"
+                    placeholder="E-mail"
+                    name="email"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.email}
+                    className={formik.touched.email && formik.errors.email ? "input-error" : ""} required/>
+                    {formik.touched.email && (<ErrorMessageStyled>{formik.errors.email}</ErrorMessageStyled>)}
+
                     <Label>Enter your password</Label>
-                    <FieldStyled type={showPassword ? 'text' : 'password'} placeholder="Password" name="password" className="input-field" />
-                    <IconBtn type="button" onClick={() => setShowPassword(!showPassword)}>
-                        {showPassword ? <EyeOpenedIcon /> : <EyeClosedIcon />}
-                    </IconBtn>
-                    <div style={{ color: '#EF5050' }}>
-                        <ErrorMessageStyled name="password" className="error-message"/>
-                    </div>
-                </IconContainer>    
-                <IconContainer>
+                    <IconContainer>
+                        <Input
+                        type={showPassword ? "text" : "password"}
+                        placeholder="Password"
+                        name="password"
+                        onChange={(e) => {
+                        formik.handleChange(e);
+                        }}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.password}
+                        className={formik.touched.password && formik.errors.password ? "input-error" : ""} required />
+                        <IconBtn onClick={() => {setShowPassword(!showPassword);}}>
+                        {showPassword ? (
+                        <>
+                            <EyeOpenedIcon />
+                        </>
+                        ) : (
+                        <>
+                            <EyeClosedIcon/>
+                        </>
+                        )}
+                        </IconBtn>
+                        {formik.touched.password && (<ErrorMessageStyled>{formik.errors.password}</ErrorMessageStyled> )}
+                    </IconContainer>
+                    
                     <Label>Repeat your password</Label>
-                    <FieldStyled type={showPassword ? 'text' : 'password'} placeholder="Repeat password" name="repeatPassword" className="input-field"  />
-                    <IconBtn type="button" onClick={() => setShowPassword(!showPassword)}>
-                        {showPassword ? <EyeOpenedIcon /> : <EyeClosedIcon />}
-                    </IconBtn>
-                    <div style={{ color: '#EF5050' }}>
-                        <ErrorMessageStyled name="repeatPassword" className="error-message"/>
-                    </div>
-                </IconContainer>
-                <AuthBtn type="submit">Sign Up</AuthBtn>
-                <AuthLink to="/signin">Sign In</AuthLink>    
+                    <IconContainer>
+                        <Input
+                            type={showPassword ? "text" : "password"}
+                            placeholder="Repeat password"
+                            name="repeatPassword"
+                            onChange={(e) => {
+                            formik.handleChange(e);
+                            }}
+                            onBlur={formik.handleBlur}
+                            value={formik.values.repeatPassword}
+                            className={formik.touched.repeatPassword && formik.errors.repeatPassword ? "input-error" : ""} required />
+                            <IconBtn onClick={() => {setShowPassword(!showPassword);}}>
+                                {showPassword ? (
+                                <>
+                                    <EyeOpenedIcon />
+                                </>
+                                ) : (
+                                <>
+                                    <EyeClosedIcon/>
+                                </>
+                                )}
+                            </IconBtn>
+                            {formik.touched.repeatPassword && ( <ErrorMessageStyled>{formik.errors.repeatPassword}</ErrorMessageStyled> )}
+                    </IconContainer>
+                    <AuthBtn type="submit">Sign Up</AuthBtn>
+                    <AuthLink to ="/signin">Sign In</AuthLink>
                 </FormStyled>
-                </Formik>
             </FormContainer>
         <Outlet />
-        </AuthStyled>
+        </AuthStyled> 
     );
 };
 

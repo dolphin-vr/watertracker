@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Formik } from 'formik';
+import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { loginUser } from '../../redux/auth/auth';
 import { Outlet, useNavigate } from 'react-router-dom';
-// import { useSelector } from 'react-redux'; //перевірка для токену, видалити потім цей рядок, він не потрібен
-// import { selectToken } from '../../redux/auth/selectors'; //перевірка для токену, видалити потім цей рядок, він не потрібен
-import {AuthStyled, BackgroundStyled, Bottle, FormContainer, FormStyled, Title, Label, FieldStyled, ErrorMessageStyled, IconContainer, IconBtn, AuthBtn, AuthLink} from '../SignUpPage/AuthPages.styled';
+import {AuthStyled, BackgroundStyled, FormContainer, FormStyled, Title, Label, Input, ErrorMessageStyled, IconContainer, IconBtn, AuthBtn, AuthLink, Bottle} from '../SignUpPage/AuthPages.styled';
 import EyeClosedIcon from '../../components/EyeComponentSvg/EyeClosedIcon';
 import EyeOpenedIcon from '../../components/EyeComponentSvg/EyeOpenedIcon';
 
@@ -20,65 +18,71 @@ export const SignInPage = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
-  const initialValues = {
-    email: '',
-    password: '',
-    };
+  const formik = useFormik({
+    initialValues: { email: '', password: ''},
+    validationSchema: validationSchema,
+    onSubmit: async (values) => {
+      try {
+      await dispatch(
+        loginUser({
+            email: values.email,
+            password: values.password,
+        })
+    );
 
-  const handleLogin = async (values) => {
-          try {
-          await dispatch(
-              loginUser({
-                  email: values.email,
-                  password: values.password,
-              })
-          );
-          navigate('/main');
-          }
-          catch (error) {
-          console.error('Login error:', error);
-          }
-      };
-
-  // const tokenInRedux = useSelector((state) => selectToken(state)); //перевірка для токену, видалити потім цей рядок, він не потрібен
-  // console.log('Token in Redux state:', tokenInRedux); //перевірка для токену, видалити потім цей рядок, він не потрібен 
-
-  // const tokenInLocalStorage = localStorage.getItem('persist:auth'); //перевірка для токену, видалити потім цей рядок, він не потрібен 
-  // console.log('Token in localStorage:', tokenInLocalStorage); //перевірка для токену, видалити потім цей рядок, він не потрібен
+      navigate('/');
+      } catch (error) {
+      console.error('Registration error:', error);
+      }
+    },
+  });
   
   return (
     <AuthStyled>
       <BackgroundStyled />
       <Bottle /> 
       <FormContainer>
-        <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={handleLogin}
-        >
-        <FormStyled>
-        <Title>Sign In</Title>
-        <div>
-            <Label>Enter your email</Label>
-            <FieldStyled type="email" name="email" placeholder="E-mail" className="input-field" />
-            <div style={{ color: '#EF5050' }}>
-                <ErrorMessageStyled name="email" className="error-message"/>
-            </div>
-        </div>
-        <IconContainer>
-            <Label>Enter your password</Label>
-            <FieldStyled type={showPassword ? 'text' : 'password'} placeholder="Password" name="password" className="input-field" />
-            <IconBtn type="button" onClick={() => setShowPassword(!showPassword)}>
-                {showPassword ? <EyeOpenedIcon /> : <EyeClosedIcon />}
-            </IconBtn>
-            <div style={{ color: '#EF5050' }}>
-                <ErrorMessageStyled name="password" className="error-message"/>
-            </div>
-        </IconContainer>    
-        <AuthBtn type="submit">Sign In</AuthBtn>
-        <AuthLink to="/signup">Sign Up</AuthLink>    
+        <FormStyled onSubmit={formik.handleSubmit}>
+          <Title>Sign In</Title>
+          <Label>Enter your email</Label>
+          <Input
+          type="email"
+          placeholder="E-mail"
+          name="email"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.email}
+          className={formik.touched.email && formik.errors.email ? "input-error" : ""} required/>
+          {formik.touched.email && (<ErrorMessageStyled>{formik.errors.email}</ErrorMessageStyled>)}
+
+          <Label>Enter your password</Label>
+          <IconContainer>
+              <Input
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              name="password"
+              onChange={(e) => {
+              formik.handleChange(e);
+              }}
+              onBlur={formik.handleBlur}
+              value={formik.values.password}
+              className={formik.touched.password && formik.errors.password ? "input-error" : ""} required />
+              <IconBtn onClick={() => {setShowPassword(!showPassword);}}>
+              {showPassword ? (
+              <>
+                  <EyeOpenedIcon />
+              </>
+              ) : (
+              <>
+                  <EyeClosedIcon/>
+              </>
+              )}
+              </IconBtn>
+              {formik.touched.password && (<ErrorMessageStyled>{formik.errors.password}</ErrorMessageStyled> )}
+          </IconContainer>
+          <AuthBtn type="submit">Sign In</AuthBtn>
+          <AuthLink to ="/signup">Sign Up</AuthLink>
         </FormStyled>
-        </Formik>
       </FormContainer>
     <Outlet />
     </AuthStyled>
