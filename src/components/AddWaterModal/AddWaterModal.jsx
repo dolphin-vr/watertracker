@@ -15,15 +15,16 @@ import {
   Title,
   WrapCounter,
 } from "./AddWaterModal.styled";
-// import { useDispatch } from 'react-redux';
+import { addNewPortion } from "../../redux/water/todayOperations";
+import { useDispatch } from "react-redux";
 
 const modalRoot = document.querySelector("#modal-root");
 
-export const AddWaterModal = () => {
+export const AddWaterModal = ({ onCloseModal }) => {
   const [counter, setCounter] = useState(0);
   const [startDate, setStartDate] = useState(new Date());
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   // useEffect(() => {
   //   const handleKeyDown = (event) => {
@@ -70,7 +71,10 @@ export const AddWaterModal = () => {
     };
 
     const formatDate = (date) => {
-      return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+      const year = date.getFullYear();
+      const month = (date.getMonth() + 1).toString().padStart(2, "0");
+      const day = date.getDate().toString().padStart(2, "0");
+      return `${year}-${month}-${day}`;
     };
 
     const formattedDate = formatDate(date);
@@ -80,7 +84,7 @@ export const AddWaterModal = () => {
     console.log(newWaterUsed);
     // console.log(waterCounter);
 
-    // dispatch(addWaterThunk(newWaterUsed));
+    dispatch(addNewPortion(newWaterUsed));
 
     // closeModal();
   };
@@ -116,7 +120,7 @@ export const AddWaterModal = () => {
         <StyledModal>
           <div>
             <Title>Add water</Title>
-            <BtnClose>X</BtnClose>
+            <BtnClose onClick={onCloseModal}>X</BtnClose>
             <Text>Choose a value:</Text>
             <form onSubmit={handleSubmit}>
               <label>
@@ -169,8 +173,8 @@ export const AddWaterModal = () => {
                     handleChange(e);
                   }}
                   onBlur={(e) => {
-                    setFieldValue("waterCounter", parseFloat(e.target.value));
-                    setCounter(parseFloat(e.target.value));
+                    setFieldValue("waterCounter", Number(e.target.value));
+                    setCounter(Number(e.target.value));
                   }}
                   value={values.waterCounter}
                 />
