@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUserAvatar } from "../../redux/user/userOperations";
-import {selectUser} from"../../redux/auth/selectors";
+import { selectUserAvatar } from"../../redux/user/userSelectors";
 import {
   Container,
   TitleContainer,
@@ -10,14 +10,14 @@ import {
   InputImg,
   LinkImgUpload,
   TitleH5,
-} from "./SettingModal.syled";
+} from "./SettingModal.styled";
 
 import SettingForm from "./SettingForm";
 
 
 const SettingModal = () => {
   
-  const { avatarURL } = useSelector(selectUser);
+  const { avatarURL } = useSelector(selectUserAvatar);
   const fileInputRef = React.useRef();
   const dispatch = useDispatch();
 
@@ -38,6 +38,8 @@ const SettingModal = () => {
   const handleLinkClick = () => {
     fileInputRef.current.click();
   };
+
+
   return (
     <Container>
       <TitleContainer>

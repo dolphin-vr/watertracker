@@ -12,7 +12,7 @@ import {
   LabelInput,
   InputStyle,
   ButtonSubmit,
-} from "./SettingModal.syled";
+} from "./SettingModal.styled";
 
 export default function SettingForm() {
   const { email, gender } = useSelector(selectUser);

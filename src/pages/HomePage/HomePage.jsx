@@ -1,5 +1,6 @@
 import { lazy, useState } from "react";
-import MainHomepage from "../MainHomepage/MainHomepage";
+// import MainHomepage from "../MainHomepage/MainHomepage";
+import SettingModal from "../../components/SettingModal/SettingModal";
 const UnSignedHomePage = lazy(() => import("../UnSignedHomePage/UnSignedHomePage")
 );
 
@@ -12,7 +13,7 @@ const HomePage = () => {
   return (
     <section> 
       <button onClick={handleButtonClick}>{isLoggedIn? "logOut" : "signIn"}</button>
-      {isLoggedIn ? <MainHomepage /> : <UnSignedHomePage />}
+      {isLoggedIn ? <SettingModal /> : <UnSignedHomePage />}
       
     </section>
   );
