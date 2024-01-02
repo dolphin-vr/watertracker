@@ -1,14 +1,39 @@
 import styled from "styled-components";
 
+// 1440;
+// 768;
+// 320;
+
 const MainHomepageContainer = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 280px;
-  padding: 24px 20px 40px 20px;
+  padding: 24px 0 40px 0;
   background: transperent;
 
+  @media (min-width: 767px) {
+    max-width: 768px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 1439px) {
+    max-width: 1440px;
+    flex-direction: row;
+    justify-content: center;
+    gap: 32px;
+  }
+`;
+
+const DailyNormaWrapper = styled.div``;
+
+const MainHomepageStatistic = styled.div`
+  padding: 0 0 40px;
+`;
+
+const WaterProgressWrap = styled.div`
   @media (min-width: 768px) {
-    width: 656px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
   }
 
   @media (min-width: 1440px) {
@@ -16,15 +41,38 @@ const MainHomepageContainer = styled.div`
   }
 `;
 
-const DailyNormaWrapper = styled.div``;
+const MainHomepagePortions = styled.div`
+  padding: 24px 8px;
+  background: ${(props) => props.theme.colors.secondary.secondaryWhite};
+  box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.3);
+  background: #ecf2ff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.3);
+`;
 
-const MainHomepageStatistic = styled.div``;
+const AddPortionButton = styled.button`
+  padding: 8px;
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  background: var(--Primery-Color-Blue, #407bff);
+  box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
+  color: var(--Primery-Color-White, #fff);
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.25;
 
-const MainHomepagePortions = styled.div``;
+  @media (min-width: 768px) {
+    height: 44px;
+  }
+`;
 
 export {
   MainHomepageContainer,
   MainHomepageStatistic,
   MainHomepagePortions,
+  WaterProgressWrap,
   DailyNormaWrapper,
+  AddPortionButton,
 };

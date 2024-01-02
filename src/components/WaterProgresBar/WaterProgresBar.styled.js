@@ -6,11 +6,11 @@ const WaterProgresBarContainer = styled.div`
   margin-bottom: 16px;
   width: 100%;
 
-  @media (min-width: 768px) {
-    width: 656px;
+  @media (min-width: 767px) {
+    margin-bottom: 0;
   }
 
-  @media (min-width: 1440px) {
+  @media (min-width: 1439px) {
     width: 544px;
   }
 `;
@@ -23,9 +23,20 @@ const WaterProgresBarTitle = styled.p`
   margin: 0 0 8px 0;
 `;
 
-const ProgressContainer = styled.div``;
+const ProgressContainer = styled.div`
+  width: 100%;
+  height: 8px;
+  background-color: #c6d7ff;
+  position: relative;
+  border-radius: 5px;
+`;
 
-const ProgressBar = styled.div``;
+const ProgressBar = styled.div`
+  height: 8px;
+  position: absolute;
+  background-color: #8baeff;
+  border-radius: 5px;
+`;
 
 const WaterProgresBarText = styled.div`
   display: flex;
