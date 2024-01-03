@@ -11,11 +11,14 @@ import {
   MainHomepagePortions,
   AddPortionButton,
 } from "./MainHomepage.styled";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getUserInfo } from "../../redux/user/userOperations";
 import { getPortionsList } from "../../redux/water/todayOperations";
+import { AddWaterModal } from "../../components/AddWaterModal/AddWaterModal";
 
 const MainHomepage = () => {
+  const [openAddWaterModal, setOpenAddWaterModal] = useState(false);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getUserInfo());
@@ -23,7 +26,8 @@ const MainHomepage = () => {
   }, [dispatch]);
 
   function onOpenModalWindow() {
-    console.log("Modal window is open");
+    // console.log("Modal window is open");
+    setOpenAddWaterModal(!openAddWaterModal);
   }
 
   return (
@@ -41,6 +45,7 @@ const MainHomepage = () => {
         <Today />
         <Calendar />
       </MainHomepagePortions>
+      {openAddWaterModal && <AddWaterModal onCloseModal={onOpenModalWindow} />}
     </MainHomepageContainer>
   );
 };
