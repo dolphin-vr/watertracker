@@ -44,7 +44,7 @@ export const Today = () => {
   function onDeletePortion(id) {
     // console.log("Delete portion");
     setOpenDeleteWaterModal(true);
-    console.log(id);
+    // console.log(id);
     setId(id);
   }
   function onCloseDeletePortion() {
@@ -78,7 +78,7 @@ export const Today = () => {
                 <ButtonsWrap>
                   <SvgButtonCreate
                     type="button"
-                    onClick={() => onChangePortion(id)}
+                    onClick={() => onChangePortion(water, id, time)}
                   >
                     <IconPencil />
                   </SvgButtonCreate>
