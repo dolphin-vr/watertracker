@@ -3,15 +3,16 @@ import Logo from "../Logo/Logo";
 import UserAuth from "../UserAuth/UserAuth";
 import UserLogo from "../UserLogo/UserLogo";
 import { selectIsLoggedIn } from '../../redux/auth/selectors'; 
+import { HeaderStyled } from "./Header.styled";
 
 const Header = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   return (
-    <div>
+    <HeaderStyled>
       <Logo />
       {isLoggedIn ? <UserLogo /> : <UserAuth />}
-    </div>
+    </HeaderStyled>
   );
 };
 
