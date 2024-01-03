@@ -7,6 +7,7 @@ const modalRoot = document.querySelector("#modal-root");
 
 export const DeleteWaterModal = ({ onCloseModal, id }) => {
   const dispatch = useDispatch();
+  console.log(id);
 
   const handleDelete = (id) => {
     dispatch(deletePortion(id));

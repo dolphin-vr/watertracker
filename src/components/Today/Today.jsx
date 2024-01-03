@@ -24,8 +24,16 @@ import {
   IconPencil,
   IconTrash,
 } from "../../images/today/TodayIcons.jsx";
+import { AddWaterModal } from "../AddWaterModal/AddWaterModal.jsx";
+import { useState } from "react";
+import { DeleteWaterModal } from "../DeleteWaterModal/DeleteWaterModal.jsx";
 
 export const Today = () => {
+  const [openAddWaterModal, setOpenAddWaterModal] = useState(false);
+  const [openDeleteWaterModal, setOpenDeleteWaterModal] = useState(false);
+
+  const [id, setId] = useState(null);
+
   const isLoading = useSelector(selectIsLoading);
   const dailyPortions = useSelector(selectDailyPortions);
 
@@ -33,12 +41,20 @@ export const Today = () => {
     console.log("Open modal window and need change portion");
   }
 
-  function onDeletePortion() {
-    console.log("Delete portion");
+  function onDeletePortion(id) {
+    // console.log("Delete portion");
+    setOpenDeleteWaterModal(true);
+    console.log(id);
+    setId(id);
+  }
+  function onCloseDeletePortion() {
+    setOpenDeleteWaterModal(false);
+    setId(null);
   }
 
   function onAddPortion() {
-    console.log("Add portion");
+    // console.log("Add portion");
+    setOpenAddWaterModal(!openAddWaterModal);
   }
 
   return (
@@ -80,6 +96,10 @@ export const Today = () => {
             Add water
           </AddWaterButton>
         </>
+      )}
+      {openAddWaterModal && <AddWaterModal onCloseModal={onAddPortion} />}
+      {openDeleteWaterModal && (
+        <DeleteWaterModal onCloseModal={onCloseDeletePortion} id={id} />
       )}
     </TodayWrapper>
   );

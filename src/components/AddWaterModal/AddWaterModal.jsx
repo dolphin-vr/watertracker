@@ -85,7 +85,7 @@ export const AddWaterModal = ({ onCloseModal }) => {
     // console.log(waterCounter);
 
     dispatch(addNewPortion(newWaterUsed));
-
+    onCloseModal();
     // closeModal();
   };
 
