@@ -1,10 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import Modal from "react-modal";
 import toast from "react-hot-toast";
-// import axios from "axios";
-// import { useSelector } from "react-redux";
-// import { selectToken } from "../../redux/auth/selectors";
-
+import { instance } from "../../redux/auth/auth";
 import {
   CalendarContainer,
   MonthHeader,
@@ -18,35 +15,27 @@ import {
   TodayCircle,
   CompletionText,
   DayNotCompelete,
+  ModalAccent,
+  ModalDate,
 } from "./Calendar.styled";
-import { instance } from "../../redux/auth/auth";
 
 export const Calendar = () => {
-  // const token = useSelector(selectToken);
   const [date, setDate] = useState(new Date());
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [clickedDayData, setClickedDayData] = useState(null);
 
   const fetchData = useCallback(async () => {
     try {
-      // const apiBaseUrl = import.meta.env.VITE_API_URL;
+      const apiBaseUrl = import.meta.env.VITE_API_URL;
       const endpoint = "water/month";
-      const currentDate = `${date.getFullYear()}-${(date.getMonth() + 1)
+      const apiUrl = `${apiBaseUrl}/${endpoint}/${date.getFullYear()}-${(
+        date.getMonth() + 1
+      )
         .toString()
-        .padStart(2, "0")}-${date.getDate().toString().padStart(2, "0")}`;
-
-      const apiUrl = `/${endpoint}/${currentDate}`;
-
+        .padStart(2, "0")}-01`;
       const response = await instance.get(apiUrl);
-      // , {
-      //   headers: {
-      //     Authorization: `Bearer ${token}`,
-      //   },
-      // }
-
       setClickedDayData(response.data);
     } catch (error) {
-      console.error("Error fetching data:", error);
       toast.error("Error fetching data. Please try again.");
       setClickedDayData(null);
     }
@@ -55,14 +44,6 @@ export const Calendar = () => {
   useEffect(() => {
     fetchData();
   }, [date, fetchData]);
-
-  // const todayData = clickedDayData?.daily.find(
-  //   (data) =>
-  //     data.date ===
-  //     `${date.getFullYear()}-${(date.getMonth() + 1)
-  //       .toString()
-  //       .padStart(2, "0")}-${date.getDate().toString().padStart(2, "0")}`
-  // );
 
   const renderDaysOfMonth = () => {
     const daysInMonth = new Date(
@@ -75,16 +56,19 @@ export const Calendar = () => {
     return (
       <DaysContainer>
         {daysArray.map((day) => {
-          const isToday = day === new Date().getDate();
-          const isTodayOrPastDay = day <= new Date().getDate();
-          const todayData = clickedDayData?.daily?.find(
+          const isToday =
+            day === new Date().getDate() &&
+            date.getMonth() === new Date().getMonth() &&
+            date.getFullYear() === new Date().getFullYear();
+
+          const isTodayOrPastDay = true;
+          const todayData = clickedDayData?.month?.find(
             (data) =>
               data.date ===
               `${date.getFullYear()}-${(date.getMonth() + 1)
                 .toString()
                 .padStart(2, "0")}-${day.toString().padStart(2, "0")}`
           );
-          const isNotCompleted = todayData?.percentage < 100;
 
           return (
             <DayTile key={day}>
@@ -93,7 +77,7 @@ export const Calendar = () => {
                   <TodayCircle>{day}</TodayCircle>
                 ) : isTodayOrPastDay ? (
                   todayData ? (
-                    isNotCompleted ? (
+                    todayData.percentage < 100 ? (
                       <DayNotCompelete>{day}</DayNotCompelete>
                     ) : (
                       <DayCircle>{day}</DayCircle>
@@ -123,7 +107,7 @@ export const Calendar = () => {
       .toString()
       .padStart(2, "0")}-${day.toString().padStart(2, "0")}`;
 
-    const clickedDayDataForClick = clickedDayData.daily.find(
+    const clickedDayDataForClick = clickedDayData.month.find(
       (data) => data.date === clickedDateString
     );
 
@@ -147,22 +131,23 @@ export const Calendar = () => {
   const handleMonthChange = async (direction) => {
     try {
       if (direction === "prev") {
-        const prevMonth = new Date(date.getFullYear(), date.getMonth() - 1, 1);
+        const currentMonth = date.getMonth();
+        const currentYear = date.getFullYear();
+        const prevMonth =
+          currentMonth === 0
+            ? new Date(currentYear - 1, 11, 1)
+            : new Date(currentYear, currentMonth - 1, 1);
         setDate(prevMonth);
-        await fetchData();
       } else if (direction === "next") {
         const nextMonth = new Date(date.getFullYear(), date.getMonth() + 1, 1);
-
         if (nextMonth <= new Date()) {
           setDate(nextMonth);
-          await fetchData();
         } else {
           toast.error("Cannot select a future month");
         }
       }
     } catch (error) {
-      console.error("Error fetching data:", error);
-      toast.error("Error fetching data. Please try again.");
+      toast.error("Error changing month. Please try again.");
     }
   };
 
@@ -194,7 +179,7 @@ export const Calendar = () => {
         contentLabel="Modal window Calendar"
         style={{
           content: {
-            width: "280px",
+            width: "292px",
             height: "188px",
             top: "25%",
             left: "25%",
@@ -204,21 +189,25 @@ export const Calendar = () => {
       >
         {clickedDayData && (
           <div>
-            <div>
+            <ModalDate>
               {`${date.getDate()}, ${date.toLocaleString("en-US", {
                 month: "long",
               })}`}
-            </div>
+            </ModalDate>
             <div>
               <p>
-                Daily norma: <span>{clickedDayData.waterNorma} L</span>
+                Daily norma:{" "}
+                <ModalAccent>
+                  {(clickedDayData.waterNorma / 1000).toFixed(1)} L
+                </ModalAccent>
               </p>
               <p>
                 Fulfillment of the daily norm:{" "}
-                <span>{clickedDayData.percentage}%</span>
+                <ModalAccent>{clickedDayData.percentage}%</ModalAccent>
               </p>
               <p>
-                How many servings of water: <span>{clickedDayData.doses}</span>
+                How many servings of water:{" "}
+                <ModalAccent>{clickedDayData.doses}</ModalAccent>
               </p>
             </div>
           </div>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -15,28 +15,29 @@ import {
   Title,
   WrapCounter,
 } from "./AddWaterModal.styled";
-// import { useDispatch } from 'react-redux';
+import { addNewPortion } from "../../redux/water/todayOperations";
+import { useDispatch } from "react-redux";
 
 const modalRoot = document.querySelector("#modal-root");
 
-export const AddWaterModal = () => {
+export const AddWaterModal = ({ onCloseModal }) => {
   const [counter, setCounter] = useState(0);
   const [startDate, setStartDate] = useState(new Date());
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   const handleKeyDown = (event) => {
-  //     if (event.code === "Escape") {
-  //       closeModal();
-  //     }
-  //   };
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.code === "Escape") {
+        onCloseModal();
+      }
+    };
 
-  //   window.addEventListener("keydown", handleKeyDown);
-  //   return () => {
-  //     window.removeEventListener("keydown", handleKeyDown);
-  //   };
-  // }, [closeModal]);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [onCloseModal]);
 
   const updateWaterUsed = (newValue) => {
     setFieldValue("waterCounter", newValue);
@@ -69,19 +70,22 @@ export const AddWaterModal = () => {
       return `${hours}:${minutes}`;
     };
 
-    const formatDate = (date) => {
-      return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
-    };
+    // const formatDate = (date) => {
+    //   const year = date.getFullYear();
+    //   const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    //   const day = date.getDate().toString().padStart(2, "0");
+    //   return `${year}-${month}-${day}`;
+    // };
 
-    const formattedDate = formatDate(date);
+    // const formattedDate = formatDate(date);
     const time = formattedTime(date);
 
-    const newWaterUsed = { water: waterCounter, date: formattedDate, time };
+    const newWaterUsed = { water: waterCounter, time };
     console.log(newWaterUsed);
     // console.log(waterCounter);
 
-    // dispatch(addWaterThunk(newWaterUsed));
-
+    dispatch(addNewPortion(newWaterUsed));
+    onCloseModal();
     // closeModal();
   };
 
@@ -93,7 +97,7 @@ export const AddWaterModal = () => {
       },
       validationSchema: Yup.object({
         waterCounter: Yup.number()
-          .min(50, "Min 50ml")
+          .min(1, "Min 1ml")
           .max(5000, "Max 5000ml")
           .required("Enter water value"),
         date: Yup.date(),
@@ -106,7 +110,7 @@ export const AddWaterModal = () => {
 
   const handleOverlayClick = (event) => {
     if (event.currentTarget === event.target) {
-      // closeModal();
+      onCloseModal();
     }
   };
 
@@ -116,7 +120,7 @@ export const AddWaterModal = () => {
         <StyledModal>
           <div>
             <Title>Add water</Title>
-            <BtnClose>X</BtnClose>
+            <BtnClose onClick={onCloseModal}>X</BtnClose>
             <Text>Choose a value:</Text>
             <form onSubmit={handleSubmit}>
               <label>
@@ -169,8 +173,8 @@ export const AddWaterModal = () => {
                     handleChange(e);
                   }}
                   onBlur={(e) => {
-                    setFieldValue("waterCounter", parseFloat(e.target.value));
-                    setCounter(parseFloat(e.target.value));
+                    setFieldValue("waterCounter", Number(e.target.value));
+                    setCounter(Number(e.target.value));
                   }}
                   value={values.waterCounter}
                 />

@@ -5,6 +5,7 @@ import {
   updateUserInfo,
   updateWaterNorma,
 } from "./userOperations";
+import { logoutUser } from "../auth/auth";
 
 const userInitialState = {
   user: { email: "", gender: "", avatarURL: "", username: "", waterNorma: "" },
@@ -54,7 +55,18 @@ const userSlice = createSlice({
         state.error = null;
         state.user.waterNorma = action.payload;
       })
-      .addCase(updateWaterNorma.rejected, handleRejected);
+      .addCase(updateWaterNorma.rejected, handleRejected)
+      .addCase(logoutUser.fulfilled, (state) => {
+        state.error = null;
+        state.isLoading = false;
+        state.user = {
+          email: "",
+          gender: "",
+          avatarURL: "",
+          username: "",
+          waterNorma: "",
+        };
+      });
   },
 });
 

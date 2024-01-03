@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import currentDate from "../../services/currentDate";
 
 export const instance = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
@@ -17,7 +18,10 @@ export const registerUser = createAsyncThunk(
   "auth/registerUser",
   async (userData, thunkAPI) => {
     try {
-      const response = await instance.post("/auth/signup", userData);
+      const response = await instance.post("/auth/signup", {
+        ...userData,
+        date: currentDate,
+      });
       setAuthHeader(response.data.token);
       return response.data;
     } catch (error) {
