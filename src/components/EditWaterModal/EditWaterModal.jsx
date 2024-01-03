@@ -4,17 +4,20 @@ import { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { StyledModal, StyledOverlay } from "./EditWaterModal.styled";
-// import { useDispatch } from 'react-redux';
+import { updatePortion } from "../../redux/water/todayOperations";
+import { useDispatch } from "react-redux";
 
 const modalRoot = document.querySelector("#modal-root");
 
 export const EditWaterModal = ({ onCloseModal, data }) => {
-  const [counter, setCounter] = useState(data.water);
-  const [startDate, setStartDate] = useState(
-    new Date(data.date + "T" + data.time)
-  );
+  const initialDate = data.time
+    ? new Date(`2024-01-01T${data.time}`)
+    : new Date();
 
-  // const dispatch = useDispatch();
+  const [counter, setCounter] = useState(data.water);
+  const [startDate, setStartDate] = useState(initialDate);
+
+  const dispatch = useDispatch();
 
   // useEffect(() => {
   //   const handleKeyDown = (event) => {
@@ -70,23 +73,21 @@ export const EditWaterModal = ({ onCloseModal, data }) => {
       return `${hours}:${minutes}`;
     };
 
-    const formatDate = (date) => {
-      const year = date.getFullYear();
-      const month = (date.getMonth() + 1).toString().padStart(2, "0");
-      const day = date.getDate().toString().padStart(2, "0");
-      return `${year}-${month}-${day}`;
-    };
+    // const formatDate = (date) => {
+    //   const year = date.getFullYear();
+    //   const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    //   const day = date.getDate().toString().padStart(2, "0");
+    //   return `${year}-${month}-${day}`;
+    // };
 
-    const formattedDate = formatDate(values.date);
+    // const formattedDate = formatDate(values.date);
     const time = formattedTime(values.date);
     const newEditWater = {
       water: values.waterCounter,
-      date: formattedDate,
       time,
-      _id: data._id,
     };
     console.log(newEditWater);
-    // dispatch(editWaterThunk(newEditWater));
+    dispatch(updatePortion({ id: data.id, portion: newEditWater }));
     onCloseModal();
   };
 
@@ -98,7 +99,7 @@ export const EditWaterModal = ({ onCloseModal, data }) => {
       },
       validationSchema: Yup.object({
         waterCounter: Yup.number()
-          .min(50, "Min 50ml")
+          .min(1, "Min 1ml")
           .max(5000, "Max 5000ml")
           .required("Enter water value"),
         date: Yup.date(),
@@ -141,7 +142,6 @@ export const EditWaterModal = ({ onCloseModal, data }) => {
                 timeIntervals={5}
                 timeCaption="Time"
                 dateFormat="HH:mm"
-                // dateFormat="HH:mm"
                 timeFormat="HH:mm"
                 minTime={
                   new Date(
@@ -153,8 +153,8 @@ export const EditWaterModal = ({ onCloseModal, data }) => {
                     0
                   )
                 }
-                maxTime={new Date(startDate)}
-                // maxDate={new Date()}
+                maxTime={new Date()}
+                maxDate={new Date()}
               />
             </label>
             <label>
@@ -164,14 +164,10 @@ export const EditWaterModal = ({ onCloseModal, data }) => {
                 name="waterCounter"
                 onChange={(e) => {
                   handleChange(e);
-                  // setFieldValue('waterCounter', Number(e.target.value));
-                  // setCounter(e.target.value);
                 }}
                 onBlur={(e) => {
-                  // console.log(e);
                   setFieldValue("waterCounter", Number(e.target.value));
                   setCounter(Number(e.target.value));
-                  // setFieldTouched('waterCounter', true);
                 }}
                 value={values.waterCounter}
               />
@@ -182,9 +178,7 @@ export const EditWaterModal = ({ onCloseModal, data }) => {
 
             <div>
               <p>{counter}ml</p>
-              <button type="submit" onSubmit={handleSave}>
-                Save
-              </button>
+              <button type="submit">Save</button>
             </div>
           </form>
         </StyledModal>

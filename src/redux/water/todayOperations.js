@@ -18,7 +18,10 @@ export const addNewPortion = createAsyncThunk(
   "water/addNewPortion",
   async (portion, thunkAPI) => {
     try {
-      const { data } = await instance.post("/water", portion);
+      const { data } = await instance.post("/water", {
+        ...portion,
+        date: currentDate,
+      });
       return data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
