@@ -129,7 +129,16 @@ const CompletionText = styled.div`
   font-size: 12px;
   color: #9EBBFF;
 `;
-
+const ModalAccent = styled.span`
+font-size: 18px;
+font-weight: 500;
+color: #407BFF;
+`;
+const ModalDate = styled.div`
+font-size: 16px;
+font-weight: 500;
+color: #407BFF;
+`;
 export {
   CalendarContainer,
   MonthHeader,
@@ -143,5 +152,8 @@ export {
   TodayCircle,
   CompletionText,
   DayNotCompelete,
+  ModalAccent,
+  ModalDate
+
 };
 
