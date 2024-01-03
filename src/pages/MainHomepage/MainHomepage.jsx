@@ -7,7 +7,9 @@ import { WaterProgresBar } from "../../components/WaterProgresBar/WaterProgresBa
 import {
   MainHomepageContainer,
   MainHomepageStatistic,
+  WaterProgressWrap,
   MainHomepagePortions,
+  AddPortionButton,
 } from "./MainHomepage.styled";
 import { useEffect } from "react";
 import { getUserInfo } from "../../redux/user/userOperations";
@@ -19,12 +21,21 @@ const MainHomepage = () => {
     dispatch(getUserInfo());
     dispatch(getPortionsList());
   }, [dispatch]);
+
+  function onOpenModalWindow() {
+    console.log("Modal window is open");
+  }
+
   return (
     <MainHomepageContainer>
       <MainHomepageStatistic>
         <DailyNorma />
-        <WaterProgresBar />
-        <AddPortion />
+        <WaterProgressWrap>
+          <WaterProgresBar />
+          <AddPortionButton type="button" onClick={() => onOpenModalWindow()}>
+            Add water
+          </AddPortionButton>
+        </WaterProgressWrap>
       </MainHomepageStatistic>
       <MainHomepagePortions>
         <Today />
