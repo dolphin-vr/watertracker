@@ -18,21 +18,20 @@ import {
   ModalAccent,
   ModalDate,
 } from "./Calendar.styled";
+import { dateISO } from "../../shared/api/dates";
 
 export const Calendar = () => {
   const [date, setDate] = useState(new Date());
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [clickedDayData, setClickedDayData] = useState(null);
+  console.log('date init= ', date);
+  console.log('clickData init=', clickedDayData);
 
   const fetchData = useCallback(async () => {
     try {
-      const apiBaseUrl = import.meta.env.VITE_API_URL;
+      // const apiBaseUrl = import.meta.env.VITE_API_URL;
       const endpoint = "water/month";
-      const apiUrl = `${apiBaseUrl}/${endpoint}/${date.getFullYear()}-${(
-        date.getMonth() + 1
-      )
-        .toString()
-        .padStart(2, "0")}-01`;
+      const apiUrl = `${endpoint}/${dateISO(date)}`;
       const response = await instance.get(apiUrl);
       setClickedDayData(response.data);
     } catch (error) {
@@ -45,6 +44,7 @@ export const Calendar = () => {
     fetchData();
   }, [date, fetchData]);
 
+  // Days Grid
   const renderDaysOfMonth = () => {
     const daysInMonth = new Date(
       date.getFullYear(),
@@ -52,45 +52,29 @@ export const Calendar = () => {
       0
     ).getDate();
     const daysArray = Array.from({ length: daysInMonth }, (_, i) => i + 1);
+    console.log('daysArray= ', daysArray)
 
     return (
       <DaysContainer>
         {daysArray.map((day) => {
-          const isToday =
-            day === new Date().getDate() &&
-            date.getMonth() === new Date().getMonth() &&
-            date.getFullYear() === new Date().getFullYear();
+          const isToday = day === new Date().getDate() && date.getMonth() === new Date().getMonth() && date.getFullYear() === new Date().getFullYear();
 
           const isTodayOrPastDay = true;
-          const todayData = clickedDayData?.month?.find(
-            (data) =>
-              data.date ===
-              `${date.getFullYear()}-${(date.getMonth() + 1)
-                .toString()
-                .padStart(2, "0")}-${day.toString().padStart(2, "0")}`
+          const todayData = clickedDayData?.month?.find((data) => data.date === dateISO(date)
+              // `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, "0")}-${day.toString().padStart(2, "0")}`
           );
 
           return (
             <DayTile key={day}>
               <DayButton onClick={() => handleDayClick(day)}>
-                {isToday ? (
-                  <TodayCircle>{day}</TodayCircle>
-                ) : isTodayOrPastDay ? (
-                  todayData ? (
-                    todayData.percentage < 100 ? (
-                      <DayNotCompelete>{day}</DayNotCompelete>
-                    ) : (
-                      <DayCircle>{day}</DayCircle>
-                    )
-                  ) : (
-                    <DayCircle>{day}</DayCircle>
-                  )
-                ) : (
-                  <DayCircle>{day}</DayCircle>
-                )}
-                {isTodayOrPastDay && todayData && (
-                  <CompletionText>{todayData.percentage}%</CompletionText>
-                )}
+                {isToday ? (<TodayCircle>{day}</TodayCircle>)
+                  : isTodayOrPastDay ? (
+                      todayData ? 
+                        (todayData.percentage < 100 ? (<DayNotCompelete>{day}</DayNotCompelete>) : (<DayCircle>{day}</DayCircle>))
+                      : (<DayCircle>{day}</DayCircle>))
+                    : (<DayCircle>{day}</DayCircle>)
+                }
+                {isTodayOrPastDay && todayData && (<CompletionText>{todayData.percentage}%</CompletionText>)}
               </DayButton>
             </DayTile>
           );
@@ -101,15 +85,13 @@ export const Calendar = () => {
 
   const handleDayClick = (day) => {
     const clickedDate = new Date(date.getFullYear(), date.getMonth(), day);
-    const clickedDateString = `${clickedDate.getFullYear()}-${(
-      clickedDate.getMonth() + 1
-    )
-      .toString()
-      .padStart(2, "0")}-${day.toString().padStart(2, "0")}`;
+    console.log('clickedDate= ', clickedDate)
+    const clickedDateString = dateISO(clickedDate);
+    console.log('clickedDateString= ', clickedDateString)
+    // `${clickedDate.getFullYear()}-${(      clickedDate.getMonth() + 1    )      .toString()      .padStart(2, "0")}-${day.toString().padStart(2, "0")}`;
 
-    const clickedDayDataForClick = clickedDayData.month.find(
-      (data) => data.date === clickedDateString
-    );
+    const clickedDayDataForClick = clickedDayData.month.find((data) => data.date === clickedDateString );
+    console.log('clickedDayDataForClick= ', clickedDayDataForClick)
 
     if (clickedDayDataForClick) {
       if (clickedDate <= new Date()) {
