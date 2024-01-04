@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 import {
   StyledDiv,
   StyledHeader,
@@ -9,7 +9,7 @@ import {
   StyledPreHeader,
   StyledUl,
 } from "./WaterСonsumptionTracker.styled";
-import outline from "../../svg/sprite.svg";
+import sprite from "../../images/sprite.svg";
 export const WaterСonsumptionTracker = () => {
   return (
     <StyledDiv>
@@ -19,19 +19,19 @@ export const WaterСonsumptionTracker = () => {
       <StyledUl>
         <StyledLi>
           <svg fill="white" width="40" height="40">
-            <use href={outline + "#icon1"}></use>
+            <use href={sprite + "#icon1"}></use>
           </svg>
           <StyledListParagraph>Habit drive</StyledListParagraph>
         </StyledLi>
         <StyledLi>
         <svg fill="white" width="40" height="40">
-            <use href={outline + "#icon2"}></use>
+            <use href={sprite + "#icon2"}></use>
           </svg>
           <StyledListParagraph>View statistics</StyledListParagraph>
         </StyledLi>
         <StyledLi>
         <svg fill="white" width="40" height="40">
-            <use href={outline + "#icon3"}></use>
+            <use href={sprite + "#icon3"}></use>
           </svg>
           <StyledListParagraph>Personal rate setting</StyledListParagraph>
         </StyledLi>
