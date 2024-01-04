@@ -1,12 +1,5 @@
 import styled from "styled-components";
 
-
-export const Wrapper = styled.div`
-  padding: ${props => props.theme.spacing(2)};
-  border: 1px solid ${getBorderColor};
-  border-radius: ${props => props.theme.radii.sm};
-`;
-
 const getTileBgr = props => {
 	if (props.isToday) {
 		return props.theme.colors.secondary.today

@@ -6,7 +6,7 @@ import { CalendarContainer, DaysContainer, MonthHeader, MonthLabel, Pagination, 
 import { Day } from "../Day/Day";
 
 export const CalendarD = () => {
-  const [date, setDate] = useState(currentDate);
+  const [date, setDate] = useState(new Date());
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [month, setMonth] = useState([]); // array for current month = from back + id=dat and isToday
   const [norma, setNorma] = useState(0);
@@ -18,7 +18,8 @@ export const CalendarD = () => {
       const endpoint = "water/month";
       const apiUrl = `${endpoint}/${dateISO(date)}`;
       const response = await instance.get(apiUrl);
-      setMonth(daysTable(days(date), response.data.month, currentDate));
+      console.log('response.data=', response.data);
+      setMonth(response.data.month);
       setNorma(response.data.waterNorma);
     } catch (error) {
       toast.error("Error fetching data. Please try again.");
@@ -82,6 +83,9 @@ export const CalendarD = () => {
     }
   };
 
+  const monthData = daysTable(days(date), month, currentDate);
+  console.log('mmDate= ', monthData);
+
   return (
     <CalendarContainer>
       <MonthHeader>
@@ -93,7 +97,7 @@ export const CalendarD = () => {
         </Pagination>
       </MonthHeader>
       <DaysContainer>
-        {month.map(el => {<Day day={el.day} percent={el.percentage} isToday={el.isToday}
+        {monthData.map(el => {<Day day={el.day} percent={el.percentage} isToday={el.isToday}
           onClick={()=> handleDayClick(el)}
         />})}
       </DaysContainer>

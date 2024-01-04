@@ -25,6 +25,10 @@ const theme = {
   },
   fonts: {},
 };
+
+// padding: ${({ theme }) => theme.spacing(1)};
+  // background-color: ${props => props.theme.colors.primary.White};
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <PersistGate loading={null} persistor={persistor}>

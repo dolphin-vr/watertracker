@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
-import { AddPortion } from "../../components/AddPortion/AddPortion";
-// import { Calendar } from "../../components/Calendar/Calendar";
+// import { AddPortion } from "../../components/AddPortion/AddPortion";
+import { Calendar } from "../../components/Calendar/Calendar";
 import { DailyNorma } from "../../components/DailyNorma/DailyNorma";
 import { Today } from "../../components/Today/Today";
 import { WaterProgresBar } from "../../components/WaterProgresBar/WaterProgresBar";
@@ -15,7 +15,7 @@ import { useEffect, useState } from "react";
 import { getUserInfo } from "../../redux/user/userOperations";
 import { getPortionsList } from "../../redux/water/todayOperations";
 import { AddWaterModal } from "../../components/AddWaterModal/AddWaterModal";
-import { CalendarD } from "../../components/Calendar/CalendarD";
+// import { CalendarD } from "../../components/Calendar/CalendarD";
 
 const MainHomepage = () => {
   const [openAddWaterModal, setOpenAddWaterModal] = useState(false);
@@ -44,7 +44,7 @@ const MainHomepage = () => {
       </MainHomepageStatistic>
       <MainHomepagePortions>
         <Today />
-        <CalendarD />
+        <Calendar />
       </MainHomepagePortions>
       {openAddWaterModal && <AddWaterModal onCloseModal={onOpenModalWindow} />}
     </MainHomepageContainer>
