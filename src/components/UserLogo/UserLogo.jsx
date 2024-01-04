@@ -44,6 +44,7 @@ import { useSelector } from 'react-redux';
 import UserLogoModal from '../UserLogoModal/UserLogoModal';
 import avatar from '../../images/avatar.png';
 import { selectUserEmail } from '../../redux/user/userSelectors';
+import { UserLogoWrapper } from './UserLogo.styled';
 
 const UserLogo = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -53,13 +54,22 @@ const UserLogo = () => {
     setIsModalOpen(!isModalOpen);
   };
 
+  const handleButtonHover = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  };
+
 return (
-    <div>
+    <div onMouseEnter={handleButtonHover}
+        onMouseLeave={handleModalClose}>
         <button onClick={handleButtonClick}>
-            <div className="initial-avatar">
+            <UserLogoWrapper className="initial-avatar">
                 <p>{userEmail}</p>
                 <img src={avatar} alt={avatar} width={26} height={26}/>
-            </div>
+            </UserLogoWrapper>
         </button>
 
         {isModalOpen && (
