@@ -10,16 +10,17 @@ import {store, persistor} from "./redux/store";
 const theme = {
   colors: {
     primary: {
-      primaryWhite: "#FFFFFF",
-      primaryBlue: "#407BFF",
-      primaryBlack: "#2F2F2F",
+      White: "#FFFFFF",
+      Blue: "#407BFF",
+      Black: "#2F2F2F",
     },
     secondary: {
-      secondaryWhite: "#ECF2FF",
-      secondaryRed: "#EF5050",
-      secondaryBlue: "#9EBBFF",
-      secondaryOrange: "#FF9D43",
-      secondaryWhiteBlue: "#D7E3FF",
+      White: "#ECF2FF",
+      Red: "#EF5050",
+      Blue: "#9EBBFF",
+      today: "#e2e8f7",
+      Orange: "#FF9D43",
+      WhiteBlue: "#D7E3FF",
     },
   },
   fonts: {},

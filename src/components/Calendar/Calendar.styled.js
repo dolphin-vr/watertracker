@@ -125,6 +125,7 @@ const CompletionText = styled.div`
   font-size: 12px;
   color: #9ebbff;
 `;
+
 const ModalAccent = styled.span`
 font-size: 18px;
 font-weight: 500;
