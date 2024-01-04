@@ -45,10 +45,3 @@ gap: 16px
   /* list-style: circle;
   color: ${(props) => props.theme.colors.primary.primaryBlue}; */
 `;
-export const StyledSvg = styled.svg`
-  width: 8px;
-  height: 8px;
-`;
-export const StyledCircle = styled.circle`
-  fill: ${(props) => props.theme.colors.primary.primaryBlue};
-`;

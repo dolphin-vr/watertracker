@@ -11,9 +11,11 @@ export const getPortionsList = createAsyncThunk("water/getPortionsList", async (
    }
 });
 
-export const addNewPortion = createAsyncThunk("water/addNewPortion", async (portion, thunkAPI) => {
-   try {
-      const { data } = await instance.post("/water", portion);
+export const addNewPortion = createAsyncThunk(
+  "water/addNewPortion",
+  async (portion, thunkAPI) => {
+    try {
+      const { data } = await instance.post("/water", { ...portion, date: currentDate });
       return data;
    } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -22,7 +24,7 @@ export const addNewPortion = createAsyncThunk("water/addNewPortion", async (port
 
 export const updatePortion = createAsyncThunk("water/updatePortion", async ({ id, portion }, thunkAPI) => {
    try {
-      const { data } = await instance.put(`/water/${id}`, portion);
+      const { data } = await instance.put(`/water/${id}`, { ...portion, date: currentDate });
       return data;
    } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

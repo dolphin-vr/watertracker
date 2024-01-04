@@ -1,9 +1,6 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  @media screen and (min-width: 767px) {
-    background-image: url('../../../public/tablet-unsignedHomepage-background.png');
-  }
   @media screen and (min-width: 1439px) {
     width: 1054px;
     display: flex;

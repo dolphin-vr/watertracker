@@ -27,18 +27,28 @@ import {
 import { AddWaterModal } from "../AddWaterModal/AddWaterModal.jsx";
 import { useState } from "react";
 import { DeleteWaterModal } from "../DeleteWaterModal/DeleteWaterModal.jsx";
+import { EditWaterModal } from "../EditWaterModal/EditWaterModal.jsx";
 
 export const Today = () => {
   const [openAddWaterModal, setOpenAddWaterModal] = useState(false);
   const [openDeleteWaterModal, setOpenDeleteWaterModal] = useState(false);
+  const [openEditWaterModal, setOpenEditWaterModal] = useState(false);
 
   const [id, setId] = useState(null);
+  const [data, setData] = useState(null);
 
   const isLoading = useSelector(selectIsLoading);
   const dailyPortions = useSelector(selectDailyPortions);
 
-  function onChangePortion() {
+  function onChangePortion(water, id, time) {
     console.log("Open modal window and need change portion");
+    setOpenEditWaterModal(true);
+    setData({ water, id, time });
+  }
+
+  function onCloseChangePortion() {
+    setOpenEditWaterModal(false);
+    setData(null);
   }
 
   function onDeletePortion(id) {
@@ -100,6 +110,9 @@ export const Today = () => {
       {openAddWaterModal && <AddWaterModal onCloseModal={onAddPortion} />}
       {openDeleteWaterModal && (
         <DeleteWaterModal onCloseModal={onCloseDeletePortion} id={id} />
+      )}
+      {openEditWaterModal && (
+        <EditWaterModal onCloseModal={onCloseChangePortion} data={data} />
       )}
     </TodayWrapper>
   );
