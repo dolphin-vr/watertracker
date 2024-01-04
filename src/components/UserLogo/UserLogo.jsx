@@ -54,17 +54,8 @@ const UserLogo = () => {
     setIsModalOpen(!isModalOpen);
   };
 
-  const handleButtonHover = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleModalClose = () => {
-    setIsModalOpen(false);
-  };
-
 return (
-    <div onMouseEnter={handleButtonHover}
-        onMouseLeave={handleModalClose}>
+    <div>
         <button onClick={handleButtonClick}>
             <UserLogoWrapper className="initial-avatar">
                 <p>{userEmail}</p>
