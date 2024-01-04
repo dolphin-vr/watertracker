@@ -23,11 +23,25 @@ const theme = {
       WhiteBlue: "#D7E3FF",
     },
   },
-  fonts: {},
+  radii: {
+    sm: '4px',
+    md: '8px',
+    lg: '16px',
+  },
+  spacing: value => `${value * 4}px`,
 };
-
 // padding: ${({ theme }) => theme.spacing(1)};
-  // background-color: ${props => props.theme.colors.primary.White};
+// padding: ${({ theme }) => theme.spacing(10)};
+// padding: ${({ theme }) => theme.spacing(3)} ${({ theme }) => theme.spacing(2)};
+// gap: ${({ theme }) => theme.spacing(3)};
+// margin-bottom: ${({ theme }) => theme.spacing(5)};
+// margin: 0 auto ${props => props.theme.spacing(8)};
+// margin: ${({theme}) => theme.spacing(4)} auto ${({theme}) => theme.spacing(3)};
+// border-bottom: 4px solid ${({ theme }) => theme.colors.darkgray};
+// padding: 0 ${({ theme }) => theme.spacing(2)};
+// border-radius: ${({ theme }) => theme.radii.sm};
+// background-color: ${props => props.theme.colors.primary.White};
+// color: ${({ theme }) => theme.colors.darkgray};
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
