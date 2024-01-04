@@ -24,8 +24,8 @@ export const Calendar = () => {
   const [date, setDate] = useState(new Date());
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [clickedDayData, setClickedDayData] = useState(null);
-  console.log('date init= ', date);
-  console.log('clickData init=', clickedDayData);
+  // console.log('date init= ', date);
+  // console.log('clickData init=', clickedDayData);
 
   const fetchData = useCallback(async () => {
     try {
@@ -52,7 +52,7 @@ export const Calendar = () => {
       0
     ).getDate();
     const daysArray = Array.from({ length: daysInMonth }, (_, i) => i + 1);
-    console.log('daysArray= ', daysArray)
+    // console.log('daysArray= ', daysArray)
 
     return (
       <DaysContainer>
@@ -85,13 +85,13 @@ export const Calendar = () => {
 
   const handleDayClick = (day) => {
     const clickedDate = new Date(date.getFullYear(), date.getMonth(), day);
-    console.log('clickedDate= ', clickedDate)
+    // console.log('clickedDate= ', clickedDate)
     const clickedDateString = dateISO(clickedDate);
-    console.log('clickedDateString= ', clickedDateString)
+    // console.log('clickedDateString= ', clickedDateString)
     // `${clickedDate.getFullYear()}-${(      clickedDate.getMonth() + 1    )      .toString()      .padStart(2, "0")}-${day.toString().padStart(2, "0")}`;
 
     const clickedDayDataForClick = clickedDayData.month.find((data) => data.date === clickedDateString );
-    console.log('clickedDayDataForClick= ', clickedDayDataForClick)
+    // console.log('clickedDayDataForClick= ', clickedDayDataForClick)
 
     if (clickedDayDataForClick) {
       if (clickedDate <= new Date()) {
