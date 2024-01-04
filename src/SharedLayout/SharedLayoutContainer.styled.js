@@ -12,3 +12,4 @@ export const StyledContainer = styled.div`
     width: 1440px;
   }
 `;
+

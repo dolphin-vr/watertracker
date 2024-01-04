@@ -1,10 +1,12 @@
-import { Link } from 'react-router-dom';
+import { UserAuthLogo } from './UserAuthLogo';
+import { UserAuthLink, UserAuthLinkHover } from './UserAuth.styled';
 
 const UserAuth = () => {
     return (
-        <div>
-            <Link to="/signin">Sign In</Link>
-        </div>
+        <UserAuthLink to="/signin">
+            <UserAuthLinkHover>Sign In</UserAuthLinkHover>
+            <UserAuthLogo/>
+        </UserAuthLink>
     );
 };
 
