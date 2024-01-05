@@ -7,6 +7,7 @@ import {
   StyledNavLink,
   StyledParagraph,
   StyledPreHeader,
+  StyledSvg,
   StyledUl,
 } from "./WaterСonsumptionTracker.styled";
 import sprite from "../../images/sprite.svg";
@@ -18,21 +19,21 @@ export const WaterСonsumptionTracker = () => {
       <StyledParagraph>Tracker Benefits</StyledParagraph>
       <StyledUl>
         <StyledLi>
-          <svg fill="white" width="40" height="40">
+          <StyledSvg fill="white">
             <use href={sprite + "#icon1"}></use>
-          </svg>
+          </StyledSvg>
           <StyledListParagraph>Habit drive</StyledListParagraph>
         </StyledLi>
         <StyledLi>
-        <svg fill="white" width="40" height="40">
+        <StyledSvg fill="white">
             <use href={sprite + "#icon2"}></use>
-          </svg>
+          </StyledSvg>
           <StyledListParagraph>View statistics</StyledListParagraph>
         </StyledLi>
         <StyledLi>
-        <svg fill="white" width="40" height="40">
+        <StyledSvg fill="white">
             <use href={sprite + "#icon3"}></use>
-          </svg>
+          </StyledSvg>
           <StyledListParagraph>Personal rate setting</StyledListParagraph>
         </StyledLi>
       </StyledUl>
