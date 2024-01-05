@@ -79,8 +79,12 @@ export const StyledLi = styled.li`
   display: flex;
   align-items: center;
   gap: 8px;
+  width: 216px;
   @media screen and (min-width: 767px) {
-margin: 0;
+width: 224px;
+  }
+  @media screen and (min-width: 1439px) {
+width: 248px;
   }
 `;
 export const StyledUl = styled.ul`
@@ -95,5 +99,13 @@ gap: 16px;
   @media screen and (min-width: 1439px) {
     flex-direction: column;
     gap: 16px;
+  }
+`
+export const StyledSvg = styled.svg`
+width: 32px;
+height: 32px;
+  @media screen and (min-width: 767px) {
+    width: 40px;
+height: 40px;
   }
 `
