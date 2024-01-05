@@ -7,7 +7,7 @@ import { Day } from "../Day/Day";
 
 export const CalendarD = () => {
   const [date, setDate] = useState(new Date());
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  // const [modalIsOpen, setModalIsOpen] = useState(false);
   const [month, setMonth] = useState([]); // array for current month = from back + id=dat and isToday
   const [norma, setNorma] = useState(0);
   console.log('month init= ', month);
@@ -56,9 +56,9 @@ export const CalendarD = () => {
     // }
   };
 
-  const closeModal = () => {
-    setModalIsOpen(false);
-  };
+  // const closeModal = () => {
+  //   setModalIsOpen(false);
+  // };
 
   const handleMonthChange = async (direction) => {
     try {

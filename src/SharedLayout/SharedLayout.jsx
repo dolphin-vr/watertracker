@@ -2,7 +2,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import Header from "../components/Header/Header";
 import { Suspense } from "react";
 import { StyledContainer } from "./SharedLayoutContainer.styled";
-import { StyledContainerUnsign } from "../pages/UnSignedHomePage/UnSignedHomePage.styled";
+import { StyledContainerUnsign } from "../pages/HomePage/UnSignedHomePage.styled";
 
 export const SharedLayout = () => {
   const {pathname} = useLocation();

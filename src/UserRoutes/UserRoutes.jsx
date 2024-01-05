@@ -1,4 +1,4 @@
-import { lazy } from "react";
+// import { lazy } from "react";
 import { Navigate, Routes } from "react-router-dom";
 import { Route } from "react-router-dom";
 import { SharedLayout } from "../SharedLayout/SharedLayout";
@@ -6,7 +6,7 @@ import SignInPage from "../pages/SignInPage/SignInPage";
 import SignUpPage from "../pages/SignUpPage/SignUpPage";
 import PublicRoute from "./PublicRoute";
 import PrivateRoute from "./PrivateRoute";
-import UnSignedHomePage from "../pages/UnSignedHomePage/UnSignedHomePage";
+import UnSignedHomePage from "../pages/HomePage/UnSignedHomePage";
 import MainHomepage from "../pages/MainHomepage/MainHomepage";
 
 export const UserRoutes = () => {
