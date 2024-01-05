@@ -12,17 +12,30 @@ import MainPage from "../pages/MainPage/MainPage";
 export const UserRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<SharedLayout/>}>
+      <Route element={<SharedLayout/>}>
         <Route element={<PublicRoute />}>
-          <Route index element={<WelcomePage/>} />
-          <Route path="/signup" element={<SignUpPage />} />
-          <Route path="/signin" element={<SignInPage />} />
+            <Route path="/" element={<WelcomePage />} />
+            <Route path="/signup" element={<SignUpPage />} />
+            <Route path="/signin" element={<SignInPage />} />
         </Route>
         <Route element={<PrivateRoute />}>
-          <Route path="/main" element={<MainPage />} />
+            <Route path="/main" element={<MainPage />} />
         </Route>
       </Route>
       <Route path="*" element={<Navigate to="/main" />} />
     </Routes>
+    // <Routes>
+    //   <Route path="/" element={<SharedLayout/>}>
+    //     <Route element={<PublicRoute />}>
+    //       <Route index element={<WelcomePage/>} />
+    //       <Route path="/signup" element={<SignUpPage />} />
+    //       <Route path="/signin" element={<SignInPage />} />
+    //     </Route>
+    //     <Route element={<PrivateRoute />}>
+    //       <Route path="/main" element={<MainPage />} />
+    //     </Route>
+    //   </Route>
+    //   <Route path="*" element={<Navigate to="/main" />} />
+    // </Routes>
   )
 };
