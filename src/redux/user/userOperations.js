@@ -45,7 +45,7 @@ export const updateWaterNorma = createAsyncThunk(
   "users/waterNorma",
   async (waterNorma, thunkAPI) => {
     try {
-      const respons = await instance.patch("/users/waterrate", waterNorma);
+      const respons = await instance.patch("/users/waterrate", { waterNorma });
       return respons.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
