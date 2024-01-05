@@ -2,7 +2,8 @@ import { useState } from "react";
 import Modal from "react-modal";
 import { useDispatch } from "react-redux";
 import { updateWaterNorma } from "../../redux/user/userOperations";
-import { Container, Title, Backdrop } from "./CalcModal.styled";
+import { Container, Title, Backdrop,Formula,Gender,Description,Start,GenderFormula,TitleLabel,RadioBtn,GenderBtn,GenderInput,GenderLabel,Forma,Labels,DataLabel,ModalInput,ResultCont,Littres,TextResult,WriteInput,Btn,CloseBtn } from "./CalcModal.styled";
+import sprite from "../../images/sprite.svg";
 
 const CalcModal = ({ onClose }) => {
   const dispatch = useDispatch();
@@ -15,12 +16,13 @@ const CalcModal = ({ onClose }) => {
   const [isModalOpen, setIsModalOpen] = useState(true);
   const [rate, setRate] = useState("");
 
-  console.log("result", result);
+  
 
   const handleSubmit = (e) => {
-    console.log(e.target.rate);
+    // console.log(e.target.rate);
     e.preventDefault();
     dispatch(updateWaterNorma(result * 1000));
+    onClose(Modal);
   };
 
   const handleInputChange = (e) => {
@@ -33,8 +35,17 @@ const CalcModal = ({ onClose }) => {
   };
 
   const handleBlur = () => {
-    calculate(values.gender, values.weight, values.time);
-  };
+  calculate(values.gender, values.weight, values.time);
+  updateResult(rate);
+};
+
+const updateResult = (rate) => {
+  const parsedRate = parseFloat(rate);
+  if (!isNaN(parsedRate)) {
+    const updatedResult = parsedRate;
+    setResult(updatedResult.toFixed(1));
+  }
+};
 
   const handleClose = () => {
     setIsModalOpen(false);
@@ -65,79 +76,91 @@ const CalcModal = ({ onClose }) => {
       <Backdrop>
         <Container>
           <Title>My Daily Norma</Title>
-          <button type="button" onClick={handleClose}>
-            Close
-          </button>
+          <CloseBtn type="button" onClick={handleClose}>
+          <svg>
+           <use href={sprite + "#modalclose"}></use>
+          </svg>
+          </CloseBtn>
 
-          <ul>
+          <GenderFormula>
             <li>
-              For girl: <span>V=(M*0.03)+(T*0.4)</span>
+              <Gender>
+              For girl: 
+              <Formula>V=(M*0.03)+(T*0.4)</Formula>
+              </Gender>
             </li>
             <li>
-              For man: <span>V=(M*0.04)+(T*0.6)</span>
+              <Gender>
+              For man: 
+              <Formula>V=(M*0.04)+(T*0.6)</Formula>
+              </Gender>
             </li>
-          </ul>
+          </GenderFormula>
 
-          <p>
-            <span>*</span>V is the volume of the water norm in liters per day, M
+          <Description>
+            <Start>*</Start>V is the volume of the water norm in liters per day, M
             is your body weight, T is the time of active sports, or another type
             of activity commensurate in terms of loads (in the absence of these,
             you must set 0)
-          </p>
+          </Description>
 
-          <h3>Calculate Your Rate:</h3>
-          <div>
-            <div>
-              <input type="radio" value="girl" name="gender" />
-              <label htmlFor="Woman">For girl</label>
-            </div>
-            <div>
-              <input type="radio" value="man" name="gender" />
-              <label htmlFor="Man">For man</label>
-            </div>
-          </div>
+          <TitleLabel>Calculate Your Rate:</TitleLabel>
+          <RadioBtn>
+            <GenderBtn>
+              <GenderInput type="radio" value="girl" name="gender" />
+              <GenderLabel htmlFor="Woman">For girl</GenderLabel>
+            </GenderBtn>
+            <GenderBtn>
+              <GenderInput type="radio" value="man" name="gender" />
+              <GenderLabel htmlFor="Man">For man</GenderLabel>
+            </GenderBtn>
+          </RadioBtn>
 
-          <form onSubmit={handleSubmit}>
-            <div>
-              <label>Your weight in kilograms:</label>
-              <input
+          <Forma onSubmit={handleSubmit}>
+            <Labels>
+              <DataLabel>Your weight in kilograms:</DataLabel>
+              <ModalInput
                 onBlur={handleBlur}
-                type="number"
+                type="text"
                 name="weight"
                 value={values.weight}
                 onChange={handleInputChange}
               />
-            </div>
-            <div>
-              <label>
+            </Labels>
+            <Labels>
+              <DataLabel>
                 The time of active participation in sports or other activities
                 with a high physical load:
-              </label>
-              <input
+              </DataLabel>
+              <ModalInput
                 onBlur={handleBlur}
-                type="number"
+                type="text"
                 name="time"
                 value={values.time}
                 onChange={handleInputChange}
               />
-            </div>
-            <div>
-              <div>The required amount of water in liters per day:</div>
-              <div>{result}L</div>
-            </div>
-            <div>
-              <label>Write down how much water you will drink:</label>
-              <input
-                type="number"
+            </Labels>
+            <Labels>
+              <ResultCont>
+                <TextResult>The required amount of water in liters per day:</TextResult>
+              
+              <Littres>{result}L</Littres>
+              </ResultCont>
+            </Labels>
+            <Labels>
+              <WriteInput>Write down how much water you will drink:</WriteInput>
+              <ModalInput
+                type="text"
                 id="water"
                 name="rate"
                 onChange={handleRate}
                 onBlur={handleBlur}
                 value={rate}
+                
               />
-            </div>
-            <button type="submit">Save</button>
-          </form>
+            </Labels>
+            <Btn type="submit">Save</Btn>
+          </Forma>
         </Container>
       </Backdrop>
     </Modal>
