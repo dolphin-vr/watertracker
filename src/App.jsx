@@ -13,7 +13,7 @@ import { refreshUser } from "./redux/auth/auth";
 //   import("./pages/ForgotPasswordPage/ForgotPasswordPage")
 // );
 // const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
-// const MainHomepage = lazy(() => import("./pages/MainHomepage/MainHomepage"));
+// const MainPage = lazy(() => import("./pages/MainPage/MainPage"));
 
 function App() {
   const dispatch = useDispatch();

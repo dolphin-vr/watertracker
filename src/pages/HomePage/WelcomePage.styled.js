@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 const getbgr = elem => {
   if (elem === 1) {
     return {

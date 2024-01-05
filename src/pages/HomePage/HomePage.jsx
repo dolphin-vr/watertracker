@@ -1,8 +1,8 @@
 import { lazy } from "react";
-import MainHomepage from "../MainHomepage/MainHomepage";
+import MainPage from "../MainPage/MainPage";
 // import { StyledSection } from "./HomePage.styled";
 import { useSelector } from "react-redux";
-const UnSignedHomePage = lazy(() => import("./UnSignedHomePage")
+const WelcomePage = lazy(() => import("./WelcomePage")
 );
 
 const HomePage = () => {
@@ -10,7 +10,7 @@ const HomePage = () => {
   // console.log(isLoggedIn);
   return (
     <>
-      {isLoggedIn? <MainHomepage/>: <UnSignedHomePage />}
+      {isLoggedIn? <MainPage/>: <WelcomePage />}
       </>
   );
 };

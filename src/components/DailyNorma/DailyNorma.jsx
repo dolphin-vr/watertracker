@@ -30,7 +30,7 @@ export const DailyNorma = () => {
       <DailyNormaContainer>
         <DailyNormaTitle>My daily norma</DailyNormaTitle>
         <DailyNormaInfo>
-          <span>{dailyNorma ? dailyNorma / 1000 : "2.0"}</span>
+          <span>{dailyNorma / 1000}</span>
           <DailyNormaSpan>L</DailyNormaSpan>
           <DailyNormaBth type="button" onClick={handleEditClick}>
             Edit
