@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectUser } from "../../redux/auth/selectors";
+import { selectUserInfo } from "../../redux/user/userSelectors";
 import { updateUserInfo } from "../../redux/user/userOperations";
 import {
   BoxGender,
@@ -15,16 +15,16 @@ import {
 } from "./SettingModal.styled";
 
 export default function SettingForm() {
-  const { email } = useSelector(selectUser);
+  const { email, gender, username } = useSelector(selectUserInfo);
   const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
-    userName: "",
+    username: username,
     email: email,
-    gender: "man",
-    outdatedPassword: "",
-    newPassword: "",
-    repetNewPassword: "",
+    gender: gender,
+    // outdatedPassword: "",
+    // newPassword: "",
+    // repetNewPassword: "",
   });
 
   const handleChange = (e) => {
@@ -37,17 +37,7 @@ export default function SettingForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("1", formData);
     dispatch(updateUserInfo(formData));
-    // Reset the form if needed
-    setFormData({
-      userName: "",
-      email: email,
-      gender: "man",
-      outdatedPassword: "",
-      newPassword: "",
-      repetNewPassword: "",
-    });
   };
 
   return (
@@ -80,11 +70,11 @@ export default function SettingForm() {
         <form>
           <LabelInput htmlFor="userName">Your name</LabelInput>
           <InputStyle
-            id="userName"
-            name="userName"
+            id="username"
+            name="username"
             type="text"
             onChange={handleChange}
-            value={formData.userName}
+            value={formData.username}
           />
           <LabelInput htmlFor="email">E-mail</LabelInput>
           <InputStyle
@@ -101,9 +91,7 @@ export default function SettingForm() {
       <ContainerChangePass>
         <form onSubmit={handleSubmit}>
           <h3>Password</h3>
-          <LabelInput htmlFor="outdatedPassword">
-            Outdated password:
-          </LabelInput>
+          <LabelInput htmlFor="outdatedPassword">Outdated password:</LabelInput>
           <InputStyle
             id="outdatedPassword"
             name="outdatedPassword"
@@ -140,4 +128,3 @@ export default function SettingForm() {
     </ContainerBlockSeting>
   );
 }
-
