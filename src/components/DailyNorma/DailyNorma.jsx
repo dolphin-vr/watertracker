@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 // import { getPortionsList } from "../../redux/todayOperations.js";
 import bottleImg from "../../images/bottle-mainPage-mobile.png";
@@ -25,16 +25,12 @@ export const DailyNorma = () => {
     setIsModalOpen(false);
   };
 
-  // function onChangeDailyNorma() {
-  //   console.log("change dailyNorma");
-  // }
-
   return (
     <>
       <DailyNormaContainer>
         <DailyNormaTitle>My daily norma</DailyNormaTitle>
         <DailyNormaInfo>
-          <span>{dailyNorma}</span>
+          <span>{dailyNorma ? dailyNorma / 1000 : "2.0"}</span>
           <DailyNormaSpan>L</DailyNormaSpan>
           <DailyNormaBth type="button" onClick={handleEditClick}>
             Edit

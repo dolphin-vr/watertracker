@@ -136,5 +136,9 @@
 
 
 
+<symbol id="modalclose" viewBox="0 0 40 40">
+<path d="M6 18L18 6M6 6L18 18" stroke="#407BFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</symbol>
+
 
 </svg>
