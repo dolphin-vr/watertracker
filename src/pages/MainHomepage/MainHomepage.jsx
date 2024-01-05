@@ -13,8 +13,11 @@ import {
 } from "./MainHomepage.styled";
 import { useEffect, useState } from "react";
 import { getUserInfo } from "../../redux/user/userOperations";
-import { getPortionsList } from "../../redux/water/todayOperations";
-import { AddWaterModal } from "../../components/AddWaterModal/AddWaterModal";
+import {
+  addNewPortion,
+  getPortionsList,
+} from "../../redux/water/todayOperations";
+import { WaterModal } from "../../components/WaterModal/WaterModal";
 
 const MainHomepage = () => {
   const [openAddWaterModal, setOpenAddWaterModal] = useState(false);
@@ -45,7 +48,19 @@ const MainHomepage = () => {
         <Today />
         <Calendar />
       </MainHomepagePortions>
-      {openAddWaterModal && <AddWaterModal onCloseModal={onOpenModalWindow} />}
+      {openAddWaterModal && (
+        <WaterModal
+          title="Add water"
+          subtitle="Choose a value:"
+          onCloseModal={onOpenModalWindow}
+          onAddWater={(data) => {
+            dispatch(addNewPortion(data));
+          }}
+          initialWater={0}
+          initialDate={new Date()}
+          isEditing={false}
+        />
+      )}
     </MainHomepageContainer>
   );
 };
