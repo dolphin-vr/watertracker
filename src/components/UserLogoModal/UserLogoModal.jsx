@@ -27,20 +27,20 @@ const UserLogoModal = ({ onClose }) => {
             isOpen={true}
             onRequestClose={onClose}
             contentLabel="User Modal"
-            overlayClassName="Overlay"
+            overlayClassName="OverlayLM"
         >
-                <ContainerULM>
-                    <UserLogoModalBtn onClick={openUserInfoModal}>
-                        <SettingIcon/>
-                        <UserLogoModalName>Setting</UserLogoModalName>
-                    </UserLogoModalBtn>
-                    <UserLogoModalBtn onClick={openUserLogoutModal}>
-                        <LogOutIcon/>
-                        <UserLogoModalName>Log out</UserLogoModalName>
-                    </UserLogoModalBtn>
-                </ContainerULM>
-            {isUserInfoModalOpen && <SettingModal onClose={() => setIsUserInfoModalOpen(false)} />}
-            {isUserLogoutModalOpen && <UserLogoutModal onClose={() => setIsUserLogoutModalOpen(false)} />}
+            <ContainerULM>
+                <UserLogoModalBtn onClick={openUserInfoModal}>
+                    <SettingIcon/>
+                    <UserLogoModalName>Setting</UserLogoModalName>
+                </UserLogoModalBtn>
+                <UserLogoModalBtn onClick={openUserLogoutModal}>
+                    <LogOutIcon/>
+                    <UserLogoModalName>Log out</UserLogoModalName>
+                </UserLogoModalBtn>
+            </ContainerULM>
+        {isUserInfoModalOpen && <SettingModal onClose={() => setIsUserInfoModalOpen(false)} />}
+        {isUserLogoutModalOpen && <UserLogoutModal onClose={() => setIsUserLogoutModalOpen(false)} />}
         </ModalStyled>
     );
 };

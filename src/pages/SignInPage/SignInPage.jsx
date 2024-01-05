@@ -19,8 +19,9 @@ import {
   AuthLink,
   Bottle,
 } from "../SignUpPage/AuthPages.styled";
-import EyeClosedIcon from "../../components/EyeComponentSvg/EyeClosedIcon";
-import EyeOpenedIcon from "../../components/EyeComponentSvg/EyeOpenedIcon";
+// import EyeClosedIcon from "../../components/EyeComponentSvg/EyeClosedIcon";
+// import EyeOpenedIcon from "../../components/EyeComponentSvg/EyeOpenedIcon";
+import sprite from "../../images/sprite.svg";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -100,11 +101,17 @@ export const SignInPage = () => {
             >
               {showPassword ? (
                 <>
-                  <EyeOpenedIcon />
+                  {/* <EyeOpenedIcon /> */}
+                  <svg height="24" width="24">
+                    <use href={sprite + "#eye"}></use>
+                  </svg>
                 </>
               ) : (
                 <>
-                  <EyeClosedIcon />
+                  {/* <EyeClosedIcon /> */}
+                  <svg height="24" width="24">
+                    <use href={sprite + "#closedeye"}></use>
+                  </svg>
                 </>
               )}
             </IconBtn>
