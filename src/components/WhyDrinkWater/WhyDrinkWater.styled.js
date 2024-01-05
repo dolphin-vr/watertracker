@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledDiv = styled.div`
-  background-color: ${(props) => props.theme.colors.secondary.secondaryWhite};
+  background-color: ${(props) => props.theme.colors.secondary.White};
   width: 100%;
   padding: 24px 16px;
   border-radius: 10px;
@@ -24,14 +24,14 @@ export const StyledLi = styled.li`
   gap: 8px;
 `;
 export const StyledParagraph = styled.p`
-  color: ${(props) => props.theme.colors.primary.primaryBlack};
+  color: ${(props) => props.theme.colors.primary.Black};
   font-family: Roboto;
   font-size: 16px;
   line-height: 1.25; /* 125% */
   margin: 0;
 `;
 export const StyledHeader = styled.h2`
-  color: ${(props) => props.theme.colors.primary.primaryBlack};
+  color: ${(props) => props.theme.colors.primary.Black};
   font-family: Roboto;
   font-size: 18px;
   font-weight: 500;
