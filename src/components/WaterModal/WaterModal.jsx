@@ -1,47 +1,60 @@
-import DatePicker from "react-datepicker";
+import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { StyledModal, StyledOverlay } from "./EditWaterModal.styled";
-import { updatePortion } from "../../redux/water/todayOperations";
-import { useDispatch } from "react-redux";
+import {
+  Btn,
+  BtnClose,
+  Counter,
+  Label,
+  StyledModal,
+  StyledOverlay,
+  Text,
+  Title,
+} from "./WaterModal.styled";
 
 const modalRoot = document.querySelector("#modal-root");
 
-export const EditWaterModal = ({ onCloseModal, data }) => {
-  const initialDate = data.time
-    ? new Date(`2024-01-01T${data.time}`)
-    : new Date();
-
-  const [counter, setCounter] = useState(data.water);
+export const WaterModal = ({
+  title,
+  subtitle,
+  onCloseModal,
+  onAddWater,
+  onEditWater,
+  initialWater,
+  initialDate,
+  initialId,
+  isEditing,
+}) => {
+  const [counter, setCounter] = useState(initialWater);
   const [startDate, setStartDate] = useState(initialDate);
 
-  const dispatch = useDispatch();
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.code === "Escape") {
+        onCloseModal();
+      }
+    };
 
-  // useEffect(() => {
-  //   const handleKeyDown = (event) => {
-  //     if (event.code === "Escape") {
-  //       onCloseModal();
-  //     }
-  //   };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [onCloseModal]);
 
-  //   window.addEventListener("keydown", handleKeyDown);
-  //   return () => {
-  //     window.removeEventListener("keydown", handleKeyDown);
-  //   };
-  // }, [onCloseModal]);
-
-  // console.log(startDate);
-  // const dispatch = useDispatch();
+  const handleOverlayClick = (event) => {
+    if (event.currentTarget === event.target) {
+      onCloseModal();
+    }
+  };
 
   const updateWaterUsed = (newValue) => {
     setFieldValue("waterCounter", newValue);
-    // console.log(newValue);
   };
 
   const handleDecrease = () => {
-    // console.log(e);
     if (counter > 0) {
       setCounter((prevValue) => {
         const newValue = prevValue - 50;
@@ -52,42 +65,36 @@ export const EditWaterModal = ({ onCloseModal, data }) => {
   };
 
   const handleIncrease = () => {
-    // console.log(e);
     if (counter < 5000) {
       setCounter((prevValue) => {
         const newValue = prevValue + 50;
         updateWaterUsed(newValue);
-        // console.log(newValue);
         return newValue;
       });
     }
   };
 
   const handleSave = (values) => {
-    // console.log('modal closed');
-    // console.log(values);
-
     const formattedTime = (date) => {
       const hours = date.getHours().toString().padStart(2, "0");
       const minutes = date.getMinutes().toString().padStart(2, "0");
       return `${hours}:${minutes}`;
     };
 
-    // const formatDate = (date) => {
-    //   const year = date.getFullYear();
-    //   const month = (date.getMonth() + 1).toString().padStart(2, "0");
-    //   const day = date.getDate().toString().padStart(2, "0");
-    //   return `${year}-${month}-${day}`;
-    // };
-
-    // const formattedDate = formatDate(values.date);
     const time = formattedTime(values.date);
-    const newEditWater = {
-      water: values.waterCounter,
-      time,
-    };
-    console.log(newEditWater);
-    dispatch(updatePortion({ id: data.id, portion: newEditWater }));
+
+    const waterData = { water: values.waterCounter, time };
+
+    const contextData = isEditing
+      ? { id: initialId, portion: { ...waterData } }
+      : waterData;
+
+    if (isEditing) {
+      onEditWater(contextData);
+    } else {
+      onAddWater(contextData);
+    }
+
     onCloseModal();
   };
 
@@ -99,8 +106,8 @@ export const EditWaterModal = ({ onCloseModal, data }) => {
       },
       validationSchema: Yup.object({
         waterCounter: Yup.number()
-          .min(1, "Min 1ml")
-          .max(5000, "Max 5000ml")
+          .min(1, "Min 1 ml")
+          .max(5000, "Max 5000 ml")
           .required("Enter water value"),
         date: Yup.date(),
       }),
@@ -111,24 +118,37 @@ export const EditWaterModal = ({ onCloseModal, data }) => {
 
   return createPortal(
     <div>
-      <StyledOverlay>
+      <StyledOverlay onClick={handleOverlayClick}>
         <StyledModal>
-          <h1>Edit the entered amount of water</h1>
-          <button type="button" onClick={onCloseModal}>
+          <Title>{title}</Title>
+          <BtnClose type="button" onClick={onCloseModal}>
             X
-          </button>
-          <div>{data.water}ml</div>
-          <div>{data.time}</div>
-          <p>Correct entered data:</p>
+          </BtnClose>
+          {initialWater !== 0 && (
+            <div>
+              {`${initialWater}ml`}
+              {initialDate && (
+                <span>{` ${initialDate
+                  .getHours()
+                  .toString()
+                  .padStart(2, "0")}:${initialDate
+                  .getMinutes()
+                  .toString()
+                  .padStart(2, "0")}`}</span>
+              )}
+            </div>
+          )}
+
+          <Text>{subtitle}</Text>
           <form onSubmit={handleSubmit}>
-            <label>Amount of water:</label>
-            <button type="button" onClick={handleDecrease}>
+            <Label>Amount of water:</Label>
+            <Btn type="button" onClick={handleDecrease}>
               -
-            </button>
-            <div>{counter}ml</div>
-            <button type="button" onClick={handleIncrease}>
+            </Btn>
+            <Counter>{counter}ml</Counter>
+            <Btn type="button" onClick={handleIncrease}>
               +
-            </button>
+            </Btn>
             <label>
               Recording time:
               <DatePicker

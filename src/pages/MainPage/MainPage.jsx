@@ -13,8 +13,11 @@ import {
 } from "./MainPage.styled";
 import { useEffect, useState } from "react";
 import { getUserInfo } from "../../redux/user/userOperations";
-import { getPortionsList } from "../../redux/water/todayOperations";
-import { AddWaterModal } from "../../components/AddWaterModal/AddWaterModal";
+import {
+  addNewPortion,
+  getPortionsList,
+} from "../../redux/water/todayOperations";
+import { WaterModal } from "../../components/WaterModal/WaterModal";
 // import { CalendarD } from "../../components/Calendar/CalendarD";
 
 const MainPage = () => {
@@ -46,7 +49,19 @@ const MainPage = () => {
         <Today />
         <Calendar />
       </MainPagePortions>
-      {openAddWaterModal && <AddWaterModal onCloseModal={onOpenModalWindow} />}
+      {openAddWaterModal && (
+        <WaterModal
+          title="Add water"
+          subtitle="Choose a value:"
+          onCloseModal={onOpenModalWindow}
+          onAddWater={(data) => {
+            dispatch(addNewPortion(data));
+          }}
+          initialWater={0}
+          initialDate={new Date()}
+          isEditing={false}
+        />
+      )}
     </MainPageContainer>
   );
 };

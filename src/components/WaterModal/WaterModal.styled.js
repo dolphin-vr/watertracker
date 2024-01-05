@@ -33,7 +33,7 @@ export const BtnClose = styled.button`
   right: 24px;
 `;
 
-export const Title = styled.h1`
+export const Title = styled.h2`
   margin: 0;
   margin-bottom: 24px;
 `;
