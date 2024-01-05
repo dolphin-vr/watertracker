@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 import { useDispatch } from 'react-redux';
 import { logoutUser } from '../../redux/auth/auth';
 import { ModalStyled, ModalContainer, Backdrop, Title, XBtn, TitleContainer, Ask, Wrap, CancelBtn, LogoutBtn } from './UserLogoutModal.styled';
+import sprite from '../../images/sprite.svg';
 
 Modal.setAppElement('#root');
 
@@ -28,7 +29,11 @@ const UserLogoutModal = ({ onClose }) => {
           <ModalContainer>
             <TitleContainer>
               <Title>Log out</Title>
-              <XBtn onClick={onClose}>X</XBtn>
+              <XBtn onClick={onClose}>
+                <svg stroke="#407BFF" width="24" height="24">
+                  <use href={sprite + "#modalclose"}></use>
+                </svg>
+              </XBtn>
             </TitleContainer>
             <Ask>Do you really want to leave?</Ask>
             <Wrap>

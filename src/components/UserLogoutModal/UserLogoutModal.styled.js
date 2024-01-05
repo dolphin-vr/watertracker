@@ -50,8 +50,19 @@ export const Title = styled.h2`
 `;
 
 export const XBtn = styled.button`
+    // border: none;
+    background-color: transparent;
+    // padding: 0;
+    // margin: 0;
     width: 24px;
     height: 24px;
+    cursor: pointer;
+`;
+
+export const IconX = styled.svg`
+    width: 24px;
+    height: 24px;
+    stroke: #407BFF;
 `;
 
 export const TitleContainer = styled.div`

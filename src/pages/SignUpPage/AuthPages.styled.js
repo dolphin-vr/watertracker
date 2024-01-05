@@ -37,7 +37,7 @@ export const BackgroundStyled = styled.div`
       /* left: -20px; */
    }
    @media (min-width: 1440px) {
-      background-image: url("images/auth/BackgroundBubblesAuthDesktop-min.png");
+      background-image: url("../../../src/images/auth/BackgroundBubblesAuthDesktop-min.png");
       background-size: contain;
       top: 70px;
    }
@@ -82,20 +82,20 @@ export const Title = styled.h1`
 `;
 
 export const FormStyled = styled.form`
-  width: 280px;
-  margin-left: auto;
-  margin-right: auto;
+   width: 280px;
+   margin-left: auto;
+   margin-right: auto;
 
-  @media (min-width: 768px) {
-    margin-left: 0;
-    width: 336px;
-  }
+   @media (min-width: 768px) {
+      margin-left: 0;
+      width: 336px;
+   }
 
-  @media (min-width: 1440px) {
-    margin-left: auto;
-    margin-right: 198px;
-    width: 384px;
-  }
+   @media (min-width: 1440px) {
+      margin-left: auto;
+      margin-right: 198px;
+      width: 384px;
+   }
 `;
 
 export const Label = styled.label`
@@ -161,6 +161,7 @@ export const IconBtn = styled.button`
    width: 16px;
    height: 16px;
    padding: 0;
+   stroke: #407BFF;
    @media (min-width: 768px) {
       left: 308px;
    }
@@ -170,21 +171,21 @@ export const IconBtn = styled.button`
 `;
 
 export const AuthBtn = styled.button`
-  width: 100%;
-  background-color: #407BFF; //var(--Primery-Color-Blue)
-  color: #FFF; 
-  padding: 10px 30px;
-  font-size: 18px;
-  font-weight: 500;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
-  margin-bottom: 16px;
+   width: 100%;
+   background-color: #407BFF; //var(--Primery-Color-Blue)
+   color: #FFF; 
+   padding: 10px 30px;
+   font-size: 18px;
+   font-weight: 500;
+   border: none;
+   border-radius: 10px;
+   cursor: pointer;
+   box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
+   margin-bottom: 16px;
 
-  &:active {
-    box-shadow: none;
-  }
+   &:active {
+      box-shadow: none;
+   }
 `;
 
 export const AuthLink = styled(Link)`
