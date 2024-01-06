@@ -47,15 +47,20 @@ const theme = {
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <PersistGate loading={null} persistor={persistor}>
-      <HashRouter basename="/">
+      {/* <HashRouter basename="/">
         <ThemeProvider theme={theme}>
           <Provider store = {store}>
             <App />
           </Provider>
         </ThemeProvider>
-      </HashRouter>
-      {/* <BrowserRouter basename="/">
-      </BrowserRouter> */}
+      </HashRouter> */}
+      <BrowserRouter basename={(import.meta.env.VITE_NODE_ENV === "development") ? "/" : import.meta.env.VITE_PUBLIC_URL}>
+        <ThemeProvider theme={theme}>
+          <Provider store = {store}>
+            <App />
+          </Provider>
+        </ThemeProvider>
+      </BrowserRouter>
     </PersistGate>
   </React.StrictMode>
 );
