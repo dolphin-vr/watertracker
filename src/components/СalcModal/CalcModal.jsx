@@ -4,48 +4,93 @@ import { useDispatch } from "react-redux";
 import { updateWaterNorma } from "../../redux/user/userOperations";
 import { Container, Title, Backdrop,Formula,Gender,Description,Start,GenderFormula,TitleLabel,RadioBtn,GenderBtn,GenderInput,GenderLabel,Forma,Labels,DataLabel,ModalInput,ResultCont,Littres,TextResult,WriteInput,Btn,CloseBtn } from "./CalcModal.styled";
 import sprite from "../../images/sprite.svg";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CalcModal = ({ onClose }) => {
   const dispatch = useDispatch();
   const [result, setResult] = useState(2);
   const [values, setValues] = useState({
     gender: "girl",
-    weight: 0,
-    time: 0,
+    weight: "",
+    time: "",
   });
   const [isModalOpen, setIsModalOpen] = useState(true);
   const [rate, setRate] = useState("");
+  
 
   
 
   const handleSubmit = (e) => {
-    // console.log(e.target.rate);
     e.preventDefault();
-    dispatch(updateWaterNorma(result * 1000));
+  
+   
+    if (!rate ) {
+      toast.error('Please fill in all fields');
+      return;
+    }
+  
+    if (rate) {
+      dispatch(updateWaterNorma(rate * 1000));
+    }
+  
     onClose(Modal);
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+  
+    if (value.trim() === "") {
+      
+      setValues({ ...values, [name]: value });
+      return;
+    }
+  
+    if (isNaN(parseFloat(value))) {
+      toast.error('Please enter a valid number');
+      return;
+    }
+  
+    if (name === 'gender' && !value) {
+      toast.error('Please select a gender');
+      return;
+    }
+  
+    if (name === 'weight' && parseFloat(value) > 300) {
+      toast.error('Please enter a weight less than or equal to 300');
+      return;
+    }
+  
+    if (name === 'time' && parseFloat(value) > 24) {
+      toast.error('Please enter a time less than or equal to 24');
+      return;
+    }
+  
     setValues({ ...values, [name]: value });
   };
 
   const handleRate = (e) => {
-    setRate(e.target.value);
+    const value = e.target.value;
+  
+  
+    if (
+      
+      
+      value.includes('-')
+    ) {
+      toast.error('Please enter a valid non-negative value for water rate');
+      return;
+    }
+  
+    setRate(value);
   };
+  
 
   const handleBlur = () => {
   calculate(values.gender, values.weight, values.time);
   updateResult(rate);
 };
 
-const updateResult = (rate) => {
-  const parsedRate = parseFloat(rate);
-  if (!isNaN(parsedRate)) {
-    const updatedResult = parsedRate;
-    setResult(updatedResult.toFixed(1));
-  }
-};
 
   const handleClose = () => {
     setIsModalOpen(false);
@@ -106,15 +151,25 @@ const updateResult = (rate) => {
 
           <TitleLabel>Calculate Your Rate:</TitleLabel>
           <RadioBtn>
-            <GenderBtn>
-              <GenderInput type="radio" value="girl" name="gender" />
-              <GenderLabel htmlFor="Woman">For girl</GenderLabel>
-            </GenderBtn>
-            <GenderBtn>
-              <GenderInput type="radio" value="man" name="gender" />
-              <GenderLabel htmlFor="Man">For man</GenderLabel>
-            </GenderBtn>
-          </RadioBtn>
+        <GenderBtn>
+          <GenderInput
+            type="radio"
+            value="girl"
+            name="gender"
+            
+          />
+          <GenderLabel htmlFor="Woman">For girl</GenderLabel>
+        </GenderBtn>
+        <GenderBtn>
+          <GenderInput
+            type="radio"
+            value="man"
+            name="gender"
+            
+          />
+          <GenderLabel htmlFor="Man">For man</GenderLabel>
+        </GenderBtn>
+      </RadioBtn>
 
           <Forma onSubmit={handleSubmit}>
             <Labels>
@@ -163,6 +218,7 @@ const updateResult = (rate) => {
           </Forma>
         </Container>
       </Backdrop>
+      <ToastContainer />
     </Modal>
   );
 };

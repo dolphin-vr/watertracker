@@ -11,7 +11,10 @@ import {
   InputImg,
   LinkImgUpload,
   TitleH5,
+  Backdrop,
+  CloseBtn,
 } from "./SettingModal.styled";
+import sprite from "../../images/sprite.svg";
 
 import SettingForm from "./SettingForm";
 
@@ -40,10 +43,16 @@ const SettingModal = ({ onClose }) => {
 
   return (
     <Modal isOpen={true} onRequestClose={onClose} contentLabel="SettingModal">
+    <Backdrop>
       <Container>
         <TitleContainer>
           <h3>Setting</h3>
         </TitleContainer>
+        <CloseBtn type="button"onClick={onClose}>
+          <svg>
+           <use href={sprite + "#modalclose"}></use>
+          </svg>
+          </CloseBtn>
         <TitleH5>Your photo</TitleH5>
         <ContainerAvatar>
           <Avatar
@@ -63,6 +72,7 @@ const SettingModal = ({ onClose }) => {
         </ContainerAvatar>
         <SettingForm />
       </Container>
+      </Backdrop>
     </Modal>
   );
 };

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUserInfo } from "../../redux/user/userSelectors";
 import { updateUserInfo } from "../../redux/user/userOperations";
+
 import {
   BoxGender,
   ContainerGender,
@@ -22,9 +23,9 @@ export default function SettingForm() {
     username: username,
     email: email,
     gender: gender,
-    // outdatedPassword: "",
-    // newPassword: "",
-    // repetNewPassword: "",
+    password: "",
+    newPassword: "",
+    
   });
 
   const handleChange = (e) => {
@@ -91,13 +92,13 @@ export default function SettingForm() {
       <ContainerChangePass>
         <form onSubmit={handleSubmit}>
           <h3>Password</h3>
-          <LabelInput htmlFor="outdatedPassword">Outdated password:</LabelInput>
+          <LabelInput htmlFor="password">Outdated password:</LabelInput>
           <InputStyle
-            id="outdatedPassword"
-            name="outdatedPassword"
+            id="password"
+            name="password"
             type="password"
             onChange={handleChange}
-            value={formData.outdatedPassword}
+            value={formData.password}
           />
 
           <LabelInput htmlFor="newPassword">New Password:</LabelInput>
@@ -116,8 +117,8 @@ export default function SettingForm() {
             id="repetNewPassword"
             name="repetNewPassword"
             type="password"
-            onChange={handleChange}
-            value={formData.repetNewPassword}
+            
+            
           />
 
           <div>

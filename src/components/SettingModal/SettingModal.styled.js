@@ -2,22 +2,29 @@ import styled from "styled-components";
 
 
 export const Container = styled.div`
-  margin: auto;
-  width: 100%;
-  padding: 32px 12px;
-  border-radius: 10px;
-  @media screen and (min-width: 768px) {
-    max-width: 704px;
-    padding: 32px 24px;
-    background-color: #f2f2f2;
-  }
-
-  @media screen and (min-width: 1440px) {
-    max-width: 1008px;
-    max-height: 592px;
-  }
-`;
-
+               max-width: 100%;
+                padding: 24px 12px;
+                z-index: 100;
+                position: absolute;
+                transform: translate(-50%, -50%);
+                top: 58%;
+                left: 50%;
+                background-color: white;
+                border-radius: 10px;
+                margin: 0 auto;
+                @media screen and (min-width: 768px) {
+                    
+                        padding: 32px 24px;
+                        width: 704px;
+                        top: 50%;
+                   
+                }
+                @media screen and (min-width: 1280px) {
+                    
+                        padding: 32px 24px;
+                        width: 592px;
+                   
+                }`
 export const TitleContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -162,3 +169,27 @@ export const ButtonSubmit = styled.button`
     height: 44px;
   }
 `;
+
+export const Backdrop = styled.div`
+ position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 100;
+        background-color: gray;
+        overflow: auto;`
+
+export const CloseBtn = styled.button`
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #fff;
+        border: none;
+        width: 24px;
+        height: 24px;
+        padding: 0;
+        position: absolute;
+        top: 28px;
+        right: 12px;
+        cursor: pointer;`
