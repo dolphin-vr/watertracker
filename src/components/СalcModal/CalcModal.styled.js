@@ -31,7 +31,7 @@ font-size: 26px;
 font-weight: 500;
 color:#2F2F2F ;
 line-height: calc(32 / 26);
-margin-bottom: 24px;
+
 `
 
 export const Backdrop = styled.div`
@@ -60,7 +60,7 @@ line-height:calc(20 / 16);
 
 `
 export const GenderFormula = styled.ul`
- display: flex;
+        display: flex;
     flex-direction: column;
     gap: 16px;
     margin-bottom: 12px;`
@@ -78,7 +78,7 @@ align-items: flex-start;
 line-height: 1.33;
 font-style: normal;
 font-weight: 400;
-margin-bottom: 24px;
+
 
 @media screen and (min-width: 768px) {
 
@@ -124,6 +124,7 @@ export const GenderInput = styled.input`
   appearance: none;
   outline: none;
   margin: 0;
+  margin-right : 8px;
 
   &:before {
     content: '';
@@ -147,7 +148,7 @@ export const GenderInput = styled.input`
     height: 7px;
     border-radius: 50%;
     background-color: dodgerblue;
-    transform: translate(-53%, -54%);
+    transform: translate(-53%, -66%);
     visibility: visible;
   }
 `;
@@ -183,14 +184,14 @@ export const Forma = styled.form`
     display: flex;
     flex-direction: column;
     gap: 16px;
-    margin-bottom: 24px;
+    
 `
 
 export const Labels = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin-bottom: 24px;
+  
 
   @media screen and (min-width: 768px) {
     max-width: 656px;
@@ -231,11 +232,11 @@ export const ResultCont = styled.div`
     display: flex;
     gap: 6px;
     align-items: center;
-    margin-bottom: 24px;
+    
 
 @media screen and (min-width: 768px) {
    
-        margin-bottom: 26px;
+       
    
 }`
 
@@ -263,7 +264,7 @@ export const WriteInput = styled.label`
     font-size: 18px;
    font-weight: 500;
     line-height: 20px;
-    margin-bottom: 24px;
+    
 `
 
 export const Btn = styled.button`
