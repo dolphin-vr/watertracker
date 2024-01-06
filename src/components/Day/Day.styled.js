@@ -26,19 +26,15 @@ const getFontColor = props => {
 	return props.theme.colors.primary.Black
 };
 
-const DayTile = styled.li`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-	gap: 4px;
-  width: 32px;
-  height: 52px;
-	padding: 4px;
+export const DayTile = styled.li`
+  width: 40px;
+  height: 56px;
+	padding-top: 4px;
 	background-color: ${getTileBgr};
 
   @media (min-width: 768px) {
-    width: 34px;
-    height: 58px;
+    width: 42px;
+    height: 62px;
   }
 
   @media (min-width: 1440px) {
@@ -48,8 +44,21 @@ const DayTile = styled.li`
 `;
 /* padding: 5px; */
 
-const Circle = styled.button`
-  cursor: pointer;
+export const DayButton = styled.button`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 4px;
+	background: none;
+	border: none;
+	cursor: pointer;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+  `;
+
+export const Circle = styled.p`
+	margin: 0;
   width: 32px;
   height: 32px;
 	border: 1px solid ${getBorderColor};
@@ -68,22 +77,16 @@ const Circle = styled.button`
 `;
   // margin-bottom: 5px;
 
-const Label = styled.p`
+	export const Label = styled.p`
 margin: 0;
 text-align: center;
 font-size: 12px;
 color: ${props => props.theme.colors.secondary.Blue};
 `
 
-const Table = styled.ul`
-	display: flex;
-	flex-wrap: wrap;
-	gap: 8px;
-`
-
-export {
-  DayTile,
-  Circle,
-  Label,
-	Table,
-};
+// export {
+//   DayTile,
+// 	DayButton,
+//   Circle,
+//   Label,
+// };
