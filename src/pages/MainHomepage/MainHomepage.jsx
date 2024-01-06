@@ -5,7 +5,7 @@ import { DailyNorma } from "../../components/DailyNorma/DailyNorma";
 import { Today } from "../../components/Today/Today";
 import { WaterProgresBar } from "../../components/WaterProgresBar/WaterProgresBar";
 import {
-  MainHomepageBackground,
+  // MainHomepageBackground,
   MainHomepageContainer,
   MainHomepageStatistic,
   WaterProgressWrap,
@@ -28,23 +28,23 @@ const MainHomepage = () => {
   }
 
   return (
-    <MainHomepageBackground>
-      <MainHomepageContainer>
-        <MainHomepageStatistic>
-          <DailyNorma />
-          <WaterProgressWrap>
-            <WaterProgresBar />
-            <AddPortionButton type="button" onClick={() => onOpenModalWindow()}>
-              Add water
-            </AddPortionButton>
-          </WaterProgressWrap>
-        </MainHomepageStatistic>
-        <MainHomepagePortions>
-          <Today />
-          <Calendar />
-        </MainHomepagePortions>
-      </MainHomepageContainer>
-    </MainHomepageBackground>
+    // <MainHomepageBackground>
+    <MainHomepageContainer>
+      <MainHomepageStatistic>
+        <DailyNorma />
+        <WaterProgressWrap>
+          <WaterProgresBar />
+          <AddPortionButton type="button" onClick={() => onOpenModalWindow()}>
+            Add water
+          </AddPortionButton>
+        </WaterProgressWrap>
+      </MainHomepageStatistic>
+      <MainHomepagePortions>
+        <Today />
+        <Calendar />
+      </MainHomepagePortions>
+    </MainHomepageContainer>
+    // </MainHomepageBackground>
   );
 };
 export default MainHomepage;

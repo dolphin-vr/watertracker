@@ -1,16 +1,36 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import { loginUser } from '../../redux/auth/auth';
-import { Outlet, useNavigate } from 'react-router-dom';
-import {AuthStyled, BackgroundStyled, FormContainer, FormStyled, Title, Label, Input, ErrorMessageStyled, IconContainer, IconBtn, AuthBtn, AuthLink, Bottle} from '../SignUpPage/AuthPages.styled';
-import EyeClosedIcon from '../../components/EyeComponentSvg/EyeClosedIcon';
-import EyeOpenedIcon from '../../components/EyeComponentSvg/EyeOpenedIcon';
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { loginUser } from "../../redux/auth/auth";
+import { Outlet, useNavigate } from "react-router-dom";
+import {
+  AuthStyled,
+  BackgroundStyled,
+  FormContainer,
+  FormStyled,
+  Title,
+  Label,
+  Input,
+  ErrorMessageStyled,
+  IconContainer,
+  IconBtn,
+  AuthBtn,
+  AuthLink,
+  Bottle,
+} from "../SignUpPage/AuthPages.styled";
+// import EyeClosedIcon from "../../components/EyeComponentSvg/EyeClosedIcon";
+// import EyeOpenedIcon from "../../components/EyeComponentSvg/EyeOpenedIcon";
+import sprite from "../../images/sprite.svg";
 
 const validationSchema = Yup.object().shape({
-  email: Yup.string().email('Enter a valid email').required('Email is required'),
-  password: Yup.string().min(8, 'Password must be at least 8 characters').max(64, 'Password must be at most 64 characters').required('Password is required'),
+  email: Yup.string()
+    .email("Enter a valid email")
+    .required("Email is required"),
+  password: Yup.string()
+    .min(8, "Password must be at least 8 characters")
+    .max(64, "Password must be at most 64 characters")
+    .required("Password is required"),
 });
 
 export const SignInPage = () => {
@@ -19,74 +39,93 @@ export const SignInPage = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const formik = useFormik({
-    initialValues: { email: '', password: ''},
+    initialValues: { email: "", password: "" },
     validationSchema: validationSchema,
-    onSubmit: async (values) => {
-      try {
-      await dispatch(
+    onSubmit: (values) => {
+      dispatch(
         loginUser({
-            email: values.email,
-            password: values.password,
+          email: values.email,
+          password: values.password,
         })
-    );
-
-      navigate('/');
-      } catch (error) {
-      console.error('Registration error:', error);
-      }
+      );
+      navigate("/");
     },
   });
-  
+
   return (
     <AuthStyled>
       <BackgroundStyled />
-      <Bottle /> 
+      <Bottle />
       <FormContainer>
         <FormStyled onSubmit={formik.handleSubmit}>
           <Title>Sign In</Title>
           <Label>Enter your email</Label>
           <Input
-          type="email"
-          placeholder="E-mail"
-          name="email"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.email}
-          className={formik.touched.email && formik.errors.email ? "input-error" : ""} required/>
-          {formik.touched.email && (<ErrorMessageStyled>{formik.errors.email}</ErrorMessageStyled>)}
+            type="email"
+            placeholder="E-mail"
+            name="email"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.email}
+            className={
+              formik.touched.email && formik.errors.email ? "input-error" : ""
+            }
+            required
+          />
+          {formik.touched.email && (
+            <ErrorMessageStyled>{formik.errors.email}</ErrorMessageStyled>
+          )}
 
           <Label>Enter your password</Label>
           <IconContainer>
-              <Input
+            <Input
               type={showPassword ? "text" : "password"}
               placeholder="Password"
               name="password"
               onChange={(e) => {
-              formik.handleChange(e);
+                formik.handleChange(e);
               }}
               onBlur={formik.handleBlur}
               value={formik.values.password}
-              className={formik.touched.password && formik.errors.password ? "input-error" : ""} required />
-              <IconBtn onClick={() => {setShowPassword(!showPassword);}}>
+              className={
+                formik.touched.password && formik.errors.password
+                  ? "input-error"
+                  : ""
+              }
+              required
+            />
+            <IconBtn
+              onClick={() => {
+                setShowPassword(!showPassword);
+              }}
+            >
               {showPassword ? (
-              <>
-                  <EyeOpenedIcon />
-              </>
+                <>
+                  {/* <EyeOpenedIcon /> */}
+                  <svg height="24" width="24">
+                    <use href={sprite + "#eye"}></use>
+                  </svg>
+                </>
               ) : (
-              <>
-                  <EyeClosedIcon/>
-              </>
+                <>
+                  {/* <EyeClosedIcon /> */}
+                  <svg height="24" width="24">
+                    <use href={sprite + "#closedeye"}></use>
+                  </svg>
+                </>
               )}
-              </IconBtn>
-              {formik.touched.password && (<ErrorMessageStyled>{formik.errors.password}</ErrorMessageStyled> )}
+            </IconBtn>
+            {formik.touched.password && (
+              <ErrorMessageStyled>{formik.errors.password}</ErrorMessageStyled>
+            )}
           </IconContainer>
           <AuthBtn type="submit">Sign In</AuthBtn>
-          <AuthLink to ="/signup">Sign Up</AuthLink>
+          <AuthLink to="/signup">Sign Up</AuthLink>
         </FormStyled>
       </FormContainer>
-    <Outlet />
+      <Outlet />
     </AuthStyled>
   );
 };
-  
+
 export default SignInPage;

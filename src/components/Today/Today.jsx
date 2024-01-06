@@ -1,5 +1,9 @@
-import { useSelector } from "react-redux";
-// import { getPortionsList } from "../../redux/water/todayOperations.js";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  addNewPortion,
+  getPortionsList,
+  updatePortion,
+} from "../../redux/water/todayOperations.js";
 import {
   TodayWrapper,
   TodayTitle,
@@ -13,27 +17,51 @@ import {
   SvgButtonCreate,
   SvgButtonDel,
   AddWaterButton,
+  StyledSvgGlass,
+  StyledSvgPencil,
+  StyledSvgTrash,
 } from "./Today.styled.js";
 import { selectDailyPortions } from "../../redux/water/todaySelectors.js";
-import {
-  IconGlass,
-  IconPencil,
-  IconTrash,
-} from "../../images/today/TodayIcons.jsx";
+import sprite from "../../images/sprite.svg";
+// import { AddWaterModal } from "../AddWaterModal/AddWaterModal.jsx";
+import { useState } from "react";
+import { DeleteWaterModal } from "../DeleteWaterModal/DeleteWaterModal.jsx";
+import { WaterModal } from "../WaterModal/WaterModal.jsx";
+// import { useDispatch } from "react-redux";
 
 export const Today = () => {
+  const dispatch = useDispatch();
+  const [openAddWaterModal, setOpenAddWaterModal] = useState(false);
+  const [openDeleteWaterModal, setOpenDeleteWaterModal] = useState(false);
+  const [openEditWaterModal, setOpenEditWaterModal] = useState(false);
+
+  const [id, setId] = useState(null);
+  const [data, setData] = useState(null);
+
+  // const isLoading = useSelector(selectIsLoading);
   const dailyPortions = useSelector(selectDailyPortions);
 
   function onChangePortion(water, id, time) {
-    console.log("Open modal window and need change portion");
+    setOpenEditWaterModal(true);
+    setData({ water, id, time });
+  }
+
+  function onCloseChangePortion() {
+    setOpenEditWaterModal(false);
+    setData(null);
   }
 
   function onDeletePortion(id) {
-    console.log("Delete portion");
+    setOpenDeleteWaterModal(true);
+    setId(id);
+  }
+  function onCloseDeletePortion() {
+    setOpenDeleteWaterModal(false);
+    setId(null);
   }
 
-  function onAddPortion(water, id) {
-    console.log("Add portion");
+  function onAddPortion() {
+    setOpenAddWaterModal(!openAddWaterModal);
   }
 
   return (
@@ -47,7 +75,9 @@ export const Today = () => {
             {dailyPortions.map(({ water, id, time }) => (
               <TodayItem key={id}>
                 <QuantityWrap>
-                  <IconGlass />
+                  <StyledSvgGlass>
+                    <use href={sprite + "#cup"} width="26" height="26"></use>
+                  </StyledSvgGlass>
                   <TodayQuantity>
                     {water}
                     <span> ml</span>
@@ -59,13 +89,18 @@ export const Today = () => {
                     type="button"
                     onClick={() => onChangePortion(water, id, time)}
                   >
-                    <IconPencil />
+                    <StyledSvgPencil>
+                      <use href={sprite + "#pencil"}></use>
+                    </StyledSvgPencil>
                   </SvgButtonCreate>
                   <SvgButtonDel
                     type="button"
                     onClick={() => onDeletePortion(id)}
                   >
-                    <IconTrash />
+                    <StyledSvgTrash>
+                      <use href={sprite + "#trash"}></use>
+                    </StyledSvgTrash>
+                    {/* <IconTrash /> */}
                   </SvgButtonDel>
                 </ButtonsWrap>
               </TodayItem>
@@ -75,6 +110,36 @@ export const Today = () => {
             Add water
           </AddWaterButton>
         </>
+      )}
+      {openAddWaterModal && (
+        <WaterModal
+          title="Add water"
+          subtitle="Choose a value:"
+          onCloseModal={onAddPortion}
+          onAddWater={(data) => {
+            dispatch(addNewPortion(data));
+          }}
+          initialWater={0}
+          initialDate={new Date()}
+          isEditing={false}
+        />
+      )}
+      {openDeleteWaterModal && (
+        <DeleteWaterModal onCloseModal={onCloseDeletePortion} id={id} />
+      )}
+      {openEditWaterModal && (
+        <WaterModal
+          title="Edit the entered amount of water"
+          subtitle="Correct entered data:"
+          onCloseModal={onCloseChangePortion}
+          onEditWater={(data) => {
+            dispatch(updatePortion(data));
+          }}
+          initialWater={data.water}
+          initialId={data.id}
+          initialDate={new Date(`2024-01-01T${data.time}`)}
+          isEditing={true}
+        />
       )}
     </TodayWrapper>
   );

@@ -5,6 +5,7 @@ import {
   updatePortion,
   deletePortion,
 } from "./todayOperations";
+import { logoutUser } from "../auth/auth";
 
 const handlePending = (state) => {
   state.isLoading = true;
@@ -16,8 +17,7 @@ const handleRejected = (state, action) => {
   state.error = action.payload;
 };
 const initialState = {
-  portions: { doses: "", percentage: "" },
-  dailyPortions: [],
+  portions: { percentage: "", dailyPortions: [] },
   isLoading: false,
   error: null,
 };
@@ -32,38 +32,34 @@ export const todaySlice = createSlice({
         state.error = null;
         state.isLoading = false;
         state.portions = action.payload;
-        state.dailyPortions = action.payload.dailyPortions;
       })
       .addCase(getPortionsList.rejected, handleRejected)
       .addCase(addNewPortion.pending, handlePending)
       .addCase(addNewPortion.fulfilled, (state, action) => {
         state.error = null;
         state.isLoading = false;
-        state.dailyPortions.push(action.payload);
+        state.portions = action.payload;
       })
       .addCase(addNewPortion.rejected, handleRejected)
       .addCase(updatePortion.pending, handlePending)
       .addCase(updatePortion.fulfilled, (state, action) => {
+        state.portions = action.payload;
         state.error = null;
         state.isLoading = false;
-        state.dailyPortions = state.dailyPortions.map((portion) => {
-          if (portion.id === action.payload.id) {
-            return action.payload;
-          }
-          return portion;
-        });
       })
       .addCase(updatePortion.rejected, handleRejected)
       .addCase(deletePortion.pending, handlePending)
       .addCase(deletePortion.fulfilled, (state, action) => {
         state.error = null;
         state.isLoading = false;
-        const index = state.dailyPortions.findIndex(
-          (portion) => portion.id === action.payload.id
-        );
-        state.dailyPortions.splice(index, 1);
+        state.portions = action.payload;
       })
-      .addCase(deletePortion.rejected, handleRejected);
+      .addCase(deletePortion.rejected, handleRejected)
+      .addCase(logoutUser.fulfilled, (state) => {
+        state.error = null;
+        state.isLoading = false;
+        state.portions = { percentage: "", dailyPortions: [] };
+      });
   },
 });
 

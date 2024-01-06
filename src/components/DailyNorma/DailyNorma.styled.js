@@ -17,12 +17,13 @@ const DailyNormaWrapper = styled.div`
   }
 
   @media (min-width: 1439px) {
+    // height: 100%;
     background: url(${bottleImgDesktop});
   }
 `;
 
 const DailyNormaContainer = styled.div`
-  max-width: 165px;
+  max-width: 166px;
   padding: 8px 20px;
   background-color: #ffffff;
   border-radius: 10px;

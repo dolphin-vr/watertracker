@@ -10,20 +10,39 @@ import {store, persistor} from "./redux/store";
 const theme = {
   colors: {
     primary: {
-      primaryWhite: "#FFFFFF",
-      primaryBlue: "#407BFF",
-      primaryBlack: "#2F2F2F",
+      White: "#FFFFFF",
+      Blue: "#407BFF",
+      Black: "#2F2F2F",
     },
     secondary: {
-      secondaryWhite: "#ECF2FF",
-      secondaryRed: "#EF5050",
-      secondaryBlue: "#9EBBFF",
-      secondaryOrange: "#FF9D43",
-      secondaryWhiteBlue: "#D7E3FF",
+      White: "#ECF2FF",
+      Red: "#EF5050",
+      Blue: "#9EBBFF",
+      today: "#e2e8f7",
+      Orange: "#FF9D43",
+      WhiteBlue: "#D7E3FF",
     },
   },
-  fonts: {},
+  radii: {
+    sm: '4px',
+    md: '8px',
+    lg: '16px',
+  },
+  spacing: value => `${value * 4}px`,
 };
+// padding: ${({ theme }) => theme.spacing(1)};
+// padding: ${({ theme }) => theme.spacing(10)};
+// padding: ${({ theme }) => theme.spacing(3)} ${({ theme }) => theme.spacing(2)};
+// gap: ${({ theme }) => theme.spacing(3)};
+// margin-bottom: ${({ theme }) => theme.spacing(5)};
+// margin: 0 auto ${props => props.theme.spacing(8)};
+// margin: ${({theme}) => theme.spacing(4)} auto ${({theme}) => theme.spacing(3)};
+// border-bottom: 4px solid ${({ theme }) => theme.colors.darkgray};
+// padding: 0 ${({ theme }) => theme.spacing(2)};
+// border-radius: ${({ theme }) => theme.radii.sm};
+// background-color: ${props => props.theme.colors.primary.White};
+// color: ${({ theme }) => theme.colors.darkgray};
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <PersistGate loading={null} persistor={persistor}>

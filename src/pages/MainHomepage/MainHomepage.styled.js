@@ -38,6 +38,14 @@ const DailyNormaWrapper = styled.div``;
 
 const MainHomepageStatistic = styled.div`
   padding: 0 0 40px;
+
+  @media screen and (min-width: 1439px) {
+    display: flex;
+    gap: 24px;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0px;
+  }
 `;
 
 const WaterProgressWrap = styled.div`
@@ -47,7 +55,7 @@ const WaterProgressWrap = styled.div`
     gap: 12px;
   }
 
-  @media (min-width: 1440px) {
+  @media (min-width: 1439px) {
     width: 544px;
   }
 `;
