@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 // import { getPortionsList } from "../../redux/todayOperations.js";
-import bottleImg from "../../images/bottle-mainPage-mobile.png";
 import CalcModal from "../СalcModal/CalcModal";
 import { selectUserNorma } from "../../redux/user/userSelectors";
 import {
@@ -10,7 +9,6 @@ import {
   DailyNormaInfo,
   DailyNormaSpan,
   DailyNormaBth,
-  DailyNormaImg,
   DailyNormaWrapper,
 } from "./DailyNorma.styled";
 
@@ -39,8 +37,6 @@ export const DailyNorma = () => {
           {isModalOpen && <CalcModal onClose={handleCloseModal} />}
         </DailyNormaInfo>
       </DailyNormaContainer>
-
-      {/* <DailyNormaImg src={bottleImg} alt="img" /> */}
     </DailyNormaWrapper>
   );
 };

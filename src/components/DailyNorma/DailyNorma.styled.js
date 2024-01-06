@@ -10,15 +10,14 @@ const DailyNormaWrapper = styled.div`
 
   @media (min-width: 767px) {
     background: url(${bottleImgDesktop});
-    background-repeat: no-repeat;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
   }
 
   @media (min-width: 1439px) {
-    // height: 100%;
-    background: url(${bottleImgDesktop});
+    height: 100%;
+    background-size: cover;
   }
 `;
 
@@ -63,18 +62,11 @@ const DailyNormaBth = styled.button`
   line-height: 1.25;
 `;
 
-const DailyNormaImg = styled.img`
-  max-width: 400px;
-  width: 100%;
-  margin: 0 auto;
-`;
-
 export {
   DailyNormaContainer,
   DailyNormaTitle,
   DailyNormaInfo,
   DailyNormaSpan,
   DailyNormaBth,
-  DailyNormaImg,
   DailyNormaWrapper,
 };

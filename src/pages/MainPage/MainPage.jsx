@@ -35,34 +35,36 @@ const MainPage = () => {
   }
 
   return (
-    <MainPageContainer>
-      <MainPageStatistic>
-        <DailyNorma />
-        <WaterProgressWrap>
-          <WaterProgresBar />
-          <AddPortionButton type="button" onClick={() => onOpenModalWindow()}>
-            Add water
-          </AddPortionButton>
-        </WaterProgressWrap>
-      </MainPageStatistic>
-      <MainPagePortions>
-        <Today />
-        <Calendar />
-      </MainPagePortions>
-      {openAddWaterModal && (
-        <WaterModal
-          title="Add water"
-          subtitle="Choose a value:"
-          onCloseModal={onOpenModalWindow}
-          onAddWater={(data) => {
-            dispatch(addNewPortion(data));
-          }}
-          initialWater={0}
-          initialDate={new Date()}
-          isEditing={false}
-        />
-      )}
-    </MainPageContainer>
+    <>
+      <MainPageContainer>
+        <MainPageStatistic>
+          <DailyNorma />
+          <WaterProgressWrap>
+            <WaterProgresBar />
+            <AddPortionButton type="button" onClick={() => onOpenModalWindow()}>
+              Add water
+            </AddPortionButton>
+          </WaterProgressWrap>
+        </MainPageStatistic>
+        <MainPagePortions>
+          <Today />
+          <Calendar />
+        </MainPagePortions>
+        {openAddWaterModal && (
+          <WaterModal
+            title="Add water"
+            subtitle="Choose a value:"
+            onCloseModal={onOpenModalWindow}
+            onAddWater={(data) => {
+              dispatch(addNewPortion(data));
+            }}
+            initialWater={0}
+            initialDate={new Date()}
+            isEditing={false}
+          />
+        )}
+      </MainPageContainer>
+    </>
   );
 };
 export default MainPage;

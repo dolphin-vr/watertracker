@@ -74,9 +74,9 @@ const AddPortionButton = styled.button`
   width: 100%;
   border: none;
   border-radius: 10px;
-  background: var(--Primery-Color-Blue, #407bff);
-  box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
-  color: var(--Primery-Color-White, #fff);
+  // background: var(--Primery-Color-Blue, #407bff);
+  // box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
+  // color: var(--Primery-Color-White, #fff);
   text-align: center;
   font-size: 16px;
   font-weight: 500;
