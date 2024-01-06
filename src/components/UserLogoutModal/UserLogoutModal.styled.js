@@ -19,14 +19,15 @@ export const Backdrop = styled.div`
 
 export const ModalContainer = styled.div`
     position: absolute;
-    top: 296px;
-    left: 424px;
     background-color: #FFF;
     border-radius: 10px;
     width: 280px;
     height: 260px;
     padding: 32px 24px;
     z-index: 100;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
     @media (min-width: 768px) {
         width: 592px;
@@ -50,19 +51,11 @@ export const Title = styled.h2`
 `;
 
 export const XBtn = styled.button`
-    // border: none;
+    border: none;
     background-color: transparent;
-    // padding: 0;
-    // margin: 0;
-    width: 24px;
-    height: 24px;
+    padding: 0;
+    margin: 0;
     cursor: pointer;
-`;
-
-export const IconX = styled.svg`
-    width: 24px;
-    height: 24px;
-    stroke: #407BFF;
 `;
 
 export const TitleContainer = styled.div`
