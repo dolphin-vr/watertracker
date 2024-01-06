@@ -1,26 +1,33 @@
 import styled from "styled-components";
+import sprite from "../../images/sprite.svg";
 
 
 export const Container = styled.div`
-  margin: auto;
-  width: 100%;
+  max-width: 100%;
   padding: 32px 12px;
+  z-index: 100;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  background-color: white;
   border-radius: 10px;
-  @media screen and (min-width: 768px) {
-    max-width: 704px;
-    padding: 32px 24px;
-    background-color: #f2f2f2;
-  }
 
-  @media screen and (min-width: 1440px) {
-    max-width: 1008px;
-    max-height: 592px;
-  }
-`;
+
+@media screen and (min-width: 768px) {
+ 
+    padding: 32px 24px;
+    width: 704px;
+ 
+}
+@media screen and (min-width: 1280px) {
+ 
+    padding: 32px 24px;
+    width: 1008px;}`
+  
 
 export const TitleContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
+ 
   margin-bottom: 24px;
   h2 {
     font-size: 26px;
@@ -42,7 +49,7 @@ export const ContainerAvatar = styled.div`
   width: 220px;
   display: flex;
   align-items: center;
-  margin-bottom: 24px;
+  
 `;
 
 export const Avatar = styled.img`
@@ -67,11 +74,10 @@ export const LinkImgUpload = styled.span`
 `;
 
 export const TitleH5 = styled.h5`
-  margin-bottom: 12px;
-  
   font-size: 18px;
   font-weight: 500;
-  line-height: 1.12;
+  line-height: 20px;
+  margin-bottom: 12px;
 `;
 
 // ================== STYLE FORM SETTIHGMODAL================
@@ -79,7 +85,8 @@ export const ContainerGender = styled.div`
   display: flex;
 `;
 
-export const BoxGender = styled.label``;
+export const BoxGender = styled.label`
+margin-bottom : 52px;`;
 
 export const ContainerBlockSeting = styled.div`
   @media screen and (min-width: 1440px) {
@@ -97,6 +104,8 @@ export const ContainerInfoUser = styled.div`
 export const ContainerChangePass = styled.div`
   @media screen and (min-width: 1440px) {
     width: 100%;
+    margin-top: 10px;
+
   }
 `;
 
@@ -108,6 +117,7 @@ export const LabelInput = styled.label`
 `;
 
 export const InputStyle = styled.input`
+ 
   width: 100%;
   height: 44px;
 
@@ -118,6 +128,8 @@ export const InputStyle = styled.input`
   font-size: 16px;
 
   padding: 16px 8px;
+
+ 
 
   &:active,
   &:focus,
@@ -138,16 +150,19 @@ export const InputStyle = styled.input`
 `;
 
 export const ButtonSubmit = styled.button`
-  height: 36px;
-  color: #ffffff;
-  background-color: #407bff;
-  border-radius: 10px;
+  color: white;
+  font-weight: 500;
+  line-height: 20px;
   font-size: 16px;
-  font-family: "Roboto", sans-serif;
-  box-shadow: 0 4px 8px rgba(64, 123, 255, 0.34);
-  width: 280px;
-  height: 36px;
-  margin-left: auto;
+  border: none;
+  display: block;
+  margin: 0 auto;
+  width: 256px;
+  height: 38px;
+  padding: 8px 30px;
+  border-radius: 10px;
+  background: rgba(64, 123, 255, 1);
+  box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
 
   @media screen and (min-width: 768px) {
     display: flex;
@@ -155,10 +170,118 @@ export const ButtonSubmit = styled.button`
     align-items: center;
     width: 160px;
     height: 44px;
+    margin-right: 24px;
   }
 
   @media screen and (min-width: 1440px) {
     width: 160px;
     height: 44px;
+    margin-right: 24px;
   }
 `;
+
+export const Backdrop = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  background-color: gray;
+  overflow: auto;`
+
+  export const CloseBtn = styled.button`
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #fff;
+        border: none;
+        width: 24px;
+        height: 24px;
+        padding: 0;
+        position: absolute;
+        top: 28px;
+        right: 12px;
+        cursor: pointer;`
+
+export const Title = styled.h3`
+
+  color: rgba(47, 47, 47, 1);
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 32px;
+  margin-bottom: 24px;
+  display: block;
+`
+
+export const GenderInput = styled.input`
+  position: relative;
+  height: 14px;
+  width: 14px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+  margin-right: 8px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 2px solid dodgerblue;
+  }
+
+  &:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: dodgerblue;
+    transform: translate(-50%, -50%);
+    visibility: visible;
+  }
+`;
+
+
+export const Label = styled.label`
+
+  
+ &:first-of-type {
+    margin-right: 24px;
+  }`
+
+  export const TitlePas = styled.h3 `
+   margin-top : 0px;
+   margin-bottom : 12px;
+
+  `
+
+export const IconBtn = styled.button`
+  position: absolute;
+  border: none;
+  top: 38px;
+  left: 220px;
+  background-color: transparent;
+  border: none;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  stroke: #407BFF;
+  
+  @media screen and (min-width: 768px){
+    left: 300px;
+  }
+  
+  @media screen and (min-width: 1440px){
+    left: 345px;
+  }`
+

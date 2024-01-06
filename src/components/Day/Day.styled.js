@@ -23,7 +23,7 @@ const DayTile = styled.li`
   /* padding: 5px; */
   width: 32px;
   height: 52px;
-	background-color: ${getTileBgr};
+	/* background-color: ${getTileBgr}; */
 
   @media (min-width: 768px) {
     width: 34px;
@@ -44,8 +44,8 @@ const Circle = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid ${getBorderColor};
-  background-color: ${props => props.theme.colors.primary.White};
+  /* border: 1px solid ${getBorderColor};
+  background-color: ${props => props.theme.colors.primary.White}; */
   font-size: 14px;
   margin-bottom: 5px;
 
