@@ -3,8 +3,7 @@ import Modal from 'react-modal';
 import UserLogoutModal from '../UserLogoutModal/UserLogoutModal';
 import SettingModal from '../SettingModal/SettingModal'
 import { ModalStyled, ContainerULM, UserLogoModalBtn, UserLogoModalName } from './UserLogoModal.styled';
-import { SettingIcon } from './SettingIcon';
-import { LogOutIcon } from './LogOutIcon';
+import sprite from "../../images/sprite.svg";
 
 Modal.setAppElement('#root'); 
 
@@ -31,11 +30,15 @@ const UserLogoModal = ({ onClose }) => {
         >
             <ContainerULM>
                 <UserLogoModalBtn onClick={openUserInfoModal}>
-                    <SettingIcon/>
+                    <svg width="16" height="16" stroke="#407BFF">
+                        <use href={sprite + "#settings"}></use>
+                    </svg>
                     <UserLogoModalName>Setting</UserLogoModalName>
                 </UserLogoModalBtn>
                 <UserLogoModalBtn onClick={openUserLogoutModal}>
-                    <LogOutIcon/>
+                    <svg width="16" height="16" stroke="#407BFF">
+                        <use href={sprite + "#logout"}></use>
+                    </svg>
                     <UserLogoModalName>Log out</UserLogoModalName>
                 </UserLogoModalBtn>
             </ContainerULM>
