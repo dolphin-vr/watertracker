@@ -50,14 +50,17 @@ export const Calendar = () => {
       setDate(clickedDate);
       setModalIsOpen(true);
 
-      // Отримуємо координати кліку
-      const buttonCoordinates = {
-        top: event.clientY,
-        left: event.clientX,
-      };
-
-      // Передаємо координати як пропс в модалку
-      setButtonCoordinates(buttonCoordinates);
+      const button = event.target.closest("button");
+      if (button) {
+        const buttonRect = button.getBoundingClientRect();
+        // Верхня точка елемента
+        const topCoordinate = buttonRect.top;
+        // Передаєм координати пропсом в модалку
+        const buttonCoordinates = {
+          top: topCoordinate,
+        };
+        setButtonCoordinates(buttonCoordinates);
+      }
     } else {
       toast.error("No data available for future dates");
     }
