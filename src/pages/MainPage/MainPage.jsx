@@ -47,7 +47,7 @@ const MainPage = () => {
       </MainPageStatistic>
       <MainPagePortions>
         <Today />
-        <Calendar />
+        <CalendarD />
       </MainPagePortions>
       {openAddWaterModal && (
         <WaterModal

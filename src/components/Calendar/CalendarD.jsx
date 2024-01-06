@@ -1,11 +1,11 @@
 import { useState, useEffect, useCallback } from "react";
 import toast from "react-hot-toast";
 import { instance } from "../../redux/auth/auth";
-import { currentDate, dateISO, daysTable } from "../../shared/api/dates";
+import { currentDate, dateISO, days, daysTable } from "../../shared/api/dates";
 import { CalendarContainer, DaysContainer, MonthHeader, MonthLabel, Pagination, PaginationButton } from "./Calendar.styled";
 import { Day } from "../Day/Day";
 import CalendarHeader from "./CalendarHeader";
-import { Circle, DayTile, Label } from "../Day/Day.styled";
+import { Circle, DayTile, Label, Table } from "../Day/Day.styled";
 
 export const CalendarD = () => {
   const [date, setDate] = useState(new Date());
@@ -84,19 +84,20 @@ export const CalendarD = () => {
   };
 
   const calendar = daysTable(date, month, currentDate);
-  console.log('calendar= ', calendar)
+  // console.log('calendar= ', calendar);
+  // const daysNum = days(date);
+  // console.log('daysNum= ', daysNum);
 
   return (
     <CalendarContainer>
-    <CalendarHeader date={date} handleMonthChange={handleMonthChange} />
-      <DaysContainer>
-        {calendar.map(el => {
-          // <Day day={el.day} percent={el.percentage} isToday={el.isToday} onClick={()=> handleDayClick(el)} />
-          <DayTile isToday={el.isToday}>
-            <Circle percent={el.percentage}  onClick={()=> handleDayClick(el)}>{el.day}</Circle>
-            <Label>{el.percentage} %</Label>
+      <CalendarHeader date={date} handleMonthChange={handleMonthChange} />
+      <DaysContainer className="ul_jscalend">
+        {calendar.map(el => (
+          <DayTile key={el.id} isToday={el.isToday}>
+            <Circle percent={el.percentage}  onClick={()=> handleDayClick(el)}>{el.id}</Circle>
+            <Label>{el.percentage ? `${el.percentage}  %` : ""}</Label>
           </DayTile>
-          })}
+        ))}
       </DaysContainer>
     </CalendarContainer>
   );
