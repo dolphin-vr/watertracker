@@ -18,7 +18,7 @@ import {
   getPortionsList,
 } from "../../redux/water/todayOperations";
 import { WaterModal } from "../../components/WaterModal/WaterModal";
-// import { CalendarD } from "../../components/Calendar/CalendarD";
+import { CalendarD } from "../../components/Calendar/CalendarD";
 
 const MainPage = () => {
   const [openAddWaterModal, setOpenAddWaterModal] = useState(false);
