@@ -21,7 +21,6 @@ export const days = (date) => {
 }
 
 
-
 // return array of objects
 // {
 // 	id: {1-31},
@@ -32,17 +31,18 @@ export const days = (date) => {
 // 	doses: number,
 // 	percentage: number,
 // }
-export const daysTable = (days, month, today)=>{
+export const daysTable = (date, month, today)=>{
+	const numDays = new Date(date.getFullYear(), date.getMonth() + 1, 0). getDate();
+	const days = Array.from({length: numDays}, (_, i) => i + 1)
 	return days.map(el=>{
 		const day = month.find(d=> {
-			console.log('d.date.getDate()=', d.date.getDate());
-			console.log('el= ', el);
-			const fl = (d.date.getDate()===el)
-			console.log('fl= ', fl);
-			return fl
-		}) || {};
+			// console.log(` parseInt(d.date.slice(8))===el : ${parseInt(d.date.slice(8))} === ${el} = ${parseInt(d.date.slice(8))===el}`);
+			return (parseInt(d.date.slice(8))===el)
+		}) || {percentage: 0, doses: 0};
+		// console.log('el day= ', el, day);
 		day.id = el;
 		day.isToday = (day.date===today);
+		return day
 	})
 }
 
