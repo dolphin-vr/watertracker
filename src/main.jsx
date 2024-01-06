@@ -17,8 +17,10 @@ const theme = {
     },
     secondary: {
       White: "#ECF2FF",
+      grey: "#9b9b9b",
       Red: "#EF5050",
-      Blue: "#9EBBFF",
+      Blue: "#9EBBFF",      
+      violet: "#9370d8",
       today: "#e2e8f7",
       Orange: "#FF9D43",
       WhiteBlue: "#D7E3FF",
