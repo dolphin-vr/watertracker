@@ -124,6 +124,7 @@ export const GenderInput = styled.input`
   appearance: none;
   outline: none;
   margin: 0;
+  margin-right : 8px;
 
   &:before {
     content: '';

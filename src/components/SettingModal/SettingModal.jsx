@@ -13,6 +13,8 @@ import {
   TitleH5,
   Backdrop,
   CloseBtn,
+  Title,
+  
 } from "./SettingModal.styled";
 import sprite from "../../images/sprite.svg";
 
@@ -46,7 +48,7 @@ const SettingModal = ({ onClose }) => {
     <Backdrop>
       <Container>
         <TitleContainer>
-          <h3>Setting</h3>
+          <Title>Setting</Title>
         </TitleContainer>
         <CloseBtn type="button"onClick={onClose}>
           <svg>

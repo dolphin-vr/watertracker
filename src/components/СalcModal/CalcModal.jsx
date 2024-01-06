@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Modal from "react-modal";
 import { useDispatch } from "react-redux";
 import { updateWaterNorma } from "../../redux/user/userOperations";
@@ -9,16 +9,20 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const CalcModal = ({ onClose }) => {
   const dispatch = useDispatch();
-  const [result, setResult] = useState(2);
+  const [result, setResult] = useState();
   const [values, setValues] = useState({
     gender: "girl",
     weight: "",
     time: "",
+    
   });
   const [isModalOpen, setIsModalOpen] = useState(true);
-  const [rate, setRate] = useState("");
+  const [rate, setRate] = useState();
   
-
+  useEffect(() => {
+    
+    setRate(result);
+  }, [result]);
   
 
   const handleSubmit = (e) => {
