@@ -1,4 +1,25 @@
 import styled from "styled-components";
+import bottleImgMobile from "../../images/bottle-mainPage-mobile.png";
+import bottleImgDesktop from "../../images/bottle-mainPage-desktop.png";
+
+const DailyNormaWrapper = styled.div`
+  height: 290px;
+  background: url(${bottleImgMobile});
+  background-repeat: no-repeat;
+  background-position: center bottom;
+
+  @media (min-width: 767px) {
+    background: url(${bottleImgDesktop});
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  @media (min-width: 1439px) {
+    background: url(${bottleImgDesktop});
+  }
+`;
 
 const DailyNormaContainer = styled.div`
   max-width: 165px;
@@ -54,4 +75,5 @@ export {
   DailyNormaSpan,
   DailyNormaBth,
   DailyNormaImg,
+  DailyNormaWrapper,
 };

@@ -1,14 +1,25 @@
 import styled from "styled-components";
+import backgroundImg from "../../images/background-mainPage.png";
 
 // 1440;
 // 768;
 // 320;
 
+const MainHomepageBackground = styled.div`
+  width: 100%;
+  margin: 0 auto;
+  // background-image: url(${backgroundImg});
+  background-color: tomato;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+`;
+
 const MainHomepageContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 24px 0 40px 0;
-  background: transperent;
+  // background: url(${backgroundImg});
 
   @media (min-width: 767px) {
     max-width: 768px;
@@ -69,6 +80,7 @@ const AddPortionButton = styled.button`
 `;
 
 export {
+  MainHomepageBackground,
   MainHomepageContainer,
   MainHomepageStatistic,
   MainHomepagePortions,

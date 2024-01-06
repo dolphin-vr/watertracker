@@ -26,18 +26,18 @@ import {
 } from "../../images/today/TodayIcons.jsx";
 
 export const Today = () => {
-  const isLoading = useSelector(selectIsLoading);
+  // const isLoading = useSelector(selectIsLoading);
   const dailyPortions = useSelector(selectDailyPortions);
 
-  function onChangePortion() {
+  function onChangePortion(water, id, time) {
     console.log("Open modal window and need change portion");
   }
 
-  function onDeletePortion() {
+  function onDeletePortion(id) {
     console.log("Delete portion");
   }
 
-  function onAddPortion() {
+  function onAddPortion(water, id) {
     console.log("Add portion");
   }
 
@@ -62,7 +62,7 @@ export const Today = () => {
                 <ButtonsWrap>
                   <SvgButtonCreate
                     type="button"
-                    onClick={() => onChangePortion(id)}
+                    onClick={() => onChangePortion(water, id, time)}
                   >
                     <IconPencil />
                   </SvgButtonCreate>

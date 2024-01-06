@@ -9,6 +9,7 @@ import {
   DailyNormaSpan,
   DailyNormaBth,
   DailyNormaImg,
+  DailyNormaWrapper,
 } from "./DailyNorma.styled";
 
 export const DailyNorma = () => {
@@ -19,7 +20,7 @@ export const DailyNorma = () => {
   }
 
   return (
-    <>
+    <DailyNormaWrapper>
       <DailyNormaContainer>
         <DailyNormaTitle>My daily norma</DailyNormaTitle>
         <DailyNormaInfo>
@@ -31,7 +32,7 @@ export const DailyNorma = () => {
         </DailyNormaInfo>
       </DailyNormaContainer>
 
-      <DailyNormaImg src={bottleImg} alt="img" />
-    </>
+      {/* <DailyNormaImg src={bottleImg} alt="img" /> */}
+    </DailyNormaWrapper>
   );
 };
