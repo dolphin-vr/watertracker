@@ -1,10 +1,34 @@
 import { useEffect, useState } from "react";
-import DatePicker from "react-datepicker";
+// import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useFormik } from "formik";
 import Modal from "react-modal";
 import * as Yup from "yup";
-import { modal } from "./WaterModal.styled";
+import {
+  BtnClose,
+  BtnCounter,
+  BtnSave,
+  BtnWrap,
+  Counter,
+  ModalStyled,
+  ModalWrap,
+  NumberCounter,
+  StyledInput,
+  StyledName,
+  StyledText,
+  Text,
+  TextLabel,
+  Title,
+  WrapCounter,
+  WrapInput,
+  StyledDatePicker,
+  Container,
+  Amount,
+  Time,
+  ErrorWrap,
+} from "./WaterModal.styled";
+import { BackdporModal } from "../DeleteWaterModal/DeleteWaterModal.styled";
+import sprite from "../../images/sprite.svg";
 
 Modal.setAppElement("#modal-root");
 
@@ -31,7 +55,7 @@ export const WaterModal = ({
   }, []);
 
   const updateWaterUsed = (newValue) => {
-    setFieldValue("waterCounter", newValue);
+    formik.setFieldValue("waterCounter", newValue);
   };
 
   const handleDecrease = () => {
@@ -82,40 +106,47 @@ export const WaterModal = ({
     onCloseModal();
   };
 
-  const { handleSubmit, setFieldValue, errors, touched, values, handleChange } =
-    useFormik({
-      initialValues: {
-        waterCounter: counter,
-        date: startDate,
-      },
-      validationSchema: Yup.object({
-        waterCounter: Yup.number()
-          .min(1, "Min 1 ml")
-          .max(5000, "Max 5000 ml")
-          .required("Enter water value"),
-        date: Yup.date(),
-      }),
-      onSubmit: (values) => {
-        handleSave(values);
-      },
-    });
+  const validationSchema = Yup.object().shape({
+    waterCounter: Yup.number()
+      .min(1, "Min 1 ml")
+      .max(5000, "Max 5000 ml")
+      .required("Enter water value"),
+    date: Yup.date(),
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      waterCounter: counter,
+      date: startDate,
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+      handleSave(values);
+    },
+  });
 
   return (
-    <Modal
+    <ModalStyled
       isOpen={true}
       onRequestClose={onCloseModal}
       contentLabel="WaterModal"
-      style={modal}
+      overlayClassName="overlay"
     >
-      <div>
-        <div>
-          <h2>{title}</h2>
-          <button type="button" onClick={onCloseModal}>
-            X
-          </button>
-          {initialWater !== 0 && (
-            <div>
-              {`${initialWater}ml`}
+      <BackdporModal onClick={onCloseModal} />
+      <ModalWrap initialWater={initialWater}>
+        <Title>{title}</Title>
+        <BtnClose type="button" onClick={onCloseModal}>
+          <svg stroke="#407BFF" width="24" height="24">
+            <use href={sprite + "#modalclose"}></use>
+          </svg>
+        </BtnClose>
+        {initialWater !== 0 && (
+          <Container>
+            <svg stroke="#407BFF" width="24" height="24">
+              <use href={sprite + "#cup"}></use>
+            </svg>
+            <Amount>{`${initialWater} ml`}</Amount>
+            <Time>
               {initialDate && (
                 <span>{` ${initialDate
                   .getHours()
@@ -125,26 +156,35 @@ export const WaterModal = ({
                   .toString()
                   .padStart(2, "0")}`}</span>
               )}
-            </div>
-          )}
+            </Time>
+          </Container>
+        )}
 
-          <p>{subtitle}</p>
-          <form onSubmit={handleSubmit}>
-            <label>Amount of water:</label>
-            <button type="button" onClick={handleDecrease}>
-              -
-            </button>
-            <p>{counter}ml</p>
-            <button type="button" onClick={handleIncrease}>
-              +
-            </button>
-            <label>
-              Recording time:
-              <DatePicker
+        <Text>{subtitle}</Text>
+
+        <TextLabel>Amount of water:</TextLabel>
+        <BtnWrap>
+          <BtnCounter type="button" onClick={handleDecrease}>
+            <svg stroke="#407BFF" width="24" height="24">
+              <use href={sprite + "#minus"}></use>
+            </svg>
+          </BtnCounter>
+          <Counter>{counter}ml</Counter>
+          <BtnCounter type="button" onClick={handleIncrease}>
+            <svg stroke="#407BFF" width="24" height="24">
+              <use href={sprite + "#plus"}></use>
+            </svg>
+          </BtnCounter>
+        </BtnWrap>
+        <form onSubmit={formik.handleSubmit}>
+          <label>
+            <WrapInput>
+              <StyledText>Recording time:</StyledText>
+              <StyledDatePicker
                 selected={startDate}
                 onChange={(date) => {
                   setStartDate(date);
-                  setFieldValue("date", date);
+                  formik.setFieldValue("date", date);
                 }}
                 showTimeSelect
                 showTimeSelectOnly
@@ -165,33 +205,38 @@ export const WaterModal = ({
                 maxTime={new Date()}
                 maxDate={new Date()}
               />
-            </label>
-            <label>
-              Enter the value of the water used:
-              <input
+            </WrapInput>
+          </label>
+          <label>
+            <WrapInput>
+              <StyledName>Enter the value of the water used:</StyledName>
+
+              <StyledInput
                 type="number"
                 name="waterCounter"
                 onChange={(e) => {
-                  handleChange(e);
+                  formik.handleChange(e);
                 }}
                 onBlur={(e) => {
-                  setFieldValue("waterCounter", Number(e.target.value));
-                  setCounter(Number(e.target.value));
+                  const inputValue = Number(e.target.value);
+                  const nonNegativeValue = inputValue < 0 ? 0 : inputValue;
+                  formik.setFieldValue("waterCounter", nonNegativeValue);
+                  setCounter(nonNegativeValue);
                 }}
-                value={values.waterCounter}
+                value={formik.values.waterCounter}
               />
-              {touched.waterCounter && errors.waterCounter && (
-                <div>{errors.waterCounter}</div>
+              {formik.touched.waterCounter && formik.errors.waterCounter && (
+                <ErrorWrap>{formik.errors.waterCounter}</ErrorWrap>
               )}
-            </label>
+            </WrapInput>
+          </label>
 
-            <div>
-              <p>{counter}ml</p>
-              <button type="submit">Save</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </Modal>
+          <WrapCounter>
+            <NumberCounter>{counter}ml</NumberCounter>
+            <BtnSave type="submit">Save</BtnSave>
+          </WrapCounter>
+        </form>
+      </ModalWrap>
+    </ModalStyled>
   );
 };

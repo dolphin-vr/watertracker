@@ -1,12 +1,14 @@
 import { deletePortion } from "../../redux/water/todayOperations";
 import {
+  BackdporModal,
   BtnCancel,
   BtnClose,
   BtnDelete,
+  ModalStyled,
+  ModalWrap,
   Text,
   Title,
   WrapBtn,
-  modalDelete,
 } from "./DeleteWaterModal.styled";
 import { useDispatch } from "react-redux";
 import Modal from "react-modal";
@@ -24,7 +26,6 @@ export const DeleteWaterModal = ({ onCloseModal, id }) => {
     };
   }, []);
   const dispatch = useDispatch();
-  // console.log(id);
 
   const handleDelete = (id) => {
     dispatch(deletePortion(id));
@@ -32,13 +33,14 @@ export const DeleteWaterModal = ({ onCloseModal, id }) => {
   };
 
   return (
-    <Modal
+    <ModalStyled
       isOpen={true}
       onRequestClose={onCloseModal}
       contentLabel="WaterModal"
-      style={modalDelete}
+      overlayClassName="overlay"
     >
-      <div>
+      <BackdporModal onClick={onCloseModal} />
+      <ModalWrap>
         <Title>Delete entry</Title>
         <BtnClose type="button" onClick={onCloseModal}>
           <svg stroke="#407BFF" width="24" height="24">
@@ -48,14 +50,14 @@ export const DeleteWaterModal = ({ onCloseModal, id }) => {
 
         <Text>Are you sure you want to delete the entry?</Text>
         <WrapBtn>
-          <BtnDelete type="submit" onClick={() => handleDelete(id)}>
-            Delete
-          </BtnDelete>
           <BtnCancel type="button" onClick={onCloseModal}>
             Cancel
           </BtnCancel>
+          <BtnDelete type="submit" onClick={() => handleDelete(id)}>
+            Delete
+          </BtnDelete>
         </WrapBtn>
-      </div>
-    </Modal>
+      </ModalWrap>
+    </ModalStyled>
   );
 };
