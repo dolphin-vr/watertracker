@@ -30,7 +30,6 @@ const MainPage = () => {
   }, [dispatch]);
 
   function onOpenModalWindow() {
-    // console.log("Modal window is open");
     setOpenAddWaterModal(!openAddWaterModal);
   }
 

@@ -1,7 +1,28 @@
 import styled from "styled-components";
+import bottleImgMobile from "../../images/bottle-mainPage-mobile.png";
+import bottleImgDesktop from "../../images/bottle-mainPage-desktop.png";
+
+const DailyNormaWrapper = styled.div`
+  height: 290px;
+  background: url(${bottleImgMobile});
+  background-repeat: no-repeat;
+  background-position: center bottom;
+
+  @media (min-width: 767px) {
+    background: url(${bottleImgDesktop});
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  @media (min-width: 1439px) {
+    height: 100%;
+    background-size: cover;
+  }
+`;
 
 const DailyNormaContainer = styled.div`
-  max-width: 165px;
+  max-width: 166px;
   padding: 8px 20px;
   background-color: #ffffff;
   border-radius: 10px;
@@ -41,17 +62,11 @@ const DailyNormaBth = styled.button`
   line-height: 1.25;
 `;
 
-const DailyNormaImg = styled.img`
-  max-width: 400px;
-  width: 100%;
-  margin: 0 auto;
-`;
-
 export {
   DailyNormaContainer,
   DailyNormaTitle,
   DailyNormaInfo,
   DailyNormaSpan,
   DailyNormaBth,
-  DailyNormaImg,
+  DailyNormaWrapper,
 };

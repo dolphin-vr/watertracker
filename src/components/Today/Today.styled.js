@@ -13,7 +13,7 @@ const TodayWrapper = styled.div`
 `;
 
 const TodayTitle = styled.p`
-  color: ${(props) => props.theme.colors.primary.primaryBlack};
+  color: ${(props) => props.theme.colors.primary.Black};
   font-size: 24px;
   font-weight: 500;
   line-height: 1.25;
@@ -22,7 +22,7 @@ const TodayTitle = styled.p`
 `;
 
 const TodayText = styled.p`
-  color: ${(props) => props.theme.colors.primary.primaryBlue};
+  color: ${(props) => props.theme.colors.primary.Blue};
   font-size: 18px;
   font-weight: 400;
   line-height: 1.33;
@@ -42,12 +42,12 @@ const TodayItem = styled.li`
   padding: 12px 0;
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid
-    ${(props) => props.theme.colors.secondary.secondaryWhiteBlue};
+  border-bottom: 1px solid ${(props) => props.theme.colors.secondary.WhiteBlue};
 `;
 
 const QuantityWrap = styled.span`
   display: flex;
+  align-items: center;
   gap: 16px;
 `;
 
@@ -57,14 +57,14 @@ const ButtonsWrap = styled.span`
 `;
 
 const TodayQuantity = styled.span`
-  color: ${(props) => props.theme.colors.primary.primaryBlue};
+  color: ${(props) => props.theme.colors.primary.Blue};
   font-size: 18px;
   font-weight: 400;
   line-height: 1.33;
 `;
 
 const TodayTime = styled.span`
-  color: ${(props) => props.theme.colors.primary.primaryBlack};
+  color: ${(props) => props.theme.colors.primary.Black};
   font-size: 12px;
   font-weight: 400;
   line-height: 2;
@@ -72,33 +72,53 @@ const TodayTime = styled.span`
 
 const SvgButtonCreate = styled.button`
   border: none;
-  border: 1px solid transparent;
+  border-bottom: 1px solid transparent;
   background-color: transparent;
   cursor: pointer;
 
-  // :hover {
-  //   border-bottom: ${(props) => props.theme.colors.secondary.secondaryBlue};
-  // }
+  :hover {
+    border-bottom: 1px solid ${(props) => props.theme.colors.secondary.Blue};
+  }
 `;
 
 const SvgButtonDel = styled.button`
   border: none;
+  border-bottom: 1px solid transparent;
   background-color: transparent;
   cursor: pointer;
 
-  // :hover {
-  //   border-bottom: 1px solid
-  //     ${(props) => props.theme.colors.secondary.secondaryRed};
-  // }
+  :hover {
+    border-bottom: 1px solid ${(props) => props.theme.colors.secondary.Red};
+  }
 `;
 
 const AddWaterButton = styled.button`
   border: none;
   background-color: transparent;
-  color: ${(props) => props.theme.colors.primary.primaryBlue};
+  color: ${(props) => props.theme.colors.primary.Blue};
   font-size: 16px;
   font-weight: 500;
   line-height: 1.25;
+`;
+
+const StyledSvgGlass = styled.svg`
+  width: 26px;
+  height: 26px;
+  stroke: ${(props) => props.theme.colors.secondary.Bue};
+`;
+
+const StyledSvgPencil = styled.svg`
+  width: 20px;
+  height: 20px;
+  padding-bottom: 2px;
+  stroke: ${(props) => props.theme.colors.secondary.Blue};
+`;
+
+const StyledSvgTrash = styled.svg`
+  width: 20px;
+  height: 20px;
+  padding-bottom: 2px;
+  stroke: ${(props) => props.theme.colors.secondary.Red};
 `;
 
 export {
@@ -114,4 +134,7 @@ export {
   SvgButtonCreate,
   SvgButtonDel,
   AddWaterButton,
+  StyledSvgGlass,
+  StyledSvgPencil,
+  StyledSvgTrash,
 };
