@@ -4,8 +4,8 @@ import { useDispatch } from "react-redux";
 import { updateWaterNorma } from "../../redux/user/userOperations";
 import { Container, Title, Backdrop,Formula,Gender,Description,Start,GenderFormula,TitleLabel,RadioBtn,GenderBtn,GenderInput,GenderLabel,Forma,Labels,DataLabel,ModalInput,ResultCont,Littres,TextResult,WriteInput,Btn,CloseBtn } from "./CalcModal.styled";
 import sprite from "../../images/sprite.svg";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+// import { ToastContainer, toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 
 const CalcModal = ({ onClose }) => {
   const dispatch = useDispatch();
@@ -30,7 +30,7 @@ const CalcModal = ({ onClose }) => {
   
    
     if (!rate ) {
-      toast.error('Please fill in all fields');
+      // toast.error('Please fill in all fields');
       return;
     }
   
@@ -51,22 +51,22 @@ const CalcModal = ({ onClose }) => {
     }
   
     if (isNaN(parseFloat(value))) {
-      toast.error('Please enter a valid number');
+      // toast.error('Please enter a valid number');
       return;
     }
   
     if (name === 'gender' && !value) {
-      toast.error('Please select a gender');
+      // toast.error('Please select a gender');
       return;
     }
   
     if (name === 'weight' && parseFloat(value) > 300) {
-      toast.error('Please enter a weight less than or equal to 300');
+      // toast.error('Please enter a weight less than or equal to 300');
       return;
     }
   
     if (name === 'time' && parseFloat(value) > 24) {
-      toast.error('Please enter a time less than or equal to 24');
+      // toast.error('Please enter a time less than or equal to 24');
       return;
     }
   
@@ -82,7 +82,7 @@ const CalcModal = ({ onClose }) => {
       
       value.includes('-')
     ) {
-      toast.error('Please enter a valid non-negative value for water rate');
+      // toast.error('Please enter a valid non-negative value for water rate');
       return;
     }
   
@@ -222,7 +222,7 @@ const CalcModal = ({ onClose }) => {
           </Forma>
         </Container>
       </Backdrop>
-      <ToastContainer />
+      {/* <ToastContainer /> */}
     </Modal>
   );
 };

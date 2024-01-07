@@ -7,7 +7,6 @@ import { Outlet, useNavigate } from "react-router-dom";
 import {
   AuthStyled,
   BackgroundStyled,
-  FormContainer,
   FormStyled,
   Title,
   Label,
@@ -54,7 +53,6 @@ export const SignInPage = () => {
     <AuthStyled>
       <BackgroundStyled />
       <Bottle />
-      <FormContainer>
         <FormStyled onSubmit={formik.handleSubmit}>
           <Title>Sign In</Title>
           <Label>Enter your email</Label>
@@ -118,7 +116,6 @@ export const SignInPage = () => {
           <AuthBtn type="submit">Sign In</AuthBtn>
           <AuthLink to="/signup">Sign Up</AuthLink>
         </FormStyled>
-      </FormContainer>
       <Outlet />
     </AuthStyled>
   );
