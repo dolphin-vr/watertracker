@@ -1,21 +1,12 @@
 import { useEffect, useState } from "react";
-import { createPortal } from "react-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useFormik } from "formik";
+import Modal from "react-modal";
 import * as Yup from "yup";
-import {
-  Btn,
-  BtnClose,
-  Counter,
-  Label,
-  StyledModal,
-  StyledOverlay,
-  Text,
-  Title,
-} from "./WaterModal.styled";
+import { modal } from "./WaterModal.styled";
 
-const modalRoot = document.querySelector("#modal-root");
+Modal.setAppElement("#modal-root");
 
 export const WaterModal = ({
   title,
@@ -32,23 +23,12 @@ export const WaterModal = ({
   const [startDate, setStartDate] = useState(initialDate);
 
   useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.code === "Escape") {
-        onCloseModal();
-      }
-    };
+    document.body.style.overflow = "hidden";
 
-    window.addEventListener("keydown", handleKeyDown);
     return () => {
-      window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
     };
-  }, [onCloseModal]);
-
-  const handleOverlayClick = (event) => {
-    if (event.currentTarget === event.target) {
-      onCloseModal();
-    }
-  };
+  }, []);
 
   const updateWaterUsed = (newValue) => {
     setFieldValue("waterCounter", newValue);
@@ -57,7 +37,9 @@ export const WaterModal = ({
   const handleDecrease = () => {
     if (counter > 0) {
       setCounter((prevValue) => {
-        const newValue = prevValue - 50;
+        const remainder = prevValue % 50;
+        const difference = remainder === 0 ? 50 : remainder;
+        const newValue = Math.max(prevValue - difference, 0);
         updateWaterUsed(newValue);
         return newValue;
       });
@@ -67,7 +49,9 @@ export const WaterModal = ({
   const handleIncrease = () => {
     if (counter < 5000) {
       setCounter((prevValue) => {
-        const newValue = prevValue + 50;
+        const remainder = prevValue % 50;
+        const difference = 50 - remainder;
+        const newValue = Math.min(prevValue + difference, 5000);
         updateWaterUsed(newValue);
         return newValue;
       });
@@ -116,14 +100,19 @@ export const WaterModal = ({
       },
     });
 
-  return createPortal(
-    <div>
-      <StyledOverlay onClick={handleOverlayClick}>
-        <StyledModal>
-          <Title>{title}</Title>
-          <BtnClose type="button" onClick={onCloseModal}>
+  return (
+    <Modal
+      isOpen={true}
+      onRequestClose={onCloseModal}
+      contentLabel="WaterModal"
+      style={modal}
+    >
+      <div>
+        <div>
+          <h2>{title}</h2>
+          <button type="button" onClick={onCloseModal}>
             X
-          </BtnClose>
+          </button>
           {initialWater !== 0 && (
             <div>
               {`${initialWater}ml`}
@@ -139,16 +128,16 @@ export const WaterModal = ({
             </div>
           )}
 
-          <Text>{subtitle}</Text>
+          <p>{subtitle}</p>
           <form onSubmit={handleSubmit}>
-            <Label>Amount of water:</Label>
-            <Btn type="button" onClick={handleDecrease}>
+            <label>Amount of water:</label>
+            <button type="button" onClick={handleDecrease}>
               -
-            </Btn>
-            <Counter>{counter}ml</Counter>
-            <Btn type="button" onClick={handleIncrease}>
+            </button>
+            <p>{counter}ml</p>
+            <button type="button" onClick={handleIncrease}>
               +
-            </Btn>
+            </button>
             <label>
               Recording time:
               <DatePicker
@@ -201,9 +190,8 @@ export const WaterModal = ({
               <button type="submit">Save</button>
             </div>
           </form>
-        </StyledModal>
-      </StyledOverlay>
-    </div>,
-    modalRoot
+        </div>
+      </div>
+    </Modal>
   );
 };
