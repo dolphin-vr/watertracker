@@ -18,6 +18,7 @@ export const Container = styled.div`
  
     padding: 32px 24px;
     width: 704px;
+    margin-top: 200px;
  
 }
 @media screen and (min-width: 1280px) {
@@ -128,6 +129,11 @@ export const InputStyle = styled.input`
   font-size: 16px;
 
   padding: 16px 8px;
+  
+  &.input-error {
+    border: 2px solid red;
+  }
+
 
  
 
@@ -140,7 +146,7 @@ export const InputStyle = styled.input`
   @media screen and (min-width: 768px) {
     width: 336px;
     height: 44px;
-    /* background-image: url() */
+  
   }
 
   @media screen and (min-width: 1440px) {
@@ -179,7 +185,12 @@ export const ButtonSubmit = styled.button`
     margin-right: 24px;
   }
 `;
-
+export const ErrorMessageStyled = styled.span`
+    color: #ef5050; 
+   font-size: 14px;
+   line-height: 1.28;
+   margin-top: 4px;`
+   
 export const Backdrop = styled.div`
   position: fixed;
   top: 0;

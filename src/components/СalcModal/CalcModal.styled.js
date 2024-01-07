@@ -11,6 +11,7 @@ export const Container = styled.div`
                 background-color: white;
                 border-radius: 10px;
                 margin: 0 auto;
+                margin-top: 100px;
                 @media screen and (min-width: 768px) {
                     
                         padding: 32px 24px;
@@ -215,9 +216,14 @@ border-radius: 6px;
    width: 100%;
     font-size: 16px;
    line-height: 20px;
- 
-  @media screen and (min-width: 768px) {
-    .
+  
+   &.error-input {
+    border: 2px solid red;
+  }
+
+  
+@media screen and (min-width: 768px) {
+   
          max-width: 656px;
      
   }
@@ -291,3 +297,8 @@ export const Btn = styled.button`
     }
   }
 `;
+export const ErrorMessageStyled = styled.span`
+        color: #ef5050; //var(--Secondary-color-3)
+   font-size: 14px;
+   line-height: 1.28;
+   margin-top: 4px;`
