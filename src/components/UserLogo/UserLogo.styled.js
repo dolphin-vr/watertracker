@@ -3,8 +3,8 @@ import styled from 'styled-components';
 export const UserAvatarIMG = styled.img`
     width: 28px;
     height: 28px;
-    margin-left: 8px;
-    margin-right: 4px;
+    margin-left: ${({ theme }) => theme.spacing(2)};
+    margin-right: ${({ theme }) => theme.spacing(1)};
     border-radius: 50%;
     object-fit: contain;
 `;
@@ -22,7 +22,7 @@ export const UserBtn = styled.div`
 `;
 
 export const UserName = styled.p`
-    color: #2F2F2F;
+    color: ${({ theme }) => theme.colors.primary.Black};
     text-align: right;
     font-size: 18px;
     font-weight: 400;
@@ -30,7 +30,7 @@ export const UserName = styled.p`
 `;
 
 export const UserNameV = styled.p`
-    color: #2F2F2F;
+    color: ${({ theme }) => theme.colors.primary.Black};
     text-align: right;
     font-size: 18px;
     font-weight: 400;
@@ -40,9 +40,9 @@ export const UserNameV = styled.p`
 export const UserAppCase = styled.div`
     width: 28px;
     height: 28px;
-    border: 1px solid #407BFF; 
-    margin-left: 8px;
-    margin-right: 4px;
+    border: 1px solid ${({ theme }) => theme.colors.primary.Blue};
+    margin-left: ${({ theme }) => theme.spacing(2)};
+    margin-right: ${({ theme }) => theme.spacing(1)};
     border-radius: 50%;
     display: flex;
     align-items: center; 
@@ -50,7 +50,7 @@ export const UserAppCase = styled.div`
 `;
 
 export const UserLetter = styled.p`
-    color: #407BFF;
+    color: ${({ theme }) => theme.colors.primary.Blue};
     font-size: 18px;
     font-weight: 400;
     line-height: 1.33;

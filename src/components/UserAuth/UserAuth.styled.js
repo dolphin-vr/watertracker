@@ -6,15 +6,15 @@ export const UserAuthLink = styled(Link)`
     align-items: center;
     background-color: transparent;
     border: none;
-    color: #407BFF;
+    color: ${({ theme }) => theme.colors.primary.Blue};
     font-size: 16px;
     line-height: 1.25;
-    gap: 8px;
+    gap: ${({ theme }) => theme.spacing(2)};
     cursor: pointer;
 `;
 
 export const UserAuthLinkHover = styled.span`
     &:hover {
-        color: #FF9D43; ///var(--Secondary-color-5)
+        color: ${({ theme }) => theme.colors.secondary.Orange};
     }
 `;
