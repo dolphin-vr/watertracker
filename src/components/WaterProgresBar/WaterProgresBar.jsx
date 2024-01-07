@@ -16,11 +16,12 @@ export const WaterProgresBar = () => {
     <WaterProgresBarContainer>
       <WaterProgresBarTitle>Today</WaterProgresBarTitle>
       <ProgressContainer>
-        <ProgressBar
+        {/* <ProgressBar
           style={{
             width: `${quantity}%`,
           }}
-        ></ProgressBar>
+        ></ProgressBar> */}
+        <ProgressBar width={quantity}></ProgressBar>
       </ProgressContainer>
       <WaterProgresBarText>
         <span>0%</span>

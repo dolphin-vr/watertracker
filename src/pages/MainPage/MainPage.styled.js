@@ -34,20 +34,20 @@ const MainPageStatistic = styled.div`
 `;
 
 const WaterProgressWrap = styled.div`
-  @media (min-width: 768px) {
+  @media (min-width: 767px) {
     display: flex;
     align-items: center;
     gap: 12px;
   }
 
-  @media (min-width: 1440px) {
+  @media (min-width: 1439px) {
     width: 544px;
   }
 `;
 
 const MainPagePortions = styled.div`
   padding: 24px 8px;
-  background: ${(props) => props.theme.colors.secondary.secondaryWhite};
+  background: ${(props) => props.theme.colors.secondary.White};
   box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.3);
   background: #ecf2ff;
   border-radius: 10px;
@@ -67,7 +67,7 @@ const AddPortionButton = styled.button`
   font-weight: 500;
   line-height: 1.25;
 
-  @media (min-width: 768px) {
+  @media (min-width: 767px) {
     height: 44px;
   }
 `;

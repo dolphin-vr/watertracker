@@ -32,6 +32,9 @@ const ProgressContainer = styled.div`
 `;
 
 const ProgressBar = styled.div`
+  ${(props) => {
+    console.log(props);
+  }}
   height: 8px;
   position: absolute;
   background-color: #8baeff;
