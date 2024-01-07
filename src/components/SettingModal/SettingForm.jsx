@@ -56,7 +56,7 @@ export default function SettingForm() {
       newPassword: "",
       repetNewPassword: ""
     },
-    validationSchema: validationSchema,
+    // validationSchema: validationSchema,
     onSubmit: (values) => {
       const formData = {
         username: values.username,
@@ -86,7 +86,9 @@ export default function SettingForm() {
  
   return (
     <ContainerBlockSeting>
+      <form onSubmit={formik.handleSubmit}>
       <ContainerInfoUser>
+        
         <TitleH5>Your gender identity</TitleH5>
         <ContainerGender>
           <BoxGender>
@@ -138,7 +140,7 @@ export default function SettingForm() {
       </ContainerInfoUser>
 
       <ContainerChangePass>
-        <form onSubmit={formik.handleSubmit}>
+        <form >
           <TitlePas>Password</TitlePas>
           <LabelInput htmlFor="password">Outdated password:
           <InputStyle
@@ -238,7 +240,9 @@ export default function SettingForm() {
             <ButtonSubmit type="submit" >Save</ButtonSubmit>
           </div>
         </form>
+        
       </ContainerChangePass>
+    </form>
     </ContainerBlockSeting>
   );
 }
