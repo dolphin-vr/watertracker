@@ -36,10 +36,8 @@ export const daysTable = (date, month, today)=>{
 	const days = Array.from({length: numDays}, (_, i) => i + 1)
 	return days.map(el=>{
 		const day = month.find(d=> {
-			// console.log(` parseInt(d.date.slice(8))===el : ${parseInt(d.date.slice(8))} === ${el} = ${parseInt(d.date.slice(8))===el}`);
 			return (parseInt(d.date.slice(8))===el)
 		}) || {percentage: 0, doses: 0};
-		// console.log('el day= ', el, day);
 		day.id = el;
 		day.isToday = (day.date===today);
 		return day

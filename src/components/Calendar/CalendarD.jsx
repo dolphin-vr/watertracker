@@ -3,9 +3,8 @@ import toast from "react-hot-toast";
 import { instance } from "../../redux/auth/auth";
 import { currentDate, dateISO, daysTable } from "../../shared/api/dates";
 import { CalendarContainer, DaysContainer, MonthHeader, MonthLabel, Pagination, PaginationButton } from "./Calendar.styled";
-import { Day } from "../Day/Day";
 import CalendarHeader from "./CalendarHeader";
-import { Circle, DayTile, Label } from "../Day/Day.styled";
+import {Day} from "../Day/Day"
 
 export const CalendarD = () => {
   const [date, setDate] = useState(new Date());
@@ -19,7 +18,6 @@ export const CalendarD = () => {
         const endpoint = "water/month";
         const apiUrl = `${endpoint}/${dateISO(date)}`;
         const response = await instance.get(apiUrl);
-        // setClickedDayData(response.data);
         setMonth(response.data.month);
         setNorma(response.data.waterNorma);
       } catch (error) {
@@ -84,19 +82,12 @@ export const CalendarD = () => {
   };
 
   const calendar = daysTable(date, month, currentDate);
-  console.log('calendar= ', calendar)
 
   return (
     <CalendarContainer>
-    <CalendarHeader date={date} handleMonthChange={handleMonthChange} />
+      <CalendarHeader date={date} handleMonthChange={handleMonthChange} />
       <DaysContainer>
-        {calendar.map(el => {
-          // <Day day={el.day} percent={el.percentage} isToday={el.isToday} onClick={()=> handleDayClick(el)} />
-          <DayTile isToday={el.isToday}>
-            <Circle percent={el.percentage}  onClick={()=> handleDayClick(el)}>{el.day}</Circle>
-            <Label>{el.percentage} %</Label>
-          </DayTile>
-          })}
+        {calendar.map(day => ( <Day  key={day.id} day={day} onClick={()=> handleDayClick(day)} /> ))}
       </DaysContainer>
     </CalendarContainer>
   );

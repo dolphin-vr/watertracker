@@ -1,10 +1,12 @@
-import { Circle, DayTile, Label } from "./Day.styled";
+import {DayTile, DayButton, Circle, Label} from "./Day.styled";
 
-export const Day = ({day, percent, isToday, onClick={onClick}}) => {
+export const Day = ({day, onClick}) => {
 	return (
-		<DayTile isToday={isToday}>
-			<Circle percent={percent}>{day} onClick=</Circle>
-			<Label>{percent} %</Label>
+		<DayTile isToday={day.isToday}>
+			<DayButton onClick={()=> onClick(day)}>
+				<Circle percent={day.percentage}>{day.id}</Circle>
+				<Label>{day.percentage ? `${day.percentage}  %` : ""}</Label>
+			</DayButton>
 		</DayTile>
 	)
 }
