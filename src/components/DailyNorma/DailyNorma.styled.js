@@ -19,7 +19,7 @@ const DailyNormaTitle = styled.p`
 `;
 
 const DailyNormaInfo = styled.p`
-  display: flex:
+  display: flex;
   align-items: center;
   margin: 0px;
   color: #407BFF;

@@ -2,6 +2,8 @@ import React from 'react';
 import Modal from 'react-modal';
 import { useDispatch } from 'react-redux';
 import { logoutUser } from '../../redux/auth/auth';
+import { ModalStyled, ModalContainer, Backdrop, Title, XBtn, TitleContainer, Ask, Wrap, CancelBtn, LogoutBtn } from './UserLogoutModal.styled';
+import sprite from '../../images/sprite.svg';
 
 Modal.setAppElement('#root');
 
@@ -17,19 +19,29 @@ const UserLogoutModal = ({ onClose }) => {
   };
 
     return (
-        <Modal
-            isOpen={true}
-            onRequestClose={onClose}
-            contentLabel="Log out"
-        >
-            <div>
-                <button onClick={onClose}>X</button>
-                <h1>Log out</h1>
-                <p>Do you really want to leave?</p>
-                <button onClick={onClose}>Cancel</button>
-                <button onClick={handleLogout}>Logout</button>
-            </div>
-        </Modal>
+      <ModalStyled
+        isOpen={true}
+        onRequestClose={onClose}
+        contentLabel="Log out"
+        overlayClassName="custom-overlay"
+      >
+        <Backdrop onClick={onClose}/>
+          <ModalContainer>
+            <TitleContainer>
+              <Title>Log out</Title>
+              <XBtn onClick={onClose}>
+                <svg stroke="#407BFF" width="24" height="24">
+                  <use href={sprite + "#modalclose"}></use>
+                </svg>
+              </XBtn>
+            </TitleContainer>
+            <Ask>Do you really want to leave?</Ask>
+            <Wrap>
+              <CancelBtn onClick={onClose}>Cancel</CancelBtn>
+              <LogoutBtn onClick={handleLogout}>Logout</LogoutBtn>
+            </Wrap>
+          </ModalContainer>
+      </ModalStyled>
     );
 };
 

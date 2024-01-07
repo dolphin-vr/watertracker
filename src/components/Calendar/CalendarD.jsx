@@ -1,40 +1,38 @@
 import { useState, useEffect, useCallback } from "react";
 import toast from "react-hot-toast";
 import { instance } from "../../redux/auth/auth";
-import { currentDate, dateISO, days, daysTable } from "../../shared/api/dates";
+import { currentDate, dateISO, daysTable } from "../../shared/api/dates";
 import { CalendarContainer, DaysContainer, MonthHeader, MonthLabel, Pagination, PaginationButton } from "./Calendar.styled";
-import { Day } from "../Day/Day";
+import CalendarHeader from "./CalendarHeader";
+import {Day} from "../Day/Day"
 
 export const CalendarD = () => {
   const [date, setDate] = useState(new Date());
-  // const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const [month, setMonth] = useState([]); // array for current month = from back + id=dat and isToday
   const [norma, setNorma] = useState(0);
-  console.log('month init= ', month);
-  console.log('norma init=', norma);
-
-  const fetchData = useCallback(async () => {
-    try {
-      const endpoint = "water/month";
-      const apiUrl = `${endpoint}/${dateISO(date)}`;
-      const response = await instance.get(apiUrl);
-      console.log('response.data=', response.data);
-      setMonth(response.data.month);
-      setNorma(response.data.waterNorma);
-    } catch (error) {
-      toast.error("Error fetching data. Please try again.");
-      setMonth([]);
-    }
-  }, [date]);
 
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const endpoint = "water/month";
+        const apiUrl = `${endpoint}/${dateISO(date)}`;
+        const response = await instance.get(apiUrl);
+        setMonth(response.data.month);
+        setNorma(response.data.waterNorma);
+      } catch (error) {
+        toast.error("Error fetching data. Please try again.");
+        setMonth([]);
+      }
+    };
+
     fetchData();
-  }, [date, fetchData]);
+  }, [date]);
 
 
 
   const handleDayClick = (day) => {
-    console.log('clicked Day data= ', day)
+    console.log('clicked Day data= ', day, norma)
     // const clickedDate = new Date(date.getFullYear(), date.getMonth(), day);
     // console.log('clickedDate= ', clickedDate)
     // const clickedDateString = dateISO(clickedDate);
@@ -83,77 +81,14 @@ export const CalendarD = () => {
     }
   };
 
-  const monthData = daysTable(days(date), month, currentDate);
-  console.log('mmDate= ', monthData);
+  const calendar = daysTable(date, month, currentDate);
 
   return (
     <CalendarContainer>
-      <MonthHeader>
-        <MonthLabel>Month</MonthLabel>
-        <Pagination>
-          <PaginationButton onClick={() => handleMonthChange("prev")}>{"<"}</PaginationButton>
-          <span> {`${date.toLocaleString("en-US", { month: "long", })}, ${date.getFullYear()}`} </span>
-          <PaginationButton onClick={() => handleMonthChange("next")}>{">"}</PaginationButton>
-        </Pagination>
-      </MonthHeader>
+      <CalendarHeader date={date} handleMonthChange={handleMonthChange} />
       <DaysContainer>
-        {monthData.map(el => {<Day day={el.day} percent={el.percentage} isToday={el.isToday}
-          onClick={()=> handleDayClick(el)}
-        />})}
+        {calendar.map(day => ( <Day  key={day.id} day={day} onClick={()=> handleDayClick(day)} /> ))}
       </DaysContainer>
-
-      {/* {renderDaysOfMonth()} */}
-      {/* <Modal
-        ariaHideApp={false}
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        contentLabel="Modal window Calendar"
-        style={{
-          content: {
-            width: "292px",
-            height: "188px",
-            top: "25%",
-            left: "25%",
-            transform: "translate(-50%, -50%)",
-          },
-        }}
-      >
-        {clickedDayData && (
-          <div>
-            <ModalDate>
-              {`${date.getDate()}, ${date.toLocaleString("en-US", {
-                month: "long",
-              })}`}
-            </ModalDate>
-            <div>
-              <p>
-                Daily norma:{" "}
-                <ModalAccent>
-                  {(clickedDayData.waterNorma / 1000).toFixed(1)} L
-                </ModalAccent>
-              </p>
-              <p>
-                Fulfillment of the daily norm:{" "}
-                <ModalAccent>{clickedDayData.percentage}%</ModalAccent>
-              </p>
-              <p>
-                How many servings of water:{" "}
-                <ModalAccent>{clickedDayData.doses}</ModalAccent>
-              </p>
-            </div>
-          </div>
-        )}
-      </Modal> */}
     </CalendarContainer>
   );
 };
-
-// return (
-//   <DaysContainer>
-//       return (
-//         <DayTile key={day}>
-//         </DayTile>
-//       );
-//   </DaysContainer>
-// );
-// };
