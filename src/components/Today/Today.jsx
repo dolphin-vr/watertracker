@@ -20,6 +20,7 @@ import {
   StyledSvgGlass,
   StyledSvgPencil,
   StyledSvgTrash,
+  StyledSvgPlus,
 } from "./Today.styled.js";
 import { selectDailyPortions } from "../../redux/water/todaySelectors.js";
 import sprite from "../../images/sprite.svg";
@@ -100,15 +101,11 @@ export const Today = () => {
                     <StyledSvgTrash>
                       <use href={sprite + "#trash"}></use>
                     </StyledSvgTrash>
-                    {/* <IconTrash /> */}
                   </SvgButtonDel>
                 </ButtonsWrap>
               </TodayItem>
             ))}
           </TodayList>
-          <AddWaterButton type="button" onClick={() => onAddPortion()}>
-            Add water
-          </AddWaterButton>
         </>
       )}
       {openAddWaterModal && (
@@ -141,6 +138,12 @@ export const Today = () => {
           isEditing={true}
         />
       )}
+      <AddWaterButton type="button" onClick={() => onAddPortion()}>
+        <StyledSvgPlus>
+          <use href={sprite + "#plus"}></use>
+        </StyledSvgPlus>
+        Add water
+      </AddWaterButton>
     </TodayWrapper>
   );
 };

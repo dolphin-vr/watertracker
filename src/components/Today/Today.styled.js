@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const TodayWrapper = styled.div`
-  margin-bottom: 24px;
+  margin-bottom: ${({ theme }) => theme.spacing(6)};
 
   @media (min-width: 767px) {
     width: 656px;
@@ -18,11 +18,12 @@ const TodayTitle = styled.p`
   font-weight: 500;
   line-height: 1.25;
   margin: 0;
-  matgin-bottom: 10px;
+  matgin-bottom: ${({ theme }) => theme.spacing(2)};
 `;
 
 const TodayText = styled.p`
   color: ${(props) => props.theme.colors.primary.Blue};
+  padding: ${({ theme }) => theme.spacing(3)} 0;
   font-size: 18px;
   font-weight: 400;
   line-height: 1.33;
@@ -32,14 +33,27 @@ const TodayText = styled.p`
 const TodayList = styled.ul`
   display: flex;
   flex-direction: column;
-  padding-right: 10px;
-  max-height: 200px;
+  padding-right: ${({ theme }) => theme.spacing(1)};
+  max-height: 196px;
   overflow-y: scroll;
-  margin-bottom: 8px;
+  margin-bottom: ${({ theme }) => theme.spacing(2)};
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: ${({ theme }) => theme.colors.secondary.Blue};
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: ${({ theme }) => theme.colors.secondary.WhiteBlue};
+  }
 `;
 
 const TodayItem = styled.li`
-  padding: 12px 0;
+  padding: ${({ theme }) => theme.spacing(3)} 0;
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid ${(props) => props.theme.colors.secondary.WhiteBlue};
@@ -48,12 +62,12 @@ const TodayItem = styled.li`
 const QuantityWrap = styled.span`
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: ${({ theme }) => theme.spacing(4)};
 `;
 
 const ButtonsWrap = styled.span`
   display: flex;
-  gap: 18px;
+  gap: ${({ theme }) => theme.spacing(1)};
 `;
 
 const TodayQuantity = styled.span`
@@ -96,9 +110,21 @@ const AddWaterButton = styled.button`
   border: none;
   background-color: transparent;
   color: ${(props) => props.theme.colors.primary.Blue};
+  padding-left: ${({ theme }) => theme.spacing(6)};
+  cursor: pointer;
   font-size: 16px;
   font-weight: 500;
   line-height: 1.25;
+  position: relative;
+  transition: color ${(props) => props.theme.transition};
+
+  &:hover {
+    color: ${(props) => props.theme.colors.secondary.Orange};
+    
+    svg {
+      //треба змінити колір при ховері
+    }
+ 
 `;
 
 const StyledSvgGlass = styled.svg`
@@ -121,6 +147,14 @@ const StyledSvgTrash = styled.svg`
   stroke: ${(props) => props.theme.colors.secondary.Red};
 `;
 
+const StyledSvgPlus = styled.svg`
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  left: 0;
+  bottom: 0px;
+`;
+
 export {
   TodayWrapper,
   TodayTitle,
@@ -137,4 +171,5 @@ export {
   StyledSvgGlass,
   StyledSvgPencil,
   StyledSvgTrash,
+  StyledSvgPlus,
 };

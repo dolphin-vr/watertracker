@@ -1,31 +1,27 @@
-// import { useEffect } from "react";
-// import { useSelector, useDispatch } from "react-redux";
-// import { getPortionsList } from "../../redux/todayOperations.js";
+import { useSelector } from "react-redux";
 import {
   WaterProgresBarContainer,
   WaterProgresBarTitle,
   ProgressContainer,
   ProgressBar,
   WaterProgresBarText,
+  AccentSpan,
 } from "./WaterProgresBar.styled";
+import { selectPercentage } from "../../redux/water/todaySelectors";
 
 export const WaterProgresBar = () => {
-  const quantity = 70;
+  const waterProgress = useSelector(selectPercentage);
+  const quantity = waterProgress;
 
   return (
     <WaterProgresBarContainer>
       <WaterProgresBarTitle>Today</WaterProgresBarTitle>
       <ProgressContainer>
-        {/* <ProgressBar
-          style={{
-            width: `${quantity}%`,
-          }}
-        ></ProgressBar> */}
         <ProgressBar width={quantity}></ProgressBar>
       </ProgressContainer>
       <WaterProgresBarText>
         <span>0%</span>
-        <span>50%</span>
+        <AccentSpan>50%</AccentSpan>
         <span>100%</span>
       </WaterProgresBarText>
     </WaterProgresBarContainer>
