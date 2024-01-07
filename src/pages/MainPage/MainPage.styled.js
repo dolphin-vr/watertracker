@@ -88,6 +88,7 @@ const AddPortionButton = styled.button`
   font-weight: 500;
   line-height: 1.25;
   position: relative;
+  cursor: pointer;
 
   @media (min-width: 767px) {
     height: 44px;

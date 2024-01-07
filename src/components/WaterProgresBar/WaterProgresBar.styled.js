@@ -21,6 +21,18 @@ const getProgressBar = ({ width, theme }) => {
   }
 };
 
+const getProgresContainer = ({ width, theme }) => {
+  if (width > 100) {
+    return `
+      background-color: ${theme.colors.secondary.Blue};
+    `;
+  } else {
+    return `
+      background-color: ${theme.colors.secondary.WhiteBlue};
+    `;
+  }
+};
+
 const WaterProgresBarContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -47,9 +59,9 @@ const WaterProgresBarTitle = styled.p`
 const ProgressContainer = styled.div`
   width: 100%;
   height: 8px;
-  background-color: ${(props) => props.theme.colors.secondary.WhiteBlue};
   position: relative;
   border-radius: 5px;
+  ${getProgresContainer};
 `;
 
 const ProgressBar = styled.div`

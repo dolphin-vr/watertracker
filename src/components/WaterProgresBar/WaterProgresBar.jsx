@@ -11,13 +11,12 @@ import { selectPercentage } from "../../redux/water/todaySelectors";
 
 export const WaterProgresBar = () => {
   const waterProgress = useSelector(selectPercentage);
-  const quantity = waterProgress;
 
   return (
     <WaterProgresBarContainer>
       <WaterProgresBarTitle>Today</WaterProgresBarTitle>
-      <ProgressContainer>
-        <ProgressBar width={quantity}></ProgressBar>
+      <ProgressContainer width={waterProgress}>
+        <ProgressBar width={waterProgress}></ProgressBar>
       </ProgressContainer>
       <WaterProgresBarText>
         <span>0%</span>

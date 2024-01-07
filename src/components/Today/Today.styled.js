@@ -116,15 +116,13 @@ const AddWaterButton = styled.button`
   font-weight: 500;
   line-height: 1.25;
   position: relative;
-  transition: color ${(props) => props.theme.transition};
+  transition: all ${(props) => props.theme.transition};
+  stroke: ${(props) => props.theme.colors.primary.Blue};
 
   &:hover {
     color: ${(props) => props.theme.colors.secondary.Orange};
-    
-    svg {
-      //треба змінити колір при ховері
-    }
- 
+    stroke: ${(props) => props.theme.colors.secondary.Orange};
+  }
 `;
 
 const StyledSvgGlass = styled.svg`
