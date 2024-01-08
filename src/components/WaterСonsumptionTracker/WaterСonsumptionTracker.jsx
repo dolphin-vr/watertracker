@@ -20,19 +20,19 @@ export const WaterСonsumptionTracker = () => {
       <StyledUl>
         <StyledLi>
           <StyledSvg fill="white">
-            <use href={sprite + "#icon1"}></use>
+            <use href={sprite + "#calendar"}></use>
           </StyledSvg>
           <StyledListParagraph>Habit drive</StyledListParagraph>
         </StyledLi>
         <StyledLi>
         <StyledSvg fill="white">
-            <use href={sprite + "#icon2"}></use>
+            <use href={sprite + "#stat"}></use>
           </StyledSvg>
           <StyledListParagraph>View statistics</StyledListParagraph>
         </StyledLi>
         <StyledLi>
         <StyledSvg fill="white">
-            <use href={sprite + "#icon3"}></use>
+            <use href={sprite + "#tool"}></use>
           </StyledSvg>
           <StyledListParagraph>Personal rate setting</StyledListParagraph>
         </StyledLi>
