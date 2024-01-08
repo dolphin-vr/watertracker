@@ -1,5 +1,7 @@
 # Water Tracker
 
-0. Check deploy
-1. Develope and approve "state" (redux store)
-2. Develope Routes and SharedLayout
+
+якщо клік по дню
+		якщо isOpen && modal.id===button.id => закриваєм
+		якщо isOpen && modal.id!==button.id => закиваємо стару і відкриваємо нову
+		якщо isOpen===false відкриваємо для цього дня

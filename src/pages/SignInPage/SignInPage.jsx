@@ -7,7 +7,6 @@ import { Outlet, useNavigate } from "react-router-dom";
 import {
   AuthStyled,
   BackgroundStyled,
-  FormContainer,
   FormStyled,
   Title,
   Label,
@@ -19,8 +18,7 @@ import {
   AuthLink,
   Bottle,
 } from "../SignUpPage/AuthPages.styled";
-import EyeClosedIcon from "../../components/EyeComponentSvg/EyeClosedIcon";
-import EyeOpenedIcon from "../../components/EyeComponentSvg/EyeOpenedIcon";
+import sprite from "../../images/sprite.svg";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -55,7 +53,6 @@ export const SignInPage = () => {
     <AuthStyled>
       <BackgroundStyled />
       <Bottle />
-      <FormContainer>
         <FormStyled onSubmit={formik.handleSubmit}>
           <Title>Sign In</Title>
           <Label>Enter your email</Label>
@@ -100,11 +97,15 @@ export const SignInPage = () => {
             >
               {showPassword ? (
                 <>
-                  <EyeOpenedIcon />
+                  <svg width="16" height="16" stroke="#407BFF">
+                    <use href={sprite + "#eye"}></use>
+                  </svg>
                 </>
               ) : (
                 <>
-                  <EyeClosedIcon />
+                  <svg width="16" height="16" stroke="#407BFF">
+                    <use href={sprite + "#closedeye"}></use>
+                  </svg>
                 </>
               )}
             </IconBtn>
@@ -115,7 +116,6 @@ export const SignInPage = () => {
           <AuthBtn type="submit">Sign In</AuthBtn>
           <AuthLink to="/signup">Sign Up</AuthLink>
         </FormStyled>
-      </FormContainer>
       <Outlet />
     </AuthStyled>
   );

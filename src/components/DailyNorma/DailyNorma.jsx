@@ -1,6 +1,7 @@
+import { useState } from "react";
 import { useSelector } from "react-redux";
 // import { getPortionsList } from "../../redux/todayOperations.js";
-import bottleImg from "../../images/bottle-mainPage-mobile.png";
+import CalcModal from "../СalcModal/CalcModal";
 import { selectUserNorma } from "../../redux/user/userSelectors";
 import {
   DailyNormaContainer,
@@ -8,30 +9,34 @@ import {
   DailyNormaInfo,
   DailyNormaSpan,
   DailyNormaBth,
-  DailyNormaImg,
+  DailyNormaWrapper,
 } from "./DailyNorma.styled";
 
 export const DailyNorma = () => {
   const dailyNorma = useSelector(selectUserNorma);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  function onChangeDailyNorma() {
-    console.log("change dailyNorma");
-  }
+  const handleEditClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
-    <>
+    <DailyNormaWrapper>
       <DailyNormaContainer>
         <DailyNormaTitle>My daily norma</DailyNormaTitle>
         <DailyNormaInfo>
-          <span>{dailyNorma}</span>
+          <span>{dailyNorma / 1000}</span>
           <DailyNormaSpan>L</DailyNormaSpan>
-          <DailyNormaBth type="button" onClick={() => onChangeDailyNorma()}>
+          <DailyNormaBth type="button" onClick={handleEditClick}>
             Edit
           </DailyNormaBth>
+          {isModalOpen && <CalcModal onClose={handleCloseModal} />}
         </DailyNormaInfo>
       </DailyNormaContainer>
-
-      <DailyNormaImg src={bottleImg} alt="img" />
-    </>
+    </DailyNormaWrapper>
   );
 };

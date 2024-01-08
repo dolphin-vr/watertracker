@@ -39,21 +39,21 @@ const userSlice = createSlice({
       .addCase(updateUserAvatar.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.user.avatarURL = action.payload;
+        state.user.avatarURL = action.payload.avatarURL;
       })
       .addCase(updateUserAvatar.rejected, handleRejected)
       .addCase(updateUserInfo.pending, handlePending)
       .addCase(updateUserInfo.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.user = { user: state.user, ...action.payload };
+        state.user = { ...state.user, ...action.payload };
       })
       .addCase(updateUserInfo.rejected, handleRejected)
       .addCase(updateWaterNorma.pending, handlePending)
       .addCase(updateWaterNorma.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.user.waterNorma = action.payload;
+        state.user.waterNorma = action.payload.waterNorma;
       })
       .addCase(updateWaterNorma.rejected, handleRejected)
       .addCase(logoutUser.fulfilled, (state) => {

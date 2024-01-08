@@ -5,8 +5,8 @@ import { selectDailyPortions } from "../../redux/water/todaySelectors";
 // import { addNewPortion } from "../../redux/todayOperations.js";
 
 export const AddPortion = () => {
-  const portions = useSelector(selectDailyPortions);
-  const dispath = useDispatch();
+  // const portions = useSelector(selectDailyPortions);
+  // const dispath = useDispatch();
 
   // function onOpenModalWindow() {
   //   console.log("Modal window is open");

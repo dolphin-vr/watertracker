@@ -7,7 +7,6 @@ import { Outlet, useNavigate } from "react-router-dom";
 import {
   AuthStyled,
   BackgroundStyled,
-  FormContainer,
   FormStyled,
   Title,
   Label,
@@ -19,8 +18,7 @@ import {
   AuthLink,
   Bottle,
 } from "./AuthPages.styled";
-import EyeClosedIcon from "../../components/EyeComponentSvg/EyeClosedIcon";
-import EyeOpenedIcon from "../../components/EyeComponentSvg/EyeOpenedIcon";
+import sprite from "../../images/sprite.svg";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -59,7 +57,6 @@ export const SignUpPage = () => {
     <AuthStyled>
       <BackgroundStyled />
       <Bottle />
-      <FormContainer>
         <FormStyled onSubmit={formik.handleSubmit}>
           <Title>Sign Up</Title>
           <Label>Enter your email</Label>
@@ -104,11 +101,15 @@ export const SignUpPage = () => {
             >
               {showPassword ? (
                 <>
-                  <EyeOpenedIcon />
+                  <svg width="16" height="16" stroke="#407BFF">
+                    <use href={sprite + "#eye"}></use>
+                  </svg>
                 </>
               ) : (
                 <>
-                  <EyeClosedIcon />
+                  <svg width="16" height="16" stroke="#407BFF">
+                    <use href={sprite + "#closedeye"}></use>
+                  </svg>
                 </>
               )}
             </IconBtn>
@@ -142,11 +143,15 @@ export const SignUpPage = () => {
             >
               {showPassword ? (
                 <>
-                  <EyeOpenedIcon />
+                  <svg width="16" height="16" stroke="#407BFF">
+                    <use href={sprite + "#eye"}></use>
+                  </svg>
                 </>
               ) : (
                 <>
-                  <EyeClosedIcon />
+                  <svg width="16" height="16" stroke="#407BFF">
+                    <use href={sprite + "#closedeye"}></use>
+                  </svg>
                 </>
               )}
             </IconBtn>
@@ -159,7 +164,6 @@ export const SignUpPage = () => {
           <AuthBtn type="submit">Sign Up</AuthBtn>
           <AuthLink to="/signin">Sign In</AuthLink>
         </FormStyled>
-      </FormContainer>
       <Outlet />
     </AuthStyled>
   );

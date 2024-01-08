@@ -1,90 +1,82 @@
-import React, { useState, useEffect } from 'react';
+import React from "react";
+import Modal from "react-modal";
+import { useDispatch, useSelector } from "react-redux";
+import { updateUserAvatar } from "../../redux/user/userOperations";
+import { selectUserAvatar } from "../../redux/user/userSelectors";
+import {
+  Container,
+  TitleContainer,
+  Avatar,
+  ContainerAvatar,
+  InputImg,
+  LinkImgUpload,
+  TitleH5,
+  Backdrop,
+  CloseBtn,
+  Title,
+  
+} from "./SettingModal.styled";
+import sprite from "../../images/sprite.svg";
 
-const SettingModal = () => {
-    const [photo, setPhoto] = useState(null);
-    const [gender, setGender] = useState('');
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+import SettingForm from "./SettingForm";
 
-    useEffect(() => {
+Modal.setAppElement("#root");
+const SettingModal = ({ onClose }) => {
+  const avatarURL = useSelector(selectUserAvatar);
+  const fileInputRef = React.useRef();
+  const dispatch = useDispatch();
 
-    }, []);
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      handleUpload(file);
+    }
+  };
 
-      //   const handleEscKeyPress = event => {
-    //     if (event.key === 'Escape' && isOpen) {
-    //       onClose();
-    //     }
-    //   };
+  const handleUpload = (file) => {
+    const formData = new FormData();
+    formData.append("avatar", file);
+    dispatch(updateUserAvatar(formData));
+  };
 
-    //   const handleOutsideClick = event => {
-    //     if (!event.target.closest('.dropdown-container') && isOpen) {
-    //       onClose();
-    //     }
-    //   };
+  const handleLinkClick = () => {
+    fileInputRef.current.click();
+  };
 
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setUserData((prevData) => ({ ...prevData, [name]: value }));
-    };
-
-    return (
-        <div>
-            <h1>Setting</h1>
-            <p>Your photo</p>
-
-            <img alt="User" />
-            <input
-                type="file"
-                accept="image/*"
-                onChange={(e) => handleInputChange({ target: { name: 'photo', value: e.target.files[0] } })}
-            />
-            <h2>Your gender identity</h2>
-
-            <input
-                type="radio"
-                checked={gender === 'Man'}
-            />
-            <label htmlFor="man">Man</label>
-
-            <input
-                type="radio"
-                checked={gender === 'Woman'}
-            />
-            <label>Your name</label>
-            <input
-                type="text"
-                name="name"
-                placeholder="Enter your name"
-            />
-            <label>E-mail</label>
-            <input
-                type="email"
-                name="email"
-                placeholder="Enter your email"
-            />
-            <h2>Password</h2>
-            <label>Outdated password</label>
-            <input
-                type="password"
-                name="outdatedPassword"
-                placeholder="Enter your outdated password"
-            />
-            <label>New password</label>
-            <input
-                type="password"
-                name="newPassword"
-                placeholder="Enter your new password"
-            />
-            <label>Repeat new password</label>
-            <input
-                type="password"
-                name="repeatNewPassword"
-                placeholder="Repeat your new password"
-            />
-            <button type="submit">Save</button>
-        </div>
-    );
+  return (
+    <Modal isOpen={true} onRequestClose={onClose} contentLabel="SettingModal">
+    <Backdrop>
+      <Container>
+        <TitleContainer>
+          <Title>Setting</Title>
+        </TitleContainer>
+        <CloseBtn type="button"onClick={onClose}>
+          <svg>
+           <use href={sprite + "#modalclose"}></use>
+          </svg>
+          </CloseBtn>
+        <TitleH5>Your photo</TitleH5>
+        <ContainerAvatar>
+          <Avatar
+            src={avatarURL}
+            alt="Img_Avatar"
+            width="80"
+            height="80"
+          ></Avatar>
+          <InputImg
+            type="file"
+            ref={fileInputRef}
+            onChange={handleFileChange}
+          />
+          <LinkImgUpload onClick={handleLinkClick}>
+            Upload a photo
+          </LinkImgUpload>
+        </ContainerAvatar>
+        <SettingForm />
+      </Container>
+      </Backdrop>
+    </Modal>
+  );
 };
 
 export default SettingModal;

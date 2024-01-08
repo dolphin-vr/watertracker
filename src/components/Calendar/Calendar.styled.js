@@ -5,6 +5,8 @@ const CalendarContainer = styled.div`
   flex-direction: column;
   /* align-items: center; */
   /* border: 1px solid black; */
+  width: 264px;
+  background: #ecf2ff;
 
   @media (min-width: 768px) {
     width: 656px;
@@ -25,7 +27,7 @@ const MonthHeader = styled.div`
 
 const MonthLabel = styled.span`
   font-size: 24px;
-  font-weight: bold;
+  font-weight: 500;
 `;
 
 const Pagination = styled.span`
@@ -53,8 +55,7 @@ const DaysContainer = styled.ul`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 16px 26px;
-  list-style: none;
-  padding: 0;
+  /* list-style: none; */
 
   @media (min-width: 768px) {
     grid-template-columns: repeat(10, 1fr);
@@ -71,6 +72,7 @@ const DayTile = styled.li`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
   /* padding: 5px; */
   width: 32px;
   height: 52px;
@@ -87,9 +89,15 @@ const DayTile = styled.li`
 `;
 
 const DayButton = styled.button`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background: none;
   border: none;
   cursor: pointer;
+  padding: 0;
+  width: 100%;
+  height: 100%;
 `;
 
 const DayCircle = styled.div`
@@ -125,16 +133,7 @@ const CompletionText = styled.div`
   font-size: 12px;
   color: #9ebbff;
 `;
-const ModalAccent = styled.span`
-font-size: 18px;
-font-weight: 500;
-color: #407BFF;
-`;
-const ModalDate = styled.div`
-font-size: 16px;
-font-weight: 500;
-color: #407BFF;
-`;
+
 export {
   CalendarContainer,
   MonthHeader,
@@ -148,7 +147,4 @@ export {
   TodayCircle,
   CompletionText,
   DayNotCompelete,
-  ModalAccent,
-  ModalDate
-
 };

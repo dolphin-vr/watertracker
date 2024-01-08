@@ -16,7 +16,7 @@ export const StyledHeader = styled.h2`
   line-height: 1.16;
   letter-spacing: 0em;
   margin: 0 0 16px;
-  color: ${(props) => props.theme.colors.primary.primaryBlack};
+  color: ${(props) => props.theme.colors.primary.Black};
 `;
 export const StyledPreHeader = styled.p`
   font-family: Roboto;
@@ -24,7 +24,7 @@ export const StyledPreHeader = styled.p`
   line-height: 1.23;
   letter-spacing: 0em;
   margin: 0 0 24px;
-  color: ${(props) => props.theme.colors.primary.primaryBlack};
+  color: ${(props) => props.theme.colors.primary.Black};
 `;
 export const StyledParagraph = styled.p`
   font-family: Roboto;
@@ -41,7 +41,7 @@ export const StyledListParagraph = styled.p`
   line-height: 1.25;
   letter-spacing: 0em;
   margin: 0;
-  color: ${(props) => props.theme.colors.primary.primaryBlack};
+  color: ${(props) => props.theme.colors.primary.Black};
 `;
 export const StyledNavLink = styled(NavLink)`
   display: block;
@@ -50,8 +50,8 @@ export const StyledNavLink = styled(NavLink)`
   font-weight: 500;
   line-height: 1.25;
   letter-spacing: 0em;
-  color: ${(props) => props.theme.colors.primary.primaryWhite};
-  background-color: ${(props) => props.theme.colors.primary.primaryBlue};
+  color: ${(props) => props.theme.colors.primary.White};
+  background-color: ${(props) => props.theme.colors.primary.Blue};
   padding: 8px 30px;
   border-radius: 10px;
   width: 100%;
@@ -63,7 +63,7 @@ export const StyledNavLink = styled(NavLink)`
     box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
   }
   &.active {
-    background-color: ${(props) => props.theme.colors.primary.primaryBlue};
+    background-color: ${(props) => props.theme.colors.primary.Blue};
   }
   @media screen and (min-width: 767px) {
    padding: 10px 30px;
@@ -79,8 +79,12 @@ export const StyledLi = styled.li`
   display: flex;
   align-items: center;
   gap: 8px;
+  width: 216px;
   @media screen and (min-width: 767px) {
-margin: 0;
+width: 224px;
+  }
+  @media screen and (min-width: 1439px) {
+width: 248px;
   }
 `;
 export const StyledUl = styled.ul`
@@ -95,5 +99,13 @@ gap: 16px;
   @media screen and (min-width: 1439px) {
     flex-direction: column;
     gap: 16px;
+  }
+`
+export const StyledSvg = styled.svg`
+width: 32px;
+height: 32px;
+  @media screen and (min-width: 767px) {
+    width: 40px;
+height: 40px;
   }
 `

@@ -1,17 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-// import waterTrackerLogo from '' // наше лого імпорт
-
+import { WaterTrackerLogoText, LogoContainer, Nowrap } from './Logo.styled';
+import sprite from "../../images/sprite.svg";
+    
 const Logo = () => {
     return (
-        <div>
-        <Link to="/">
-            <button>
-            {/* <img src={waterTrackerLogo} alt="Water Tracker Logo" /> */}
-            Tracker of water
-            </button>
-        </Link>
-        </div>
+        <LogoContainer to="/">
+            <svg width="40" height="48">
+                <use href={sprite + "#logo"}></use>
+            </svg>
+            <WaterTrackerLogoText>Tracker <Nowrap>of water</Nowrap></WaterTrackerLogoText>
+        </LogoContainer>
     );
 };
 
