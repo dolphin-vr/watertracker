@@ -1,10 +1,12 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, } from "react";
 import toast from "react-hot-toast";
 import { instance } from "../../redux/auth/auth";
-import { currentDate, dateISO, daysTable } from "../../shared/api/dates";
-import { CalendarContainer, DaysContainer, MonthHeader, MonthLabel, Pagination, PaginationButton } from "./Calendar.styled";
+import { currentDate, dateISO, daysTable, isCurrentMonth } from "../../shared/api/dates";
+import { CalendarContainer, DaysContainer, } from "./Calendar.styled";
 import CalendarHeader from "./CalendarHeader";
 import {Day} from "../Day/Day"
+import { useSelector } from "react-redux";
+import { selectDoses, selectPercentage } from "../../redux/water/todaySelectors";
 
 export const CalendarD = () => {
   const [date, setDate] = useState(new Date());
@@ -29,6 +31,21 @@ export const CalendarD = () => {
     fetchData();
   }, [date]);
 
+  const calendar = daysTable(date, month, currentDate);
+// console.log('calendar 35 == ', calendar)
+  const percentage = useSelector(selectPercentage);
+  const doses = useSelector(selectDoses);
+  useEffect(() => {
+    // console.log('percentage, doses == ', percentage, doses);
+    // console.log('isCurrentMonth= ', isCurrentMonth(date));
+    if (isCurrentMonth(date)){
+      const idx = calendar.findIndex(el => el.id === parseInt(currentDate.slice(8)));
+      calendar[idx] = {...calendar[idx], percentage, doses, date: currentDate};
+      console.log('calendar[idx]= ', calendar[idx]);
+    }
+  }, [calendar, date, doses, percentage])
+  // console.log('calendar 47 == ', calendar)
+  
 
 
   const handleDayClick = (day) => {
@@ -80,8 +97,7 @@ export const CalendarD = () => {
       toast.error("Error changing month. Please try again.");
     }
   };
-
-  const calendar = daysTable(date, month, currentDate);
+// console.log('date== ', date)
 
   return (
     <CalendarContainer>

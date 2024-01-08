@@ -1,11 +1,11 @@
-const date = new Date();
+const today = new Date();
 // const year = date.getFullYear();
 // const month = (date.getMonth() + 1).toString().padStart(2, "0");
 // const day = date.getDate().toString().padStart(2, "0");
 // const hours = date.getHours();
 // const minutes = date.getMinutes();
 
-export const currentDate = `${date.getFullYear()}-${(date.getMonth()+1).toString().padStart(2, 0)}-${date.getDate().toString().padStart(2, 0)}`;
+export const currentDate = `${today.getFullYear()}-${(today.getMonth()+1).toString().padStart(2, 0)}-${today.getDate().toString().padStart(2, 0)}`;
 // export const currentTime = `${hours}:${minutes};`;
 
 // export default currentDate;
@@ -44,3 +44,10 @@ export const daysTable = (date, month, today)=>{
 	})
 }
 
+export const isCurrentMonth = date => {	return date.getMonth() === today.getMonth() }
+
+// today.setDate(today.getDate() + 1)
+export const nextMonth = date => {
+	new Date(date.getFullYear(), date.getMonth() + 1, 1);
+
+}

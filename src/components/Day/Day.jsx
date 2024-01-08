@@ -1,6 +1,7 @@
 import {DayTile, DayButton, Circle, Label} from "./Day.styled";
 
 export const Day = ({day, onClick}) => {
+	console.log(Date.now())
 	return (
 		<DayTile isToday={day.isToday}>
 			<DayButton onClick={()=> onClick(day)}>
