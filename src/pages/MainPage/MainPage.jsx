@@ -10,6 +10,8 @@ import {
   WaterProgressWrap,
   MainPagePortions,
   AddPortionButton,
+  Backgound,
+  StyledSvgPlus,
 } from "./MainPage.styled";
 import { useEffect, useState } from "react";
 import { getUserInfo } from "../../redux/user/userOperations";
@@ -19,6 +21,7 @@ import {
 } from "../../redux/water/todayOperations";
 import { WaterModal } from "../../components/WaterModal/WaterModal";
 import { CalendarD } from "../../components/Calendar/CalendarD";
+import sprite from "../../images/sprite.svg";
 
 const MainPage = () => {
   const [openAddWaterModal, setOpenAddWaterModal] = useState(false);
@@ -35,11 +38,15 @@ const MainPage = () => {
 
   return (
     <MainPageContainer>
+      <Backgound />
       <MainPageStatistic>
         <DailyNorma />
         <WaterProgressWrap>
           <WaterProgresBar />
           <AddPortionButton type="button" onClick={() => onOpenModalWindow()}>
+            <StyledSvgPlus>
+              <use href={sprite + "#pluscircle"}>Add water</use>
+            </StyledSvgPlus>
             Add water
           </AddPortionButton>
         </WaterProgressWrap>
