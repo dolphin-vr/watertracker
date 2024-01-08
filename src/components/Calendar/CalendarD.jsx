@@ -41,6 +41,8 @@ export const CalendarD = () => {
     fetchData();
   }, [date]);
 
+  const calendar = daysTable(date, month, currentDate);
+
   const handleDayClick = (day) => {
     console.log("clicked Day data= ", day, norma);
     if (day.percentage === 0) {
