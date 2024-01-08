@@ -1,10 +1,10 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, } from "react";
 import toast from "react-hot-toast";
 import { instance } from "../../redux/auth/auth";
-import { currentDate, dateISO, daysTable } from "../../shared/api/dates";
-import { CalendarContainer, DaysContainer, MonthHeader, MonthLabel, Pagination, PaginationButton } from "./Calendar.styled";
+import { currentDate, dateISO, daysTable,  } from "../../shared/api/dates";
+import { CalendarContainer, DaysContainer, } from "./Calendar.styled";
 import CalendarHeader from "./CalendarHeader";
-import {Day} from "../Day/Day"
+import {Day} from "../Day/Day";
 
 export const CalendarD = () => {
   const [date, setDate] = useState(new Date());
@@ -29,7 +29,7 @@ export const CalendarD = () => {
     fetchData();
   }, [date]);
 
-
+  const calendar = daysTable(date, month, currentDate);
 
   const handleDayClick = (day) => {
     console.log('clicked Day data= ', day, norma)
@@ -80,8 +80,6 @@ export const CalendarD = () => {
       toast.error("Error changing month. Please try again.");
     }
   };
-
-  const calendar = daysTable(date, month, currentDate);
 
   return (
     <CalendarContainer>
