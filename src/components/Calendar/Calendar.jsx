@@ -45,24 +45,22 @@ export const Calendar = () => {
 
     clickedDayDataForClick.waterNorma = clickedDayData.waterNorma;
 
-    if (clickedDate <= new Date()) {
+    const button = event.target.closest("button");
+    const buttonRect = button.getBoundingClientRect();
+    const topCoordinate = buttonRect.top;
+    const leftCoordinate = buttonRect.left;
+    const buttonCoordinates = {
+      top: topCoordinate,
+      left: leftCoordinate,
+    };
+
+    if (modalIsOpen && clickedDayDataForClick.date === modalData.date) {
+      setModalIsOpen(false);
+    } else {
       setModalData(clickedDayDataForClick);
       setDate(clickedDate);
+      setButtonCoordinates(buttonCoordinates);
       setModalIsOpen(true);
-
-      const button = event.target.closest("button");
-      if (button) {
-        const buttonRect = button.getBoundingClientRect();
-        // Верхня точка елемента
-        const topCoordinate = buttonRect.top;
-        // Передаєм координати пропсом в модалку
-        const buttonCoordinates = {
-          top: topCoordinate,
-        };
-        setButtonCoordinates(buttonCoordinates);
-      }
-    } else {
-      toast.error("No data available for future dates");
     }
   };
 

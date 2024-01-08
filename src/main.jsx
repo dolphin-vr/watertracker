@@ -2,10 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 // import { BrowserRouter } from "react-router-dom";
-import { PersistGate } from 'redux-persist/integration/react';
+import { PersistGate } from "redux-persist/integration/react";
 import { ThemeProvider } from "styled-components";
 import { Provider } from "react-redux";
-import {store, persistor} from "./redux/store";
+import { store, persistor } from "./redux/store";
 import { HashRouter } from "react-router-dom";
 // import './index.css'
 const theme = {
@@ -19,7 +19,7 @@ const theme = {
       White: "#ECF2FF",
       grey: "#9b9b9b",
       Red: "#EF5050",
-      Blue: "#9EBBFF",      
+      Blue: "#9EBBFF",
       violet: "#9370d8",
       today: "#e2e8f7",
       Orange: "#FF9D43",
@@ -27,11 +27,12 @@ const theme = {
     },
   },
   radii: {
-    sm: '4px',
-    md: '8px',
-    lg: '16px',
+    sm: "4px",
+    md: "8px",
+    lg: "16px",
   },
-  spacing: value => `${value * 4}px`,
+  transition: "0.3s",
+  spacing: (value) => `${value * 4}px`,
 };
 // padding: ${({ theme }) => theme.spacing(1)};
 // padding: ${({ theme }) => theme.spacing(10)};
@@ -51,7 +52,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <PersistGate loading={null} persistor={persistor}>
       <HashRouter basename="/">
         <ThemeProvider theme={theme}>
-          <Provider store = {store}>
+          <Provider store={store}>
             <App />
           </Provider>
         </ThemeProvider>
@@ -66,6 +67,3 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     </PersistGate>
   </React.StrictMode>
 );
-
-
-

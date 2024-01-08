@@ -4,7 +4,7 @@ export const HeaderStyled = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 8px; 
+    padding-top: ${({ theme }) => theme.spacing(2)};
     margin: 0 auto;
     width: 280px;
 
