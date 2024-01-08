@@ -8,7 +8,7 @@ export const Container = styled.div`
                 transform: translate(-50%, -50%);
                 top: 58%;
                 left: 50%;
-                background-color: white;
+                background-color:  ${(props) => props.theme.colors.primary.White};
                 border-radius: 10px;
                 margin: 0 auto;
                 margin-top: 100px;
@@ -30,7 +30,7 @@ export const Title = styled.h2 `
     
 font-size: 26px;
 font-weight: 500;
-color:#2F2F2F ;
+color:${(props) => props.theme.colors.primary.Black};
 line-height: calc(32 / 26);
 
 `
@@ -42,12 +42,12 @@ export const Backdrop = styled.div`
         width: 100%;
         height: 100%;
         z-index: 100;
-        background-color: gray;
+        background-color: ${(props) => props.theme.colors.secondary.grey};
         overflow: auto;`
 
 export const Formula =styled.span`
 
-        color: #407BFF;
+        color: ${(props) => props.theme.colors.primary.Blue};
         font-size: 18px;
         line-height:calc(24 / 18);
 `
@@ -55,7 +55,7 @@ export const Formula =styled.span`
 export const Gender = styled.li`
  display: flex;
 gap: 4px;
-color: #2F2F2F;
+color: ${(props) => props.theme.colors.primary.Black};
 font-size: 16px;
 line-height:calc(20 / 16);
 
@@ -73,7 +73,7 @@ width: 100%;
 padding: 10px;
 color: #8F8F8F;
 border-radius: 10px;
-border: 1px solid #D7E3FF;
+border: 1px solid ${(props) => props.theme.colors.secondary.WhiteBlue};
 align-items: flex-start;
     font-size: 12px;
 line-height: 1.33;
@@ -95,11 +95,11 @@ font-weight: 400;
 `
 
 export const Start =styled.span`
- color: #407BFF;`
+ color: ${(props) => props.theme.colors.primary.Blue};`
 
 
 export const TitleLabel = styled.h3`
-        color: #2F2F2F;
+        color:  ${(props) => props.theme.colors.primary.Black};
         margin-bottom: 16px;
         font-size: 18px;
         font-weight: 500;
@@ -136,8 +136,8 @@ export const GenderInput = styled.input`
     height: 12px;
     border-radius: 50%;
     transform: translate(-50%, -50%);
-    background-color: white;
-    border: 2px solid dodgerblue;
+    background-color: ${(props) => props.theme.colors.primary.White};
+    border: 2px solid ${(props) => props.theme.colors.primary.Blue};
   }
 
   &:checked:after {
@@ -148,7 +148,7 @@ export const GenderInput = styled.input`
     width: 7px;
     height: 7px;
     border-radius: 50%;
-    background-color: dodgerblue;
+    background-color: ${(props) => props.theme.colors.primary.Blue};
     transform: translate(-53%, -66%);
     visibility: visible;
   }
@@ -158,7 +158,7 @@ export const CloseBtn = styled.button`
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: #fff;
+        background-color: ${(props) => props.theme.colors.primary.White};
         border: none;
         width: 24px;
         height: 24px;
@@ -176,7 +176,7 @@ export const CloseBtn = styled.button`
 
 export const GenderLabel = styled.label `
 
-    color:#2F2F2F;
+    color:${(props) => props.theme.colors.primary.Black};
         font-size: 16px;
         line-height: 20px;
     `
@@ -201,7 +201,7 @@ export const Labels = styled.div`
 
 export const DataLabel =styled.label`
 
-    color: #2F2F2F;
+    color: ${(props) => props.theme.colors.primary.Black};
         font-size: 16px;
         line-height: 20px;
  
@@ -211,14 +211,14 @@ export const ModalInput = styled.input`
  
 padding: 12px 10px;
 border-radius: 6px;
-    border: 1px solid #D7E3FF;
+    border: 1px solid ${(props) => props.theme.colors.secondary.WhiteBlue};
    max-width: 256px;
    width: 100%;
     font-size: 16px;
    line-height: 20px;
   
    &.error-input {
-    border: 2px solid red;
+    border: 2px solid ${(props) => props.theme.colors.secondary.Red};
   }
 
   
@@ -274,8 +274,8 @@ export const WriteInput = styled.label`
 `
 
 export const Btn = styled.button`
-  background-color: #407BFF;
-  color: #fff;
+  background-color: ${(props) => props.theme.colors.primary.Blue};
+  color: ${(props) => props.theme.colors.primary.White};
   padding: 8px 30px;
   border-radius: 10px;
   border: none;
@@ -298,7 +298,7 @@ export const Btn = styled.button`
   }
 `;
 export const ErrorMessageStyled = styled.span`
-        color: #ef5050; //var(--Secondary-color-3)
+        color: ${(props) => props.theme.colors.secondary.Red};
    font-size: 14px;
    line-height: 1.28;
    margin-top: 4px;`
