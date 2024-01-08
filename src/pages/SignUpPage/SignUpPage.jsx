@@ -94,7 +94,7 @@ export const SignUpPage = () => {
               }
               required
             />
-            <IconBtn
+            <IconBtn type="button"
               onClick={() => {
                 setShowPassword(!showPassword);
               }}
@@ -136,7 +136,7 @@ export const SignUpPage = () => {
               }
               required
             />
-            <IconBtn
+            <IconBtn type="button"
               onClick={() => {
                 setShowPassword(!showPassword);
               }}
