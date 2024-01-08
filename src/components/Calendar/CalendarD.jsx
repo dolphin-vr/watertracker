@@ -1,16 +1,22 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { selectUserInfo } from "../../redux/user/userSelectors";
 import toast from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 import { instance } from "../../redux/auth/auth";
 import { currentDate, dateISO, daysTable } from "../../shared/api/dates";
-import { CalendarContainer, DaysContainer, MonthHeader, MonthLabel, Pagination, PaginationButton } from "./Calendar.styled";
+import { CalendarContainer, DaysContainer } from "./Calendar.styled";
 import CalendarHeader from "./CalendarHeader";
-import {Day} from "../Day/Day"
+import { Day } from "../Day/Day";
+import { CalendarModal } from "./CalendarModal";
 
 export const CalendarD = () => {
   const [date, setDate] = useState(new Date());
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [month, setMonth] = useState([]); // array for current month = from back + id=dat and isToday
   const [norma, setNorma] = useState(0);
+  const [selectedDay, setSelectedDay] = useState(null);
+  const [buttonCoordinates, setButtonCoordinates] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,47 +35,54 @@ export const CalendarD = () => {
     fetchData();
   }, [date]);
 
-
-
   const handleDayClick = (day) => {
-    console.log('clicked Day data= ', day, norma)
-    // const clickedDate = new Date(date.getFullYear(), date.getMonth(), day);
-    // console.log('clickedDate= ', clickedDate)
-    // const clickedDateString = dateISO(clickedDate);
-    // console.log('clickedDateString= ', clickedDateString)
-
-    // const clickedDayDataForClick = clickedDayData.month.find((data) => data.date === clickedDateString );
-    // console.log('clickedDayDataForClick= ', clickedDayDataForClick)
-
-    // if (clickedDayDataForClick) {
-    //   if (clickedDate <= new Date()) {
-    //     setDate(clickedDate);
-    //     setModalIsOpen(true);
-    //     setClickedDayData(clickedDayDataForClick);
-    //   } else {
-    //     toast.error("No data available for future dates");
-    //   }
-    // } else {
-    //   toast.error("No data available for selected date");
-    // }
+    console.log("clicked Day data= ", day, norma);
+    const button = event.target.closest("button");
+    const buttonRect = button.getBoundingClientRect();
+    const topCoordinate = buttonRect.top;
+    const leftCoordinate = buttonRect.left;
+    const buttonCoordinates = {
+      top: topCoordinate,
+      left: leftCoordinate,
+    };
+    // Клік по вже відкритому дню - закриття модального вікна
+    if (selectedDay === day && modalIsOpen) {
+      setModalIsOpen(false);
+    } else {
+      // Клік по іншому дню або поза модальним вікном - відкриття нового вікна
+      setSelectedDay(day);
+      setModalIsOpen(true);
+      setButtonCoordinates(buttonCoordinates);
+    }
   };
 
-  // const closeModal = () => {
-  //   setModalIsOpen(false);
-  // };
-
+  const userInfo = useSelector(selectUserInfo);
   const handleMonthChange = async (direction) => {
     try {
+      const userRegistrationMonthYear = new Date(
+        userInfo.date
+      ).toLocaleDateString("en-US", { month: "numeric", year: "numeric" });
+      const currentMonth = date.getMonth();
+      const currentYear = date.getFullYear();
+
       if (direction === "prev") {
-        const currentMonth = date.getMonth();
-        const currentYear = date.getFullYear();
-        const prevMonth =
-          currentMonth === 0
-            ? new Date(currentYear - 1, 11, 1)
-            : new Date(currentYear, currentMonth - 1, 1);
-        setDate(prevMonth);
+        const prevMonth = new Date(currentYear, currentMonth - 1, 1);
+        const prevMonthMonthYear = prevMonth.toLocaleDateString("en-US", {
+          month: "numeric",
+          year: "numeric",
+        });
+
+        if (
+          prevMonthMonthYear >= userRegistrationMonthYear &&
+          prevMonth <= new Date()
+        ) {
+          setDate(prevMonth);
+        } else {
+          toast.error("Cannot navigate to a month before registration");
+        }
       } else if (direction === "next") {
-        const nextMonth = new Date(date.getFullYear(), date.getMonth() + 1, 1);
+        const nextMonth = new Date(currentYear, currentMonth + 1, 1);
+
         if (nextMonth <= new Date()) {
           setDate(nextMonth);
         } else {
@@ -85,10 +98,22 @@ export const CalendarD = () => {
 
   return (
     <CalendarContainer>
+      <Toaster />
       <CalendarHeader date={date} handleMonthChange={handleMonthChange} />
       <DaysContainer>
-        {calendar.map(day => ( <Day  key={day.id} day={day} onClick={()=> handleDayClick(day)} /> ))}
+        {calendar.map((day) => (
+          <Day key={day.id} day={day} onClick={() => handleDayClick(day)} />
+        ))}
       </DaysContainer>
+      {/* Модальне вікно */}
+      <CalendarModal
+        isOpen={modalIsOpen}
+        closeModal={() => setModalIsOpen(false)}
+        day={selectedDay}
+        date={date}
+        norma={norma}
+        buttonCoordinates={buttonCoordinates}
+      />
     </CalendarContainer>
   );
 };

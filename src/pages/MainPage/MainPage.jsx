@@ -1,6 +1,5 @@
 import { useDispatch } from "react-redux";
 // import { AddPortion } from "../../components/AddPortion/AddPortion";
-import { Calendar } from "../../components/Calendar/Calendar";
 import { DailyNorma } from "../../components/DailyNorma/DailyNorma";
 import { Today } from "../../components/Today/Today";
 import { WaterProgresBar } from "../../components/WaterProgresBar/WaterProgresBar";

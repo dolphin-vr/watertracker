@@ -54,17 +54,17 @@ const PaginationButton = styled.button`
 const DaysContainer = styled.ul`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 12px 18px;
-  list-style: none;
+  gap: 16px 26px;
+  /* list-style: none; */
 
   @media (min-width: 768px) {
     grid-template-columns: repeat(10, 1fr);
-    gap: 16px 26px;
+    gap: 20px 34px;
   }
 
   @media (min-width: 1440px) {
     grid-template-columns: repeat(10, 1fr);
-    gap: 4px 14px;
+    gap: 20px 22px;
   }
 `;
 

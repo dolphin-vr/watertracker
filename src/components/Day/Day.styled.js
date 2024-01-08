@@ -3,43 +3,42 @@ import styled from "styled-components";
 const getTileBgr = props => {
 	if (props.isToday) {
 		return props.theme.colors.secondary.today
-	} else{
+	} else {
 		return 'transparent'
 	}
 }
 
 const getBorderColor = props => {
-	if (props.percent===100 || props.percent===0) {
+	if (props.percent === 100 || props.percent === 0) {
 		return 'transparent'
 	}
-	if (props.percent<100) {
+	if (props.percent < 100) {
 		return props.theme.colors.secondary.Orange
-	} else{
-		return props.theme.colors.secondary.violet
+	} else {
+		return 'transparent'
 	}
 };
 
 const getFontColor = props => {
-	if (props.percent===0) {
+	if (props.percent === 0) {
 		return props.theme.colors.secondary.grey
 	}
 	return props.theme.colors.primary.Black
 };
 
 export const DayTile = styled.li`
-  width: 40px;
-  height: 56px;
-	padding-top: 4px;
+  width: 32px;
+  height: 52px;
 	background-color: ${getTileBgr};
 
   @media (min-width: 768px) {
-    width: 42px;
-    height: 62px;
+    width: 34px;
+    height: 58px;
   }
 
   @media (min-width: 1440px) {
-    width: 42px;
-    height: 60px;
+    width: 34px;
+    height: 56px;
   }
 `;
 /* padding: 5px; */
@@ -75,9 +74,9 @@ export const Circle = styled.p`
     height: 34px;
   }
 `;
-  // margin-bottom: 5px;
+// margin-bottom: 5px;
 
-	export const Label = styled.p`
+export const Label = styled.p`
 margin: 0;
 text-align: center;
 font-size: 12px;
