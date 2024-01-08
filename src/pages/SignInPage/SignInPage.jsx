@@ -90,7 +90,7 @@ export const SignInPage = () => {
               }
               required
             />
-            <IconBtn
+            <IconBtn type="button"
               onClick={() => {
                 setShowPassword(!showPassword);
               }}
