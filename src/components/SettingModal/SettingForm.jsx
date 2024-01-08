@@ -56,7 +56,7 @@ export default function SettingForm() {
       newPassword: "",
       repetNewPassword: ""
     },
-    // validationSchema: validationSchema,
+    validationSchema: validationSchema,
     onSubmit: (values) => {
       const formData = {
         username: values.username,
