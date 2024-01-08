@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const getTileBgr = props => {
-	if (props.isToday) {
+	if (props.istoday==="true") {
 		return props.theme.colors.secondary.today
 	} else {
 		return 'transparent'

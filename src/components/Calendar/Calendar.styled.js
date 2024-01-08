@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const CalendarContainer = styled.div`
   display: flex;
@@ -6,7 +6,7 @@ const CalendarContainer = styled.div`
   /* align-items: center; */
   /* border: 1px solid black; */
   width: 264px;
-  background: #ECF2FF;
+  background: #ecf2ff;
 
   @media (min-width: 768px) {
     width: 656px;
@@ -27,7 +27,7 @@ const MonthHeader = styled.div`
 
 const MonthLabel = styled.span`
   font-size: 24px;
-  font-weight: bold;
+  font-weight: 500;
 `;
 
 const Pagination = styled.span`
@@ -89,8 +89,8 @@ const DayTile = styled.li`
 `;
 
 const DayButton = styled.button`
-display: flex;
-flex-direction: column;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   background: none;
   border: none;
@@ -98,7 +98,7 @@ flex-direction: column;
   padding: 0;
   width: 100%;
   height: 100%;
-  `;
+`;
 
 const DayCircle = styled.div`
   width: 32px;
@@ -124,15 +124,14 @@ const TodayCircle = styled(DayCircle)`
 `;
 
 const DayNotCompelete = styled(DayCircle)`
-border: 1px solid #FF9D43;
-width: 30px;
-height: 30px;
+  border: 1px solid #ff9d43;
+  width: 30px;
+  height: 30px;
 `;
-
 
 const CompletionText = styled.div`
   font-size: 12px;
-  color: #9EBBFF;
+  color: #9ebbff;
 `;
 
 export {
@@ -149,4 +148,3 @@ export {
   CompletionText,
   DayNotCompelete,
 };
-

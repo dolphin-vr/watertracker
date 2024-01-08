@@ -1,4 +1,12 @@
 import { DayTile, DayButton, Circle, Label } from "./Day.styled";
+import { useSelector } from "react-redux";
+import { DayTile, DayButton, Circle, Label } from "./Day.styled";
+import {
+  selectDoses,
+  selectPercentage,
+} from "../../redux/water/todaySelectors";
+import { currentDate } from "../../shared/api/dates";
+import { useMemo } from "react";
 
 export const Day = ({ day, onClick }) => {
   return (

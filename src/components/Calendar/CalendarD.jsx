@@ -5,10 +5,16 @@ import toast from "react-hot-toast";
 import { Toaster } from "react-hot-toast";
 import { instance } from "../../redux/auth/auth";
 import { currentDate, dateISO, daysTable } from "../../shared/api/dates";
-import { CalendarContainer, DaysContainer } from "./Calendar.styled";
+import {
+  CalendarContainer,
+  DaysContainer,
+  MonthHeader,
+  MonthLabel,
+  Pagination,
+  PaginationButton,
+} from "./Calendar.styled";
 import CalendarHeader from "./CalendarHeader";
 import { Day } from "../Day/Day";
-import { CalendarModal } from "./CalendarModal";
 
 export const CalendarD = () => {
   const [date, setDate] = useState(new Date());
@@ -97,8 +103,6 @@ export const CalendarD = () => {
       toast.error("Error changing month. Please try again.");
     }
   };
-
-  const calendar = daysTable(date, month, currentDate);
 
   return (
     <CalendarContainer>
