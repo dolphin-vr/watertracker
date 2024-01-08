@@ -1,11 +1,11 @@
 import styled from "styled-components";
-
+import sprite from "../../images/sprite.svg";
 const getbgr = elem => {
   if (elem === 1) {
     return {
       m: "url('../../../src/images/unsignedHome/mb-unsignhome-bg.png')",
       t: "url('../../../src/images/unsignedHome/tablet-unsignhome-bg.png')",
-      d: "url('.../../../src/images/unsignedHome/pc-unsignhome-bubbles.png'), url('../../../src/images/unsignedHome/pc-unsignhome-bg.png')"
+      d: `url(${sprite}#wave-d)`
     }
   }
   return {
@@ -53,8 +53,6 @@ margin-top: 24px;
   }
   
 `
-
-
 export const StyledContainerUnsign = styled.div`
 
 background-image:${({unsign}) => getbgr(unsign).m};
@@ -71,5 +69,4 @@ background-image:${({unsign}) => getbgr(unsign).m};
     background-position: center, center bottom; 
     height: 100vh;
   }
-  
 `

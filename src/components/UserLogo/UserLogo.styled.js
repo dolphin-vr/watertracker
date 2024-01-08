@@ -16,7 +16,7 @@ export const UserContainer = styled.div`
     position: relative;
 `;
 
-export const UserBtn = styled.div`
+export const UserWrapper = styled.div`
     border: none;
     background: transparent;
 `;

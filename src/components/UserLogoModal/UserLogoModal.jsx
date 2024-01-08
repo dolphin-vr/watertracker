@@ -1,51 +1,49 @@
 import React, { useState } from 'react';
-import Modal from 'react-modal';
+import {
+  ContainerULM,
+  ULMContainer,
+  UserLogoModalBtn,
+  UserLogoModalName,
+} from './UserLogoModal.styled';
+import sprite from '../../images/sprite.svg';
+import SettingModal from '../SettingModal/SettingModal';
 import UserLogoutModal from '../UserLogoutModal/UserLogoutModal';
-import SettingModal from '../SettingModal/SettingModal'
-import { ModalStyled, ContainerULM, UserLogoModalBtn, UserLogoModalName } from './UserLogoModal.styled';
-import sprite from "../../images/sprite.svg";
 
-Modal.setAppElement('#root'); 
+export const UserLogoModal = ({isOpen, onClose}) => {
+  const [selectedModal, setSelectedModal] = useState(null);
 
-const UserLogoModal = ({ onClose }) => {
-    const [isUserInfoModalOpen, setIsUserInfoModalOpen] = useState(false);
-    const [isUserLogoutModalOpen, setIsUserLogoutModalOpen] = useState(false);
+  const openModal = (modalType) => {
+    setSelectedModal(modalType);
+  };
 
-    const openUserInfoModal = () => {
-        setIsUserInfoModalOpen(true);
-        setIsUserLogoutModalOpen(false);
-    };
+  const closeModal = () => {
+    setSelectedModal(null);
+    onClose();
+  };
 
-    const openUserLogoutModal = () => {
-        setIsUserInfoModalOpen(false);
-        setIsUserLogoutModalOpen(true);
-    };
+  return (
+    <ContainerULM style={{ display: isOpen ? 'block' : 'none' }}>
+      <ULMContainer>
+        <UserLogoModalBtn type="button" onClick={() => openModal('setting')}>
+          <svg width="16" height="16" stroke="#407BFF">
+            <use href={sprite + '#settings'}></use>
+          </svg>
+          <UserLogoModalName>Setting</UserLogoModalName>
+        </UserLogoModalBtn>
+        <UserLogoModalBtn type="button" onClick={() => openModal('logout')}>
+          <svg width="16" height="16" stroke="#407BFF">
+            <use href={sprite + '#logout'}></use>
+          </svg>
+          <UserLogoModalName>Log out</UserLogoModalName>
+        </UserLogoModalBtn>
+      </ULMContainer>
 
-    return (
-        <ModalStyled
-            isOpen={true}
-            onRequestClose={onClose}
-            contentLabel="User Modal"
-            overlayClassName="OverlayLM"
-        >
-            <ContainerULM>
-                <UserLogoModalBtn onClick={openUserInfoModal}>
-                    <svg width="16" height="16" stroke="#407BFF">
-                        <use href={sprite + "#settings"}></use>
-                    </svg>
-                    <UserLogoModalName>Setting</UserLogoModalName>
-                </UserLogoModalBtn>
-                <UserLogoModalBtn onClick={openUserLogoutModal}>
-                    <svg width="16" height="16" stroke="#407BFF">
-                        <use href={sprite + "#logout"}></use>
-                    </svg>
-                    <UserLogoModalName>Log out</UserLogoModalName>
-                </UserLogoModalBtn>
-            </ContainerULM>
-        {isUserInfoModalOpen && <SettingModal onClose={() => setIsUserInfoModalOpen(false)} />}
-        {isUserLogoutModalOpen && <UserLogoutModal onClose={() => setIsUserLogoutModalOpen(false)} />}
-        </ModalStyled>
-    );
+      {selectedModal === 'setting' && <SettingModal onClose={closeModal} />}
+      {selectedModal === 'logout' && <UserLogoutModal onClose={closeModal} />}
+    </ContainerULM>
+  );
 };
 
 export default UserLogoModal;
+
+
