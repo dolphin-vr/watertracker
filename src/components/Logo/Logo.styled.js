@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const WaterTrackerLogoText = styled.h2`
-    color: #407BFF;
+    color: ${({ theme }) => theme.colors.primary.Blue};
     text-transform: uppercase;
     font-size: 12px;
     font-weight: 700;
@@ -12,7 +12,7 @@ export const WaterTrackerLogoText = styled.h2`
 export const LogoContainer = styled(Link)`
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: ${({ theme }) => theme.spacing(1)};
 `;
 
 export const Nowrap = styled.span`
