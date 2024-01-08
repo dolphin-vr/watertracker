@@ -3,17 +3,15 @@ import { Link } from "react-router-dom";
 
 export const AuthStyled = styled.div`
    @media (min-width: 320px) {
-      padding: 24px 20px;
+      padding: ${({ theme }) => theme.spacing(6)} ${({ theme }) => theme.spacing(5)}; 
    }
    @media (min-width: 768px) {
-      padding: 40px 32px;
+      padding: ${({ theme }) => theme.spacing(10)} ${({ theme }) => theme.spacing(8)};
    }
    @media (min-width: 1440px) {
-      padding: 140px 0 40px 0;
+      padding: ${({ theme }) => theme.spacing(35)} 0 ${({ theme }) => theme.spacing(10)} 0;
    }
 `;
-
-export const FormContainer = styled.div``;
 
 export const BackgroundStyled = styled.div`
    position: fixed;
@@ -78,7 +76,7 @@ export const Bottle = styled.div`
 
 export const Title = styled.h1`
    font-size: 24px;
-   color: #2f2f2f;
+   color: ${({ theme }) => theme.colors.primary.Black};
 `;
 
 export const FormStyled = styled.form`
@@ -100,52 +98,56 @@ export const FormStyled = styled.form`
 
 export const Label = styled.label`
    display: block;
-   margin-bottom: 8px;
-   color: #2f2f2f; //var(--Primery-Color-Black)
+   margin-bottom: ${({ theme }) => theme.spacing(2)};
+   color: ${({ theme }) => theme.colors.primary.Black};
    font-size: 18px;
    line-height: 1.33;
 `;
 
 export const Input = styled.input`
-   margin-bottom: 16px;
-   padding: 12px 10px;
+   margin-bottom: ${({ theme }) => theme.spacing(4)};
+   padding:  ${({ theme }) => theme.spacing(3)} ${({ theme }) => theme.spacing(2)};
    border-radius: 6px;
 
-   border: 1px solid #d7e3ff; //var(--Secondary-color-5)
-   background-color: #fff;
+   border: 1px solid ${({ theme }) => theme.colors.secondary.WhiteBlue};
+   background-color: ${props => props.theme.colors.primary.White}; 
 
-   color: #9ebbff; //var(--Secondary-color-4)
+   color: ${({ theme }) => theme.colors.secondary.Blue};
    font-size: 16px;
    line-height: 1.25;
    width: 280px;
    outline: none;
 
    &:focus {
-      color: #407bff;
+      ${({ theme }) => theme.colors.primary.Blue};
    }
 
    &::placeholder {
-      color: #9ebbff; //var(--Secondary-color-4)
+      color: ${({ theme }) => theme.colors.secondary.Blue};
    }
+
    &.input-error {
-      margin-bottom: 4px;
-      border-color: #ef5050; //var(--Secondary-color-3)
-      color: #ef5050; //var(--Secondary-color-3)
+      margin-bottom: ${({ theme }) => theme.spacing(1)};
+      border-color: ${({ theme }) => theme.colors.secondary.Red};
+      color: ${({ theme }) => theme.colors.secondary.Red};
    }
+
    @media (min-width: 768px) {
       width: 336px;
       height: 44px;
    }
+
    @media (min-width: 1440px) {
       width: 386px;
    }
+
 `;
 
 export const ErrorMessageStyled = styled.div`
-   color: #ef5050; //var(--Secondary-color-3)
+   color: ${({ theme }) => theme.colors.secondary.Red};
    font-size: 14px;
    line-height: 1.28;
-   margin-top: 4px;
+   margin-top: ${({ theme }) => theme.spacing(1)};
 `;
 
 export const IconContainer = styled.div`
@@ -161,7 +163,7 @@ export const IconBtn = styled.button`
    width: 16px;
    height: 16px;
    padding: 0;
-   stroke: #407BFF;
+   stroke: ${({ theme }) => theme.colors.primary.Blue};
    @media (min-width: 768px) {
       left: 308px;
    }
@@ -172,16 +174,16 @@ export const IconBtn = styled.button`
 
 export const AuthBtn = styled.button`
    width: 100%;
-   background-color: #407BFF; //var(--Primery-Color-Blue)
-   color: #FFF; 
-   padding: 10px 30px;
+   background-color: ${({ theme }) => theme.colors.primary.Blue};
+   color:  ${({ theme }) => theme.colors.primary.White}; 
+   padding: ${({ theme }) => theme.spacing(2.5)} ${({ theme }) => theme.spacing(7.5)};
    font-size: 18px;
    font-weight: 500;
    border: none;
    border-radius: 10px;
    cursor: pointer;
    box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
-   margin-bottom: 16px;
+   margin-bottom: ${({ theme }) => theme.spacing(4)};
 
    &:active {
       box-shadow: none;
@@ -190,12 +192,12 @@ export const AuthBtn = styled.button`
 
 export const AuthLink = styled(Link)`
    display: block;
-   color: #407bff; //var(--Primery-Color-Blue)
+   color: ${({ theme }) => theme.colors.primary.Blue};
    font-size: 16px;
    font-weight: 400;
    line-height: 1.25;
 
    &:hover {
-      color: #ff9d43; ///var(--Secondary-color-5)
+      color: ${({ theme }) => theme.colors.secondary.Orange};
    }
 `;

@@ -19,11 +19,11 @@ export const Backdrop = styled.div`
 
 export const ModalContainer = styled.div`
     position: absolute;
-    background-color: #FFF;
+    background-color: ${({ theme }) => theme.colors.primary.White};
     border-radius: 10px;
     width: 280px;
     height: 260px;
-    padding: 32px 24px;
+    padding: ${({ theme }) => theme.spacing(8)} ${({ theme }) => theme.spacing(6)};
     z-index: 100;
     top: 50%;
     left: 50%;
@@ -41,7 +41,7 @@ export const ModalContainer = styled.div`
 `;
 
 export const Title = styled.h2`
-    color: #2F2F2F;
+    color: ${({ theme }) => theme.colors.primary.Black};
     font-family: Roboto;
     font-size: 26px;
     font-style: normal;
@@ -65,17 +65,17 @@ export const TitleContainer = styled.div`
 `;
 
 export const Ask = styled.p`
-    color: #2F2F2F;
+    color: ${({ theme }) => theme.colors.primary.Black};
     font-family: Roboto;
     font-size: 18px;
     font-style: normal;
     font-weight: 500;
     line-height: 20px;
-    margin-top: 24px;
+    margin-top: ${({ theme }) => theme.spacing(6)};
 `;
 
 export const Wrap = styled.div`
-    margin-top: 24px;
+    margin-top: ${({ theme }) => theme.spacing(6)};
     @media (min-width: 768px) {
         display: flex;
         justify-content: flex-end;
@@ -87,38 +87,38 @@ export const Wrap = styled.div`
 `;
 
 export const CancelBtn = styled.button`
-    margin-top: 24px;
+    margin-top: ${({ theme }) => theme.spacing(6)};
     width: 232px;
-    padding: 8px 30px;
+    padding: ${({ theme }) => theme.spacing(2)} ${({ theme }) => theme.spacing(7.5)};
     border-radius: 10px;
-    background-color: #D7E3FF;
-    color: #407BFF;
+    background-color: ${({ theme }) => theme.colors.secondary.WhiteBlue};
+    color: ${({ theme }) => theme.colors.primary.Blue};
     border: none;
     box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
-    margin-right: 24px;
+    margin-right: ${({ theme }) => theme.spacing(6)};
     &:hover {
         opacity: 0.7;
     }
     @media (min-width: 768px) {
-        padding: 10px 30px;
+        padding: ${({ theme }) => theme.spacing(2.5)} ${({ theme }) => theme.spacing(7.5)};
         width: 160px;
     }
 `;
 
 export const LogoutBtn = styled.button`
-    margin-top: 24px;
+    margin-top: ${({ theme }) => theme.spacing(6)};
     width: 232px;
-    padding: 8px 30px;
+    padding: ${({ theme }) => theme.spacing(2)} ${({ theme }) => theme.spacing(7.5)};
     border-radius: 10px;
-    background-color: #EF5050;
-    color: #FFFFFF;
+    background-color: ${({ theme }) => theme.colors.secondary.Red};
+    color: ${({ theme }) => theme.colors.primary.White};
     border: none;
     box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
     &:hover {
         opacity: 0.7;
     }
     @media (min-width: 768px) {
-        padding: 10px 30px;
+        padding: ${({ theme }) => theme.spacing(2)} ${({ theme }) => theme.spacing(7.5)};
         width: 160px;
     }
 `;
