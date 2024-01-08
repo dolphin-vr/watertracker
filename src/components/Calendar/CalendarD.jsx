@@ -37,6 +37,10 @@ export const CalendarD = () => {
 
   const handleDayClick = (day) => {
     console.log("clicked Day data= ", day, norma);
+    if (day.percentage === 0) {
+      toast.error("No Data for this Day");
+      return;
+    }
     const button = event.target.closest("button");
     const buttonRect = button.getBoundingClientRect();
     const topCoordinate = buttonRect.top;

@@ -56,7 +56,7 @@ const CalendarModal = ({
             <ModalAccent>{percentage}%</ModalAccent>
           </ModalIndicators>
           <ModalIndicators>
-            How many servings of water:<ModalAccent>{doses}%</ModalAccent>
+            How many servings of water:<ModalAccent>{doses}</ModalAccent>
           </ModalIndicators>
         </ModalList>
       </CustomModalConteiner>
