@@ -1,29 +1,31 @@
 import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateWaterNorma } from "../../redux/user/userOperations";
 import { Container, Title, Backdrop, Formula, Gender, Description, Start, GenderFormula, TitleLabel, RadioBtn, GenderBtn, ErrorMessageStyled, GenderInput, GenderLabel, Forma, Labels, DataLabel, ModalInput, ResultCont, Littres, TextResult, WriteInput, Btn, CloseBtn } from "./CalcModal.styled";
 import sprite from "../../images/sprite.svg";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { selectUserInfo, selectUserNorma } from "../../redux/user/userSelectors";
 
 const CalcModal = ({ onClose }) => {
   const dispatch = useDispatch();
-  const [result, setResult] = useState();
+  const {waterNorma, gender} = useSelector(selectUserInfo)
+  const [result, setResult] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(true);
-
+  
   const validationSchema = Yup.object({
     gender: Yup.string().required('Gender is required'),
     weight: Yup.number('Only number')
       .integer('Only integer number')
       .positive('Only positive')
-      .lessThan(700, 'You have a lot of hard weight')
-      .required('Weight is required'),
+      .lessThan(700, 'You have a lot of hard weight'),
+      
     time: Yup.number('Only number')
       .positive('Only positive')
       .lessThan(24, 'You cannot be active for more than 24 hours')
-      .integer('Only integer number')
-      .required('Time is required'),
+      .integer('Only integer number'),
+     
     rate: Yup.number()
       .lessThan(15, 'You could drown in that much water')
       .required('Rate is required'),
@@ -32,10 +34,10 @@ const CalcModal = ({ onClose }) => {
 
   const formik = useFormik({
     initialValues: {
-      gender: 'girl',
+      gender: gender,
       weight: '',
       time: '',
-      rate: '',
+      rate: waterNorma/1000,
     },
     validationSchema,
     onSubmit: (values) => {
@@ -43,9 +45,11 @@ const CalcModal = ({ onClose }) => {
       onClose();
     },
   });
-
+  
   useEffect(() => {
-    formik.setFieldValue('rate', result);
+    if (result !== 0) {
+      formik.setFieldValue('rate', result);
+    }
   }, [result]);
 
   const handleRate = (e) => {

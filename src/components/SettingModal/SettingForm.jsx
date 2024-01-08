@@ -5,6 +5,8 @@ import { updateUserInfo } from "../../redux/user/userOperations";
 import sprite from "../../images/sprite.svg";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { toast } from 'react-hot-toast';
+
 import {
   BoxGender,
   ContainerGender,
@@ -22,20 +24,31 @@ import {
   ErrorMessageStyled ,
 } from "./SettingModal.styled";
 
-const validationSchema = Yup.object().shape({
+// const validationSchema = Yup.object().shape({
   
+//   password: Yup.string()
+//     .min(8, "Password must be at least 8 characters")
+//     .max(64, "Password must be at most 64 characters")
+//     .required("Password is required"),
+//   newPassword: Yup.string()
+//     .min(8, "Password must be at least 8 characters")
+//     .max(64, "Password must be at most 64 characters")
+//     .required("Repeat Password is required")
+//     .oneOf([Yup.ref("password"), null], ""),
+//   repetNewPassword: Yup.string()
+//     .required("Repeat Password is required")
+//     .oneOf([Yup.ref("newPassword"), null], "Passwords must match"),
+// });
+const validationSchema = Yup.object().shape({
   password: Yup.string()
     .min(8, "Password must be at least 8 characters")
-    .max(64, "Password must be at most 64 characters")
-    .required("Password is required"),
+    .max(64, "Password must be at most 64 characters"),
   newPassword: Yup.string()
     .min(8, "Password must be at least 8 characters")
-    .max(64, "Password must be at most 64 characters")
-    .required("Repeat Password is required")
-    .oneOf([Yup.ref("password"), null], ""),
+    .max(64, "Password must be at most 64 characters"),
   repetNewPassword: Yup.string()
-    .required("Repeat Password is required")
-    .oneOf([Yup.ref("newPassword"), null], "Passwords must match"),
+    .min(8, "Password must be at least 8 characters")
+    .max(64, "Password must be at most 64 characters"),
 });
 
 export default function SettingForm() {
@@ -57,18 +70,45 @@ export default function SettingForm() {
       repetNewPassword: ""
     },
     validationSchema: validationSchema,
+    // onSubmit: (values) => {
+    //   const formData = {
+    //     username: values.username,
+    //     gender: values.gender,
+    //     email: values.email,
+    //     password: values.password,
+    //     newPassword: values.newPassword,
+    //   };
+
+    //   dispatch(updateUserInfo(formData));
+    // },
     onSubmit: (values) => {
-      const formData = {
+      let formData = {
         username: values.username,
         gender: values.gender,
         email: values.email,
         password: values.password,
         newPassword: values.newPassword,
       };
-
+     
+      if (
+        (values.password !== "" && values.newPassword === "")|| 
+        (values.password === "" && values.newPassword !== "")||
+        values.newPassword !== values.repetNewPassword
+      ) {
+        console.log("password error");
+        return;
+      }
+      if (values.password === "") {
+        formData = {
+          username: values.username,
+          gender: values.gender,
+          email: values.email,
+        };
+      }
       dispatch(updateUserInfo(formData));
     },
   });
+
 
   const handleTogglePassword = () => {
     setShowPassword(!showPassword);
@@ -115,7 +155,7 @@ export default function SettingForm() {
           </BoxGender>
         </ContainerGender>
 
-        <form>
+        
           <LabelInput htmlFor="userName">Your name</LabelInput>
           <InputStyle
             id="username"
@@ -134,13 +174,13 @@ export default function SettingForm() {
             onChange={formik.handleChange}
             value={formik.values.email}
             onBlur={formik.handleBlur}
-            readOnly
+            
           />
-        </form>
+        
       </ContainerInfoUser>
 
       <ContainerChangePass>
-        <form >
+        
           <TitlePas>Password</TitlePas>
           <LabelInput htmlFor="password">Outdated password:
           <InputStyle
@@ -155,9 +195,9 @@ export default function SettingForm() {
                 ? "input-error"
                 : ""
             }
-            required
+          
           />
-          <IconBtn onClick={handleTogglePassword}>
+          <IconBtn type="button" onClick={handleTogglePassword}>
             {showPassword ? (
               <svg height="24" width="24">
                 <use href={sprite + "#eye"}></use>
@@ -187,7 +227,7 @@ export default function SettingForm() {
                 : ""
             }
           />
-           <IconBtn onClick={handleToggleNewPassword}>
+           <IconBtn type="button" onClick={handleToggleNewPassword}>
             {showNewPassword ? (
               <svg height="24" width="24">
                 <use href={sprite + "#eye"}></use>
@@ -221,7 +261,7 @@ export default function SettingForm() {
                : ""}
             
           />
-           <IconBtn onClick={handleToggleRepetNewPassword}>
+           <IconBtn  type="button" onClick={handleToggleRepetNewPassword}>
             {showRepetNewPassword? (
               <svg height="24" width="24">
                 <use href={sprite + "#eye"}></use>
@@ -239,7 +279,7 @@ export default function SettingForm() {
           <div>
             <ButtonSubmit type="submit" >Save</ButtonSubmit>
           </div>
-        </form>
+       
         
       </ContainerChangePass>
     </form>
