@@ -25,9 +25,9 @@ export const days = (date) => {
 // {
 // 	id: {1-31},
 // 	isToday: bool,
-// ==========
-// absent if no records in DB at this date
 // 	date: yyyy-mm-dd,
+// ==========
+// if no records in DB at this date == 0
 // 	doses: number,
 // 	percentage: number,
 // }
@@ -37,7 +37,7 @@ export const daysTable = (date, month, today)=>{
 	return days.map(el=>{
 		const day = month.find(d=> {
 			return (parseInt(d.date.slice(8))===el)
-		}) || {percentage: 0, doses: 0};
+		}) || {percentage: 0, doses: 0, date: dateISO(new Date(date.setDate(el)))};
 		day.id = el;
 		day.isToday = (day.date===today);
 		return day
