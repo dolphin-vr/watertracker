@@ -12,11 +12,41 @@ import { CalendarModal } from "./CalendarModal";
 
 export const CalendarD = () => {
   const [date, setDate] = useState(new Date());
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState({
+    isOpen: false,
+    modalId: null,
+  });
   const [month, setMonth] = useState([]); // array for current month = from back + id=dat and isToday
   const [norma, setNorma] = useState(0);
   const [selectedDay, setSelectedDay] = useState(null);
   const [buttonCoordinates, setButtonCoordinates] = useState(null);
+
+  useEffect(() => {
+    const close = (e) => {
+      if (e.keyCode === 27 && modalIsOpen.isOpen) {
+        setModalIsOpen({ isOpen: false, modalId: null });
+      }
+    };
+
+    window.addEventListener("keydown", close);
+
+    return () => window.removeEventListener("keydown", close);
+  }, [modalIsOpen]);
+
+  useEffect(() => {
+    const handleClickOnWindow = (event) => {
+      if (modalIsOpen.isOpen && modalIsOpen.modalId !== null) {
+        setModalIsOpen({ isOpen: false, modalId: null });
+      }
+      console.log("Click on window", event.target);
+    };
+
+    window.addEventListener("click", handleClickOnWindow);
+
+    return () => {
+      window.removeEventListener("click", handleClickOnWindow);
+    };
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,8 +68,6 @@ export const CalendarD = () => {
   const calendar = daysTable(date, month, currentDate);
 
   const handleDayClick = (day) => {
-    console.log("clicked Day data= ", day, norma);
-
     if (day.percentage === 0) {
       toast.error("No Data for this Day");
       return;
@@ -54,20 +82,27 @@ export const CalendarD = () => {
       left: leftCoordinate,
     };
 
-    setSelectedDay(day);
-    setModalIsOpen(true);
-    setButtonCoordinates(buttonCoordinates);
-
-    if (selectedDay === day && modalIsOpen) {
-      setModalIsOpen(false);
+    if (!modalIsOpen.isOpen) {
+      setModalIsOpen({ isOpen: true, modalId: day.id });
+      setSelectedDay(day);
+      setButtonCoordinates(buttonCoordinates);
       return;
     }
 
-    // if(selectedDay !==  )
-    // якщо клік по дню
-    // 		якщо isOpen && modal.id===button.id => закриваєм
-    // 		якщо isOpen && modal.id!==button.id => закиваємо стару і відкриваємо нову
-    // 		якщо isOpen===false відкриваємо для цього дня
+    if (modalIsOpen.isOpen === true && modalIsOpen.modalId === day.id) {
+      setModalIsOpen({ isOpen: false, modalId: null });
+      return;
+    }
+
+    if (modalIsOpen.isOpen === true && modalIsOpen.modalId !== day.id) {
+      setModalIsOpen({ isOpen: false, modalId: null });
+      setTimeout(() => {
+        setSelectedDay(day);
+        setButtonCoordinates(buttonCoordinates);
+        setModalIsOpen({ isOpen: true, modalId: day.id });
+      }, 250);
+      return;
+    }
   };
 
   const userInfo = useSelector(selectUserInfo);
@@ -112,15 +147,15 @@ export const CalendarD = () => {
     <CalendarContainer>
       <Toaster />
       <CalendarHeader date={date} handleMonthChange={handleMonthChange} />
-      <DaysContainer>
+      <DaysContainer className="ul_calendar">
         {calendar.map((day) => (
           <Day key={day.id} day={day} onClick={() => handleDayClick(day)} />
         ))}
       </DaysContainer>
       {/* Модальне вікно */}
       <CalendarModal
-        isOpen={modalIsOpen}
-        closeModal={() => setModalIsOpen(false)}
+        isOpen={modalIsOpen.isOpen}
+        closeModal={() => setModalIsOpen({ modalIsOpen: false, modalId: null })}
         day={selectedDay}
         date={date}
         norma={norma}
