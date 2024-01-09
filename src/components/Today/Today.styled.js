@@ -3,6 +3,11 @@ import styled from "styled-components";
 const TodayWrapper = styled.div`
   margin-bottom: ${({ theme }) => theme.spacing(6)};
 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 256px;
+
   @media (min-width: 767px) {
     width: 656px;
   }
@@ -34,7 +39,7 @@ const TodayList = styled.ul`
   display: flex;
   flex-direction: column;
   padding-right: ${({ theme }) => theme.spacing(1)};
-  max-height: 196px;
+  height: 196px;
   overflow-y: scroll;
   margin-bottom: ${({ theme }) => theme.spacing(2)};
 
@@ -118,6 +123,7 @@ const AddWaterButton = styled.button`
   position: relative;
   transition: all ${(props) => props.theme.transition};
   stroke: ${(props) => props.theme.colors.primary.Blue};
+  width: 110px;
 
   &:hover {
     color: ${(props) => props.theme.colors.secondary.Orange};
