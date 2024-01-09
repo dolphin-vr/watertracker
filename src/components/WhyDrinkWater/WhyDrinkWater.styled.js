@@ -7,13 +7,13 @@ export const StyledDiv = styled.div`
   border-radius: 10px;
   margin-top: 40px;
   box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.30);
-  @media screen and (min-width: 767px) {
+  @media screen and (min-width: 768px) {
     width: 446px;
     padding: 32px 24px;
     /* margin-bottom: 50px; */
     margin-top: 60px;
   }
-  @media screen and (min-width: 1439px) {
+  @media screen and (min-width: 1440px) {
     margin-top: 0px;
     /* display: flex; */
   }
