@@ -106,7 +106,7 @@ const ModalAccent = styled.span`
   font-weight: 500;
   line-height: 1.33; /* 133.333% */
   color: #407bff;
-  margin-left: 2px;
+  margin-left: 6px;
 `;
 
 export {

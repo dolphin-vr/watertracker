@@ -1,6 +1,3 @@
-import PropTypes from "prop-types";
-// import { useEffect } from "react";
-import sprite from "../../images/sprite.svg";
 import {
   StyledModal,
   CustomModalConteiner,
@@ -11,83 +8,63 @@ import {
   ModalIndicators,
   ModalAccent,
 } from "./CalendarModal.styled";
-// Modal.setAppElement("#root");
+import sprite from "../../images/sprite.svg";
 
 const CalendarModal = ({
   isOpen,
   closeModal,
-  clickedDayDataForClick,
-  date,
-  buttonCoordinates = {},
+  day,
+  norma,
+  buttonCoordinates,
 }) => {
-  // useEffect(() => {
-  //   console.log("Modal Coordinates:", {
-  //     top: buttonCoordinates?.top || 0,
-  //     left: buttonCoordinates?.left || 0,
-  //   });
-  // }, [buttonCoordinates]);
+  if (!isOpen || !day) {
+    return null;
+  }
+
+  const { percentage, doses, date, id } = day;
+
+  const ModalID = id.toString();
+
+  const formattedDate =
+    new Date(date).getDate() +
+    ", " +
+    new Date(date).toLocaleString("en-US", { month: "long" });
+  const normaInLiters = (norma / 1000).toFixed(1);
+
   return (
     <StyledModal
-      ariaHideApp={false}
       isOpen={isOpen}
       onRequestClose={closeModal}
-      contentLabel="Modal window Calendar"
+      ariaHideApp={false}
       buttonCoordinates={buttonCoordinates}
+      contentLabel="Modal window Calendar"
       overlayClassName="custom-overlay"
-      id={clickedDayDataForClick?.date}
+      id={ModalID}
     >
-      {clickedDayDataForClick && (
-        <CustomModalConteiner>
-          <ModalHeader>
-            <ModalDate>
-              {`${date.getDate()}, ${date.toLocaleString("en-US", {
-                month: "long",
-              })}`}
-            </ModalDate>
-            <CloseButton onClick={closeModal}>
-              <svg stroke="#407BFF" width="16" height="16">
-                <use href={sprite + "#modalclose"}></use>
-              </svg>
-            </CloseButton>
-          </ModalHeader>
-          <ModalList>
-            <ModalIndicators>
-              Daily norma:{" "}
-              <ModalAccent>
-                {(clickedDayDataForClick.waterNorma &&
-                  (clickedDayDataForClick.waterNorma / 1000).toFixed(1)) ||
-                  "N/A"}{" "}
-                L
-              </ModalAccent>
-            </ModalIndicators>
-            <ModalIndicators>
-              Fulfillment of the daily norm:{" "}
-              <ModalAccent>{clickedDayDataForClick.percentage}%</ModalAccent>
-            </ModalIndicators>
-            <ModalIndicators>
-              How many servings of water:{" "}
-              <ModalAccent>{clickedDayDataForClick.doses}</ModalAccent>
-            </ModalIndicators>
-          </ModalList>
-        </CustomModalConteiner>
-      )}
+      <CustomModalConteiner>
+        <ModalHeader>
+          <ModalDate>{formattedDate}</ModalDate>
+          <CloseButton onClick={closeModal}>
+            <svg stroke="#407BFF" width="16" height="16">
+              <use href={sprite + "#modalclose"}></use>
+            </svg>
+          </CloseButton>
+        </ModalHeader>
+        <ModalList>
+          <ModalIndicators>
+            Daily norma:<ModalAccent>{normaInLiters} L</ModalAccent>
+          </ModalIndicators>
+          <ModalIndicators>
+            Fulfillment of the daily norm:
+            <ModalAccent>{percentage}%</ModalAccent>
+          </ModalIndicators>
+          <ModalIndicators>
+            How many servings of water:<ModalAccent>{doses}</ModalAccent>
+          </ModalIndicators>
+        </ModalList>
+      </CustomModalConteiner>
     </StyledModal>
   );
-};
-
-CalendarModal.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
-  closeModal: PropTypes.func.isRequired,
-  clickedDayDataForClick: PropTypes.shape({
-    waterNorma: PropTypes.number,
-    percentage: PropTypes.number,
-    doses: PropTypes.number,
-  }),
-  date: PropTypes.instanceOf(Date),
-  buttonCoordinates: PropTypes.shape({
-    top: PropTypes.number,
-    left: PropTypes.number,
-  }),
 };
 
 export { CalendarModal };
