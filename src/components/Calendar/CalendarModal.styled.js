@@ -33,8 +33,8 @@ const StyledModal = styled(Modal)`
     left: ${(props) =>
     props.buttonCoordinates
       ? props.buttonCoordinates.left > 400
-        ? props.buttonCoordinates.left - 258
-        : props.buttonCoordinates.left
+        ? props.buttonCoordinates.left - 275
+        : props.buttonCoordinates.left + 17
       : 0}px;
     transform: translateX(0%);
   }
@@ -43,8 +43,8 @@ const StyledModal = styled(Modal)`
     left: ${(props) =>
     props.buttonCoordinates
       ? props.buttonCoordinates.left > 1000
-        ? props.buttonCoordinates.left - 258
-        : props.buttonCoordinates.left
+        ? props.buttonCoordinates.left - 275
+        : props.buttonCoordinates.left + 17
       : 0}px;
   }
 `;

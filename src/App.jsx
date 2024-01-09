@@ -7,6 +7,7 @@ import { UserRoutes } from "./UserRoutes/UserRoutes";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsRefreshing } from "./redux/auth/selectors";
 import { refreshUser } from "./redux/auth/auth";
+import { Loader } from "./components/Loader/Loader";
 // const SignInPage = lazy(() => import("./pages/SignInPage/SignInPage"));
 // const SignUpPage = lazy(() => import("./pages/SignUpPage/SignUpPage"));
 // const ForgotPasswordPage = lazy(() =>
@@ -35,7 +36,7 @@ function App() {
     dispatch(refreshUser());
   }, [dispatch]);
   return isRefreshing ? (
-    <p>Loading</p>
+    <Loader/>
   ) : (
     <>
       <UserRoutes />
