@@ -1,5 +1,12 @@
 import styled from "styled-components";
 import sprite from "../../images/sprite.svg";
+import Modal from "react-modal";
+
+export const ModalStyled = styled(Modal)`
+  &.overlay {
+    background: none;
+  }
+`;
 
 
 export const Container = styled.div`
@@ -14,19 +21,29 @@ export const Container = styled.div`
   border-radius: 10px;
 
 
+
 @media screen and (min-width: 768px) {
  
     padding: 32px 24px;
     width: 704px;
-    margin-top: 200px;
+   
+    
  
 }
-@media screen and (min-width: 1280px) {
+@media screen and (max-width: 768px) {
+  margin-top: 100px;
+}
+@media screen and (min-width: 1440px) {
  
     padding: 32px 24px;
-    width: 1008px;}`
+    width: 1008px;}
+    `
   
-
+export const UploadSvg = styled.svg`
+width: 16px;
+height: 16px;
+margin-right: 8px;
+`
 export const TitleContainer = styled.div`
  
   margin-bottom: 24px;
@@ -79,6 +96,9 @@ export const TitleH5 = styled.h5`
   font-weight: 500;
   line-height: 20px;
   margin-bottom: 12px;
+  @media screen and (min-width: 768px){
+    margin-top: 24px
+  }
 `;
 
 // ================== STYLE FORM SETTIHGMODAL================
@@ -87,7 +107,10 @@ export const ContainerGender = styled.div`
 `;
 
 export const BoxGender = styled.label`
-margin-bottom : 52px;`;
+margin-bottom : 58px;
+@media screen and (max-width: 768px){
+    margin-bottom : 24px;
+  }`
 
 export const ContainerBlockSeting = styled.div`
   @media screen and (min-width: 1440px) {
@@ -162,7 +185,7 @@ export const ButtonSubmit = styled.button`
   font-size: 16px;
   border: none;
   display: block;
-  margin: 0 auto;
+  
   width: 256px;
   height: 38px;
   padding: 8px 30px;
@@ -182,7 +205,8 @@ export const ButtonSubmit = styled.button`
   @media screen and (min-width: 1440px) {
     width: 160px;
     height: 44px;
-    margin-right: 24px;
+   
+    margin-left: 380px;
   }
 `;
 export const ErrorMessageStyled = styled.span`
@@ -195,10 +219,9 @@ export const Backdrop = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 100;
-  background-color: ${(props) => props.theme.colors.secondary.grey};
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
   overflow: auto;`
 
   export const CloseBtn = styled.button`
@@ -212,7 +235,7 @@ export const Backdrop = styled.div`
         padding: 0;
         position: absolute;
         top: 28px;
-        right: 12px;
+        right: 24px;
         cursor: pointer;`
 
 export const Title = styled.h3`
@@ -234,6 +257,7 @@ export const GenderInput = styled.input`
   appearance: none;
   outline: none;
   margin-right: 8px;
+  
 
   &::before {
     content: '';
@@ -245,7 +269,7 @@ export const GenderInput = styled.input`
     border-radius: 50%;
     transform: translate(-50%, -50%);
     background-color: ${(props) => props.theme.colors.primary.White};
-    border: 2px solid ${(props) => props.theme.colors.secondary.WhiteBlue};
+    border: 1px solid rgb(64, 123, 255);
   }
 
   &:checked::after {
@@ -256,7 +280,7 @@ export const GenderInput = styled.input`
     width: 7px;
     height: 7px;
     border-radius: 50%;
-    background-color: ${(props) => props.theme.colors.secondary.WhiteBlue};
+    background-color: rgb(64, 123, 255);
     transform: translate(-50%, -50%);
     visibility: visible;
   }
@@ -268,7 +292,8 @@ export const Label = styled.label`
   
  &:first-of-type {
     margin-right: 24px;
-  }`
+  }
+  `
 
   export const TitlePas = styled.h3 `
    margin-top : 0px;
@@ -296,3 +321,8 @@ export const IconBtn = styled.button`
     left: 345px;
   }`
 
+export const MainForm = styled.form`
+@media (min-width: 1440px) {
+    display: flex;
+    gap: 24px;
+}`

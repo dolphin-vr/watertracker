@@ -13,31 +13,31 @@ export const WhyDrinkWater = () => {
         <StyledUl>
           <StyledLi>
           <svg fill="white" width="8" height="8">
-            <use href={sprite + "#icon4"}></use>
+            <use href={sprite + "#dot"}></use>
           </svg>
             <StyledParagraph>Supply of nutrients to all organs</StyledParagraph>
           </StyledLi>
           <StyledLi>
           <svg fill="white" width="8" height="8">
-            <use href={sprite + "#icon4"}></use>
+            <use href={sprite + "#dot"}></use>
           </svg>
             <StyledParagraph>Providing oxygen to the lungs</StyledParagraph>
           </StyledLi>
           <StyledLi>
           <svg fill="white" width="8" height="8">
-            <use href={sprite + "#icon4"}></use>
+            <use href={sprite + "#dot"}></use>
           </svg>
             <StyledParagraph>Maintaining the work of the heart</StyledParagraph>
           </StyledLi>
           <StyledLi>
           <svg fill="white" width="8" height="8">
-            <use href={sprite + "#icon4"}></use>
+            <use href={sprite + "#dot"}></use>
           </svg>
             <StyledParagraph>Release of processed substances</StyledParagraph>
           </StyledLi>
           <StyledLi>
           <svg fill="white" width="8" height="8">
-            <use href={sprite + "#icon4"}></use>
+            <use href={sprite + "#dot"}></use>
           </svg>
             <StyledParagraph>
               Ensuring the stability of the internal environment
@@ -45,7 +45,7 @@ export const WhyDrinkWater = () => {
           </StyledLi>
           <StyledLi>
           <svg fill="white" width="8" height="8">
-            <use href={sprite + "#icon4"}></use>
+            <use href={sprite + "#dot"}></use>
           </svg>
             <StyledParagraph>
               Maintaining within the normal temperature
@@ -53,7 +53,7 @@ export const WhyDrinkWater = () => {
           </StyledLi>
           <StyledLi>
           <svg fill="white" width="8" height="8">
-            <use href={sprite + "#icon4"}></use>
+            <use href={sprite + "#dot"}></use>
           </svg>
             <StyledParagraph>
               Maintaining an immune system capable of resisting disease

@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import { useDispatch, useSelector } from "react-redux";
 import { updateWaterNorma } from "../../redux/user/userOperations";
-import { Container, Title, Backdrop, Formula, Gender, Description, Start, GenderFormula, TitleLabel, RadioBtn, GenderBtn, ErrorMessageStyled, GenderInput, GenderLabel, Forma, Labels, DataLabel, ModalInput, ResultCont, Littres, TextResult, WriteInput, Btn, CloseBtn } from "./CalcModal.styled";
+import { Container, Title, Backdrop, Formula, Gender, Description, Start, GenderFormula, TitleLabel, RadioBtn, GenderBtn, ErrorMessageStyled, GenderInput, GenderLabel, Forma, Labels, DataLabel, ModalInput, ResultCont, Littres, TextResult, WriteInput, Btn, CloseBtn, StyledModal} from "./CalcModal.styled";
 import sprite from "../../images/sprite.svg";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { selectUserInfo, selectUserNorma } from "../../redux/user/userSelectors";
+
 
 const CalcModal = ({ onClose }) => {
   const dispatch = useDispatch();
@@ -90,8 +91,8 @@ const CalcModal = ({ onClose }) => {
   }
 
   return (
-    <Modal isOpen={true} onRequestClose={handleClose} contentLabel="CalcModal">
-      <Backdrop>
+    <StyledModal isOpen={true} onRequestClose={handleClose} overlayClassName="overlay">
+      <Backdrop onClick={handleClose}/>
         <Container>
           <Title>My Daily Norma</Title>
           <CloseBtn type="button" onClick={handleClose}>
@@ -207,8 +208,8 @@ const CalcModal = ({ onClose }) => {
             <Btn type="submit">Save</Btn>
           </Forma>
         </Container>
-      </Backdrop>
-    </Modal>
+      
+    </StyledModal>
   );
 };
 
