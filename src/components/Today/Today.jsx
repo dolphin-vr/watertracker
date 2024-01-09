@@ -1,7 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import {
   addNewPortion,
-  getPortionsList,
   updatePortion,
 } from "../../redux/water/todayOperations.js";
 import {
