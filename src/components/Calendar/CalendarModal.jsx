@@ -21,7 +21,9 @@ const CalendarModal = ({
     return null;
   }
 
-  const { percentage, doses, date } = day;
+  const { percentage, doses, date, id } = day;
+
+  const ModalID = id.toString();
 
   const formattedDate =
     new Date(date).getDate() +
@@ -37,6 +39,7 @@ const CalendarModal = ({
       buttonCoordinates={buttonCoordinates}
       contentLabel="Modal window Calendar"
       overlayClassName="custom-overlay"
+      id={ModalID}
     >
       <CustomModalConteiner>
         <ModalHeader>

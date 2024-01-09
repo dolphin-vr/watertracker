@@ -5,16 +5,10 @@ import toast from "react-hot-toast";
 import { Toaster } from "react-hot-toast";
 import { instance } from "../../redux/auth/auth";
 import { currentDate, dateISO, daysTable } from "../../shared/api/dates";
-import {
-  CalendarContainer,
-  DaysContainer,
-  MonthHeader,
-  MonthLabel,
-  Pagination,
-  PaginationButton,
-} from "./Calendar.styled";
+import { CalendarContainer, DaysContainer } from "./Calendar.styled";
 import CalendarHeader from "./CalendarHeader";
 import { Day } from "../Day/Day";
+import { CalendarModal } from "./CalendarModal";
 
 export const CalendarD = () => {
   const [date, setDate] = useState(new Date());
@@ -45,10 +39,12 @@ export const CalendarD = () => {
 
   const handleDayClick = (day) => {
     console.log("clicked Day data= ", day, norma);
+
     if (day.percentage === 0) {
       toast.error("No Data for this Day");
       return;
     }
+
     const button = event.target.closest("button");
     const buttonRect = button.getBoundingClientRect();
     const topCoordinate = buttonRect.top;
@@ -57,15 +53,21 @@ export const CalendarD = () => {
       top: topCoordinate,
       left: leftCoordinate,
     };
-    // Клік по вже відкритому дню - закриття модального вікна
+
+    setSelectedDay(day);
+    setModalIsOpen(true);
+    setButtonCoordinates(buttonCoordinates);
+
     if (selectedDay === day && modalIsOpen) {
       setModalIsOpen(false);
-    } else {
-      // Клік по іншому дню або поза модальним вікном - відкриття нового вікна
-      setSelectedDay(day);
-      setModalIsOpen(true);
-      setButtonCoordinates(buttonCoordinates);
+      return;
     }
+
+    // if(selectedDay !==  )
+    // якщо клік по дню
+    // 		якщо isOpen && modal.id===button.id => закриваєм
+    // 		якщо isOpen && modal.id!==button.id => закиваємо стару і відкриваємо нову
+    // 		якщо isOpen===false відкриваємо для цього дня
   };
 
   const userInfo = useSelector(selectUserInfo);
