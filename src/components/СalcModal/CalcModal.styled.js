@@ -1,4 +1,15 @@
 import styled from "styled-components";
+import Modal from 'react-modal';
+
+export const StyledModal = styled(Modal)`
+  overlay {
+    background: none;
+  }
+
+  
+`;
+
+
 
 export const Container = styled.div`
                 max-width: 100%;
@@ -11,7 +22,9 @@ export const Container = styled.div`
                 background-color:  ${(props) => props.theme.colors.primary.White};
                 border-radius: 10px;
                 margin: 0 auto;
-                margin-top: 100px;
+                
+                overflow-y: auto; /* Додайте цю властивість для можливості прокрутки вниз */
+                
                 @media screen and (min-width: 768px) {
                     
                         padding: 32px 24px;
@@ -32,18 +45,17 @@ font-size: 26px;
 font-weight: 500;
 color:${(props) => props.theme.colors.primary.Black};
 line-height: calc(32 / 26);
+margin-top: 0px;
 
 `
 
 export const Backdrop = styled.div`
- position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 100;
-        background-color: ${(props) => props.theme.colors.secondary.grey};
-        overflow: auto;`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);`
 
 export const Formula =styled.span`
 
@@ -103,7 +115,8 @@ export const TitleLabel = styled.h3`
         margin-bottom: 16px;
         font-size: 18px;
         font-weight: 500;
-        line-height: 20px;`
+        line-height: 20px;
+        margin-top: 0;`
 
 
 export const RadioBtn = styled.div `
@@ -248,6 +261,8 @@ export const ResultCont = styled.div`
 
 export const TextResult = styled.p`
     max-width: 190px;
+    margin-top: 0px;
+    margin-bottom: 0px;
 
 @media screen and (min-width: 768px) {
    
@@ -259,6 +274,8 @@ export const Littres =styled.p`
          font-size: 18px;
         font-weight: 700;
         line-height: 24px;
+        margin-top: 0px;
+        margin-bottom: 0px;
 
 @media screen and (min-width: 768px) {
     
