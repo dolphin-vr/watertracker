@@ -46,4 +46,3 @@ export const UserLogoModal = ({isOpen, onClose}) => {
 
 export default UserLogoModal;
 
-
