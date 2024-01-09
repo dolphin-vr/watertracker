@@ -14,6 +14,7 @@ import {
   Backdrop,
   CloseBtn,
   Title,
+  ModalStyled,
   
 } from "./SettingModal.styled";
 import sprite from "../../images/sprite.svg";
@@ -37,15 +38,17 @@ const SettingModal = ({ onClose }) => {
     const formData = new FormData();
     formData.append("avatar", file);
     dispatch(updateUserAvatar(formData));
+    onClose();
   };
 
   const handleLinkClick = () => {
     fileInputRef.current.click();
   };
+  
 
   return (
-    <Modal isOpen={true} onRequestClose={onClose} contentLabel="SettingModal">
-    <Backdrop>
+    <ModalStyled isOpen={true} onRequestClose={onClose} contentLabel="SettingModal" overlayClassName="overlay">
+    <Backdrop onClick={onClose}/>
       <Container>
         <TitleContainer>
           <Title>Setting</Title>
@@ -74,8 +77,8 @@ const SettingModal = ({ onClose }) => {
         </ContainerAvatar>
         <SettingForm />
       </Container>
-      </Backdrop>
-    </Modal>
+     
+    </ModalStyled>
   );
 };
 
