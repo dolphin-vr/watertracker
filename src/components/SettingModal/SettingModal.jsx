@@ -14,6 +14,7 @@ import {
   Backdrop,
   CloseBtn,
   Title,
+  ModalStyled,
   
 } from "./SettingModal.styled";
 import sprite from "../../images/sprite.svg";
@@ -44,7 +45,7 @@ const SettingModal = ({ onClose }) => {
   };
 
   return (
-    <Modal isOpen={true} onRequestClose={onClose} contentLabel="SettingModal">
+    <ModalStyled isOpen={true} onRequestClose={onClose} contentLabel="SettingModal" overlayClassName="overlay">
     <Backdrop>
       <Container>
         <TitleContainer>
@@ -75,7 +76,7 @@ const SettingModal = ({ onClose }) => {
         <SettingForm />
       </Container>
       </Backdrop>
-    </Modal>
+    </ModalStyled>
   );
 };
 

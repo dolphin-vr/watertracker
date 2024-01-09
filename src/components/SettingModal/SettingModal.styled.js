@@ -1,5 +1,12 @@
 import styled from "styled-components";
 import sprite from "../../images/sprite.svg";
+import Modal from "react-modal";
+
+export const ModalStyled = styled(Modal)`
+  &.overlay {
+    background: none;
+  }
+`;
 
 
 export const Container = styled.div`
@@ -14,17 +21,19 @@ export const Container = styled.div`
   border-radius: 10px;
 
 
+
 @media screen and (min-width: 768px) {
  
     padding: 32px 24px;
     width: 704px;
-    margin-top: 200px;
+    
  
 }
 @media screen and (min-width: 1280px) {
  
     padding: 32px 24px;
-    width: 1008px;}`
+    width: 1008px;}
+    `
   
 
 export const TitleContainer = styled.div`
@@ -195,10 +204,9 @@ export const Backdrop = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 100;
-  background-color: ${(props) => props.theme.colors.secondary.grey};
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
   overflow: auto;`
 
   export const CloseBtn = styled.button`

@@ -1,4 +1,15 @@
 import styled from "styled-components";
+import Modal from 'react-modal';
+
+export const StyledModal = styled(Modal)`
+  overlay {
+    background: none;
+  }
+
+  
+`;
+
+
 
 export const Container = styled.div`
                 max-width: 100%;
@@ -11,7 +22,7 @@ export const Container = styled.div`
                 background-color:  ${(props) => props.theme.colors.primary.White};
                 border-radius: 10px;
                 margin: 0 auto;
-                margin-top: 100px;
+                
                 @media screen and (min-width: 768px) {
                     
                         padding: 32px 24px;
@@ -36,14 +47,12 @@ line-height: calc(32 / 26);
 `
 
 export const Backdrop = styled.div`
- position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 100;
-        background-color: ${(props) => props.theme.colors.secondary.grey};
-        overflow: auto;`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);`
 
 export const Formula =styled.span`
 
