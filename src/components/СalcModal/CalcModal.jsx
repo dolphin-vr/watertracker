@@ -92,7 +92,7 @@ const CalcModal = ({ onClose }) => {
 
   return (
     <StyledModal isOpen={true} onRequestClose={handleClose} overlayClassName="overlay">
-      <Backdrop>
+      <Backdrop onClick={handleClose}/>
         <Container>
           <Title>My Daily Norma</Title>
           <CloseBtn type="button" onClick={handleClose}>
@@ -208,7 +208,7 @@ const CalcModal = ({ onClose }) => {
             <Btn type="submit">Save</Btn>
           </Forma>
         </Container>
-      </Backdrop>
+      
     </StyledModal>
   );
 };

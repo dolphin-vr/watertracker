@@ -38,15 +38,17 @@ const SettingModal = ({ onClose }) => {
     const formData = new FormData();
     formData.append("avatar", file);
     dispatch(updateUserAvatar(formData));
+    onClose();
   };
 
   const handleLinkClick = () => {
     fileInputRef.current.click();
   };
+  
 
   return (
     <ModalStyled isOpen={true} onRequestClose={onClose} contentLabel="SettingModal" overlayClassName="overlay">
-    <Backdrop>
+    <Backdrop onClick={onClose}/>
       <Container>
         <TitleContainer>
           <Title>Setting</Title>
@@ -75,7 +77,7 @@ const SettingModal = ({ onClose }) => {
         </ContainerAvatar>
         <SettingForm />
       </Container>
-      </Backdrop>
+     
     </ModalStyled>
   );
 };

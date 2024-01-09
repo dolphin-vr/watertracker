@@ -5,7 +5,8 @@ import { updateUserInfo } from "../../redux/user/userOperations";
 import sprite from "../../images/sprite.svg";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { toast } from 'react-hot-toast';
+
+import toast from 'react-hot-toast';
 
 import {
   BoxGender,
@@ -22,23 +23,10 @@ import {
   TitlePas,
   IconBtn,
   ErrorMessageStyled ,
+  MainForm,
 } from "./SettingModal.styled";
 
-// const validationSchema = Yup.object().shape({
-  
-//   password: Yup.string()
-//     .min(8, "Password must be at least 8 characters")
-//     .max(64, "Password must be at most 64 characters")
-//     .required("Password is required"),
-//   newPassword: Yup.string()
-//     .min(8, "Password must be at least 8 characters")
-//     .max(64, "Password must be at most 64 characters")
-//     .required("Repeat Password is required")
-//     .oneOf([Yup.ref("password"), null], ""),
-//   repetNewPassword: Yup.string()
-//     .required("Repeat Password is required")
-//     .oneOf([Yup.ref("newPassword"), null], "Passwords must match"),
-// });
+
 const validationSchema = Yup.object().shape({
   password: Yup.string()
     .min(8, "Password must be at least 8 characters")
@@ -55,6 +43,7 @@ export default function SettingForm() {
   const { email, gender, username } = useSelector(selectUserInfo);
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
+  
 
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showRepetNewPassword, setShowRepetNewPassword] = useState(false);
@@ -70,17 +59,7 @@ export default function SettingForm() {
       repetNewPassword: ""
     },
     validationSchema: validationSchema,
-    // onSubmit: (values) => {
-    //   const formData = {
-    //     username: values.username,
-    //     gender: values.gender,
-    //     email: values.email,
-    //     password: values.password,
-    //     newPassword: values.newPassword,
-    //   };
-
-    //   dispatch(updateUserInfo(formData));
-    // },
+    
     onSubmit: (values) => {
       let formData = {
         username: values.username,
@@ -95,7 +74,7 @@ export default function SettingForm() {
         (values.password === "" && values.newPassword !== "")||
         values.newPassword !== values.repetNewPassword
       ) {
-        console.log("password error");
+        toast("To change the password, fill in all password fields correctly");
         return;
       }
       if (values.password === "") {
@@ -106,6 +85,7 @@ export default function SettingForm() {
         };
       }
       dispatch(updateUserInfo(formData));
+      
     },
   });
 
@@ -126,7 +106,7 @@ export default function SettingForm() {
  
   return (
     <ContainerBlockSeting>
-      <form onSubmit={formik.handleSubmit}>
+      <MainForm onSubmit={formik.handleSubmit}>
       <ContainerInfoUser>
         
         <TitleH5>Your gender identity</TitleH5>
@@ -276,13 +256,14 @@ export default function SettingForm() {
               <ErrorMessageStyled >{formik.errors.repetNewPassword }</ErrorMessageStyled>
             )}
           </LabelInput>
-          <div>
+          
             <ButtonSubmit type="submit" >Save</ButtonSubmit>
-          </div>
+            
+          
        
         
       </ContainerChangePass>
-    </form>
+    </MainForm>
     </ContainerBlockSeting>
   );
 }

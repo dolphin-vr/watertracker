@@ -23,6 +23,8 @@ export const Container = styled.div`
                 border-radius: 10px;
                 margin: 0 auto;
                 
+                overflow-y: auto; /* Додайте цю властивість для можливості прокрутки вниз */
+                
                 @media screen and (min-width: 768px) {
                     
                         padding: 32px 24px;
@@ -43,6 +45,7 @@ font-size: 26px;
 font-weight: 500;
 color:${(props) => props.theme.colors.primary.Black};
 line-height: calc(32 / 26);
+margin-top: 0px;
 
 `
 
@@ -112,7 +115,8 @@ export const TitleLabel = styled.h3`
         margin-bottom: 16px;
         font-size: 18px;
         font-weight: 500;
-        line-height: 20px;`
+        line-height: 20px;
+        margin-top: 0;`
 
 
 export const RadioBtn = styled.div `
@@ -257,6 +261,8 @@ export const ResultCont = styled.div`
 
 export const TextResult = styled.p`
     max-width: 190px;
+    margin-top: 0px;
+    margin-bottom: 0px;
 
 @media screen and (min-width: 768px) {
    
@@ -268,6 +274,8 @@ export const Littres =styled.p`
          font-size: 18px;
         font-weight: 700;
         line-height: 24px;
+        margin-top: 0px;
+        margin-bottom: 0px;
 
 @media screen and (min-width: 768px) {
     
