@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 // import { AddPortion } from "../../components/AddPortion/AddPortion";
 import { DailyNorma } from "../../components/DailyNorma/DailyNorma";
 import { Today } from "../../components/Today/Today";
@@ -21,9 +21,15 @@ import {
 import { WaterModal } from "../../components/WaterModal/WaterModal";
 import { CalendarD } from "../../components/Calendar/CalendarD";
 import sprite from "../../images/sprite.svg";
+import { selectUserNorma } from "../../redux/user/userSelectors";
+import CalcModal from "../../components/СalcModal/CalcModal";
+import toast from "react-hot-toast";
 
 const MainPage = () => {
   const [openAddWaterModal, setOpenAddWaterModal] = useState(false);
+  const [openCalcModal, setOpenCalcModal] = useState(false);
+
+  const dailyNorma = useSelector(selectUserNorma);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -32,7 +38,21 @@ const MainPage = () => {
   }, [dispatch]);
 
   function onOpenModalWindow() {
-    setOpenAddWaterModal(!openAddWaterModal);
+    if (dailyNorma === 0) {
+      setOpenCalcModal(true);
+      toast("Please enter your daily water norma first", {
+        duration: 4000,
+        position: "top-right",
+        style: {
+          backgroundColor: "yellow",
+        },
+      });
+    } else setOpenAddWaterModal(true);
+  }
+
+  function onCloseModalWindow() {
+    setOpenCalcModal(false);
+    setOpenAddWaterModal(false);
   }
 
   return (
@@ -54,11 +74,12 @@ const MainPage = () => {
         <Today />
         <CalendarD />
       </MainPagePortions>
+      {openCalcModal && <CalcModal onClose={onCloseModalWindow} />}
       {openAddWaterModal && (
         <WaterModal
           title="Add water"
           subtitle="Choose a value:"
-          onCloseModal={onOpenModalWindow}
+          onCloseModal={onCloseModalWindow}
           onAddWater={(data) => {
             dispatch(addNewPortion(data));
           }}
