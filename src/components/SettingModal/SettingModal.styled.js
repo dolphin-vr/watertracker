@@ -39,7 +39,11 @@ export const Container = styled.div`
     width: 1008px;}
     `
   
-
+export const UploadSvg = styled.svg`
+width: 16px;
+height: 16px;
+margin-right: 8px;
+`
 export const TitleContainer = styled.div`
  
   margin-bottom: 24px;
