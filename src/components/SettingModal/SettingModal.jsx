@@ -15,6 +15,7 @@ import {
   CloseBtn,
   Title,
   ModalStyled,
+  UploadSvg,
   
 } from "./SettingModal.styled";
 import sprite from "../../images/sprite.svg";
@@ -62,7 +63,7 @@ const SettingModal = ({ onClose }) => {
         <ContainerAvatar>
           <Avatar
             src={avatarURL}
-            alt="Img_Avatar"
+            alt=""
             width="80"
             height="80"
           ></Avatar>
@@ -72,6 +73,9 @@ const SettingModal = ({ onClose }) => {
             onChange={handleFileChange}
           />
           <LinkImgUpload onClick={handleLinkClick}>
+          <UploadSvg>
+                 <use href={sprite + "#upload"}></use>
+          </UploadSvg>
             Upload a photo
           </LinkImgUpload>
         </ContainerAvatar>
