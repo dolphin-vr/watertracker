@@ -74,7 +74,15 @@ export default function SettingForm() {
         (values.password === "" && values.newPassword !== "")||
         values.newPassword !== values.repetNewPassword
       ) {
-        toast("To change the password, fill in all password fields correctly");
+        toast("To change the password, fill in all password fields correctly", {
+          duration: 4000,
+          position: 'center',
+          style: {
+            backgroundColor: 'yellow', 
+            color: 'black',
+             },
+             
+        });
         return;
       }
       if (values.password === "") {
@@ -106,6 +114,7 @@ export default function SettingForm() {
  
   return (
     <ContainerBlockSeting>
+      
       <MainForm onSubmit={formik.handleSubmit}>
       <ContainerInfoUser>
         
