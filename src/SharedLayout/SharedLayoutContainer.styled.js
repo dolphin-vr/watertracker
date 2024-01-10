@@ -3,12 +3,14 @@ import styled from "styled-components";
 export const StyledContainer = styled.div`
   width: 320px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0;
+  background-color: white;
 
-  @media screen and (min-width: 767px) {
-    width: 744px;
+  @media screen and (min-width: 768px) {
+    width: 768px;
+    padding: 0;
   }
-  @media screen and (min-width: 1439px) {
+  @media screen and (min-width: 1440px) {
     width: 1440px;
   }
 `;

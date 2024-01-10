@@ -19,6 +19,7 @@ const MainPageContainer = styled.div`
     flex-direction: row;
     justify-content: center;
     gap: ${({ theme }) => theme.spacing(8)};
+    height: calc(100vh - 56px);
   }
 `;
 
