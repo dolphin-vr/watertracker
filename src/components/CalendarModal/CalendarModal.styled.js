@@ -12,11 +12,14 @@ const fadeIn = keyframes`
 `;
 
 const StyledModal = styled(Modal)`
+
   // Custom styles for the modal
   &.custom-overlay {
     background: none;
   }
-  animation: ${fadeIn} 1s ease;
+
+animation: ${props => props.isOpen ? fadeIn : 'none'} 0.5s ease-in-out forwards;
+
   position: fixed;
   top: ${(props) =>
     props.buttonCoordinates ? props.buttonCoordinates.top - 204 : 0}px;
@@ -25,6 +28,7 @@ const StyledModal = styled(Modal)`
   width: 280px;
   height: 188px;
   z-index: 1;
+
 
   @media (min-width: 768px) {
     width: 292px;
@@ -50,21 +54,21 @@ const StyledModal = styled(Modal)`
 `;
 
 const CustomModalConteiner = styled.div`
+
   //Custom styles here
-  background-color: #fff;
-  padding: 24px 13px;
+  padding: ${({ theme }) => theme.spacing(6)} ${({ theme }) => theme.spacing(3)};
   border-radius: 10px;
-  background: #fff;
+  background: ${({ theme }) => theme.colors.primary.White};
   box-shadow: 0px 4px 4px 0px rgba(64, 123, 255, 0.3);
 
   @media (min-width: 768px) {
-    padding: 24px 16px;
+    padding: ${({ theme }) => theme.spacing(6)} ${({ theme }) => theme.spacing(4)};
   }
 `;
 
 const ModalHeader = styled.div`
   align-items: center;
-  margin-bottom: 16px;
+  margin-bottom: ${({ theme }) => theme.spacing(4)};
 `;
 
 const ModalDate = styled.div`
@@ -72,12 +76,12 @@ const ModalDate = styled.div`
   font-style: normal;
   font-weight: 400;
   line-height: 1.25; /* 125% */
-  color: #407bff;
+color: ${({ theme }) => theme.colors.primary.Blue};
 `;
 const CloseButton = styled.button`
   position: absolute;
-  top: 26px;
-  right: 13px;
+  top: ${({ theme }) => theme.spacing(6)};
+  right: ${({ theme }) => theme.spacing(3)};
   cursor: pointer;
   background: none;
   border: none;
@@ -88,7 +92,7 @@ const ModalList = styled.ul`
   display: flex;
   flex-direction: column;
   & > li:not(:last-child) {
-    margin-bottom: 16px;
+    margin-bottom: ${({ theme }) => theme.spacing(4)};;
   }
 `;
 
@@ -105,8 +109,8 @@ const ModalAccent = styled.span`
   font-style: normal;
   font-weight: 500;
   line-height: 1.33; /* 133.333% */
-  color: #407bff;
-  margin-left: 6px;
+  color: ${({ theme }) => theme.colors.primary.Blue};
+  margin-left: ${({ theme }) => theme.spacing(1.5)};;
 `;
 
 export {

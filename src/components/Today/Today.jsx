@@ -1,7 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import {
   addNewPortion,
-  getPortionsList,
   updatePortion,
 } from "../../redux/water/todayOperations.js";
 import {
@@ -28,17 +27,21 @@ import sprite from "../../images/sprite.svg";
 import { useState } from "react";
 import { DeleteWaterModal } from "../DeleteWaterModal/DeleteWaterModal.jsx";
 import { WaterModal } from "../WaterModal/WaterModal.jsx";
+import { selectUserNorma } from "../../redux/user/userSelectors.js";
+import CalcModal from "../СalcModal/CalcModal.jsx";
 // import { useDispatch } from "react-redux";
+import toast from "react-hot-toast";
 
 export const Today = () => {
   const dispatch = useDispatch();
   const [openAddWaterModal, setOpenAddWaterModal] = useState(false);
   const [openDeleteWaterModal, setOpenDeleteWaterModal] = useState(false);
   const [openEditWaterModal, setOpenEditWaterModal] = useState(false);
+  const [openCalcModal, setOpenCalcModal] = useState(false);
 
   const [id, setId] = useState(null);
   const [data, setData] = useState(null);
-
+  const dailyNorma = useSelector(selectUserNorma);
   // const isLoading = useSelector(selectIsLoading);
   const dailyPortions = useSelector(selectDailyPortions);
 
@@ -62,7 +65,21 @@ export const Today = () => {
   }
 
   function onAddPortion() {
-    setOpenAddWaterModal(!openAddWaterModal);
+    if (dailyNorma === 0) {
+      setOpenCalcModal(true);
+      toast("Please enter your daily water norma first", {
+        duration: 4000,
+        position: "top-right",
+        style: {
+          backgroundColor: "yellow",
+        },
+      });
+    } else setOpenAddWaterModal(true);
+  }
+
+  function onCloseAddPortion() {
+    setOpenCalcModal(false);
+    setOpenAddWaterModal(false);
   }
 
   return (
@@ -108,11 +125,13 @@ export const Today = () => {
           </TodayList>
         </>
       )}
+
+      {openCalcModal && <CalcModal onClose={onCloseAddPortion} />}
       {openAddWaterModal && (
         <WaterModal
           title="Add water"
           subtitle="Choose a value:"
-          onCloseModal={onAddPortion}
+          onCloseModal={onCloseAddPortion}
           onAddWater={(data) => {
             dispatch(addNewPortion(data));
           }}

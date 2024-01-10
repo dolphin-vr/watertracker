@@ -1,8 +1,8 @@
-// import { Today } from "../../components/Today/Today";
 import { WaterСonsumptionTracker } from "../../components/WaterСonsumptionTracker/WaterСonsumptionTracker";
 import { WhyDrinkWater } from "../../components/WhyDrinkWater/WhyDrinkWater";
 import { Container, StyledMain, StyledSection } from "./WelcomePage.styled";
-const WelcomePage = () => {
+
+export const WelcomePage = () => {
   return (
     <StyledMain>
       <StyledSection>
@@ -14,4 +14,3 @@ const WelcomePage = () => {
     </StyledMain>
   );
 };
-export default WelcomePage;

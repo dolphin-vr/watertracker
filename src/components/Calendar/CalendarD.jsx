@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { selectUserInfo } from "../../redux/user/userSelectors";
-import toast from "react-hot-toast";
 import { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { instance } from "../../redux/auth/auth";
 import { currentDate, dateISO, daysTable } from "../../shared/api/dates";
-import { CalendarContainer, DaysContainer } from "./Calendar.styled";
-import CalendarHeader from "./CalendarHeader";
+import { CalendarContainer, DaysContainer } from "./CalendarD.styled";
+import CalendarHeader from "../CalendarHeader/CalendarHeader";
 import { Day } from "../Day/Day";
-import { CalendarModal } from "./CalendarModal";
+import { CalendarModal } from "../CalendarModal/CalendarModal";
 
 export const CalendarD = () => {
   const [date, setDate] = useState(new Date());
@@ -16,7 +16,7 @@ export const CalendarD = () => {
     isOpen: false,
     modalId: null,
   });
-  const [month, setMonth] = useState([]); // array for current month = from back + id=dat and isToday
+  const [month, setMonth] = useState([]);
   const [norma, setNorma] = useState(0);
   const [selectedDay, setSelectedDay] = useState(null);
   const [buttonCoordinates, setButtonCoordinates] = useState(null);
@@ -27,26 +27,21 @@ export const CalendarD = () => {
         setModalIsOpen({ isOpen: false, modalId: null });
       }
     };
-
     window.addEventListener("keydown", close);
-
     return () => window.removeEventListener("keydown", close);
   }, [modalIsOpen]);
 
   useEffect(() => {
-    const handleClickOnWindow = (event) => {
+    const handleClickOnWindow = () => {
       if (modalIsOpen.isOpen && modalIsOpen.modalId !== null) {
         setModalIsOpen({ isOpen: false, modalId: null });
       }
-      console.log("Click on window", event.target);
     };
-
     window.addEventListener("click", handleClickOnWindow);
-
     return () => {
       window.removeEventListener("click", handleClickOnWindow);
     };
-  }, []);
+  }, [modalIsOpen]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -67,9 +62,10 @@ export const CalendarD = () => {
 
   const calendar = daysTable(date, month, currentDate);
 
-  const handleDayClick = (day) => {
+  const handleDayClick = (event, day) => {
+    event.stopPropagation();
     if (day.percentage === 0) {
-      toast.error("No Data for this Day");
+      toast.error("You do not have data for this day!");
       return;
     }
 
@@ -145,11 +141,11 @@ export const CalendarD = () => {
 
   return (
     <CalendarContainer>
-      <Toaster />
+      <Toaster position="top-center" />
       <CalendarHeader date={date} handleMonthChange={handleMonthChange} />
       <DaysContainer className="ul_calendar">
         {calendar.map((day) => (
-          <Day key={day.id} day={day} onClick={() => handleDayClick(day)} />
+          <Day key={day.id} day={day} onClick={(event) => handleDayClick(event, day)} />
         ))}
       </DaysContainer>
       {/* Модальне вікно */}

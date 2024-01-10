@@ -17,7 +17,7 @@ const DailyNormaWrapper = styled.div`
 
   @media (min-width: 1439px) {
     height: 100%;
-    background-size: cover;
+    background-size: auto;
   }
 `;
 
