@@ -19,9 +19,7 @@ export const WaterСonsumptionTracker = () => {
       <StyledParagraph>Tracker Benefits</StyledParagraph>
       <StyledUl>
         <StyledLi>
-          <StyledSvg fill="white">
-            <use href={sprite + "#calendar"}></use>
-          </StyledSvg>
+          <StyledSvg fill="white"><use href={sprite + "#calendar"}></use></StyledSvg>
           <StyledListParagraph>Habit drive</StyledListParagraph>
         </StyledLi>
         <StyledLi>

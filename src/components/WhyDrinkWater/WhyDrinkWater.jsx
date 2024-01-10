@@ -11,18 +11,8 @@ export const WhyDrinkWater = () => {
       <StyledDiv>
         <StyledHeader>Why drink water</StyledHeader>
         <StyledUl>
-          <StyledLi>
-          <svg fill="white" width="8" height="8">
-            <use href={sprite + "#dot"}></use>
-          </svg>
-            <StyledParagraph>Supply of nutrients to all organs</StyledParagraph>
-          </StyledLi>
-          <StyledLi>
-          <svg fill="white" width="8" height="8">
-            <use href={sprite + "#dot"}></use>
-          </svg>
-            <StyledParagraph>Providing oxygen to the lungs</StyledParagraph>
-          </StyledLi>
+          <StyledLi><svg fill="white" width="8" height="8"><use href={sprite + "#dot"}></use></svg><StyledParagraph>Supply of nutrients to all organs</StyledParagraph></StyledLi>
+          <StyledLi><svg fill="white" width="8" height="8"><use href={sprite + "#dot"}></use></svg><StyledParagraph>Providing oxygen to the lungs</StyledParagraph></StyledLi>
           <StyledLi>
           <svg fill="white" width="8" height="8">
             <use href={sprite + "#dot"}></use>
