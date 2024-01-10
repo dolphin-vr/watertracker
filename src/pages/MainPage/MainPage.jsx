@@ -21,7 +21,7 @@ import { WaterModal } from "../../components/WaterModal/WaterModal";
 import { CalendarD } from "../../components/Calendar/CalendarD";
 import sprite from "../../images/sprite.svg";
 
-const MainPage = () => {
+export const MainPage = () => {
   const [openAddWaterModal, setOpenAddWaterModal] = useState(false);
 
   const dispatch = useDispatch();
@@ -69,4 +69,3 @@ const MainPage = () => {
     </MainPageContainer>
   );
 };
-export default MainPage;

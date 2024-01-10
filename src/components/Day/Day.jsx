@@ -20,7 +20,7 @@ export const Day = ({ day, onClick }) => {
 
   return (
     <DayTile istoday={newday.isToday.toString()}>
-      <DayButton onClick={() => onClick(newday)} id={newday.id}>
+      <DayButton onClick={(event) => onClick(event, newday)} id={newday.id}>
         <Circle percent={newday.percentage}>{newday.id}</Circle>
         <Label>{newday.percentage ? `${newday.percentage}  %` : ""}</Label>
       </DayButton>

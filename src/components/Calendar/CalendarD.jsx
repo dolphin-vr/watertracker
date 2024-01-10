@@ -27,9 +27,7 @@ export const CalendarD = () => {
         setModalIsOpen({ isOpen: false, modalId: null });
       }
     };
-
     window.addEventListener("keydown", close);
-
     return () => window.removeEventListener("keydown", close);
   }, [modalIsOpen]);
 
@@ -38,15 +36,14 @@ export const CalendarD = () => {
       if (modalIsOpen.isOpen && modalIsOpen.modalId !== null) {
         setModalIsOpen({ isOpen: false, modalId: null });
       }
-      console.log("Click on window", event.target);
+      console.log("Click on window target & current.tar", event.target);
+      console.log("Click on window current.tar", event.currentTarget);
     };
-
     window.addEventListener("click", handleClickOnWindow);
-
     return () => {
       window.removeEventListener("click", handleClickOnWindow);
     };
-  }, []);
+  }, [modalIsOpen]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -67,7 +64,10 @@ export const CalendarD = () => {
 
   const calendar = daysTable(date, month, currentDate);
 
-  const handleDayClick = (day) => {
+  const handleDayClick = (event, day) => {
+    event.stopPropagation();
+    console.log("Click on button target & current.tar", event.target);
+    console.log("Click on button current.tar", event.currentTarget);
     if (day.percentage === 0) {
       toast.error("No Data for this Day");
       return;
@@ -149,7 +149,7 @@ export const CalendarD = () => {
       <CalendarHeader date={date} handleMonthChange={handleMonthChange} />
       <DaysContainer className="ul_calendar">
         {calendar.map((day) => (
-          <Day key={day.id} day={day} onClick={() => handleDayClick(day)} />
+          <Day key={day.id} day={day} onClick={(event) => handleDayClick(event, day)} />
         ))}
       </DaysContainer>
       {/* Модальне вікно */}

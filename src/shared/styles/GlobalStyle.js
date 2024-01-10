@@ -65,7 +65,7 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-family: 'Roboto', sans-serif;
-
+    background-color: #d7e3ff44;
   }
   h1 {
     font-weight: 700;
