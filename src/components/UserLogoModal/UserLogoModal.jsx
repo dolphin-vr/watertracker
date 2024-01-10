@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   ContainerULM,
   ULMContainer,
@@ -20,6 +20,17 @@ export const UserLogoModal = ({isOpen, onClose}) => {
     setSelectedModal(null);
     onClose();
   };
+
+  useEffect(() => {
+    const handleKeyPress = (e) => {
+    if (e.keyCode === 27 && isOpen) {
+      closeModal();
+    }};
+    window.addEventListener('keydown', handleKeyPress);
+    return () => {
+      window.removeEventListener('keydown', handleKeyPress);
+    };
+  }, [isOpen]);
 
   return (
     <ContainerULM style={{ display: isOpen ? 'block' : 'none' }}>
@@ -45,5 +56,4 @@ export const UserLogoModal = ({isOpen, onClose}) => {
 };
 
 export default UserLogoModal;
-
 
