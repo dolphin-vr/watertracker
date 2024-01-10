@@ -25,7 +25,7 @@ import { selectUserNorma } from "../../redux/user/userSelectors";
 import CalcModal from "../../components/СalcModal/CalcModal";
 import toast from "react-hot-toast";
 
-const MainPage = () => {
+export const MainPage = () => {
   const [openAddWaterModal, setOpenAddWaterModal] = useState(false);
   const [openCalcModal, setOpenCalcModal] = useState(false);
 
@@ -91,4 +91,3 @@ const MainPage = () => {
     </MainPageContainer>
   );
 };
-export default MainPage;

@@ -6,8 +6,8 @@ import SignInPage from "../pages/SignInPage/SignInPage";
 import SignUpPage from "../pages/SignUpPage/SignUpPage";
 import PublicRoute from "./PublicRoute";
 import PrivateRoute from "./PrivateRoute";
-import WelcomePage from "../pages/HomePage/WelcomePage";
-import MainPage from "../pages/MainPage/MainPage";
+import { WelcomePage } from "../pages/HomePage/WelcomePage";
+import { MainPage } from "../pages/MainPage/MainPage";
 
 export const UserRoutes = () => {
   return (
