@@ -17,6 +17,7 @@ import {
   AuthBtn,
   AuthLink,
   Bottle,
+  StyledSection,
 } from "./AuthPages.styled";
 import sprite from "../../images/sprite.svg";
 
@@ -55,116 +56,118 @@ export const SignUpPage = () => {
 
   return (
     <AuthStyled>
-      <BackgroundStyled />
-      <Bottle />
-        <FormStyled onSubmit={formik.handleSubmit}>
-          <Title>Sign Up</Title>
-          <Label>Enter your email</Label>
-          <Input
-            type="email"
-            placeholder="E-mail"
-            name="email"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.email}
-            className={
-              formik.touched.email && formik.errors.email ? "input-error" : ""
-            }
-            required
-          />
-          {formik.touched.email && (
-            <ErrorMessageStyled>{formik.errors.email}</ErrorMessageStyled>
-          )}
-
-          <Label>Enter your password</Label>
-          <IconContainer>
+      <StyledSection>
+        <BackgroundStyled />
+        <Bottle />
+          <FormStyled onSubmit={formik.handleSubmit}>
+            <Title>Sign Up</Title>
+            <Label>Enter your email</Label>
             <Input
-              type={showPassword ? "text" : "password"}
-              placeholder="Password"
-              name="password"
-              onChange={(e) => {
-                formik.handleChange(e);
-              }}
+              type="email"
+              placeholder="E-mail"
+              name="email"
+              onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              value={formik.values.password}
+              value={formik.values.email}
               className={
-                formik.touched.password && formik.errors.password
-                  ? "input-error"
-                  : ""
+                formik.touched.email && formik.errors.email ? "input-error" : ""
               }
               required
             />
-            <IconBtn type="button"
-              onClick={() => {
-                setShowPassword(!showPassword);
-              }}
-            >
-              {showPassword ? (
-                <>
-                  <svg width="16" height="16" stroke="#407BFF">
-                    <use href={sprite + "#eye"}></use>
-                  </svg>
-                </>
-              ) : (
-                <>
-                  <svg width="16" height="16" stroke="#407BFF">
-                    <use href={sprite + "#closedeye"}></use>
-                  </svg>
-                </>
-              )}
-            </IconBtn>
-            {formik.touched.password && (
-              <ErrorMessageStyled>{formik.errors.password}</ErrorMessageStyled>
+            {formik.touched.email && (
+              <ErrorMessageStyled>{formik.errors.email}</ErrorMessageStyled>
             )}
-          </IconContainer>
-
-          <Label>Repeat your password</Label>
-          <IconContainer>
-            <Input
-              type={showPassword ? "text" : "password"}
-              placeholder="Repeat password"
-              name="repeatPassword"
-              onChange={(e) => {
-                formik.handleChange(e);
-              }}
-              onBlur={formik.handleBlur}
-              value={formik.values.repeatPassword}
-              className={
-                formik.touched.repeatPassword && formik.errors.repeatPassword
-                  ? "input-error"
-                  : ""
-              }
-              required
-            />
-            <IconBtn type="button"
-              onClick={() => {
-                setShowPassword(!showPassword);
-              }}
-            >
-              {showPassword ? (
-                <>
-                  <svg width="16" height="16" stroke="#407BFF">
-                    <use href={sprite + "#eye"}></use>
-                  </svg>
-                </>
-              ) : (
-                <>
-                  <svg width="16" height="16" stroke="#407BFF">
-                    <use href={sprite + "#closedeye"}></use>
-                  </svg>
-                </>
+  
+            <Label>Enter your password</Label>
+            <IconContainer>
+              <Input
+                type={showPassword ? "text" : "password"}
+                placeholder="Password"
+                name="password"
+                onChange={(e) => {
+                  formik.handleChange(e);
+                }}
+                onBlur={formik.handleBlur}
+                value={formik.values.password}
+                className={
+                  formik.touched.password && formik.errors.password
+                    ? "input-error"
+                    : ""
+                }
+                required
+              />
+              <IconBtn type="button"
+                onClick={() => {
+                  setShowPassword(!showPassword);
+                }}
+              >
+                {showPassword ? (
+                  <>
+                    <svg width="16" height="16" stroke="#407BFF">
+                      <use href={sprite + "#eye"}></use>
+                    </svg>
+                  </>
+                ) : (
+                  <>
+                    <svg width="16" height="16" stroke="#407BFF">
+                      <use href={sprite + "#closedeye"}></use>
+                    </svg>
+                  </>
+                )}
+              </IconBtn>
+              {formik.touched.password && (
+                <ErrorMessageStyled>{formik.errors.password}</ErrorMessageStyled>
               )}
-            </IconBtn>
-            {formik.touched.repeatPassword && (
-              <ErrorMessageStyled>
-                {formik.errors.repeatPassword}
-              </ErrorMessageStyled>
-            )}
-          </IconContainer>
-          <AuthBtn type="submit">Sign Up</AuthBtn>
-          <AuthLink to="/signin">Sign In</AuthLink>
-        </FormStyled>
-      <Outlet />
+            </IconContainer>
+  
+            <Label>Repeat your password</Label>
+            <IconContainer>
+              <Input
+                type={showPassword ? "text" : "password"}
+                placeholder="Repeat password"
+                name="repeatPassword"
+                onChange={(e) => {
+                  formik.handleChange(e);
+                }}
+                onBlur={formik.handleBlur}
+                value={formik.values.repeatPassword}
+                className={
+                  formik.touched.repeatPassword && formik.errors.repeatPassword
+                    ? "input-error"
+                    : ""
+                }
+                required
+              />
+              <IconBtn type="button"
+                onClick={() => {
+                  setShowPassword(!showPassword);
+                }}
+              >
+                {showPassword ? (
+                  <>
+                    <svg width="16" height="16" stroke="#407BFF">
+                      <use href={sprite + "#eye"}></use>
+                    </svg>
+                  </>
+                ) : (
+                  <>
+                    <svg width="16" height="16" stroke="#407BFF">
+                      <use href={sprite + "#closedeye"}></use>
+                    </svg>
+                  </>
+                )}
+              </IconBtn>
+              {formik.touched.repeatPassword && (
+                <ErrorMessageStyled>
+                  {formik.errors.repeatPassword}
+                </ErrorMessageStyled>
+              )}
+            </IconContainer>
+            <AuthBtn type="submit">Sign Up</AuthBtn>
+            <AuthLink to="/signin">Sign In</AuthLink>
+          </FormStyled>
+        <Outlet />
+      </StyledSection>
     </AuthStyled>
   );
 };
