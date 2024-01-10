@@ -1,48 +1,91 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import sprite from "../../images/sprite.svg";
 
-export const AuthStyled = styled.div`
+export const AuthStyled = styled.main`
    @media (min-width: 320px) {
-      padding: ${({ theme }) => theme.spacing(6)} ${({ theme }) => theme.spacing(5)}; 
+      /* padding: ${({ theme }) => theme.spacing(6)} ${({ theme }) => theme.spacing(5)};  */
+   }
+   @media screen and (min-width: 320px) and (min-height: 681px) {
+      height: calc(100vh - 80px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
    }
    @media (min-width: 768px) {
-      padding: ${({ theme }) => theme.spacing(10)} ${({ theme }) => theme.spacing(8)};
+      /* padding: ${({ theme }) => theme.spacing(10)} ${({ theme }) => theme.spacing(8)} 0; */
+   }
+   @media screen and (min-width: 768px) and (min-height: 681px) {
+      height: calc(100vh - 88px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
    }
    @media (min-width: 1440px) {
-      padding: ${({ theme }) => theme.spacing(35)} 0 ${({ theme }) => theme.spacing(10)} 0;
+      /* padding: ${({ theme }) => theme.spacing(35)} 0 ${({ theme }) => theme.spacing(10)} 0; */
+   }
+   @media screen and (min-width: 1440px) and (min-height: 801px) {
+      height: calc(100vh - 60px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 0;
    }
 `;
+export const StyledSection = styled.section`
+background-image: url(${sprite}#sign-bg-m);
+   background-size: cover;
+   background-position: 0 0;
+   background-repeat: no-repeat;
+   height: 600px;
+
+   @media screen and (min-width: 768px) {
+      background-image: url(${sprite}#sign-bg-t);
+      background-size: auto;
+      height: 590px;
+      padding-left: 32px;
+   }
+   @media screen and (min-width: 1440px) {
+      background-image: url(${sprite}#sign-bg-d);
+      background-size: contain;
+      background-position: 0 0;
+      width: 100%;
+      margin: 0 auto;
+      height: 748px;
+      padding-top: 140px;
+   }
+`
 
 export const BackgroundStyled = styled.div`
-   position: fixed;
+   /* position: fixed;
    top: 56px;
    left: 0;
 
    width: 100%;
-   height: 100vh;
+   height: 100vh; */
 
-   background-image: url("../../../src/images/auth/BackgroundElementAuth-min.png");
+   /* background-image: url("../../../src/images/auth/BackgroundElementAuth-min.png");
    background-repeat: no-repeat;
    background-size: auto;
    z-index: -2;
    @media (min-width: 320px) {
       background-size: cover;
-   }
-   @media (min-width: 768px) {
+   } */
+   /* @media (min-width: 768px) {
       background-image: url("../../../src/images/auth/BackgroundBubblesAuthTablet-min.png");
       top: 90px;
-      height: 100%;
+      height: 100%; */
       /* left: -20px; */
-   }
-   @media (min-width: 1440px) {
+   /* } */
+   /* @media (min-width: 1440px) {
       background-image: url("../../../src/images/auth/BackgroundBubblesAuthDesktop-min.png");
       background-size: contain;
       top: 70px;
-   }
+   } */
 `;
 
 export const Bottle = styled.div`
-   background-image: url("../../../src/images/auth/BottleAuth-min.png");
+   /* background-image: url("../../../src/images/auth/BottleAuth-min.png");
    background-size: bottom contain;
    background-repeat: no-repeat;
    z-index: -1;
@@ -71,7 +114,7 @@ export const Bottle = styled.div`
       top: calc(100% - 720px);
       height: 680px;
       width: 916px;
-   }
+   } */
 `;
 
 export const Title = styled.h1`

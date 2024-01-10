@@ -11,20 +11,28 @@ export const StyledDiv = styled.div`
 `;
 export const StyledHeader = styled.h2`
   font-family: Roboto;
-  font-size: 36px;
+  font-size: 28px;
   font-weight: 700;
-  line-height: 1.16;
+  line-height: 1.14;
   letter-spacing: 0em;
   margin: 0 0 16px;
   color: ${(props) => props.theme.colors.primary.Black};
+  @media screen and (min-width: 768px) {
+    font-size: 36px;
+    line-height: 1.16;
+  }
 `;
 export const StyledPreHeader = styled.p`
   font-family: Roboto;
-  font-size: 26px;
-  line-height: 1.23;
+  font-size: 24px;
+  line-height: 1.25;
   letter-spacing: 0em;
   margin: 0 0 24px;
   color: ${(props) => props.theme.colors.primary.Black};
+  @media screen and (min-width: 768px) {
+    font-size: 26px;
+    line-height: 1.23;
+  }
 `;
 export const StyledParagraph = styled.p`
   font-family: Roboto;
