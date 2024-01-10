@@ -39,7 +39,7 @@ const validationSchema = Yup.object().shape({
     .max(64, "Password must be at most 64 characters"),
 });
 
-export default function SettingForm() {
+export default function SettingForm({close}) {
   const { email, gender, username } = useSelector(selectUserInfo);
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
@@ -60,7 +60,7 @@ export default function SettingForm() {
     },
     validationSchema: validationSchema,
     
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       let formData = {
         username: values.username,
         gender: values.gender,
@@ -92,8 +92,13 @@ export default function SettingForm() {
           email: values.email,
         };
       }
-      dispatch(updateUserInfo(formData));
-      
+      try {
+        await dispatch(updateUserInfo(formData));
+        // Закриваємо модальне вікно після успішного діспетчу
+        close();
+      } catch (error) {
+        // Обробка помилки диспетчу, якщо потрібно
+      }
     },
   });
 
