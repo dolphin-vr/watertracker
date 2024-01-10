@@ -33,7 +33,7 @@ export const UserLogoModal = ({isOpen, onClose}) => {
   }, [isOpen]);
 
   return (
-    <ContainerULM style={{ display: isOpen ? 'block' : 'none' }} className="ContainerULM">
+    <ContainerULM style={{ display: isOpen ? 'block' : 'none' }}>
       <ULMContainer>
         <UserLogoModalBtn type="button" onClick={() => openModal('setting')}>
           <svg width="16" height="16" stroke="#407BFF">
