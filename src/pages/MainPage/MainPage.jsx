@@ -11,6 +11,8 @@ import {
   AddPortionButton,
   Backgound,
   StyledSvgPlus,
+  StyledSection,
+  StyledDiv,
 } from "./MainPage.styled";
 import { useEffect, useState } from "react";
 import { getUserInfo } from "../../redux/user/userOperations";
@@ -57,37 +59,41 @@ export const MainPage = () => {
 
   return (
     <MainPageContainer>
-      <Backgound />
-      <MainPageStatistic>
-        <DailyNorma />
-        <WaterProgressWrap>
-          <WaterProgresBar />
-          <AddPortionButton type="button" onClick={() => onOpenModalWindow()}>
-            <StyledSvgPlus>
-              <use href={sprite + "#pluscircle"}>Add water</use>
-            </StyledSvgPlus>
-            Add water
-          </AddPortionButton>
-        </WaterProgressWrap>
-      </MainPageStatistic>
-      <MainPagePortions>
-        <Today />
-        <CalendarD />
-      </MainPagePortions>
-      {openCalcModal && <CalcModal onClose={onCloseModalWindow} />}
-      {openAddWaterModal && (
-        <WaterModal
-          title="Add water"
-          subtitle="Choose a value:"
-          onCloseModal={onCloseModalWindow}
-          onAddWater={(data) => {
-            dispatch(addNewPortion(data));
-          }}
-          initialWater={0}
-          initialDate={new Date()}
-          isEditing={false}
-        />
-      )}
+      <StyledSection>
+       <StyledDiv>
+          <Backgound />
+          <MainPageStatistic className="_mainstat"> 
+            <DailyNorma className="_dailynorma"/>
+            <WaterProgressWrap className="_progress">
+              <WaterProgresBar />
+              <AddPortionButton type="button" onClick={() => onOpenModalWindow()}>
+                <StyledSvgPlus>
+                  <use href={sprite + "#pluscircle"}>Add water</use>
+                </StyledSvgPlus>
+                Add water
+              </AddPortionButton>
+            </WaterProgressWrap>
+          </MainPageStatistic>
+          <MainPagePortions>
+            <Today />
+            <CalendarD />
+          </MainPagePortions>
+          {openCalcModal && <CalcModal onClose={onCloseModalWindow} />}
+          {openAddWaterModal && (
+            <WaterModal
+              title="Add water"
+              subtitle="Choose a value:"
+              onCloseModal={onCloseModalWindow}
+              onAddWater={(data) => {
+                dispatch(addNewPortion(data));
+              }}
+              initialWater={0}
+              initialDate={new Date()}
+              isEditing={false}
+            />
+          )}
+       </StyledDiv>
+      </StyledSection>
     </MainPageContainer>
   );
 };

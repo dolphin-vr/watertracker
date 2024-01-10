@@ -1,30 +1,87 @@
 import styled from "styled-components";
 import background from "../../images/mainPage/background-home-screen.png";
 // import backgroundMobile from "../../images/mainPage/background-home-screen-mobile.png";
+import sprite from "../../images/sprite.svg"
 
-const MainPageContainer = styled.div`
+const MainPageContainer = styled.main`
   display: flex;
   flex-direction: column;
-  padding: ${({ theme }) => theme.spacing(6)} 0
-    ${({ theme }) => theme.spacing(10)} 0;
   background: transperent;
 
-  @media (min-width: 767px) {
+  @media screen and (min-width: 320px) and (min-height: 1310px) {
+      height: calc(100vh - 80px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+   }
+
+  @media screen and (min-width: 768px) {
     max-width: 768px;
     margin: 0 auto;
   }
+  
+  @media screen and (min-width: 768px) and (min-height: 1281px) {
+      height: calc(100vh - 88px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+   }
 
-  @media (min-width: 1439px) {
+  @media screen and (min-width: 1440px) {
     max-width: 1440px;
     flex-direction: row;
     justify-content: center;
     gap: ${({ theme }) => theme.spacing(8)};
-    height: calc(100vh - 56px);
   }
+
+  @media screen and (min-width: 1440px) and (min-height: 801px) {
+      height: calc(100vh - 60px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+   }
 `;
 
+const StyledSection = styled.section`
+background-image: url(${sprite}#main-bg-m);
+   background-size: cover;
+   background-position: 0 48px;
+   background-repeat: no-repeat;
+   height: 1310px;
+
+   @media screen and (min-width: 768px) {
+      background-image: url(${sprite}#main-bg-t);
+      background-size: auto;
+      background-position: 0 0;
+      height: 1274px;
+      width: 100%;
+   }
+   @media screen and (min-width: 1440px) {
+      background-image: url(${sprite}#main-bg-d);
+      background-size: contain;
+      background-position: 0 38px;
+      margin: 0 auto;
+      height: 680px;
+   }
+`
+const StyledDiv = styled.div`
+display: flex;
+  flex-direction: column;
+  padding: 24px 20px 48px;
+  @media screen and (min-width: 768px){
+    padding: 40px 32px 48px;
+  }
+  
+@media screen and (min-width: 1440px){
+display: flex;
+gap: 32px;
+justify-content: center;  
+flex-direction: row;
+}
+`
+
 const Backgound = styled.div`
-  background-image: url(${background});
+  /* background-image: url(${sprite}#main-bg-d); */
   background-repeat: no-repeat;
   background-position: center center;
   position: fixed;
@@ -40,13 +97,21 @@ const DailyNormaWrapper = styled.div``;
 
 const MainPageStatistic = styled.div`
   padding: 0 0 ${({ theme }) => theme.spacing(10)};
-
-  @media screen and (min-width: 1439px) {
+  
+  @media screen and (min-width: 768px) {
+   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 508px; 
+  }
+  
+  @media screen and (min-width: 1440px) {
     display: flex;
     gap: ${({ theme }) => theme.spacing(8)};
     flex-direction: column;
     justify-content: space-between;
     padding: 0px;
+    height: 626px;
   }
 `;
 
@@ -71,8 +136,7 @@ const MainPagePortions = styled.div`
   box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.3);
 
   @media (min-width: 767px) {
-    padding: ${({ theme }) => theme.spacing(8)}
-      ${({ theme }) => theme.spacing(6)};
+    padding: ${({ theme }) => theme.spacing(8)}${({ theme }) => theme.spacing(6)};
   }
 `;
 
@@ -121,4 +185,6 @@ export {
   AddPortionButton,
   Backgound,
   StyledSvgPlus,
+  StyledSection,
+  StyledDiv
 };

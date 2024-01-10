@@ -1,15 +1,16 @@
 import styled from "styled-components";
 import bottleImgMobile from "../../images/bottle-mainPage-mobile.png";
 import bottleImgDesktop from "../../images/bottle-mainPage-desktop.png";
+import sprite from "../../images/sprite.svg"
 
 const DailyNormaWrapper = styled.div`
   height: 290px;
-  background: url(${bottleImgMobile});
+  /* background: url(${bottleImgMobile}); */
   background-repeat: no-repeat;
   background-position: center bottom;
 
   @media (min-width: 767px) {
-    background: url(${bottleImgDesktop});
+    /* background: url(${bottleImgDesktop}); */
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
