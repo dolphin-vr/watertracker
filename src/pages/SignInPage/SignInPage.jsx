@@ -98,30 +98,17 @@ export const SignInPage = () => {
               }
               required
             />
-            <IconBtn
-              type="button"
-              onClick={() => {
-                setShowPassword(!showPassword);
-              }}
-            >
+            <IconBtn type="button" onClick={() => { setShowPassword(!showPassword); }} >
               {showPassword ? (
-                <>
-                  <svg width="16" height="16" stroke="#407BFF">
-                    <use href={sprite + "#eye"}></use>
-                  </svg>
-                </>
+                <><svg width="16" height="16" stroke="#407BFF"><use href={sprite + "#eye"}></use></svg></>
               ) : (
-                <>
-                  <svg width="16" height="16" stroke="#407BFF">
-                    <use href={sprite + "#closedeye"}></use>
-                  </svg>
-                </>
+                <><svg width="16" height="16" stroke="#407BFF"><use href={sprite + "#closedeye"}></use></svg></>
               )}
-//            </IconContainer>
+{/* //            </IconContainer>
 //            <AuthBtn type="submit">Sign In</AuthBtn>
 //            <AuthLink to="/signup">Sign Up</AuthLink>
 //          </FormStyled>
-//     </StyledSection>
+//     </StyledSection> */}
             </IconBtn>
             {formik.touched.password && (
               <ErrorMessageStyled>{formik.errors.password}</ErrorMessageStyled>
@@ -131,7 +118,7 @@ export const SignInPage = () => {
           <AuthLink to="/signup">Sign Up</AuthLink>
         </FormStyled>
       </StyledSection>
-  //    <Outlet />
+  {/* //    <Outlet /> */}
     </AuthStyled>
   );
 };
