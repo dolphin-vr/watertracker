@@ -15,7 +15,6 @@ export const Container = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -25%);
-
   background-color: ${(props) => props.theme.colors.primary.White};
   border-radius: 10px;
 
