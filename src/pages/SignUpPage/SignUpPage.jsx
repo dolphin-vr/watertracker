@@ -19,7 +19,8 @@ import {
   Bottle,
 } from "./AuthPages.styled";
 import sprite from "../../images/sprite.svg";
-import { selectIsLoggedIn } from "../../redux/auth/selectors";
+import { selectIsLoading, selectIsLoggedIn } from "../../redux/auth/selectors";
+import { Loader } from "../../components/Loader/Loader";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -40,6 +41,7 @@ export const SignUpPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const isLoading = useSelector(selectIsLoading);
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -56,7 +58,9 @@ export const SignUpPage = () => {
     },
   });
 
-  return (
+  return isLoading ? (
+    <Loader />
+  ) : (
     <AuthStyled>
       <BackgroundStyled />
       <Bottle />
