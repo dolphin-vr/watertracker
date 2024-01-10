@@ -78,8 +78,8 @@ export default function SettingForm({close}) {
           duration: 4000,
           position: 'center',
           style: {
-            backgroundColor: 'yellow', 
-            color: 'black',
+            border: "2px solid #407BFF",
+            background: "#ECF2FF",
              },
              
         });
