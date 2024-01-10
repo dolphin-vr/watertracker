@@ -23,13 +23,11 @@ import {
 } from "./Today.styled.js";
 import { selectDailyPortions } from "../../redux/water/todaySelectors.js";
 import sprite from "../../images/sprite.svg";
-// import { AddWaterModal } from "../AddWaterModal/AddWaterModal.jsx";
 import { useState } from "react";
 import { DeleteWaterModal } from "../DeleteWaterModal/DeleteWaterModal.jsx";
 import { WaterModal } from "../WaterModal/WaterModal.jsx";
 import { selectUserNorma } from "../../redux/user/userSelectors.js";
 import CalcModal from "../СalcModal/CalcModal.jsx";
-// import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
 
 export const Today = () => {
@@ -42,7 +40,6 @@ export const Today = () => {
   const [id, setId] = useState(null);
   const [data, setData] = useState(null);
   const dailyNorma = useSelector(selectUserNorma);
-  // const isLoading = useSelector(selectIsLoading);
   const dailyPortions = useSelector(selectDailyPortions);
 
   function onChangePortion(water, id, time) {

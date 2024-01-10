@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import background from "../../images/mainPage/background-home-screen.png";
-// import backgroundMobile from "../../images/mainPage/background-home-screen-mobile.png";
 import sprite from "../../images/sprite.svg"
 
 const MainPageContainer = styled.main`

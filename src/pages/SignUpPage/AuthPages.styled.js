@@ -58,64 +58,9 @@ background-image: url(${sprite}#sign-bg-m);
 `
 
 export const BackgroundStyled = styled.div`
-   /* position: fixed;
-   top: 56px;
-   left: 0;
-
-   width: 100%;
-   height: 100vh; */
-
-   /* background-image: url("../../../src/images/auth/BackgroundElementAuth-min.png");
-   background-repeat: no-repeat;
-   background-size: auto;
-   z-index: -2;
-   @media (min-width: 320px) {
-      background-size: cover;
-   } */
-   /* @media (min-width: 768px) {
-      background-image: url("../../../src/images/auth/BackgroundBubblesAuthTablet-min.png");
-      top: 90px;
-      height: 100%; */
-      /* left: -20px; */
-   /* } */
-   /* @media (min-width: 1440px) {
-      background-image: url("../../../src/images/auth/BackgroundBubblesAuthDesktop-min.png");
-      background-size: contain;
-      top: 70px;
-   } */
 `;
 
 export const Bottle = styled.div`
-   /* background-image: url("../../../src/images/auth/BottleAuth-min.png");
-   background-size: bottom contain;
-   background-repeat: no-repeat;
-   z-index: -1;
-   position: fixed;
-   top: calc(100% - 225px);
-   left: 50%;
-   transform: translateX(-50%);
-   width: 280px;
-   height: 210px;
-   @media (min-width: 768px) {
-      background-image: url("../../../src/images/auth/BottleAuthTablet-min.png");
-      background-size: center contain;
-      background-repeat: no-repeat;
-      top: calc(100% - 564px);
-      left: 302px;
-      right: auto;
-      height: 548px;
-      width: 736px;
-      transform: translateX(0);
-   }
-   @media (min-width: 1440px) {
-      background-image: url("../../../src/images/auth/BottleAuthDesktop-min.png");
-      background-size: center contain;
-      background-repeat: no-repeat;
-      left: -50px;
-      top: calc(100% - 720px);
-      height: 680px;
-      width: 916px;
-   } */
 `;
 
 export const Title = styled.h1`
