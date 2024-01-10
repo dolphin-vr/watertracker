@@ -116,7 +116,6 @@ export const SignInPage = () => {
           <AuthBtn type="submit">Sign In</AuthBtn>
           <AuthLink to="/signup">Sign Up</AuthLink>
         </FormStyled>
-      <Outlet />
     </AuthStyled>
   );
 };
