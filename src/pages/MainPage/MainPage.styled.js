@@ -69,7 +69,10 @@ display: flex;
   flex-direction: column;
   padding: 24px 20px 48px;
   @media screen and (min-width: 768px){
-    padding: 40px 32px 48px;
+    padding: 40px 32px 44px;
+  }
+  @media screen and (min-width: 1440px){
+    padding: 20px 0 40px;
   }
   
 @media screen and (min-width: 1440px){
