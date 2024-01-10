@@ -35,13 +35,14 @@ export const AuthStyled = styled.main`
 export const StyledSection = styled.section`
 background-image: url(${sprite}#sign-bg-m);
    background-size: cover;
-   background-position: 0 0;
+   background-position: 0 48px;
    background-repeat: no-repeat;
    height: 600px;
 
    @media screen and (min-width: 768px) {
       background-image: url(${sprite}#sign-bg-t);
       background-size: auto;
+      background-position: 0 0;
       height: 590px;
       padding-left: 32px;
    }

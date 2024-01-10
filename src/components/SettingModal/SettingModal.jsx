@@ -79,7 +79,7 @@ const SettingModal = ({ onClose }) => {
             Upload a photo
           </LinkImgUpload>
         </ContainerAvatar>
-        <SettingForm />
+        <SettingForm close={ onClose }/>
       </Container>
      
     </ModalStyled>

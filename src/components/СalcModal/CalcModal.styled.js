@@ -23,7 +23,7 @@ export const Container = styled.div`
                 border-radius: 10px;
                 margin: 0 auto;
                 
-                overflow-y: auto; /* Додайте цю властивість для можливості прокрутки вниз */
+               
                 
                 @media screen and (min-width: 768px) {
                     
