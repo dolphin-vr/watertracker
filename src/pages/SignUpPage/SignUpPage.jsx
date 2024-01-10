@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { registerUser } from "../../redux/auth/auth";
-import { Outlet, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   AuthStyled,
   BackgroundStyled,
@@ -287,7 +287,7 @@ export const SignUpPage = () => {
           <AuthBtn type="submit">Sign Up</AuthBtn>
           <AuthLink to="/signin">Sign In</AuthLink>
         </FormStyled>
-        <Outlet />
+//        <Outlet />
       </StyledSection>
     </AuthStyled>
   );

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { loginUser } from "../../redux/auth/auth";
-import { Outlet, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import {
   AuthStyled,
   BackgroundStyled,
@@ -117,6 +117,11 @@ export const SignInPage = () => {
                   </svg>
                 </>
               )}
+//            </IconContainer>
+//            <AuthBtn type="submit">Sign In</AuthBtn>
+//            <AuthLink to="/signup">Sign Up</AuthLink>
+//          </FormStyled>
+//     </StyledSection>
             </IconBtn>
             {formik.touched.password && (
               <ErrorMessageStyled>{formik.errors.password}</ErrorMessageStyled>
@@ -126,7 +131,7 @@ export const SignInPage = () => {
           <AuthLink to="/signup">Sign Up</AuthLink>
         </FormStyled>
       </StyledSection>
-      <Outlet />
+  //    <Outlet />
     </AuthStyled>
   );
 };
