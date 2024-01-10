@@ -102,6 +102,7 @@ export const CalendarD = () => {
   };
 
   const userInfo = useSelector(selectUserInfo);
+
   const handleMonthChange = async (direction) => {
     try {
       const userRegistrationMonthYear = new Date(
@@ -117,9 +118,16 @@ export const CalendarD = () => {
           year: "numeric",
         });
 
+        const [prevMonthNum, prevYearNum] = prevMonthMonthYear
+          .split("/")
+          .map(Number);
+        const [userMonthNum, userYearNum] = userRegistrationMonthYear
+          .split("/")
+          .map(Number);
+
         if (
-          prevMonthMonthYear >= userRegistrationMonthYear &&
-          prevMonth <= new Date()
+          prevYearNum > userYearNum ||
+          (prevYearNum === userYearNum && prevMonthNum >= userMonthNum)
         ) {
           setDate(prevMonth);
         } else {
@@ -145,7 +153,11 @@ export const CalendarD = () => {
       <CalendarHeader date={date} handleMonthChange={handleMonthChange} />
       <DaysContainer className="ul_calendar">
         {calendar.map((day) => (
-          <Day key={day.id} day={day} onClick={(event) => handleDayClick(event, day)} />
+          <Day
+            key={day.id}
+            day={day}
+            onClick={(event) => handleDayClick(event, day)}
+          />
         ))}
       </DaysContainer>
       {/* Модальне вікно */}
