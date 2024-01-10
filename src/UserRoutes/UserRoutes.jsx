@@ -2,12 +2,13 @@
 import { Navigate, Routes } from "react-router-dom";
 import { Route } from "react-router-dom";
 import { SharedLayout } from "../SharedLayout/SharedLayout";
-import SignInPage from "../pages/SignInPage/SignInPage";
-import SignUpPage from "../pages/SignUpPage/SignUpPage";
+import {SignInPage} from "../pages/SignInPage/SignInPage";
+import {SignUpPage} from "../pages/SignUpPage/SignUpPage";
 import PublicRoute from "./PublicRoute";
 import PrivateRoute from "./PrivateRoute";
 import { WelcomePage } from "../pages/HomePage/WelcomePage";
 import { MainPage } from "../pages/MainPage/MainPage";
+import { PassResetPage } from "../pages/PassResetPage/PassResetPage";
 
 export const UserRoutes = () => {
   return (
@@ -17,6 +18,7 @@ export const UserRoutes = () => {
             <Route path="/" element={<WelcomePage />} />
             <Route path="/signup" element={<SignUpPage />} />
             <Route path="/signin" element={<SignInPage />} />
+            <Route path="/remind" element={<PassResetPage />} />
         </Route>
         <Route element={<PrivateRoute />}>
             <Route path="/main" element={<MainPage />} />
