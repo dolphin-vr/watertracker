@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef  } from 'react';
 import { useSelector } from 'react-redux';
-import { selectUserName, selectUserAvatar } from '../../redux/user/userSelectors';
+import { selectUserName, selectUserAvatar, selectUserEmail } from '../../redux/user/userSelectors';
 import UserLogoModal from '../UserLogoModal/UserLogoModal';
 import { UserAvatarIMG, UserContainer, UserWrapper, UserName, UserAppCase, UserLetter, UserNameV } from './UserLogo.styled';
 import sprite from "../../images/sprite.svg";
@@ -8,16 +8,31 @@ import sprite from "../../images/sprite.svg";
 const UserLogo = () => {
   const userName = useSelector(selectUserName);
   const userAvatar = useSelector(selectUserAvatar);
+  const userEmail = useSelector(selectUserEmail);
 
   const [isPopUpOpen, setIsPopUpOpen] = useState(false);
+  const userLogoRef = useRef(null);
 
   const toggleModal = () => {
     setIsPopUpOpen(!isPopUpOpen);
   };
 
+  const handleClickOnWindow = (e) => {
+    if (isPopUpOpen && userLogoRef.current && !userLogoRef.current.contains(e.target)) {
+      setIsPopUpOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("click", handleClickOnWindow);
+    return () => {
+      window.removeEventListener("click", handleClickOnWindow);
+    };
+  }, [isPopUpOpen]);
+
   return (
     <div>
-      <UserWrapper onClick={() => toggleModal()}>
+      <UserWrapper onClick={() => toggleModal()} ref={userLogoRef}>
         <UserLogoModal isOpen={isPopUpOpen} onClose={toggleModal} />
         {userAvatar ? (
           <>
@@ -45,6 +60,7 @@ const UserLogo = () => {
           </>
           ) : (
             <UserContainer>
+              <p>{userEmail.split('@')[0]}</p>
               <UserAppCase>
                 <UserNameV>V</UserNameV>
               </UserAppCase>

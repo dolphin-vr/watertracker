@@ -38,7 +38,7 @@ const UserLogoutModal = ({ onClose }) => {
             <Ask>Do you really want to leave?</Ask>
             <Wrap>
               <CancelBtn onClick={onClose}>Cancel</CancelBtn>
-              <LogoutBtn onClick={handleLogout}>Logout</LogoutBtn>
+              <LogoutBtn onClick={handleLogout}>Log out</LogoutBtn>
             </Wrap>
           </ModalContainer>
       </ModalStyled>
