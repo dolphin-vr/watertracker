@@ -1,133 +1,117 @@
 import styled from "styled-components";
-import Modal from 'react-modal';
+import Modal from "react-modal";
 
 export const StyledModal = styled(Modal)`
   overlay {
     background: none;
   }
-
-  
 `;
-
-
-
-export const Container = styled.div`
-                max-width: 100%;
-                padding: 24px 12px;
-                z-index: 100;
-                position: absolute;
-                transform: translate(-50%, -50%);
-                top: 58%;
-                left: 50%;
-                background-color:  ${(props) => props.theme.colors.primary.White};
-                border-radius: 10px;
-                margin: 0 auto;
-                
-               
-                
-                @media screen and (min-width: 768px) {
-                    
-                        padding: 32px 24px;
-                        width: 704px;
-                        top: 50%;
-                   
-                }
-                @media screen and (min-width: 1280px) {
-                    
-                        padding: 32px 24px;
-                        width: 592px;
-                   
-                }`
-
-export const Title = styled.h2 `
-    
-font-size: 26px;
-font-weight: 500;
-color:${(props) => props.theme.colors.primary.Black};
-line-height: calc(32 / 26);
-margin-top: 0px;
-
-`
-
 export const Backdrop = styled.div`
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.8);`
+  background-color: rgba(0, 0, 0, 0.8);
+`;
 
-export const Formula =styled.span`
+export const Container = styled.div`
+  max-width: 100%;
+  padding: 24px 12px;
+  z-index: 100;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -25%);
+  background-color: ${(props) => props.theme.colors.primary.White};
+  border-radius: 10px;
+  margin: 0 auto;
 
-        color: ${(props) => props.theme.colors.primary.Blue};
-        font-size: 18px;
-        line-height:calc(24 / 18);
-`
+  @media screen and (min-width: 768px) {
+    padding: 32px 24px;
+    width: 704px;
+    top: 50%;
+  }
+  @media screen and (min-width: 1280px) {
+    transform: translate(-50%, -50%);
+    padding: 32px 24px;
+    width: 592px;
+  }
+`;
+
+export const Title = styled.h2`
+  font-size: 26px;
+  font-weight: 500;
+  color: ${(props) => props.theme.colors.primary.Black};
+  line-height: calc(32 / 26);
+  margin-top: 0px;
+`;
+
+export const Formula = styled.span`
+  color: ${(props) => props.theme.colors.primary.Blue};
+  font-size: 18px;
+  line-height: calc(24 / 18);
+`;
 
 export const Gender = styled.li`
- display: flex;
-gap: 4px;
-color: ${(props) => props.theme.colors.primary.Black};
-font-size: 16px;
-line-height:calc(20 / 16);
-
-`
+  display: flex;
+  gap: 4px;
+  color: ${(props) => props.theme.colors.primary.Black};
+  font-size: 16px;
+  line-height: calc(20 / 16);
+`;
 export const GenderFormula = styled.ul`
-        display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin-bottom: 12px;`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 12px;
+`;
 
+export const Description = styled.p`
+  max-width: 256px;
+  width: 100%;
+  padding: 10px;
+  color: #8f8f8f;
+  border-radius: 10px;
+  border: 1px solid ${(props) => props.theme.colors.secondary.WhiteBlue};
+  align-items: flex-start;
+  font-size: 12px;
+  line-height: 1.33;
+  font-style: normal;
+  font-weight: 400;
 
-export const Description = styled.p `  
-max-width: 256px;
-width: 100%;
-padding: 10px;
-color: #8F8F8F;
-border-radius: 10px;
-border: 1px solid ${(props) => props.theme.colors.secondary.WhiteBlue};
-align-items: flex-start;
-    font-size: 12px;
-line-height: 1.33;
-font-style: normal;
-font-weight: 400;
+  @media screen and (min-width: 768px) {
+    max-width: 656px;
+  }
+  @media screen and (min-width: 1440px) {
+    max-width: 544px;
+  }
+`;
 
-
-@media screen and (min-width: 768px) {
-
-     max-width: 656px;
- 
-}
-@media screen and (min-width: 1440px) {
-   
-       max-width: 544px;
-
-}
-
-`
-
-export const Start =styled.span`
- color: ${(props) => props.theme.colors.primary.Blue};`
-
+export const Start = styled.span`
+  color: ${(props) => props.theme.colors.primary.Blue};
+`;
 
 export const TitleLabel = styled.h3`
-        color:  ${(props) => props.theme.colors.primary.Black};
-        margin-bottom: 16px;
-        font-size: 18px;
-        font-weight: 500;
-        line-height: 20px;
-        margin-top: 0;`
+  color: ${(props) => props.theme.colors.primary.Black};
+  margin-bottom: 16px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 20px;
+  margin-top: 0;
+`;
 
+export const RadioBtn = styled.div`
+  display: flex;
+  gap: 24px;
+  margin-bottom: 16px;
+`;
 
-export const RadioBtn = styled.div `
- display: flex;
-    gap: 24px;
-    margin-bottom: 16px;`
-
-export const GenderBtn =styled.div `
-    isplay: flex;
-    gap: 3px;
-    align-items: center;`
+export const GenderBtn = styled.div`
+  display: flex;
+  gap: 3px;
+  align-items: center;
+`;
 
 export const GenderInput = styled.input`
   position: relative;
@@ -138,10 +122,10 @@ export const GenderInput = styled.input`
   appearance: none;
   outline: none;
   margin: 0;
-  margin-right : 8px;
+  margin-right: 8px;
 
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     top: 50%;
     left: 50%;
@@ -154,7 +138,7 @@ export const GenderInput = styled.input`
   }
 
   &:checked:after {
-    content: '';
+    content: "";
     position: absolute;
     top: 58%;
     left: 50%;
@@ -168,127 +152,112 @@ export const GenderInput = styled.input`
 `;
 
 export const CloseBtn = styled.button`
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: ${(props) => props.theme.colors.primary.White};
-        border: none;
-        width: 24px;
-        height: 24px;
-        padding: 0;
-        position: absolute;
-        top: 28px;
-        right: 12px;
-        cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${(props) => props.theme.colors.primary.White};
+  border: none;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  position: absolute;
+  top: 28px;
+  right: 12px;
+  cursor: pointer;
 
-@media screen and (min-width: 768px) {
-    
-        right: 24px;
-        top:36px
-}`
+  @media screen and (min-width: 768px) {
+    right: 24px;
+    top: 36px;
+  }
+`;
 
-export const GenderLabel = styled.label `
-
-    color:${(props) => props.theme.colors.primary.Black};
-        font-size: 16px;
-        line-height: 20px;
-    `
+export const GenderLabel = styled.label`
+  color: ${(props) => props.theme.colors.primary.Black};
+  font-size: 16px;
+  line-height: 20px;
+`;
 
 export const Forma = styled.form`
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    
-`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+`;
 
 export const Labels = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  
 
   @media screen and (min-width: 768px) {
     max-width: 656px;
   }
-`
+`;
 
-export const DataLabel =styled.label`
-
-    color: ${(props) => props.theme.colors.primary.Black};
-        font-size: 16px;
-        line-height: 20px;
- 
-`
+export const DataLabel = styled.label`
+  color: ${(props) => props.theme.colors.primary.Black};
+  font-size: 16px;
+  line-height: 20px;
+`;
 
 export const ModalInput = styled.input`
- 
-padding: 12px 10px;
-border-radius: 6px;
-    border: 1px solid ${(props) => props.theme.colors.secondary.WhiteBlue};
-   max-width: 256px;
-   width: 100%;
-    font-size: 16px;
-   line-height: 20px;
-  
-   &.error-input {
+  padding: 12px 10px;
+  border-radius: 6px;
+  border: 1px solid ${(props) => props.theme.colors.secondary.WhiteBlue};
+  max-width: 256px;
+  width: 100%;
+  font-size: 16px;
+  line-height: 20px;
+
+  &.error-input {
     border: 2px solid ${(props) => props.theme.colors.secondary.Red};
   }
 
-  
-@media screen and (min-width: 768px) {
-   
-         max-width: 656px;
-     
+  @media screen and (min-width: 768px) {
+    max-width: 656px;
   }
-   @media screen and (min-width: 1440px) {
-       
-           max-width: 544px;
-       
-   }`
+  @media screen and (min-width: 1440px) {
+    max-width: 544px;
+  }
+`;
 
 export const ResultCont = styled.div`
-      
-    display: flex;
-    gap: 6px;
-    align-items: center;
-    
+  display: flex;
+  gap: 6px;
+  align-items: center;
 
-@media screen and (min-width: 768px) {
-   
-       
-   
-}`
+  @media screen and (min-width: 768px) {
+  }
+`;
 
 export const TextResult = styled.p`
-    max-width: 190px;
-    margin-top: 0px;
-    margin-bottom: 0px;
+  max-width: 190px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 
-@media screen and (min-width: 768px) {
-   
-        max-width: 328px;}`
+  @media screen and (min-width: 768px) {
+    max-width: 328px;
+  }
+`;
 
-export const Littres =styled.p`
-        width: 57px;
-        color: #407BFF;
-         font-size: 18px;
-        font-weight: 700;
-        line-height: 24px;
-        margin-top: 0px;
-        margin-bottom: 0px;
+export const Littres = styled.p`
+  width: 57px;
+  color: #407bff;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 24px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 
-@media screen and (min-width: 768px) {
-    
-        width: 42px;
-    
-}`
+  @media screen and (min-width: 768px) {
+    width: 42px;
+  }
+`;
 
 export const WriteInput = styled.label`
-    font-size: 18px;
-   font-weight: 500;
-    line-height: 20px;
-    
-`
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 20px;
+`;
 
 export const Btn = styled.button`
   background-color: ${(props) => props.theme.colors.primary.Blue};
@@ -315,7 +284,8 @@ export const Btn = styled.button`
   }
 `;
 export const ErrorMessageStyled = styled.span`
-        color: ${(props) => props.theme.colors.secondary.Red};
-   font-size: 14px;
-   line-height: 1.28;
-   margin-top: 4px;`
+  color: ${(props) => props.theme.colors.secondary.Red};
+  font-size: 14px;
+  line-height: 1.28;
+  margin-top: 4px;
+`;
