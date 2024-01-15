@@ -47,7 +47,7 @@ export const resetPasswd = createAsyncThunk("auth/resetPasswd", async (userData,
    try {
       const {email, password, token} = userData;      
       setAuthHeader(token);
-      const response = await instance.post("/auth/reset", {email, password});
+      const response = await instance.patch("/auth/reset", {email, password});
       clearAuthHeader();
       console.log('pwd reset= ', response.data)
       return response.data;
