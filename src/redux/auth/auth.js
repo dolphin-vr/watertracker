@@ -1,7 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { currentDate } from "../../shared/api/dates";
-// import currentDate from "../../shared/api/dates";
 
 export const instance = axios.create({
    baseURL: import.meta.env.VITE_API_URL,
@@ -17,10 +16,7 @@ const clearAuthHeader = () => {
 
 export const registerUser = createAsyncThunk("auth/registerUser", async (userData, thunkAPI) => {
    try {
-      const response = await instance.post("/auth/signup", {
-         ...userData,
-         date: currentDate,
-      });
+      const response = await instance.post("/auth/signup", { ...userData, date: currentDate, });
       setAuthHeader(response.data.token);
       return response.data;
    } catch (error) {
@@ -32,6 +28,28 @@ export const loginUser = createAsyncThunk("auth/loginUser", async (userData, thu
    try {
       const response = await instance.post("/auth/signin", userData);
       setAuthHeader(response.data.token);
+      return response.data;
+   } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+   }
+});
+
+export const remindPasswd = createAsyncThunk("auth/remindPasswd", async (userData, thunkAPI) => {
+   try {
+      const response = await instance.post("/auth/remind", userData);
+      return response.data;
+   } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+   }
+});
+
+export const resetPasswd = createAsyncThunk("auth/resetPasswd", async (userData, thunkAPI) => {
+   try {
+      const {email, password, token} = userData;      
+      setAuthHeader(token);
+      const response = await instance.post("/auth/reset", {email, password});
+      clearAuthHeader();
+      console.log('pwd reset= ', response.data)
       return response.data;
    } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

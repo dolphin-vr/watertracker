@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef  } from 'react';
+import { useState, useEffect, useRef  } from 'react';
 import { useSelector } from 'react-redux';
 import { selectUserName, selectUserAvatar, selectUserEmail } from '../../redux/user/userSelectors';
 import UserLogoModal from '../UserLogoModal/UserLogoModal';
@@ -17,13 +17,12 @@ const UserLogo = () => {
     setIsPopUpOpen(!isPopUpOpen);
   };
 
-  const handleClickOnWindow = (e) => {
-    if (isPopUpOpen && userLogoRef.current && !userLogoRef.current.contains(e.target)) {
-      setIsPopUpOpen(false);
-    }
-  };
-
   useEffect(() => {
+    const handleClickOnWindow = (e) => {
+      if (isPopUpOpen && userLogoRef.current && !userLogoRef.current.contains(e.target)) {
+        setIsPopUpOpen(false);
+      }
+    };
     window.addEventListener("click", handleClickOnWindow);
     return () => {
       window.removeEventListener("click", handleClickOnWindow);
