@@ -16,7 +16,6 @@ import {
   Title,
   ModalStyled,
   UploadSvg,
-  
 } from "./SettingModal.styled";
 import sprite from "../../images/sprite.svg";
 
@@ -39,49 +38,46 @@ const SettingModal = ({ onClose }) => {
     const formData = new FormData();
     formData.append("avatar", file);
     dispatch(updateUserAvatar(formData));
-    onClose();
   };
 
   const handleLinkClick = () => {
     fileInputRef.current.click();
   };
-  
 
   return (
-    <ModalStyled isOpen={true} onRequestClose={onClose} contentLabel="SettingModal" overlayClassName="overlay">
-    <Backdrop onClick={onClose}/>
+    <ModalStyled
+      isOpen={true}
+      onRequestClose={onClose}
+      contentLabel="SettingModal"
+      overlayClassName="overlay"
+    >
+      <Backdrop onClick={onClose} />
       <Container>
         <TitleContainer>
           <Title>Setting</Title>
         </TitleContainer>
-        <CloseBtn type="button"onClick={onClose}>
+        <CloseBtn type="button" onClick={onClose}>
           <svg>
-           <use href={sprite + "#modalclose"}></use>
+            <use href={sprite + "#modalclose"}></use>
           </svg>
-          </CloseBtn>
+        </CloseBtn>
         <TitleH5>Your photo</TitleH5>
         <ContainerAvatar>
-          <Avatar
-            src={avatarURL}
-            alt=""
-            width="80"
-            height="80"
-          ></Avatar>
+          <Avatar src={avatarURL} alt="" width="80" height="80"></Avatar>
           <InputImg
             type="file"
             ref={fileInputRef}
             onChange={handleFileChange}
           />
           <LinkImgUpload onClick={handleLinkClick}>
-          <UploadSvg>
-                 <use href={sprite + "#upload"}></use>
-          </UploadSvg>
+            <UploadSvg>
+              <use href={sprite + "#upload"}></use>
+            </UploadSvg>
             Upload a photo
           </LinkImgUpload>
         </ContainerAvatar>
-        <SettingForm close={ onClose }/>
+        <SettingForm close={onClose} />
       </Container>
-     
     </ModalStyled>
   );
 };
