@@ -74,7 +74,19 @@ const authSlice = createSlice({
         state.isLoggedIn = false;
         state.isLoading = false;
         state.error = action.payload;
-      });
+      })
+      .addCase(auth.remindPasswd.pending, handlePending)
+      .addCase(auth.remindPasswd.fulfilled, (state ) => {
+        // state.isLoggedIn = false;
+        state.isLoading = false;
+      })
+      .addCase(auth.remindPasswd.rejected, handleRejected)
+      .addCase(auth.resetPasswd.pending, handlePending)
+      .addCase(auth.resetPasswd.fulfilled, (state ) => {
+        // state.isLoggedIn = false;
+        state.isLoading = false;
+      })
+      .addCase(auth.resetPasswd.rejected, handleRejected)
   },
 });
 

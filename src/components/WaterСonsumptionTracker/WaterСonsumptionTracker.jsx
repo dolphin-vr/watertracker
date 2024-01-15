@@ -11,12 +11,13 @@ import {
   StyledUl,
 } from "./WaterСonsumptionTracker.styled";
 import sprite from "../../images/sprite.svg";
+// import { Icon } from "../Icon/Icon";
 export const WaterСonsumptionTracker = () => {
   return (
     <StyledDiv>
       <StyledHeader>Water consumption tracker</StyledHeader>
       <StyledPreHeader>Record daily water intake and track</StyledPreHeader>
-      <StyledParagraph>Tracker Benefits</StyledParagraph>
+      <StyledParagraph>Tracker Benefits</StyledParagraph>      
       <StyledUl>
         <StyledLi>
           <StyledSvg fill="white"><use href={sprite + "#calendar"}></use></StyledSvg>

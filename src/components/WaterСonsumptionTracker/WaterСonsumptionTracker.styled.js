@@ -114,6 +114,6 @@ width: 32px;
 height: 32px;
   @media screen and (min-width: 768px) {
     width: 40px;
-height: 40px;
+    height: 40px;
   }
 `
