@@ -37,6 +37,7 @@ export const loginUser = createAsyncThunk("auth/loginUser", async (userData, thu
 export const remindPasswd = createAsyncThunk("auth/remindPasswd", async (userData, thunkAPI) => {
    try {
       const response = await instance.post("/auth/remind", userData);
+      console.log('remind= ', response.data)
       return response.data;
    } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

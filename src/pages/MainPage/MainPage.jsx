@@ -23,22 +23,22 @@ import { WaterModal } from "../../components/WaterModal/WaterModal";
 import { CalendarD } from "../../components/Calendar/CalendarD";
 import sprite from "../../images/sprite.svg";
 import {
-  selectUserIsLoading,
+  // selectUserIsLoading,
   selectUserNorma,
 } from "../../redux/user/userSelectors";
 import CalcModal from "../../components/СalcModal/CalcModal";
 import toast from "react-hot-toast";
-import { Loader } from "../../components/Loader/Loader";
-import { selectIsLoading } from "../../redux/water/todaySelectors";
+// import { Loader } from "../../components/Loader/Loader";
+// import { selectIsLoading } from "../../redux/water/todaySelectors";
 
 export const MainPage = () => {
   const [openAddWaterModal, setOpenAddWaterModal] = useState(false);
   const [openCalcModal, setOpenCalcModal] = useState(false);
 
   const dailyNorma = useSelector(selectUserNorma);
-  const isLoading = useSelector(selectIsLoading);
+  // const isLoading = useSelector(selectIsLoading);
 
-  const isUserIsLoading = useSelector(selectUserIsLoading);
+  // const isUserIsLoading = useSelector(selectUserIsLoading);
 
   const dispatch = useDispatch();
   useEffect(() => {

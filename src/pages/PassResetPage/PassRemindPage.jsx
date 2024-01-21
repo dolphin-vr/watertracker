@@ -16,6 +16,7 @@ import {
 import { selectIsLoading, selectIsLoggedIn } from "../../redux/auth/selectors";
 import { Loader } from "../../components/Loader/Loader";
 import { emailSchema } from "../../shared/utils/authValidate";
+
 export const PassRemindPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -26,6 +27,8 @@ export const PassRemindPage = () => {
     initialValues: { email: "" },
     validationSchema: emailSchema,
     onSubmit: (values) => {
+
+      console.log('disp= ', )
       dispatch(
         remindPasswd({
           email: values.email,
