@@ -59,13 +59,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           </Provider>
         </ThemeProvider>
       </HashRouter>
-      {/* <BrowserRouter basename={(import.meta.env.VITE_NODE_ENV === "development") ? "/" : import.meta.env.VITE_PUBLIC_URL}>
-        <ThemeProvider theme={theme}>
-          <Provider store = {store}>
-            <App />
-          </Provider>
-        </ThemeProvider>
-      </BrowserRouter> */}
     </PersistGate>
   </React.StrictMode>
 );
