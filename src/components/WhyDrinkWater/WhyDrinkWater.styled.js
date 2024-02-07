@@ -5,16 +5,16 @@ export const StyledDiv = styled.div`
   width: 100%;
   padding: 24px 16px;
   border-radius: 10px;
-  margin-top: 40px;
+  /* margin-top: 40px; */
   box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.30);
   @media screen and (min-width: 768px) {
     width: 446px;
     padding: 32px 24px;
     /* margin-bottom: 50px; */
-    margin-top: 60px;
+    /* margin-top: 60px; */
   }
   @media screen and (min-width: 1440px) {
-    margin-top: 0px;
+    /* margin-top: 0px; */
     /* display: flex; */
   }
 `;

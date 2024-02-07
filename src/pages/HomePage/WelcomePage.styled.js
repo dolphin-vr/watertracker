@@ -1,50 +1,28 @@
 import styled from "styled-components";
 import sprite from "../../images/sprite.svg";
-const getbgr = (elem) => {
-   if (elem === 1) {
-      return {
-         m: `url(${sprite}#m-bg)`,
-         t: `url(${sprite}#t-bg)`,
-         d: `url(${sprite}#d-bg)`,
-      };
-   }
-   return {
-      m: "none",
-      t: "none",
-      d: "none",
-   };
-};
+import waved from "../../images/wave-d.svg";
+import wavet from "../../images/wave-t.svg";
+import bublm from "../../images/bubl-m.svg";
+import bublt from "../../images/bubl-t.svg";
+import bubld from "../../images/bubl-d.svg";
+import bottle from "../../images/bottle.svg";
 
 export const StyledMain = styled.main`
-   padding: 24px 0 0;
-   background-image: linear-gradient(to bottom, #ffffff 50%, #d7e3ff44 50%, #d7e3ff44 100%);
-   @media screen and (min-width: 320px) and (min-height: 961px) {
-      height: calc(100vh - 80px);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-   }
+   background-image: url(${bublm}), url(${wavet});
+   background-repeat: no-repeat;
+   background-position: center bottom;
+   background-size: auto;
    @media screen and (min-width: 768px) {
-      width: 768px;
-      padding: 24px 0 0;
-   }
-   @media screen and (min-width: 768px) and (min-height: 801px) {
-      height: calc(100vh - 88px);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      height: calc(100vh - 56px);
+      min-height: 736px;
+      background-image: url(${bottle}), url(${bublt}), url(${wavet});
+      background-size: 402px 352px, auto, cover;
+      background-position: left calc(100% / 2 + 268px) top 334px, center top 24px, center bottom;
    }
    @media screen and (min-width: 1440px) {
-      width: 1440px;
-      margin: 0 auto;
-      padding-top: 20px;
-   }
-   @media screen and (min-width: 1440px) and (min-height: 741px) {
-      height: calc(100vh - 60px);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding-top: 0;
+      background-image: url(${bottle}), url(${bubld}), url(${waved});
+      background-size: 290px 254px, auto, auto;
+      background-position: left calc(100% / 2 + 432px) top 456px, center top 24px, center bottom;
    }
 `;
 
@@ -79,31 +57,23 @@ export const StyledSection = styled.section`
 `;
 
 export const Container = styled.div`
+   max-width: 320px;
+   margin: 0 auto;
+   display: flex;
+   flex-direction: column;
+   gap: 40px;
+   padding: 24px 20px 40px;
+   @media screen and (min-width: 768px) {
+      max-width: 704px;
+      padding: 40px 32px 50px;
+      gap: 60px;
+   }
    @media screen and (min-width: 1440px) {
-      width: 1014px;
-      display: flex;
-      gap: 81px;
+      max-width: 1014px;
+      flex-direction: row;
+      gap: 80px;
       align-items: flex-end;
-      margin: 0 auto;
-      padding: 0 20px;
+      padding: 80px 0 0;
    }
 `;
 
-// export const StyledContainerUnsign = styled.div`
-
-// background-image:${({unsign}) => getbgr(unsign).m};
-//     background-size: cover;
-//     background-position: 0 80px;
-//     background-repeat: no-repeat;
-// @media screen and (min-width: 768px) {
-//     background-image:${({unsign}) => getbgr(unsign).t};
-//   }
-//   @media screen and (min-width: 1440px) {
-//     background-image:${({unsign}) => getbgr(unsign).d};
-//     background-size: contain;
-//     background-position: 980px 490px ,0 0, 0 432px;
-//     height: 100vh;
-//     width: 1440px;
-//     margin: 0 auto;
-//   }
-// `

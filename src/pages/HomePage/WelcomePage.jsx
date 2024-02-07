@@ -1,16 +1,16 @@
 import { WaterСonsumptionTracker } from "../../components/WaterСonsumptionTracker/WaterСonsumptionTracker";
 import { WhyDrinkWater } from "../../components/WhyDrinkWater/WhyDrinkWater";
-import { Container, StyledMain, StyledSection } from "./WelcomePage.styled";
+import { Container, StyledMain } from "./WelcomePage.styled";
 
 export const WelcomePage = () => {
   return (
     <StyledMain>
-      <StyledSection>
+      {/* <StyledSection> */}
         <Container>
           <WaterСonsumptionTracker />
           <WhyDrinkWater />
         </Container>
-      </StyledSection>
+      {/* </StyledSection> */}
     </StyledMain>
   );
 };

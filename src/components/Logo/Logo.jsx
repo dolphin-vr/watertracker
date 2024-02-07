@@ -1,4 +1,3 @@
-import React from 'react';
 import { WaterTrackerLogoText, LogoContainer, Nowrap } from './Logo.styled';
 import sprite from "../../images/sprite.svg";
     
