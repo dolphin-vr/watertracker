@@ -1,16 +1,16 @@
 // import { lazy } from "react";
 import { Navigate, Routes } from "react-router-dom";
 import { Route } from "react-router-dom";
-import { SharedLayout } from "../SharedLayout/SharedLayout";
-import {SignInPage} from "../pages/SignInPage/SignInPage";
-import {SignUpPage} from "../pages/SignUpPage/SignUpPage";
+import { SharedLayout } from "../SharedLayout";
+import {SignInPage} from "../../pages/SignInPage/SignInPage";
+import {SignUpPage} from "../../pages/SignUpPage/SignUpPage";
 import {PublicRoute} from "./PublicRoute";
 import {PrivateRoute} from "./PrivateRoute";
-import { WelcomePage } from "../pages/HomePage/WelcomePage";
-import { MainPage } from "../pages/MainPage/MainPage";
+import { WelcomePage } from "../../pages/HomePage/WelcomePage";
+import { MainPage } from "../../pages/MainPage/MainPage";
 // import { PassResetPage } from "../pages/PassResetPage/PassResetPage";
-import { PassRemindPage } from "../pages/PassResetPage/PassRemindPage";
-import { PassResetPage } from "../pages/PassResetPage/PassResetPage";
+import { PassRemindPage } from "../../pages/PassResetPage/PassRemindPage";
+import { PassResetPage } from "../../pages/PassResetPage/PassResetPage";
 
 export const UserRoutes = () => {
   return (

@@ -1,6 +1,6 @@
 import { GlobalStyle } from "./shared/styles/GlobalStyle";
 import { useEffect } from "react";
-import { UserRoutes } from "./UserRoutes/UserRoutes";
+import { UserRoutes } from "./components/UserRoutes/UserRoutes";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsRefreshing } from "./redux/auth/selectors";
 import { refreshUser } from "./redux/auth/auth";

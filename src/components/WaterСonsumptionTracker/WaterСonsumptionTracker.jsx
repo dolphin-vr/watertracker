@@ -1,42 +1,40 @@
-// import { NavLink } from "react-router-dom";
 import {
-  StyledDiv,
-  StyledHeader,
-  StyledLi,
-  StyledListParagraph,
+  Hero,
+  HeroTitle,
+  Item,
   StyledNavLink,
-  StyledParagraph,
-  StyledPreHeader,
+  SectionTitle,
+  Slogan,
   StyledSvg,
-  StyledUl,
+  List,
 } from "./WaterСonsumptionTracker.styled";
 import sprite from "../../images/sprite.svg";
-// import { Icon } from "../Icon/Icon";
+
 export const WaterСonsumptionTracker = () => {
   return (
-    <StyledDiv>
-      <StyledHeader>Water consumption tracker</StyledHeader>
-      <StyledPreHeader>Record daily water intake and track</StyledPreHeader>
-      <StyledParagraph>Tracker Benefits</StyledParagraph>      
-      <StyledUl>
-        <StyledLi>
+    <Hero>
+      <HeroTitle>Water consumption tracker</HeroTitle>
+      <Slogan>Record daily water intake and track</Slogan>
+      <SectionTitle>Tracker Benefits</SectionTitle>      
+      <List>
+        <Item>
           <StyledSvg fill="white"><use href={sprite + "#calendar"}></use></StyledSvg>
-          <StyledListParagraph>Habit drive</StyledListParagraph>
-        </StyledLi>
-        <StyledLi>
+          <>Habit drive</>
+        </Item>
+        <Item>
         <StyledSvg fill="white">
             <use href={sprite + "#stat"}></use>
           </StyledSvg>
-          <StyledListParagraph>View statistics</StyledListParagraph>
-        </StyledLi>
-        <StyledLi>
+          <>View statistics</>
+        </Item>
+        <Item>
         <StyledSvg fill="white">
             <use href={sprite + "#tool"}></use>
           </StyledSvg>
-          <StyledListParagraph>Personal rate setting</StyledListParagraph>
-        </StyledLi>
-      </StyledUl>
+          <>Personal rate setting</>
+        </Item>
+      </List>
       <StyledNavLink to={"/signup"}>Try tracker</StyledNavLink>
-    </StyledDiv>
+    </Hero>
   );
 };

@@ -23,7 +23,7 @@ const TodayTitle = styled.p`
   font-weight: 500;
   line-height: 1.25;
   margin: 0;
-  matgin-bottom: ${({ theme }) => theme.spacing(2)};
+  margin-bottom: ${({ theme }) => theme.spacing(2)};
 `;
 
 const TodayText = styled.p`
