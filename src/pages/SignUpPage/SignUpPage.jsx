@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import { registerUser } from "../../redux/auth/auth";
 import { useNavigate } from "react-router-dom";
 import {
-  AuthStyled,
+  Main,
   FormStyled,
   Title,
   Label,
@@ -45,7 +45,7 @@ export const SignUpPage = () => {
   return isLoading ? (
     <Loader />
   ) : (
-    <AuthStyled>
+    <Main>
         <FormStyled onSubmit={formik.handleSubmit}>
           <Title>Sign Up</Title>
           <Label>Enter your email
@@ -102,6 +102,6 @@ export const SignUpPage = () => {
           <AuthLink to="/signin">Sign In</AuthLink>
         </FormStyled>
         <Bottle />
-    </AuthStyled>
+    </Main>
   );
 };

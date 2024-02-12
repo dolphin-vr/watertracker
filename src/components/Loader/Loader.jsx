@@ -1,7 +1,12 @@
-import { LoaderCircle, LoaderWave } from "./Loader.styled"
+import { BackDrop, LoaderCircle, LoaderWave } from "./Loader.styled"
 
 export const Loader = () => {
-    return <LoaderCircle>
-        <LoaderWave></LoaderWave>
-    </LoaderCircle>
+    return (
+        <BackDrop>
+            <LoaderCircle>
+                <LoaderWave />
+                {/* </LoaderWave> */}
+            </LoaderCircle>
+        </BackDrop>
+	)
 }

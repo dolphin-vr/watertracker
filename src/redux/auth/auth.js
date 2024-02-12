@@ -37,8 +37,7 @@ export const loginUser = createAsyncThunk("auth/loginUser", async (userData, thu
 export const remindPasswd = createAsyncThunk("auth/remindPasswd", async (userData, thunkAPI) => {
    try {
       const response = await instance.post("/auth/remind", userData);
-      console.log('remind= ', response.data)
-      return response.data;
+      return response.status;
    } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
    }
@@ -51,7 +50,7 @@ export const resetPasswd = createAsyncThunk("auth/resetPasswd", async (userData,
       const response = await instance.patch("/auth/reset", {email, password});
       clearAuthHeader();
       console.log('pwd reset= ', response.data)
-      return response.data;
+      return response.status;
    } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
    }

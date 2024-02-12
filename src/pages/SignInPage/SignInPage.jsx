@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import { loginUser } from "../../redux/auth/auth";
 import { useNavigate } from "react-router-dom";
 import {
-  AuthStyled,
+  Main,
   FormStyled,
   Title,
   Label,
@@ -27,6 +27,7 @@ export const SignInPage = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const isLoading = useSelector(selectIsLoading);
   const [showPassword, setShowPassword] = useState(false);
+  console.log('isLoggedIn begin = ', isLoggedIn)
 
   const formik = useFormik({
     initialValues: { email: "", password: "" },
@@ -38,6 +39,7 @@ export const SignInPage = () => {
           password: values.password,
         })
       );
+  console.log('isLoggedIn from submit = ', isLoggedIn)
       isLoggedIn && navigate("/main");
     },
   });
@@ -45,7 +47,7 @@ export const SignInPage = () => {
   return isLoading ? (
     <Loader />
   ) : (
-    <AuthStyled>
+    <Main>
         <FormStyled onSubmit={formik.handleSubmit}>
           <Title>Sign In</Title>
           <Label>Enter your email
@@ -85,7 +87,7 @@ export const SignInPage = () => {
           <AuthLink to="/remind">Forgot password?</AuthLink>
         </FormStyled>
         <Bottle />
-    </AuthStyled>
+    </Main>
   );
 };
 

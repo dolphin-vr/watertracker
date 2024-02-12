@@ -1,9 +1,19 @@
 import styled from "styled-components";
+
+export const BackDrop = styled.div`
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100vw;
+   height: 100vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background-color: ${({ theme }) => theme.colors.secondary.backdrop};
+   z-index: 1200;
+`;
+
 export const LoaderCircle = styled.div`
-position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
   width:150px;
   height:150px;
   background:#ccc;
@@ -13,7 +23,7 @@ position:absolute;
   overflow:hidden;
 `
 export const LoaderWave = styled.div`
-position:relative;
+  position:relative;
   width:100%;
   height:100%;
   background:#4973ff;
