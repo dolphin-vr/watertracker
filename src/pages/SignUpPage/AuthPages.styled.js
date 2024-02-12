@@ -5,13 +5,86 @@ import signbgt from "../../images/sign-t.svg";
 import signbgd from "../../images/sign-d.svg";
 import bottle from "../../images/bottle.svg";
 import { Icon } from "../../components/Icon/Icon";
+import { Form, Field, ErrorMessage } from "formik";
 
-export const AuthStyled = styled.main`
+export const StyledForm = styled(Form)`
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
+   width: 320px;
+   margin-top: 100px;
+   margin-left: auto;
+   margin-right: auto;
+   padding: 0 20px;
+
+   @media (min-width: 768px) {
+      z-index: 1;
+      margin-left: 0;
+      padding: 0;
+      width: 336px;
+   }
+
+   @media (min-width: 1440px) {
+      margin-left: 80px;
+      /* margin-right: 198px; */
+      width: 384px;
+   }
+`;
+
+export const StyledField = styled(Field)`
+   padding: ${({ theme }) => theme.spacing(3)} ${({ theme }) => theme.spacing(2)};
+   border-radius: 6px;
+
+   border: 1px solid ${({ theme }) => theme.colors.secondary.whiteblue};
+   background-color: ${(props) => props.theme.colors.primary.white};
+
+   color: ${({ theme }) => theme.colors.secondary.blue};
+   font-size: 16px;
+   line-height: 1.25;
+   width: 280px;
+   outline: none;
+
+   &:focus {
+      ${({ theme }) => theme.colors.primary.blue};
+   }
+
+   &::placeholder {
+      color: ${({ theme }) => theme.colors.secondary.blue};
+   }
+
+   &.input-error {
+      margin-bottom: ${({ theme }) => theme.spacing(1)};
+      border-color: ${({ theme }) => theme.colors.secondary.red};
+      color: ${({ theme }) => theme.colors.secondary.red};
+   }
+
+   @media (min-width: 768px) {
+      width: 336px;
+      height: 44px;
+   }
+
+   @media (min-width: 1440px) {
+      width: 386px;
+   }
+`;
+
+export const ErrorMsg = styled(ErrorMessage)`
+   position: absolute;
+   left: 0;
+   bottom: -16px;
+   margin: 0;
+   color: ${({ theme }) => theme.colors.secondary.red};
+   font-size: 12px;
+   line-height: 1.28;
+`;
+
+export const Main = styled.main`
    height: calc(100vh - 56px);
    margin-top: 24px;
    background-image: url(${signbgm});
    background-size: cover;
-   
+
    @media screen and (min-width: 768px) {
       position: relative;
       background-image: url(${signbgt});
@@ -38,7 +111,7 @@ export const BackgroundStyled = styled.div``;
 export const Title = styled.h1`
    margin: 0;
    font-size: 24px;
-   color: ${({ theme }) => theme.colors.primary.Black};
+   color: ${({ theme }) => theme.colors.primary.black};
 `;
 
 export const FormStyled = styled.form`
@@ -72,7 +145,7 @@ export const Label = styled.label`
    flex-direction: column;
    gap: 8px;
    /* margin-bottom: ${({ theme }) => theme.spacing(2)}; */
-   color: ${({ theme }) => theme.colors.primary.Black};
+   color: ${({ theme }) => theme.colors.primary.black};
    font-size: 18px;
    line-height: 1.33;
 `;
@@ -82,27 +155,27 @@ export const Input = styled.input`
    padding: ${({ theme }) => theme.spacing(3)} ${({ theme }) => theme.spacing(2)};
    border-radius: 6px;
 
-   border: 1px solid ${({ theme }) => theme.colors.secondary.WhiteBlue};
-   background-color: ${(props) => props.theme.colors.primary.White};
+   border: 1px solid ${({ theme }) => theme.colors.secondary.whiteblue};
+   background-color: ${(props) => props.theme.colors.primary.white};
 
-   color: ${({ theme }) => theme.colors.secondary.Blue};
+   color: ${({ theme }) => theme.colors.secondary.blue};
    font-size: 16px;
    line-height: 1.25;
    width: 280px;
    outline: none;
 
    &:focus {
-      ${({ theme }) => theme.colors.primary.Blue};
+      ${({ theme }) => theme.colors.primary.blue};
    }
 
    &::placeholder {
-      color: ${({ theme }) => theme.colors.secondary.Blue};
+      color: ${({ theme }) => theme.colors.secondary.blue};
    }
 
    &.input-error {
       margin-bottom: ${({ theme }) => theme.spacing(1)};
-      border-color: ${({ theme }) => theme.colors.secondary.Red};
-      color: ${({ theme }) => theme.colors.secondary.Red};
+      border-color: ${({ theme }) => theme.colors.secondary.red};
+      color: ${({ theme }) => theme.colors.secondary.red};
    }
 
    @media (min-width: 768px) {
@@ -140,7 +213,7 @@ export const StyledIcon = styled(Icon)`
 export const StyledSvg = styled.svg`
    width: 16px;
    height: 16px;
-   stroke: ${({ theme }) => theme.colors.primary.Blue};
+   stroke: ${({ theme }) => theme.colors.primary.blue};
 `;
 
 export const ErrorMessageStyled = styled.p`
@@ -148,7 +221,7 @@ export const ErrorMessageStyled = styled.p`
    left: 0;
    bottom: -12px;
    margin: 0;
-   color: ${({ theme }) => theme.colors.secondary.Red};
+   color: ${({ theme }) => theme.colors.secondary.red};
    font-size: 12px;
    line-height: 1.28;
    /* margin-top: ${({ theme }) => theme.spacing(1)}; */
@@ -160,8 +233,8 @@ export const IconContainer = styled.div`
 
 export const AuthBtn = styled.button`
    width: 100%;
-   background-color: ${({ theme }) => theme.colors.primary.Blue};
-   color: ${({ theme }) => theme.colors.primary.White};
+   background-color: ${({ theme }) => theme.colors.primary.blue};
+   color: ${({ theme }) => theme.colors.primary.white};
    padding: ${({ theme }) => theme.spacing(2.5)} ${({ theme }) => theme.spacing(7.5)};
    font-size: 18px;
    font-weight: 500;
@@ -178,13 +251,13 @@ export const AuthBtn = styled.button`
 
 export const AuthLink = styled(Link)`
    display: block;
-   color: ${({ theme }) => theme.colors.primary.Blue};
+   color: ${({ theme }) => theme.colors.primary.blue};
    font-size: 16px;
    font-weight: 400;
    line-height: 1.25;
 
    &:hover {
-      color: ${({ theme }) => theme.colors.secondary.Orange};
+      color: ${({ theme }) => theme.colors.secondary.orange};
    }
 `;
 

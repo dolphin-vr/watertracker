@@ -3,9 +3,9 @@ import { useDispatch, useSelector  } from "react-redux";
 import {  useNavigate, useParams } from "react-router-dom";
 import { useFormik } from "formik";
 import { resetPasswd } from "../../redux/auth/auth";
-import { selectIsLoading, selectIsLoggedIn } from "../../redux/auth/selectors";
+import { selectIsLoading, selectStatus } from "../../redux/auth/selectors";
 import {
-  AuthStyled,
+  Main,
   FormStyled,
   Title,
   Label,
@@ -24,9 +24,9 @@ import { signupSchema } from "../../shared/utils/authValidate";
 export const PassResetPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isLoggedIn = useSelector(selectIsLoggedIn);
   const isLoading = useSelector(selectIsLoading);
-  const {token} =useParams;
+  const status = useSelector(selectStatus);
+  const {token} =useParams();
   const [showPassword, setShowPassword] = useState(false);
 
   const formik = useFormik({
@@ -40,14 +40,16 @@ export const PassResetPage = () => {
           token,
         })
       );
-      isLoggedIn && navigate("/signin");
+      console.log('selectStatus from submit reset= ', status);
+      // isLoggedIn && navigate("/signin");
     },
   });
 
+      console.log('selectStatus reset= ', status);
   return isLoading ? (
     <Loader />
   ) : (
-    <AuthStyled>
+    <Main>
     <FormStyled onSubmit={formik.handleSubmit}>
       <Title>Password reset form</Title>
       <Label>Enter your email
@@ -104,6 +106,6 @@ export const PassResetPage = () => {
       <AuthLink to="/signin">Sign In</AuthLink>
     </FormStyled>
     <Bottle />
-    </AuthStyled>
+    </Main>
   );
 };

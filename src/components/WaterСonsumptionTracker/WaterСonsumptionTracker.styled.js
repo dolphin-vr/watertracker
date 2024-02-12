@@ -14,7 +14,7 @@ export const HeroTitle = styled.h1`
    font-weight: 700;
    line-height: 1.14;
    margin-bottom: 16px;
-   color: ${(props) => props.theme.colors.primary.Black};
+   color: ${(props) => props.theme.colors.primary.black};
    @media screen and (min-width: 768px) {
       font-size: 36px;
       line-height: 1.16;
@@ -24,21 +24,21 @@ export const Slogan = styled.h2`
    font-size: 24px;
    font-weight: 400;
    margin-bottom: 24px;
-   color: ${(props) => props.theme.colors.primary.Black};
+   color: ${(props) => props.theme.colors.primary.black};
    @media screen and (min-width: 768px) {
       font-size: 26px;
       line-height: 1.23;
    }
 `;
 export const SectionTitle = styled.h3`
-  margin-bottom: 12px;
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 1.11;
-  color: ${(props) => props.theme.colors.primary.primaryBlack};
+   margin-bottom: 12px;
+   font-size: 18px;
+   font-weight: 500;
+   line-height: 1.11;
+   color: ${(props) => props.theme.colors.primary.primaryblack};
 `;
 export const StyledListParagraph = styled.p`
-   color: ${(props) => props.theme.colors.primary.Black};
+   color: ${(props) => props.theme.colors.primary.black};
 `;
 export const StyledNavLink = styled(NavLink)`
    display: block;
@@ -47,15 +47,15 @@ export const StyledNavLink = styled(NavLink)`
    border-radius: 10px;
    font-weight: 500;
    text-align: center;
-   color: ${({ theme }) => theme.colors.primary.White};
-   background-color: ${(props) => props.theme.colors.primary.Blue};
+   color: ${({ theme }) => theme.colors.primary.white};
+   background-color: ${(props) => props.theme.colors.primary.blue};
    box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
    text-decoration: none;
    &:hover {
       box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
    }
    &.active {
-      background-color: ${(props) => props.theme.colors.primary.Blue};
+      background-color: ${(props) => props.theme.colors.primary.blue};
    }
    @media screen and (min-width: 768px) {
       padding: 10px 30px;
