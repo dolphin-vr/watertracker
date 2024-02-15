@@ -130,7 +130,7 @@ const WaterProgressWrap = styled.div`
 
 const MainPagePortions = styled.div`
    padding: ${({ theme }) => theme.spacing(6)} ${({ theme }) => theme.spacing(2)};
-   background: ${(props) => props.theme.colors.secondary.white};
+   background: ${({ theme }) => theme.colors.secondary.white};
    box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.3);
    background: #ecf2ff;
    border-radius: 10px;
@@ -146,9 +146,9 @@ const AddPortionButton = styled.button`
    width: 100%;
    border: none;
    border-radius: 10px;
-   background: ${(props) => props.theme.colors.primary.blue};
+   background: ${({ theme }) => theme.colors.primary.blue};
    box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
-   color: ${(props) => props.theme.colors.primary.white};
+   color: ${({ theme }) => theme.colors.primary.white};
    text-align: center;
    font-size: 16px;
    font-weight: 500;

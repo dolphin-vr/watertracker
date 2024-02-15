@@ -13,7 +13,6 @@ import {
   IconBtn,
   AuthBtn,
   AuthLink,
-  Bottle,
   StyledSvg,
 } from "./AuthPages.styled";
 import { Icon } from "../../components/Icon/Icon";
@@ -101,7 +100,6 @@ export const SignUpPage = () => {
           <AuthBtn type="submit">Sign Up</AuthBtn>
           <AuthLink to="/signin">Sign In</AuthLink>
         </FormStyled>
-        <Bottle />
     </Main>
   );
 };

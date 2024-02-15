@@ -27,8 +27,8 @@ const getFontColor = (props) => {
 };
 
 export const DayTile = styled.li`
-   width: ${(props) => props.theme.spacing(8)};
-   height: ${(props) => props.theme.spacing(13)};
+   width: ${({ theme }) => theme.spacing(8)};
+   height: ${({ theme }) => theme.spacing(13)};
    background-color: ${getTileBgr};
 
    @media (min-width: 768px) {
@@ -47,7 +47,7 @@ export const DayButton = styled.button`
    display: flex;
    flex-direction: column;
    align-items: center;
-   gap: ${(props) => props.theme.spacing(1)};
+   gap: ${({ theme }) => theme.spacing(1)};
    background: none;
    border: none;
    cursor: pointer;
@@ -58,15 +58,15 @@ export const DayButton = styled.button`
 
 export const Circle = styled.p`
    margin: 0;
-   width: ${(props) => props.theme.spacing(8)};
-   height: ${(props) => props.theme.spacing(8)};
+   width: ${({ theme }) => theme.spacing(8)};
+   height: ${({ theme }) => theme.spacing(8)};
    border: 1px solid ${getBorderColor};
    border-radius: 50%;
    display: flex;
    justify-content: center;
    align-items: center;
    color: ${getFontColor};
-   background-color: ${(props) => props.theme.colors.primary.white};
+   background-color: ${({ theme }) => theme.colors.primary.white};
    font-size: 14px;
    font-style: normal;
    font-weight: 400;
@@ -83,5 +83,5 @@ export const Label = styled.p`
    margin: 0;
    text-align: center;
    font-size: 12px;
-   color: ${(props) => props.theme.colors.secondary.blue};
+   color: ${({ theme }) => theme.colors.secondary.blue};
 `;

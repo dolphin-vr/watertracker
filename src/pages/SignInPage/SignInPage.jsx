@@ -13,7 +13,6 @@ import {
   IconBtn,
   AuthBtn,
   AuthLink,
-  Bottle,
   StyledSvg,
 } from "../SignUpPage/AuthPages.styled";
 import { selectIsLoading, selectIsLoggedIn } from "../../redux/auth/selectors";
@@ -86,7 +85,6 @@ export const SignInPage = () => {
           <AuthLink to="/signup">Sign Up</AuthLink>
           <AuthLink to="/remind">Forgot password?</AuthLink>
         </FormStyled>
-        <Bottle />
     </Main>
   );
 };

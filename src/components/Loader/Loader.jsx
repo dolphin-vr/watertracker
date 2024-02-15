@@ -5,7 +5,6 @@ export const Loader = () => {
         <BackDrop>
             <LoaderCircle>
                 <LoaderWave />
-                {/* </LoaderWave> */}
             </LoaderCircle>
         </BackDrop>
 	)

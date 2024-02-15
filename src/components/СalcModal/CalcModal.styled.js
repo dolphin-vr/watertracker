@@ -23,7 +23,7 @@ export const Container = styled.div`
    top: 50%;
    left: 50%;
    transform: translate(-50%, -25%);
-   background-color: ${(props) => props.theme.colors.primary.white};
+   background-color: ${({ theme }) => theme.colors.primary.white};
    border-radius: 10px;
    margin: 0 auto;
 
@@ -42,13 +42,13 @@ export const Container = styled.div`
 export const Title = styled.h2`
    font-size: 26px;
    font-weight: 500;
-   color: ${(props) => props.theme.colors.primary.black};
+   color: ${({ theme }) => theme.colors.primary.black};
    line-height: calc(32 / 26);
    margin-top: 0px;
 `;
 
 export const Formula = styled.span`
-   color: ${(props) => props.theme.colors.primary.blue};
+   color: ${({ theme }) => theme.colors.primary.blue};
    font-size: 18px;
    line-height: calc(24 / 18);
 `;
@@ -56,7 +56,7 @@ export const Formula = styled.span`
 export const Gender = styled.li`
    display: flex;
    gap: 4px;
-   color: ${(props) => props.theme.colors.primary.black};
+   color: ${({ theme }) => theme.colors.primary.black};
    font-size: 16px;
    line-height: calc(20 / 16);
 `;
@@ -73,7 +73,7 @@ export const Description = styled.p`
    padding: 10px;
    color: #8f8f8f;
    border-radius: 10px;
-   border: 1px solid ${(props) => props.theme.colors.secondary.whiteblue};
+   border: 1px solid ${({ theme }) => theme.colors.secondary.whiteblue};
    align-items: flex-start;
    font-size: 12px;
    line-height: 1.33;
@@ -89,11 +89,11 @@ export const Description = styled.p`
 `;
 
 export const Start = styled.span`
-   color: ${(props) => props.theme.colors.primary.blue};
+   color: ${({ theme }) => theme.colors.primary.blue};
 `;
 
 export const TitleLabel = styled.h3`
-   color: ${(props) => props.theme.colors.primary.black};
+   color: ${({ theme }) => theme.colors.primary.black};
    margin-bottom: 16px;
    font-size: 18px;
    font-weight: 500;
@@ -133,8 +133,8 @@ export const GenderInput = styled.input`
       height: 12px;
       border-radius: 50%;
       transform: translate(-50%, -50%);
-      background-color: ${(props) => props.theme.colors.primary.white};
-      border: 2px solid ${(props) => props.theme.colors.primary.blue};
+      background-color: ${({ theme }) => theme.colors.primary.white};
+      border: 2px solid ${({ theme }) => theme.colors.primary.blue};
    }
 
    &:checked:after {
@@ -145,7 +145,7 @@ export const GenderInput = styled.input`
       width: 7px;
       height: 7px;
       border-radius: 50%;
-      background-color: ${(props) => props.theme.colors.primary.blue};
+      background-color: ${({ theme }) => theme.colors.primary.blue};
       transform: translate(-53%, -66%);
       visibility: visible;
    }
@@ -155,7 +155,7 @@ export const CloseBtn = styled.button`
    display: flex;
    align-items: center;
    justify-content: center;
-   background-color: ${(props) => props.theme.colors.primary.white};
+   background-color: ${({ theme }) => theme.colors.primary.white};
    border: none;
    width: 24px;
    height: 24px;
@@ -172,7 +172,7 @@ export const CloseBtn = styled.button`
 `;
 
 export const GenderLabel = styled.label`
-   color: ${(props) => props.theme.colors.primary.black};
+   color: ${({ theme }) => theme.colors.primary.black};
    font-size: 16px;
    line-height: 20px;
 `;
@@ -194,7 +194,7 @@ export const Labels = styled.div`
 `;
 
 export const DataLabel = styled.label`
-   color: ${(props) => props.theme.colors.primary.black};
+   color: ${({ theme }) => theme.colors.primary.black};
    font-size: 16px;
    line-height: 20px;
 `;
@@ -202,14 +202,14 @@ export const DataLabel = styled.label`
 export const ModalInput = styled.input`
    padding: 12px 10px;
    border-radius: 6px;
-   border: 1px solid ${(props) => props.theme.colors.secondary.whiteblue};
+   border: 1px solid ${({ theme }) => theme.colors.secondary.whiteblue};
    max-width: 256px;
    width: 100%;
    font-size: 16px;
    line-height: 20px;
 
    &.error-input {
-      border: 2px solid ${(props) => props.theme.colors.secondary.red};
+      border: 2px solid ${({ theme }) => theme.colors.secondary.red};
    }
 
    @media screen and (min-width: 768px) {
@@ -260,8 +260,8 @@ export const WriteInput = styled.label`
 `;
 
 export const Btn = styled.button`
-   background-color: ${(props) => props.theme.colors.primary.blue};
-   color: ${(props) => props.theme.colors.primary.white};
+   background-color: ${({ theme }) => theme.colors.primary.blue};
+   color: ${({ theme }) => theme.colors.primary.white};
    padding: 8px 30px;
    border-radius: 10px;
    border: none;
@@ -284,7 +284,7 @@ export const Btn = styled.button`
    }
 `;
 export const ErrorMessageStyled = styled.span`
-   color: ${(props) => props.theme.colors.secondary.red};
+   color: ${({ theme }) => theme.colors.secondary.red};
    font-size: 14px;
    line-height: 1.28;
    margin-top: 4px;

@@ -9,5 +9,7 @@ module.exports = {
    rules: {
       "react/prop-types": "off",
       "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
+      "no-extra-boolean-cast": ["off", { enforceForLogicalOperands: false }],
+      "no-useless-escape": "off",
    },
 };
