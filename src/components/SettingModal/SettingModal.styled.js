@@ -15,7 +15,7 @@ export const Container = styled.div`
    top: 50%;
    left: 50%;
    transform: translate(-50%, -25%);
-   background-color: ${(props) => props.theme.colors.primary.white};
+   background-color: ${({ theme }) => theme.colors.primary.white};
    border-radius: 10px;
 
    @media screen and (min-width: 768px) {
@@ -72,7 +72,7 @@ export const InputImg = styled.input`
 `;
 
 export const LinkImgUpload = styled.span`
-   color: ${(props) => props.theme.colors.primary.blue};
+   color: ${({ theme }) => theme.colors.primary.blue};
    cursor: pointer;
    margin-left: 8px;
    font-family: Roboto;
@@ -134,8 +134,8 @@ export const InputStyle = styled.input`
    width: 100%;
    height: 44px;
 
-   border: 1px solid ${(props) => props.theme.colors.secondary.whiteblue};
-   color: ${(props) => props.theme.colors.secondary.blue};
+   border: 1px solid ${({ theme }) => theme.colors.secondary.whiteblue};
+   color: ${({ theme }) => theme.colors.secondary.blue};
    border-radius: 6px;
    margin: 8px 0px 16px 0px;
    font-size: 16px;
@@ -143,13 +143,13 @@ export const InputStyle = styled.input`
    padding: 16px 8px;
 
    &.input-error {
-      border: 2px solid ${(props) => props.theme.colors.secondary.red};
+      border: 2px solid ${({ theme }) => theme.colors.secondary.red};
    }
 
    &:active,
    &:focus,
    &:hover {
-      color: ${(props) => props.theme.colors.primary.blue};
+      color: ${({ theme }) => theme.colors.primary.blue};
    }
 
    @media screen and (min-width: 768px) {
@@ -164,7 +164,7 @@ export const InputStyle = styled.input`
 `;
 
 export const ButtonSubmit = styled.button`
-   color: ${(props) => props.theme.colors.primary.white};
+   color: ${({ theme }) => theme.colors.primary.white};
    font-weight: 500;
    line-height: 20px;
    font-size: 16px;
@@ -195,7 +195,7 @@ export const ButtonSubmit = styled.button`
    }
 `;
 export const ErrorMessageStyled = styled.span`
-   color: ${(props) => props.theme.colors.secondary.red};
+   color: ${({ theme }) => theme.colors.secondary.red};
    font-size: 14px;
    line-height: 1.28;
    margin-top: 4px;
@@ -215,7 +215,7 @@ export const CloseBtn = styled.button`
    display: flex;
    align-items: center;
    justify-content: center;
-   background-color: ${(props) => props.theme.colors.primary.white};
+   background-color: ${({ theme }) => theme.colors.primary.white};
    border: none;
    width: 24px;
    height: 24px;
@@ -227,7 +227,7 @@ export const CloseBtn = styled.button`
 `;
 
 export const Title = styled.h3`
-   color: ${(props) => props.theme.colors.primary.black};
+   color: ${({ theme }) => theme.colors.primary.black};
    font-size: 26px;
    font-weight: 500;
    line-height: 32px;
@@ -254,7 +254,7 @@ export const GenderInput = styled.input`
       height: 14px;
       border-radius: 50%;
       transform: translate(-50%, -50%);
-      background-color: ${(props) => props.theme.colors.primary.white};
+      background-color: ${({ theme }) => theme.colors.primary.white};
       border: 1px solid rgb(64, 123, 255);
    }
 
@@ -293,7 +293,7 @@ export const IconBtn = styled.button`
    width: 16px;
    height: 16px;
    padding: 0;
-   stroke: ${(props) => props.theme.colors.primary.blue};
+   stroke: ${({ theme }) => theme.colors.primary.blue};
 
    @media screen and (min-width: 768px) {
       left: 300px;

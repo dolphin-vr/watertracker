@@ -11,7 +11,7 @@ export const StyledForm = styled(Form)`
    position: relative;
    display: flex;
    flex-direction: column;
-   gap: 20px;
+   gap: 16px;
    width: 320px;
    margin-top: 100px;
    margin-left: auto;
@@ -37,16 +37,16 @@ export const StyledField = styled(Field)`
    border-radius: 6px;
 
    border: 1px solid ${({ theme }) => theme.colors.secondary.whiteblue};
-   background-color: ${(props) => props.theme.colors.primary.white};
+   background-color: ${({ theme }) => theme.colors.primary.white};
 
-   color: ${({ theme }) => theme.colors.secondary.blue};
+   color: ${({ theme }) => theme.colors.primary.blue};
    font-size: 16px;
    line-height: 1.25;
    width: 280px;
    outline: none;
 
    &:focus {
-      ${({ theme }) => theme.colors.primary.blue};
+      color: ${({ theme }) => theme.colors.primary.blue};
    }
 
    &::placeholder {
@@ -80,33 +80,57 @@ export const ErrorMsg = styled(ErrorMessage)`
 `;
 
 export const Main = styled.main`
-   height: calc(100vh - 56px);
-   margin-top: 24px;
-   background-image: url(${signbgm});
-   background-size: cover;
+   height: 634px;
+   padding-top: 24px;
+   background-image: url(${bottle}), url(${signbgm});
+   background-repeat: no-repeat;
+   background-size: 280px 210px, cover;
+   background-position: center 422px, center top;
 
    @media screen and (min-width: 768px) {
+      height: 600px;
       position: relative;
-      background-image: url(${signbgt});
-      background-position: center;
-      height: 590px;
-      padding: 16px 32px 0;
+      background-image: url(${bottle}), url(${signbgt});
+      background-size: 564px 528px, cover;
+      background-position: left calc(100% / 2 + 104px) top 86px, center;
    }
    @media screen and (min-width: 1440px) {
-      display: flex;
-      flex-direction: row-reverse;
-      background-image: url(${signbgd});
-      background-position: 0 center;
-      background-size: auto;
-      margin: 0 auto;
       min-height: 720px;
       height: calc(100vh - 60px);
+      margin: 0 auto;
       padding-top: 60px;
       padding-left: 100px;
+      /* height: 740px; */
+      display: flex;
+      flex-direction: row-reverse;
+      background-image: url(${bottle}), url(${signbgd});
+      background-size: 752px, cover;
+      background-position: left calc(100% / 2 + -128px) top 152px, top center;
    }
 `;
 
-export const BackgroundStyled = styled.div``;
+export const Bottle = styled.div`
+   width: 280px;
+   height: 210px;
+   margin: 0 auto;
+   background-image: url(${bottle});
+   background-size: contain;
+   background-position: center;
+   background-repeat: no-repeat;
+   outline: 2px solid red;
+
+   @media screen and (min-width: 768px) {
+      position: absolute;
+      top: 100px;
+      right: 0;
+      width: 568px;
+      height: 500px;
+   }
+   @media screen and (min-width: 1440px) {
+      position: static;
+      /* margin-right: 80px; */
+   }
+`;
 
 export const Title = styled.h1`
    margin: 0;
@@ -118,24 +142,28 @@ export const FormStyled = styled.form`
    position: relative;
    display: flex;
    flex-direction: column;
-   gap: 20px;
+   gap: 16px;
    width: 320px;
-   margin-top: 100px;
+   /* margin-top: 100px; */
    margin-left: auto;
    margin-right: auto;
    padding: 0 20px;
 
    @media (min-width: 768px) {
-      z-index: 1;
-      margin-left: 0;
-      padding: 0;
-      width: 336px;
+      width: 768px;
+      margin-top: 40px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 400px 0 32px;
    }
 
    @media (min-width: 1440px) {
-      margin-left: 80px;
-      /* margin-right: 198px; */
-      width: 384px;
+      width: 1404px;
+      margin-top: 148px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 198px 0 822px;
+      background-color: transparent;
    }
 `;
 
@@ -144,29 +172,27 @@ export const Label = styled.label`
    display: flex;
    flex-direction: column;
    gap: 8px;
-   /* margin-bottom: ${({ theme }) => theme.spacing(2)}; */
    color: ${({ theme }) => theme.colors.primary.black};
    font-size: 18px;
    line-height: 1.33;
 `;
 
 export const Input = styled.input`
-   /* margin-bottom: ${({ theme }) => theme.spacing(4)}; */
    padding: ${({ theme }) => theme.spacing(3)} ${({ theme }) => theme.spacing(2)};
    border-radius: 6px;
 
    border: 1px solid ${({ theme }) => theme.colors.secondary.whiteblue};
-   background-color: ${(props) => props.theme.colors.primary.white};
+   background-color: ${({ theme }) => theme.colors.primary.white};
 
-   color: ${({ theme }) => theme.colors.secondary.blue};
+   color: ${({ theme }) => theme.colors.primary.blue};
    font-size: 16px;
-   line-height: 1.25;
+   /* line-height: 1.25; */
    width: 280px;
    outline: none;
-
+   /* 
    &:focus {
       ${({ theme }) => theme.colors.primary.blue};
-   }
+   } */
 
    &::placeholder {
       color: ${({ theme }) => theme.colors.secondary.blue};
@@ -258,27 +284,5 @@ export const AuthLink = styled(Link)`
 
    &:hover {
       color: ${({ theme }) => theme.colors.secondary.orange};
-   }
-`;
-
-export const Bottle = styled.div`
-   width: 280px;
-   height: 210px;
-   margin: 0 auto;
-   background-image: url(${bottle});
-   background-size: contain;
-   background-position: center;
-   background-repeat: no-repeat;
-
-   @media screen and (min-width: 768px) {
-      position: absolute;
-      top: 100px;
-      right: 0;
-      width: 568px;
-      height: 500px;
-   }
-   @media screen and (min-width: 1440px) {
-      position: static;
-      /* margin-right: 80px; */
    }
 `;

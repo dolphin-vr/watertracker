@@ -6,13 +6,13 @@ import { remindPasswd } from "../../redux/auth/auth";
 import { selectError, selectIsLoading, selectStatus } from "../../redux/auth/selectors";
 import { errorUnset, statusUnset } from "../../redux/auth/authSlice";
 import { emailSchema } from "../../shared/utils/authValidate";
-import { Main, StyledForm, StyledField, ErrorMsg,
+import { Main, StyledForm, ErrorMsg,
   Title,
   Label,
   AuthBtn, AuthLink,
-  Bottle,
 } from "../SignUpPage/AuthPages.styled";
 import { Loader } from "../../components/Loader/Loader";
+import { InputField } from "../../components/InputField/InputField";
 
 export const PassRemindPage = () => {
   const dispatch = useDispatch();
@@ -23,10 +23,10 @@ export const PassRemindPage = () => {
   useEffect(() => {
     if (status === 200) {
       dispatch(statusUnset());
-      toast.success(`Password reset link has been send to your e-mail.\n Please check your mailbox.`, {id: 'toasterId'});
+      toast.success('Password reset link has been send to your e-mail.\n Please check your mailbox.', {id: 'toasterId'});
     }
     if (error) {
-      toast.error(`${error}`);
+      toast.error(`${error}`, {id: 'toasterId'});
       dispatch(errorUnset());
     }
   }, [status, error, dispatch]);
@@ -45,14 +45,13 @@ export const PassRemindPage = () => {
           <Title>Password reset form</Title>
           <Label>
             Enter your email
-            <StyledField type="email" placeholder="E-mail" name="email" />
+            <InputField type="email" placeholder="E-mail" name="email" />
             <ErrorMsg name="email" component="span" />
           </Label>
           <AuthBtn type="submit">Get reset link</AuthBtn>
+          <AuthLink to="/signin">Sign In</AuthLink>
         </StyledForm>
       </Formik>
-      <AuthLink to="/signin">Sign In</AuthLink>
-      <Bottle />
 			{isLoading && <Loader />}
     </Main>
   );

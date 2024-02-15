@@ -20,9 +20,9 @@ const DailyNormaWrapper = styled.div`
 const DailyNormaContainer = styled.div`
    max-width: 166px;
    padding: ${({ theme }) => theme.spacing(2)} ${({ theme }) => theme.spacing(5)};
-   background-color: ${(props) => props.theme.colors.primary.white};
+   background-color: ${({ theme }) => theme.colors.primary.white};
    border-radius: 10px;
-   border: 1px solid ${(props) => props.theme.colors.secondary.white};
+   border: 1px solid ${({ theme }) => theme.colors.secondary.white};
    box-shadow: 0px 4px 8px 0px rgba(158, 187, 255, 0.12);
 `;
 
@@ -38,7 +38,7 @@ const DailyNormaInfo = styled.p`
    display: flex;
    align-items: center;
    margin: 0px;
-   color: ${(props) => props.theme.colors.primary.blue};
+   color: ${({ theme }) => theme.colors.primary.blue};
    font-size: 22px;
    font-weight: 700;
    line-height: 100%;
@@ -51,14 +51,14 @@ const DailyNormaSpan = styled.span`
 const DailyNormaBth = styled.button`
    border: none;
    background-color: transparent;
-   color: ${(props) => props.theme.colors.secondary.blue};
+   color: ${({ theme }) => theme.colors.secondary.blue};
    font-size: 16px;
    font-weight: 400;
    line-height: 1.25;
    cursor: pointer;
 
    :hover {
-      color: ${(props) => props.theme.colors.secondary.orange};
+      color: ${({ theme }) => theme.colors.secondary.orange};
    }
 `;
 

@@ -1,8 +1,10 @@
 import * as Yup from "yup";
 
+const EMAIL_REGX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
+
 export const signupSchema = Yup.object().shape({
   email: Yup.string()
-    .email("Enter a valid email")
+    .matches(EMAIL_REGX, "Enter a valid email")
     .required("Email is required"),
   password: Yup.string()
     .min(8, "Password must be at least 8 characters")
@@ -17,7 +19,7 @@ export const signupSchema = Yup.object().shape({
 
 export const signinSchema = Yup.object().shape({
   email: Yup.string()
-    .email("Enter a valid email")
+    .matches(EMAIL_REGX, "Enter a valid email")
     .required("Email is required"),
   password: Yup.string()
     .min(8, "Password must be at least 8 characters")
@@ -27,6 +29,6 @@ export const signinSchema = Yup.object().shape({
 
 export const emailSchema = Yup.object().shape({
   email: Yup.string()
-    .email("Enter a valid email")
+    .matches(EMAIL_REGX, "Enter a valid email")
     .required("Email is required"),
 });

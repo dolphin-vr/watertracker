@@ -75,7 +75,7 @@ const ProgressBar = styled.div`
 const WaterProgresBarText = styled.div`
    display: flex;
    justify-content: space-between;
-   color: ${(props) => props.theme.colors.primary.blue};
+   color: ${({ theme }) => theme.colors.primary.blue};
    text-align: center;
    font-size: 12px;
    font-weight: 400;
