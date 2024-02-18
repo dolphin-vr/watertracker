@@ -13,22 +13,26 @@ export const StyledForm = styled(Form)`
    flex-direction: column;
    gap: 16px;
    width: 320px;
-   margin-top: 100px;
+   /* margin-top: 100px; */
    margin-left: auto;
    margin-right: auto;
    padding: 0 20px;
 
    @media (min-width: 768px) {
-      z-index: 1;
-      margin-left: 0;
-      padding: 0;
-      width: 336px;
+      width: 768px;
+      margin-top: 40px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 400px 0 32px;
    }
 
    @media (min-width: 1440px) {
-      margin-left: 80px;
-      /* margin-right: 198px; */
-      width: 384px;
+      width: 1404px;
+      margin-top: 148px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 198px 0 822px;
+      background-color: transparent;
    }
 `;
 

@@ -25,7 +25,7 @@ const handlePending = (state) => {
 const handleRejected = (state, action) => {
   state.isLoggedIn = false;
   state.isLoading = false;
-  state.error = action.payload;
+   state.error = action.payload;
 };
 const authSlice = createSlice({
    name: "auth",
@@ -80,11 +80,11 @@ const authSlice = createSlice({
             state.isLoading = false;
             state.error = null;
          })
-         .addCase(auth.refreshUser.rejected, (state, action) => {
+         .addCase(auth.refreshUser.rejected, (state) => {
             state.isRefreshing = false;
             state.isLoggedIn = false;
             state.isLoading = false;
-            state.error = action.payload;
+            // state.error = action.payload;
          })
          .addCase(auth.remindPasswd.pending, handlePending)
          .addCase(auth.remindPasswd.fulfilled, (state, action) => {
@@ -98,10 +98,6 @@ const authSlice = createSlice({
             state.isLoading = false;
          })
          .addCase(auth.resetPasswd.rejected, handleRejected);
-      //  .addCase(statusUnset, (state) => {
-      //     state.status = null;
-      //     state.isLoading = false;
-      //  });
    },
 });
 

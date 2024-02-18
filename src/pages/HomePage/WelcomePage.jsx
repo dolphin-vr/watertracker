@@ -5,12 +5,10 @@ import { Container, StyledMain } from "./WelcomePage.styled";
 export const WelcomePage = () => {
   return (
     <StyledMain>
-      {/* <StyledSection> */}
         <Container>
           <WaterСonsumptionTracker />
           <WhyDrinkWater />
         </Container>
-      {/* </StyledSection> */}
     </StyledMain>
   );
 };

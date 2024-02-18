@@ -1,23 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useFormik } from "formik";
-import { registerUser } from "../../redux/auth/auth";
 import { useNavigate } from "react-router-dom";
-import {
-  Main,
-  FormStyled,
-  Title,
-  Label,
-  Input,
-  ErrorMessageStyled,
-  IconBtn,
-  AuthBtn,
-  AuthLink,
-  StyledSvg,
-} from "./AuthPages.styled";
-import { Icon } from "../../components/Icon/Icon";
-import { selectIsLoading, selectIsLoggedIn } from "../../redux/auth/selectors";
+import { Formik } from "formik";
+import toast from "react-hot-toast";
+import { registerUser } from "../../redux/auth/auth";
+import { errorUnset } from "../../redux/auth/authSlice";
+import { selectError, selectIsLoading, selectIsLoggedIn } from "../../redux/auth/selectors";
+import { Main, Title, Label, IconBtn, AuthBtn, AuthLink, StyledSvg, StyledForm, ErrorMsg, } from "../SignUpPage/AuthPages.styled";
+import { InputField } from "../../components/InputField/InputField";
 import { Loader } from "../../components/Loader/Loader";
+import { Icon } from "../../components/Icon/Icon";
 import { signupSchema } from "../../shared/utils/authValidate";
 
 export const SignUpPage = () => {
@@ -25,81 +17,53 @@ export const SignUpPage = () => {
   const navigate = useNavigate();
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const isLoading = useSelector(selectIsLoading);
-
+  const error = useSelector(selectError);
   const [showPassword, setShowPassword] = useState(false);
 
-  const formik = useFormik({
-    initialValues: { email: "", password: "", repeatPassword: "" },
-    validationSchema: signupSchema,
-    onSubmit: (values) => {
-      const formData = {
-        email: values.email,
-        password: values.password,
-      };
-      dispatch(registerUser(formData));
-      isLoggedIn && navigate("/main");
-    },
-  });
+  useEffect(()=>{
+    if (error===409) {
+      toast.error('This email address is not available.\n Choose a different one.');
+    } else if (error) {
+      toast.error('Something went wrong.\n Please try again');
+    }
+    dispatch(errorUnset());
+  }, [dispatch, error])
 
-  return isLoading ? (
-    <Loader />
-  ) : (
+  return (
     <Main>
-        <FormStyled onSubmit={formik.handleSubmit}>
+      <Formik
+        initialValues={{ email: "", password: "", repeatPassword: "" }}
+        validationSchema={signupSchema}
+        onSubmit={(values) => {
+          dispatch(registerUser( values ));
+          isLoggedIn && navigate("/main");
+        }}
+      >
+        <StyledForm>
           <Title>Sign Up</Title>
           <Label>Enter your email
-          <Input
-            type="email"
-            placeholder="E-mail"
-            name="email"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.email}
-            className={ formik.touched.email && formik.errors.email ? "input-error" : "" }
-            required
-          />
-          {formik.touched.email && (
-            <ErrorMessageStyled>{formik.errors.email}</ErrorMessageStyled>
-          )}</Label>
-
+            <InputField type="email" placeholder="E-mail" name="email" />
+            <ErrorMsg name="email" component="span" />
+          </Label>
           <Label>Enter your password
-            <Input
-              type={showPassword ? "text" : "password"}
-              placeholder="Password"
-              name="password"
-              onChange={(e) => { formik.handleChange(e) }}
-              onBlur={formik.handleBlur}
-              value={formik.values.password}
-              className={ formik.touched.password && formik.errors.password ? "input-error" : "" }
-              required
-            />
-            <IconBtn type="button" onClick={() => { setShowPassword(!showPassword) }}>
-              {showPassword ? ( <StyledSvg><Icon tag={"eye"} /></StyledSvg> ) : (  <StyledSvg><Icon tag={"closedeye"} /></StyledSvg> )}
-            </IconBtn>
-            {formik.touched.password && (
-              <ErrorMessageStyled>{formik.errors.password}</ErrorMessageStyled>
-            )}</Label>
-
-          <Label>Repeat your password
-            <Input
-              type={showPassword ? "text" : "password"}
-              placeholder="Repeat password"
-              name="repeatPassword"
-              onChange={(e) => { formik.handleChange(e) }}
-              onBlur={formik.handleBlur}
-              value={formik.values.repeatPassword}
-              className={ formik.touched.repeatPassword && formik.errors.repeatPassword ? "input-error" : "" }
-              required
-            />
+            <InputField type={showPassword ? "text" : "password"} placeholder="Password" name="password" />
             <IconBtn type="button" onClick={() => { setShowPassword(!showPassword); }} >
               {showPassword ? ( <StyledSvg><Icon tag={"eye"} /></StyledSvg> ) : (  <StyledSvg><Icon tag={"closedeye"} /></StyledSvg> )}
             </IconBtn>
-            {formik.touched.repeatPassword && (
-              <ErrorMessageStyled>{formik.errors.repeatPassword}</ErrorMessageStyled>
-            )}</Label>
+            <ErrorMsg name="password" component="span" />
+          </Label>
+          <Label>Repeat your password
+            <InputField type={showPassword ? "text" : "password"} placeholder="Repeat password" name="repeatPassword" />
+            <IconBtn type="button" onClick={() => { setShowPassword(!showPassword); }} >
+              {showPassword ? ( <StyledSvg><Icon tag={"eye"} /></StyledSvg> ) : (  <StyledSvg><Icon tag={"closedeye"} /></StyledSvg> )}
+            </IconBtn>
+            <ErrorMsg name="repeatPassword" component="span" />
+          </Label>
           <AuthBtn type="submit">Sign Up</AuthBtn>
           <AuthLink to="/signin">Sign In</AuthLink>
-        </FormStyled>
+        </StyledForm>
+      </Formik>
+      {isLoading && <Loader />}
     </Main>
   );
 };
