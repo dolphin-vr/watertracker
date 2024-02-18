@@ -16,11 +16,11 @@ const clearAuthHeader = () => {
 
 export const registerUser = createAsyncThunk("auth/registerUser", async (userData, thunkAPI) => {
    try {
-      const response = await instance.post("/auth/signup", { ...userData, date: currentDate, });
+      const response = await instance.post("/auth/signup", { email: userData.email, password: userData.password, date: currentDate });
       setAuthHeader(response.data.token);
       return response.data;
    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.response.status);
    }
 });
 
@@ -30,7 +30,7 @@ export const loginUser = createAsyncThunk("auth/loginUser", async (userData, thu
       setAuthHeader(response.data.token);
       return response.data;
    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.response.status);
    }
 });
 
@@ -49,7 +49,6 @@ export const resetPasswd = createAsyncThunk("auth/resetPasswd", async (userData,
       setAuthHeader(token);
       const response = await instance.patch("/auth/reset", {email, password});
       clearAuthHeader();
-      console.log('pwd reset= ', response.data)
       return response.status;
    } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

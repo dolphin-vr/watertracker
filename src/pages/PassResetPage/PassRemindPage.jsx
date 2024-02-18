@@ -19,7 +19,7 @@ export const PassRemindPage = () => {
   const status = useSelector(selectStatus);
   const error = useSelector(selectError);
   const isLoading = useSelector(selectIsLoading);
-
+  
   useEffect(() => {
     if (status === 200) {
       dispatch(statusUnset());
