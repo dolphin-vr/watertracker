@@ -3,16 +3,12 @@ import { useDispatch, useSelector  } from "react-redux";
 import { Formik } from 'formik';
 import toast from 'react-hot-toast';
 import { remindPasswd } from "../../redux/auth/auth";
-import { selectError, selectIsLoading, selectStatus } from "../../redux/auth/selectors";
 import { errorUnset, statusUnset } from "../../redux/auth/authSlice";
-import { emailSchema } from "../../shared/utils/authValidate";
-import { Main, StyledForm, ErrorMsg,
-  Title,
-  Label,
-  AuthBtn, AuthLink,
-} from "../SignUpPage/AuthPages.styled";
-import { Loader } from "../../components/Loader/Loader";
+import { selectError, selectIsLoading, selectStatus } from "../../redux/auth/selectors";
+import { Main, StyledForm, ErrorMsg, Title, Label, AuthBtn, AuthLink, } from "../SignUpPage/AuthPages.styled";
 import { InputField } from "../../components/InputField/InputField";
+import { Loader } from "../../components/Loader/Loader";
+import { emailSchema } from "../../shared/utils/authValidate";
 
 export const PassRemindPage = () => {
   const dispatch = useDispatch();
