@@ -17,17 +17,3 @@ export const MainStat = ({ onClick }) => {
     </Wrapper>
   );
 };
-
-
-          // <MainPageStatistic className="_mainstat">
-          //   <DailyNorma className="_dailynorma" />
-          //   <WaterProgressWrap className="_progress">
-          //     <WaterProgresBar />
-          //     <AddPortionButton type="button" onClick={() => onOpenModalWindow()}>
-          //       <StyledSvgPlus>
-          //         <use href={sprite + "#pluscircle"}>Add water</use>
-          //       </StyledSvgPlus>
-          //       Add water
-          //     </AddPortionButton>
-          //   </WaterProgressWrap>
-          // </MainPageStatistic>;

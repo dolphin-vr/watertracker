@@ -12,7 +12,6 @@ const fadeIn = keyframes`
 `;
 
 const StyledModal = styled(Modal)`
-   // Custom styles for the modal
    &.custom-overlay {
       background: none;
    }
@@ -41,7 +40,6 @@ const StyledModal = styled(Modal)`
 `;
 
 const CustomModalConteiner = styled.div`
-   //Custom styles here
    padding: ${({ theme }) => theme.spacing(6)} ${({ theme }) => theme.spacing(3)};
    border-radius: 10px;
    background: ${({ theme }) => theme.colors.primary.white};
@@ -61,7 +59,7 @@ const ModalDate = styled.div`
    font-size: 16px;
    font-style: normal;
    font-weight: 400;
-   line-height: 1.25; /* 125% */
+   line-height: 1.25;
    color: ${({ theme }) => theme.colors.primary.blue};
 `;
 const CloseButton = styled.button`
@@ -86,7 +84,7 @@ const ModalIndicators = styled.li`
    font-size: 16px;
    font-style: normal;
    font-weight: 400;
-   line-height: 1.25; /* 125% */
+   line-height: 1.25;
 `;
 
 const ModalAccent = styled.span`
@@ -94,7 +92,7 @@ const ModalAccent = styled.span`
    font-size: 18px;
    font-style: normal;
    font-weight: 500;
-   line-height: 1.33; /* 133.333% */
+   line-height: 1.33;
    color: ${({ theme }) => theme.colors.primary.blue};
    margin-left: ${({ theme }) => theme.spacing(1.5)};
 `;

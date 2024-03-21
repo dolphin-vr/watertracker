@@ -1,13 +1,10 @@
 import styled from "styled-components";
 
 const CalendarContainer = styled.div`
-  /* width: 280px; */
   margin: 0 auto;
-  /* outline: 1px solid green; */
   display: flex;
   flex-direction: column;
   width: 272px;
-  /* background: #ecf2ff; */
 
   @media (min-width: 768px) {
     width: 656px;
@@ -19,7 +16,6 @@ const CalendarContainer = styled.div`
 `;
 
 const DaysContainer = styled.ul`
-  /* height: 460px; */
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: ${({ theme }) => theme.spacing(2)} 18px;
