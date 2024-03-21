@@ -6,10 +6,9 @@ import toast from "react-hot-toast";
 import { loginUser } from "../../redux/auth/auth";
 import { errorUnset } from "../../redux/auth/authSlice";
 import { selectError, selectIsLoading, selectIsLoggedIn } from "../../redux/auth/selectors";
-import { Main, Title, Label, IconBtn, AuthBtn, AuthLink, StyledSvg, StyledForm, ErrorMsg, } from "../SignUpPage/AuthPages.styled";
+import { Main, Title, Label, IconBtn, AuthBtn, AuthLink, SvgIcon, StyledForm, ErrorMsg } from "../SignUpPage/AuthPages.styled";
 import { InputField } from "../../components/InputField/InputField";
 import { Loader } from "../../components/Loader/Loader";
-import { Icon } from "../../components/Icon/Icon";
 import { signinSchema } from "../../shared/utils/authValidate";
 
 export const SignInPage = () => {
@@ -20,7 +19,8 @@ export const SignInPage = () => {
   const error = useSelector(selectError);
   const [showPassword, setShowPassword] = useState(false);
 
-  useEffect(()=>{
+  useEffect(() => {
+    console.log('err= ', error);
     if (error===401) {
       toast.error('No such user exists or password missmatch.\n Please check your data or signup');
     } else if (error) {
@@ -48,7 +48,7 @@ export const SignInPage = () => {
           <Label>Enter your password
             <InputField type={showPassword ? "text" : "password"} placeholder="Password" name="password" />
             <IconBtn type="button" onClick={() => { setShowPassword(!showPassword); }} >
-              {showPassword ? ( <StyledSvg><Icon tag={"eye"} /></StyledSvg> ) : (  <StyledSvg><Icon tag={"closedeye"} /></StyledSvg> )}
+              <SvgIcon tag={showPassword ? "eye" : "closedeye"} />
             </IconBtn>
             <ErrorMsg name="password" component="span" />
           </Label>

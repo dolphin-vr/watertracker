@@ -32,3 +32,22 @@ export const emailSchema = Yup.object().shape({
     .matches(EMAIL_REGX, "Enter a valid email")
     .required("Email is required"),
 });
+
+export const calcSchema = Yup.object().shape({
+    gender: Yup.string().required("Gender is required"),
+    weight: Yup.number()
+      .typeError("Only number allowed")
+      .integer("Only integer number")
+      .positive("Only positive")
+      .lessThan(700, "You have a lot of hard weight"),
+    time: Yup.number()
+      .typeError("Only number allowed")
+      .positive("Only positive")
+      .lessThan(24, "You cannot be active for more than 24 hours")
+      .integer("Only integer number"),
+    rate: Yup.number()
+      .typeError("Only number allowed")
+      .positive("Only positive")
+      .lessThan(15, "You could drown in that much water")
+      .required("Rate is required"),
+});

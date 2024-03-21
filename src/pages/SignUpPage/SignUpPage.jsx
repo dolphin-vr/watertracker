@@ -6,10 +6,9 @@ import toast from "react-hot-toast";
 import { registerUser } from "../../redux/auth/auth";
 import { errorUnset } from "../../redux/auth/authSlice";
 import { selectError, selectIsLoading, selectIsLoggedIn } from "../../redux/auth/selectors";
-import { Main, Title, Label, IconBtn, AuthBtn, AuthLink, StyledSvg, StyledForm, ErrorMsg, } from "../SignUpPage/AuthPages.styled";
+import { Main, Title, Label, IconBtn, AuthBtn, AuthLink, StyledForm, ErrorMsg, SvgIcon, } from "../SignUpPage/AuthPages.styled";
 import { InputField } from "../../components/InputField/InputField";
 import { Loader } from "../../components/Loader/Loader";
-import { Icon } from "../../components/Icon/Icon";
 import { signupSchema } from "../../shared/utils/authValidate";
 
 export const SignUpPage = () => {
@@ -48,14 +47,15 @@ export const SignUpPage = () => {
           <Label>Enter your password
             <InputField type={showPassword ? "text" : "password"} placeholder="Password" name="password" />
             <IconBtn type="button" onClick={() => { setShowPassword(!showPassword); }} >
-              {showPassword ? ( <StyledSvg><Icon tag={"eye"} /></StyledSvg> ) : (  <StyledSvg><Icon tag={"closedeye"} /></StyledSvg> )}
+              <SvgIcon tag={showPassword ? "eye" : "closedeye"} />
+              {/* {showPassword ? ( <StyledSvg><Icon tag={"eye"} /></StyledSvg> ) : (  <StyledSvg><Icon tag={"closedeye"} /></StyledSvg> )} */}
             </IconBtn>
             <ErrorMsg name="password" component="span" />
           </Label>
           <Label>Repeat your password
             <InputField type={showPassword ? "text" : "password"} placeholder="Repeat password" name="repeatPassword" />
             <IconBtn type="button" onClick={() => { setShowPassword(!showPassword); }} >
-              {showPassword ? ( <StyledSvg><Icon tag={"eye"} /></StyledSvg> ) : (  <StyledSvg><Icon tag={"closedeye"} /></StyledSvg> )}
+              <SvgIcon tag={showPassword ? "eye" : "closedeye"} />
             </IconBtn>
             <ErrorMsg name="repeatPassword" component="span" />
           </Label>

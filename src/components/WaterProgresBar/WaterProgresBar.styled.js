@@ -39,12 +39,13 @@ const WaterProgresBarContainer = styled.div`
    margin-bottom: ${({ theme }) => theme.spacing(4)};
    width: 100%;
 
-   @media (min-width: 767px) {
+   @media (min-width: 768px) {
+      width: 356px;
       margin-bottom: 0;
    }
 
-   @media (min-width: 1439px) {
-      width: 544px;
+   @media (min-width: 1440px) {
+      width: 392px;
    }
 `;
 

@@ -6,9 +6,8 @@ import toast from 'react-hot-toast';
 import { resetPasswd } from "../../redux/auth/auth";
 import { errorUnset, statusUnset } from "../../redux/auth/authSlice";
 import { selectError, selectIsLoading, selectStatus } from "../../redux/auth/selectors";
-import { Main, Title, Label, IconBtn, AuthBtn, AuthLink, StyledSvg, StyledForm, ErrorMsg, } from "../SignUpPage/AuthPages.styled";
+import { Main, Title, Label, IconBtn, AuthBtn, AuthLink, SvgIcon, StyledForm, ErrorMsg } from "../SignUpPage/AuthPages.styled";
 import { InputField } from "../../components/InputField/InputField";
-import { Icon } from "../../components/Icon/Icon";
 import { Loader } from "../../components/Loader/Loader";
 import { signupSchema } from "../../shared/utils/authValidate";
 
@@ -22,8 +21,6 @@ export const PassResetPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   
   useEffect(() => {
-    // console.log('status= ', status);
-    // console.log('error= ', error);
     if (status === 200) {
       dispatch(statusUnset());
       toast.success('Password was reset successfuly.\n Please sign in.', { id: 'toasterId' });
@@ -59,14 +56,14 @@ export const PassResetPage = () => {
           <Label>Enter your password
             <InputField type={showPassword ? "text" : "password"} placeholder="Password" name="password" />
             <IconBtn type="button" onClick={() => { setShowPassword(!showPassword); }} >
-              {showPassword ? ( <StyledSvg><Icon tag={"eye"} /></StyledSvg> ) : (  <StyledSvg><Icon tag={"closedeye"} /></StyledSvg> )}
+              <SvgIcon tag={showPassword ? "eye" : "closedeye"} />
             </IconBtn>
             <ErrorMsg name="password" component="span" />
           </Label>
           <Label>Repeat your password
             <InputField type={showPassword ? "text" : "password"} placeholder="Repeat password" name="repeatPassword" />
             <IconBtn type="button" onClick={() => { setShowPassword(!showPassword); }} >
-              {showPassword ? ( <StyledSvg><Icon tag={"eye"} /></StyledSvg> ) : (  <StyledSvg><Icon tag={"closedeye"} /></StyledSvg> )}
+              <SvgIcon tag={showPassword ? "eye" : "closedeye"} />
             </IconBtn>
             <ErrorMsg name="repeatPassword" component="span" />
           </Label>

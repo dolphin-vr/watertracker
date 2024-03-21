@@ -1,15 +1,5 @@
 import { deletePortion } from "../../redux/water/todayOperations";
-import {
-  BackdporModal,
-  BtnCancel,
-  BtnClose,
-  BtnDelete,
-  ModalStyled,
-  ModalWrap,
-  Text,
-  Title,
-  WrapBtn,
-} from "./DeleteWaterModal.styled";
+import { BackdporModal, BtnCancel, BtnClose, BtnDelete, ModalStyled, ModalWrap, Text, Title, WrapBtn } from "./DeleteWaterModal.styled";
 import { useDispatch } from "react-redux";
 import Modal from "react-modal";
 import { useEffect } from "react";
@@ -27,24 +17,19 @@ export const DeleteWaterModal = ({ onCloseModal, id }) => {
   }, []);
   const dispatch = useDispatch();
 
-  const handleDelete = (id) => {
+  const handleDelete = id => {
     dispatch(deletePortion(id));
     onCloseModal();
   };
 
   return (
-    <ModalStyled
-      isOpen={true}
-      onRequestClose={onCloseModal}
-      contentLabel="WaterModal"
-      overlayClassName="overlay"
-    >
+    <ModalStyled isOpen={true} onRequestClose={onCloseModal} contentLabel="WaterModal" overlayClassName="overlay">
       <BackdporModal onClick={onCloseModal} />
       <ModalWrap>
         <Title>Delete entry</Title>
         <BtnClose type="button" onClick={onCloseModal}>
           <svg stroke="#407BFF" width="24" height="24">
-            <use href={sprite + "#modalclose"}></use>
+            <use href={sprite + "#close"}></use>
           </svg>
         </BtnClose>
 

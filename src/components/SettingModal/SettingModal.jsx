@@ -3,20 +3,7 @@ import Modal from "react-modal";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUserAvatar } from "../../redux/user/userOperations";
 import { selectUserAvatar } from "../../redux/user/userSelectors";
-import {
-  Container,
-  TitleContainer,
-  Avatar,
-  ContainerAvatar,
-  InputImg,
-  LinkImgUpload,
-  TitleH5,
-  Backdrop,
-  CloseBtn,
-  Title,
-  ModalStyled,
-  UploadSvg,
-} from "./SettingModal.styled";
+import { Container, TitleContainer, Avatar, ContainerAvatar, InputImg, LinkImgUpload, TitleH5, Backdrop, CloseBtn, Title, ModalStyled, UploadSvg } from "./SettingModal.styled";
 import sprite from "../../images/sprite.svg";
 
 import SettingForm from "./SettingForm";
@@ -27,14 +14,14 @@ const SettingModal = ({ onClose }) => {
   const fileInputRef = React.useRef();
   const dispatch = useDispatch();
 
-  const handleFileChange = (event) => {
+  const handleFileChange = event => {
     const file = event.target.files[0];
     if (file) {
       handleUpload(file);
     }
   };
 
-  const handleUpload = (file) => {
+  const handleUpload = file => {
     const formData = new FormData();
     formData.append("avatar", file);
     dispatch(updateUserAvatar(formData));
@@ -45,12 +32,7 @@ const SettingModal = ({ onClose }) => {
   };
 
   return (
-    <ModalStyled
-      isOpen={true}
-      onRequestClose={onClose}
-      contentLabel="SettingModal"
-      overlayClassName="overlay"
-    >
+    <ModalStyled isOpen={true} onRequestClose={onClose} contentLabel="SettingModal" overlayClassName="overlay">
       <Backdrop onClick={onClose} />
       <Container>
         <TitleContainer>
@@ -58,17 +40,13 @@ const SettingModal = ({ onClose }) => {
         </TitleContainer>
         <CloseBtn type="button" onClick={onClose}>
           <svg>
-            <use href={sprite + "#modalclose"}></use>
+            <use href={sprite + "#close"}></use>
           </svg>
         </CloseBtn>
         <TitleH5>Your photo</TitleH5>
         <ContainerAvatar>
           <Avatar src={avatarURL} alt="" width="80" height="80"></Avatar>
-          <InputImg
-            type="file"
-            ref={fileInputRef}
-            onChange={handleFileChange}
-          />
+          <InputImg type="file" ref={fileInputRef} onChange={handleFileChange} />
           <LinkImgUpload onClick={handleLinkClick}>
             <UploadSvg>
               <use href={sprite + "#upload"}></use>

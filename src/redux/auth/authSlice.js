@@ -18,14 +18,16 @@ const initialState = {
   error: null,
 };
 const handlePending = (state) => {
+   // console.log('pending')
   state.isLoading = true;
   state.error = null;
   state.isLoggedIn = false;
 };
 const handleRejected = (state, action) => {
+   // console.log('rejected')
   state.isLoggedIn = false;
   state.isLoading = false;
-   state.error = action.payload;
+  state.error = action.payload;
 };
 const authSlice = createSlice({
    name: "auth",

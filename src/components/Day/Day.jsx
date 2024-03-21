@@ -19,9 +19,9 @@ export const Day = ({ day, onClick }) => {
   }, [day, doses, percentage]);
 
   return (
-    <DayTile istoday={newday.isToday.toString()}>
+    <DayTile $istoday={newday.isToday.toString()}>
       <DayButton onClick={(event) => onClick(event, newday)} id={newday.id}>
-        <Circle percent={newday.percentage}>{newday.id}</Circle>
+        <Circle $percent={newday.percentage}>{newday.id}</Circle>
         <Label>{newday.percentage ? `${newday.percentage}  %` : ""}</Label>
       </DayButton>
     </DayTile>
