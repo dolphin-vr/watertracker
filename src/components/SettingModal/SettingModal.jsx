@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateUserAvatar } from "../../redux/user/userOperations";
 import { selectUserAvatar } from "../../redux/user/userSelectors";
 import { Container, TitleContainer, Avatar, ContainerAvatar, InputImg, LinkImgUpload, TitleH5, Backdrop, CloseBtn, Title, ModalStyled, UploadSvg } from "./SettingModal.styled";
-import sprite from "../../images/sprite.svg";
+import sprite from "../../assets/sprite.svg";
 
 import SettingForm from "./SettingForm";
 

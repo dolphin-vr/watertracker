@@ -20,7 +20,7 @@ export const SignInPage = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
-    console.log('err= ', error);
+    // console.log('err= ', error);
     if (error===401) {
       toast.error('No such user exists or password missmatch.\n Please check your data or signup');
     } else if (error) {

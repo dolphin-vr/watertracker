@@ -6,6 +6,7 @@ import {
   ProgressBar,
   WaterProgresBarText,
   AccentSpan,
+  ProgressPoiner,
 } from "./WaterProgresBar.styled";
 import { selectPercentage } from "../../redux/water/todaySelectors";
 
@@ -17,6 +18,7 @@ export const WaterProgresBar = () => {
       <WaterProgresBarTitle>Today</WaterProgresBarTitle>
       <ProgressContainer width={waterProgress}>
         <ProgressBar width={waterProgress}></ProgressBar>
+        <ProgressPoiner width={waterProgress} />
       </ProgressContainer>
       <WaterProgresBarText>
         <span>0%</span>

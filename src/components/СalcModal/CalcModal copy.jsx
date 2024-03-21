@@ -30,7 +30,7 @@ import {
   CloseBtn,
   StyledModal,
 } from "./CalcModal.styled";
-import sprite from "../../images/sprite.svg";
+import sprite from "../../assets/sprite.svg";
 import { calcSchema } from "../../shared/utils/authValidate";
 
 const CalcModal = ({ onClose }) => {

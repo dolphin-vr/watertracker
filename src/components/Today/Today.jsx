@@ -1,8 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import {
-  addNewPortion,
-  updatePortion,
-} from "../../redux/water/todayOperations.js";
+import { addNewPortion, updatePortion } from "../../redux/water/todayOperations.js";
 import {
   TodayWrapper,
   TodayTitle,
@@ -22,12 +19,12 @@ import {
   StyledSvg,
 } from "./Today.styled.js";
 import { selectDailyPortions } from "../../redux/water/todaySelectors.js";
-import sprite from "../../images/sprite.svg";
+import sprite from "../../assets/sprite.svg";
 import { useState } from "react";
 import { DeleteWaterModal } from "../DeleteWaterModal/DeleteWaterModal.jsx";
 import { WaterModal } from "../WaterModal/WaterModal.jsx";
 import { selectUserNorma } from "../../redux/user/userSelectors.js";
-import {CalcModal} from "../СalcModal/CalcModal.jsx";
+import { CalcModal } from "../СalcModal/CalcModal.jsx";
 import toast from "react-hot-toast";
 
 export const Today = () => {
@@ -100,18 +97,12 @@ export const Today = () => {
                   <TodayTime>{time}</TodayTime>
                 </QuantityWrap>
                 <ButtonsWrap>
-                  <SvgButtonCreate
-                    type="button"
-                    onClick={() => onChangePortion(water, id, time)}
-                  >
+                  <SvgButtonCreate type="button" onClick={() => onChangePortion(water, id, time)}>
                     <StyledSvgPencil>
                       <use href={sprite + "#pencil"}></use>
                     </StyledSvgPencil>
                   </SvgButtonCreate>
-                  <SvgButtonDel
-                    type="button"
-                    onClick={() => onDeletePortion(id)}
-                  >
+                  <SvgButtonDel type="button" onClick={() => onDeletePortion(id)}>
                     <StyledSvgTrash>
                       <use href={sprite + "#trash"}></use>
                     </StyledSvgTrash>
@@ -129,7 +120,7 @@ export const Today = () => {
           title="Add water"
           subtitle="Choose a value:"
           onCloseModal={onCloseAddPortion}
-          onAddWater={(data) => {
+          onAddWater={data => {
             dispatch(addNewPortion(data));
           }}
           initialWater={0}
@@ -137,15 +128,13 @@ export const Today = () => {
           isEditing={false}
         />
       )}
-      {openDeleteWaterModal && (
-        <DeleteWaterModal onCloseModal={onCloseDeletePortion} id={id} />
-      )}
+      {openDeleteWaterModal && <DeleteWaterModal onCloseModal={onCloseDeletePortion} id={id} />}
       {openEditWaterModal && (
         <WaterModal
           title="Edit the entered amount of water"
           subtitle="Correct entered data:"
           onCloseModal={onCloseChangePortion}
-          onEditWater={(data) => {
+          onEditWater={data => {
             dispatch(updatePortion(data));
           }}
           initialWater={data.water}

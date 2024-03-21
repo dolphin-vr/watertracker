@@ -1,5 +1,5 @@
 import { StyledModal, CustomModalConteiner, ModalHeader, ModalDate, CloseButton, ModalList, ModalIndicators, ModalAccent } from "./CalendarModal.styled";
-import sprite from "../../images/sprite.svg";
+import sprite from "../../assets/sprite.svg";
 
 const CalendarModal = ({ isOpen, closeModal, day, norma, buttonCoordinates }) => {
   if (!isOpen || !day) {

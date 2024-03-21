@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import signbgm from "../../images/sign-m.svg";
-import mainbgt from "../../images/mainbgt.svg";
-import signbgd from "../../images/sign-d.svg";
-import bottle from "../../images/bottle.svg";
+import signbgm from "../../assets/sign-m.svg";
+import mainbgt from "../../assets/mainbgt.svg";
+import signbgd from "../../assets/sign-d.svg";
+import bottle from "../../assets/bottle.svg";
 import { Icon } from "../../components/Icon/Icon";
 
 export const Main = styled.main`
@@ -222,7 +222,7 @@ const AddPortionButton = styled.button`
 
 export const SvgIcon = styled(Icon)`
   position: absolute;
-  left: calc((100% - 128px)/2);
+  left: calc((100% - 128px) / 2);
   bottom: 7px;
   width: 24px;
   height: 24px;

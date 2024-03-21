@@ -107,7 +107,7 @@ export const CalcModal = ({ onClose }) => {
       // return weight * 0.04 + time * 0.6;
     }
   }
-console.log("result= ", rrr);
+// console.log("result= ", rrr);
   return (
     <StyledModal isOpen={true} onRequestClose={handleClose} overlayClassName="overlay">
       <Backdrop onClick={handleClose} />
