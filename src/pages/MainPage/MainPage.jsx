@@ -8,13 +8,10 @@ import {
   selectUserNorma,
 } from "../../redux/user/userSelectors";
 import { Today } from "../../components/Today/Today";
-import {
-  MainPagePortions,
-  Main,
-} from "./MainPage.styled";
+import { MainPagePortions, Main } from "./MainPage.styled";
 import { WaterModal } from "../../components/WaterModal/WaterModal";
 import { CalendarD } from "../../components/Calendar/CalendarD";
-// import sprite from "../../images/sprite.svg";
+// import sprite from "../../assets/sprite.svg";
 import { CalcModal } from "../../components/СalcModal/CalcModal";
 import { MainStat } from "../../components/MainStat/MainStat";
 // import { Loader } from "../../components/Loader/Loader";
@@ -53,7 +50,7 @@ export const MainPage = () => {
 
   return (
     <Main>
-      <MainStat onClick={onOpenModalWindow}/>
+      <MainStat onClick={onOpenModalWindow} />
       <MainPagePortions>
         <Today />
         <CalendarD />
@@ -66,13 +63,14 @@ export const MainPage = () => {
           title="Add water"
           subtitle="Choose a value:"
           onCloseModal={onCloseModalWindow}
-          onAddWater={data => { dispatch(addNewPortion(data)); }}
+          onAddWater={data => {
+            dispatch(addNewPortion(data));
+          }}
           initialWater={0}
           initialDate={new Date()}
           isEditing={false}
         />
       )}
-
     </Main>
   );
 };

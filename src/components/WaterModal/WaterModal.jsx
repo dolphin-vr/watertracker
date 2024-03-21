@@ -28,7 +28,7 @@ import {
   ErrorWrap,
 } from "./WaterModal.styled";
 import { BackdporModal } from "../DeleteWaterModal/DeleteWaterModal.styled";
-import sprite from "../../images/sprite.svg";
+import sprite from "../../assets/sprite.svg";
 
 Modal.setAppElement("#modal-root");
 

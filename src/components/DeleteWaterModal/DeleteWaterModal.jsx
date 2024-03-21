@@ -3,7 +3,7 @@ import { BackdporModal, BtnCancel, BtnClose, BtnDelete, ModalStyled, ModalWrap, 
 import { useDispatch } from "react-redux";
 import Modal from "react-modal";
 import { useEffect } from "react";
-import sprite from "../../images/sprite.svg";
+import sprite from "../../assets/sprite.svg";
 
 Modal.setAppElement("#modal-root");
 

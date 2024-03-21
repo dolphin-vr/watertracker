@@ -3,7 +3,7 @@ import Modal from "react-modal";
 import { useDispatch } from "react-redux";
 import { logoutUser } from "../../redux/auth/auth";
 import { ModalStyled, ModalContainer, Backdrop, Title, XBtn, TitleContainer, Ask, Wrap, CancelBtn, LogoutBtn } from "./UserLogoutModal.styled";
-import sprite from "../../images/sprite.svg";
+import sprite from "../../assets/sprite.svg";
 
 Modal.setAppElement("#root");
 
