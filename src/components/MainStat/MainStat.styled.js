@@ -4,12 +4,10 @@ export const Wrapper = styled.div`
   width: 280px;
   height: 480px;
   margin: 0 auto;
-  /* padding: 24px 0 40px; */
   padding-bottom: 40px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /* outline: 1px solid green; */
   @media (min-width: 768px) {
     width: 704px;
 		height: 532px;

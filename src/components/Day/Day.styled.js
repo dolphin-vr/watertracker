@@ -43,7 +43,6 @@ export const DayTile = styled.li`
     height: 58px;
   }
 `;
-/* padding: 5px; */
 
 export const DayButton = styled.button`
    display: flex;
@@ -72,14 +71,13 @@ export const Circle = styled.p`
    font-size: 14px;
    font-style: normal;
    font-weight: 400;
-   line-height: 1.29; /* 128.571% */
+   line-height: 1.29;
 
    @media (min-width: 768px) {
       width: 34px;
       height: 34px;
    }
 `;
-// margin-bottom: 5px;
 
 export const Label = styled.p`
    margin: 0;

@@ -16,4 +16,3 @@ export const HeaderStyled = styled.div`
       width: 1216px;
    }
 `;
-

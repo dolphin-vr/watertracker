@@ -13,7 +13,7 @@ const MonthLabel = styled.span`
    font-size: 24px;
    font-style: normal;
    font-weight: 500;
-   line-height: 1.25; /* 125% */
+   line-height: 1.25;
    @media (min-width: 768px) {
       font-size: 26px;
    }
@@ -30,7 +30,7 @@ const Pagination = styled.span`
    font-size: 16px;
    font-style: normal;
    font-weight: 400;
-   line-height: 1.25; /* 125% */
+   line-height: 1.25;
 `;
 
 const PaginationButtonL = styled.svg`

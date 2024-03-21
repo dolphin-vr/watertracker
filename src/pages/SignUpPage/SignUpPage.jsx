@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 import { registerUser } from "../../redux/auth/auth";
 import { errorUnset } from "../../redux/auth/authSlice";
 import { selectError, selectIsLoading, selectIsLoggedIn } from "../../redux/auth/selectors";
-import { Main, Title, Label, IconBtn, AuthBtn, AuthLink, StyledForm, ErrorMsg, SvgIcon, } from "../SignUpPage/AuthPages.styled";
+import { Main, Title, Label, IconBtn, AuthBtn, AuthLink, StyledForm, ErrorMsg, SvgIcon, } from "./AuthPages.styled";
 import { InputField } from "../../components/InputField/InputField";
 import { Loader } from "../../components/Loader/Loader";
 import { signupSchema } from "../../shared/utils/authValidate";

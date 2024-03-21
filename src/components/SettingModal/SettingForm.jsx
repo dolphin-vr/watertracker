@@ -80,7 +80,6 @@ export default function SettingForm({ close }) {
       }
       try {
         await dispatch(updateUserInfo(formData));
-        // Закриваємо модальне вікно після успішного діспетчу
         close();
       } catch (error) {
         // Обробка помилки диспетчу, якщо потрібно

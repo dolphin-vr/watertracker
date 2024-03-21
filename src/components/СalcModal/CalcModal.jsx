@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Field, Formik } from "formik";
+import { Formik } from "formik";
 import { updateWaterNorma } from "../../redux/user/userOperations";
 import { selectUserInfo } from "../../redux/user/userSelectors";
 import {
@@ -40,7 +40,7 @@ export const CalcModal = ({ onClose }) => {
   const [weight, setWeight] = useState(0);
   const [time, setTime] = useState(0);
   const [result, setResult] = useState(0);
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  // const [isModalOpen, setIsModalOpen] = useState(true);
 
   const rrr = useMemo(() => {
     if (gender === "girl") {
@@ -53,60 +53,15 @@ export const CalcModal = ({ onClose }) => {
   }, [gender, time, weight]);
   
   useEffect(() => {
-    // if (gender === "girl") {
-    //   setResult((weight * 0.03 + time * 0.4).toFixed(1));
-    //   // return weight * 0.03 + time * 0.4;
-    // } else {
-    //   setResult((weight * 0.04 + time * 0.6).toFixed(1));
-    //   // return weight * 0.04 + time * 0.6;
-    // }
     setResult(rrr)
   }, [rrr]);
 
-  // const handleBlur = (field) => {
-  //   calculate(formik.values.gender, formik.values.weight, formik.values.time);
-  //   formik.handleBlur(field);
-  // };
 
   const handleClose = () => {
-    setIsModalOpen(false);
+    // setIsModalOpen(false);
     onClose();
   };
 
-  // const calculate = (gender, weight = 0, time = 0) => {
-  //   const isValidWeight = weight >= 0 && weight < 700;
-  //   const isValidTime = time >= 0 && time < 24;
-  //   if (isValidWeight && isValidTime) {
-  //     let calculatedResult = 0;
-  //     switch (gender) {
-  //       case "girl":
-  //         if (weight >= 0 && time >= 0) {
-  //           calculatedResult = weight * 0.03 + time * 0.4;
-  //         }
-  //         break;
-  //       case "man":
-  //         if (weight >= 0 && time >= 0) {
-  //           calculatedResult = weight * 0.04 + time * 0.6;
-  //         }
-  //         break;
-  //       default:
-  //         break;
-  //     }
-  //     setResult(calculatedResult.toFixed(1));
-  //   }
-  // };
-
-  // handleChange;
-
-  const calcRate = (gender, weight = 0, time = 0) => {
-    if (gender === 'girl') {
-      setResult((weight * 0.03 + time * 0.4).toFixed(1));
-      // return weight * 0.03 + time * 0.4;
-    } else {
-      setResult((weight * 0.04 + time * 0.6).toFixed(1));
-      // return weight * 0.04 + time * 0.6;
-    }
-  }
 // console.log("result= ", rrr);
   return (
     <StyledModal isOpen={true} onRequestClose={handleClose} overlayClassName="overlay">
@@ -134,16 +89,6 @@ export const CalcModal = ({ onClose }) => {
         <Formik
           initialValues={{ gender: gender, weight: "", time: "", rate: waterNorma / 1000 }}
           validationSchema={calcSchema}
-          //       onChange={(values) => {
-          // if (values.gender === "girl") {
-          //   values.result=((values.weight * 0.03 + values.time * 0.4).toFixed(1));
-          //   // return weight * 0.03 + time * 0.4;
-          // } else {
-          //   values.result = (values.weight * 0.04 + values.time * 0.6).toFixed(1);
-          //   // return weight * 0.04 + time * 0.6;
-          // }
-          //         // calcRate(values.gender, values.weight, values.time);
-          //       }}
           onSubmit={(values) => {
             dispatch(updateWaterNorma(values.rate * 1000));
             onClose();
@@ -157,8 +102,6 @@ export const CalcModal = ({ onClose }) => {
                     type="radio"
                     value="girl"
                     name="gender"
-                    // onBlur={() => handleBlur("gender")}
-                    // checked={formik.values.gender === "girl"}
                     onChange={() => setGender("girl")}
                   />
                   <GenderLabel htmlFor="Woman">For girl</GenderLabel>
@@ -168,8 +111,6 @@ export const CalcModal = ({ onClose }) => {
                     type="radio"
                     value="man"
                     name="gender"
-                    // onBlur={() => handleBlur("gender")}
-                    // checked={formik.values.gender === "man"}
                     onChange={() => setGender("man")}
                   />
                   <GenderLabel htmlFor="Man">For man</GenderLabel>
@@ -190,21 +131,15 @@ export const CalcModal = ({ onClose }) => {
                 />
                 <ErrorMsg name="weight" component="span" />
               </Label>
-              {/* {formik.errors.weight && formik.touched.weight && (onBlur={() => handleBlur("weight")}             )} */}
               <Label>
                 The time of active participation in sports or other activities with a high physical load:
                 <CalcInput type="text" name="time" className={touched.time && errors.time ? "invalid" : ""} onChange={() => setTime(values.time)} />
-                {/* <ModalInput onBlur={() => handleBlur("time")} type="text" name="time" />onChange={handleChange} */}
                 <ErrorMsg name="time" component="span" />
               </Label>
-              {/* {formik.errors.time && formik.touched.time && (            )} */}
               <ResultCont>
                 <TextResult>The required amount of water in liters per day:</TextResult>
-                {/* {touched.gender && touched.weight && touched.time && !errors.time && !errors.weight ? calculate(values.gender, values.weight, values.time) : ""} */}
                 <Littres>
-                  {/* <Field type="number" name="result" /> */}
                   {result}L
-                  {/* {touched.gender && touched.weight && touched.time && !errors.time && !errors.weight ? calcRate(values.gender, values.weight, values.time) : 0}L */}
                 </Littres>
               </ResultCont>
               <BoldLabel>
@@ -212,7 +147,6 @@ export const CalcModal = ({ onClose }) => {
                 <CalcInput type="text" id="water" name="rate" className={touched.rate && errors.rate ? "invalid" : ""} />
                 <ErrorMsg name="rate" component="span" />
               </BoldLabel>
-              {/* {formik.errors.rate && formik.touched.rate && (            )} */}
               <Btn type="submit">Save</Btn>
             </CalcForm>
           )}

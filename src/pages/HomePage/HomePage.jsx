@@ -1,8 +1,8 @@
-import { lazy } from "react";
+// import { lazy } from "react";
 import MainPage from "../MainPage/MainPage";
 import { useSelector } from "react-redux";
-const WelcomePage = lazy(() => import("./WelcomePage")
-);
+import { WelcomePage } from "./WelcomePage";
+// const WelcomePage = lazy(() => import("./WelcomePage"));
 
 const HomePage = () => {
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);

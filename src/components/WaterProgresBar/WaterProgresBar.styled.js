@@ -90,7 +90,7 @@ const AccentSpan = styled.div`
   line-height: 1.25;
 `;
 
-const getProgressPosition = ({ width, theme }) => {
+const getProgressPosition = ({ width }) => {
   if (width > 200) {
     return `
       left: 100%;
