@@ -1,6 +1,6 @@
 # Water consumption tracker
 
-Record daily water intake and track
+Record daily water intake and track statistics
 
 ## Live page
 

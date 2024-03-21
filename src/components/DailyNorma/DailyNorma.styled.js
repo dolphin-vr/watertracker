@@ -1,20 +1,15 @@
 import styled from "styled-components";
 
 const DailyNormaWrapper = styled.div`
-   height: 290px;
-   background-repeat: no-repeat;
-   background-position: center bottom;
+   /* height: 306px;
 
-   @media (min-width: 767px) {
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center;
+   @media (min-width: 768px) {
+      height: 402px;
    }
 
-   @media (min-width: 1439px) {
+   @media (min-width: 1440px) {
       height: 100%;
-      background-size: auto;
-   }
+   } */
 `;
 
 const DailyNormaContainer = styled.div`

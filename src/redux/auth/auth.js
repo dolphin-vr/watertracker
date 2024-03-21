@@ -20,7 +20,11 @@ export const registerUser = createAsyncThunk("auth/registerUser", async (userDat
       setAuthHeader(response.data.token);
       return response.data;
    } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.status);
+      if (error.response) {
+        return thunkAPI.rejectWithValue(error.response.status);
+      } else {
+        return thunkAPI.rejectWithValue(error.code);
+      }
    }
 });
 
@@ -30,7 +34,15 @@ export const loginUser = createAsyncThunk("auth/loginUser", async (userData, thu
       setAuthHeader(response.data.token);
       return response.data;
    } catch (error) {
+      if (error.response) {
+      // console.log("error.response.status= ", error.response.status);
       return thunkAPI.rejectWithValue(error.response.status);
+      } else {
+      // console.log("in opertn= ", error.code);
+      return thunkAPI.rejectWithValue(error.code);
+      }
+      // console.log("error.response.status= ", error.response.status);
+      // return thunkAPI.rejectWithValue(error);
    }
 });
 

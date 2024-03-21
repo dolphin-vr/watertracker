@@ -19,7 +19,7 @@ import {
   StyledSvgGlass,
   StyledSvgPencil,
   StyledSvgTrash,
-  StyledSvgPlus,
+  StyledSvg,
 } from "./Today.styled.js";
 import { selectDailyPortions } from "../../redux/water/todaySelectors.js";
 import sprite from "../../images/sprite.svg";
@@ -27,7 +27,7 @@ import { useState } from "react";
 import { DeleteWaterModal } from "../DeleteWaterModal/DeleteWaterModal.jsx";
 import { WaterModal } from "../WaterModal/WaterModal.jsx";
 import { selectUserNorma } from "../../redux/user/userSelectors.js";
-import CalcModal from "../СalcModal/CalcModal.jsx";
+import {CalcModal} from "../СalcModal/CalcModal.jsx";
 import toast from "react-hot-toast";
 
 export const Today = () => {
@@ -155,9 +155,9 @@ export const Today = () => {
         />
       )}
       <AddWaterButton type="button" onClick={() => onAddPortion()}>
-        <StyledSvgPlus>
+        <StyledSvg>
           <use href={sprite + "#plus"}></use>
-        </StyledSvgPlus>
+        </StyledSvg>
         Add water
       </AddWaterButton>
     </TodayWrapper>

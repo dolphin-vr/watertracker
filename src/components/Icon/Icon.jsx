@@ -1,8 +1,9 @@
+import sprite from "../../assets/sprite.svg";
 
-import sprite from "../../images/sprite.svg";
-
-export const Icon = ({tag}) =>{	
-	return (
-		<use href={`${sprite}#${tag}`} ></use>
-	)
-}
+export const Icon = ({ tag, className }) => {
+  return (
+    <svg className={className}>
+      <use href={`${sprite}#${tag}`}></use>
+    </svg>
+  );
+};

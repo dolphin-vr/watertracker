@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Modal from "react-modal";
+import { Field, Form } from "formik";
 
 export const StyledModal = styled(Modal)`
    overlay {
@@ -14,31 +15,29 @@ export const Backdrop = styled.div`
    bottom: 0;
    background-color: rgba(0, 0, 0, 0.8);
 `;
-
 export const Container = styled.div`
-   max-width: 100%;
-   padding: 24px 12px;
-   z-index: 100;
-   position: absolute;
-   top: 50%;
-   left: 50%;
-   transform: translate(-50%, -25%);
-   background-color: ${({ theme }) => theme.colors.primary.white};
-   border-radius: 10px;
-   margin: 0 auto;
+  max-width: 100%;
+  padding: 24px 12px;
+  z-index: 100;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: ${({ theme }) => theme.colors.primary.white};
+  border-radius: 10px;
+  margin: 0 auto;
 
-   @media screen and (min-width: 768px) {
-      padding: 32px 24px;
-      width: 704px;
-      top: 50%;
-   }
-   @media screen and (min-width: 1280px) {
-      transform: translate(-50%, -50%);
-      padding: 32px 24px;
-      width: 592px;
-   }
+  @media screen and (min-width: 768px) {
+    padding: 32px 24px;
+    width: 704px;
+    top: 50%;
+  }
+  @media screen and (min-width: 1280px) {
+    transform: translate(-50%, -50%);
+    padding: 32px 24px;
+    width: 592px;
+  }
 `;
-
 export const Title = styled.h2`
    font-size: 26px;
    font-weight: 500;
@@ -46,27 +45,24 @@ export const Title = styled.h2`
    line-height: calc(32 / 26);
    margin-top: 0px;
 `;
-
-export const Formula = styled.span`
-   color: ${({ theme }) => theme.colors.primary.blue};
-   font-size: 18px;
-   line-height: calc(24 / 18);
-`;
-
-export const Gender = styled.li`
-   display: flex;
-   gap: 4px;
-   color: ${({ theme }) => theme.colors.primary.black};
-   font-size: 16px;
-   line-height: calc(20 / 16);
-`;
-export const GenderFormula = styled.ul`
+export const Formulas = styled.ul`
    display: flex;
    flex-direction: column;
    gap: 16px;
    margin-bottom: 12px;
 `;
-
+export const Gender = styled.li`
+   display: flex;
+   gap: 4px;
+   color: ${({ theme }) => theme.colors.primary.black};
+   font-size: 16px;
+   line-height: 1.25;
+`;
+export const Formula = styled.span`
+   color: ${({ theme }) => theme.colors.primary.blue};
+   font-size: 18px;
+   line-height: calc(24 / 18);
+`;
 export const Description = styled.p`
    max-width: 256px;
    width: 100%;
@@ -87,11 +83,15 @@ export const Description = styled.p`
       max-width: 544px;
    }
 `;
-
 export const Start = styled.span`
    color: ${({ theme }) => theme.colors.primary.blue};
 `;
 
+export const CalcForm = styled(Form)`
+   display: flex;
+   flex-direction: column;
+   gap: 16px;
+`;
 export const TitleLabel = styled.h3`
    color: ${({ theme }) => theme.colors.primary.black};
    margin-bottom: 16px;
@@ -100,19 +100,16 @@ export const TitleLabel = styled.h3`
    line-height: 20px;
    margin-top: 0;
 `;
-
 export const RadioBtn = styled.div`
    display: flex;
    gap: 24px;
    margin-bottom: 16px;
 `;
-
 export const GenderBtn = styled.div`
    display: flex;
    gap: 3px;
    align-items: center;
 `;
-
 export const GenderInput = styled.input`
    position: relative;
    height: 14px;
@@ -150,7 +147,6 @@ export const GenderInput = styled.input`
       visibility: visible;
    }
 `;
-
 export const CloseBtn = styled.button`
    display: flex;
    align-items: center;
@@ -170,19 +166,11 @@ export const CloseBtn = styled.button`
       top: 36px;
    }
 `;
-
 export const GenderLabel = styled.label`
    color: ${({ theme }) => theme.colors.primary.black};
    font-size: 16px;
    line-height: 20px;
 `;
-
-export const Forma = styled.form`
-   display: flex;
-   flex-direction: column;
-   gap: 16px;
-`;
-
 export const Labels = styled.div`
    display: flex;
    flex-direction: column;
@@ -192,34 +180,36 @@ export const Labels = styled.div`
       max-width: 656px;
    }
 `;
-
-export const DataLabel = styled.label`
+export const Label = styled.label`
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   gap: 8px;
    color: ${({ theme }) => theme.colors.primary.black};
    font-size: 16px;
-   line-height: 20px;
+   line-height: 1.25;
 `;
+export const CalcInput = styled(Field)`
+  padding: 12px 10px;
+  border-radius: 6px;
+  border: 1px solid ${({ theme }) => theme.colors.secondary.whiteblue};
+  max-width: 256px;
+  width: 100%;
+  font-size: 16px;
+  line-height: 1.25;
 
-export const ModalInput = styled.input`
-   padding: 12px 10px;
-   border-radius: 6px;
-   border: 1px solid ${({ theme }) => theme.colors.secondary.whiteblue};
-   max-width: 256px;
-   width: 100%;
-   font-size: 16px;
-   line-height: 20px;
+  &.invalid {
+    color: ${({ theme }) => theme.colors.secondary.red};
+    border-color: ${({ theme }) => theme.colors.secondary.red};
+  }
 
-   &.error-input {
-      border: 2px solid ${({ theme }) => theme.colors.secondary.red};
-   }
-
-   @media screen and (min-width: 768px) {
-      max-width: 656px;
-   }
-   @media screen and (min-width: 1440px) {
-      max-width: 544px;
-   }
+  @media screen and (min-width: 768px) {
+    max-width: 656px;
+  }
+  @media screen and (min-width: 1440px) {
+    max-width: 544px;
+  }
 `;
-
 export const ResultCont = styled.div`
    display: flex;
    gap: 6px;
@@ -228,7 +218,6 @@ export const ResultCont = styled.div`
    @media screen and (min-width: 768px) {
    }
 `;
-
 export const TextResult = styled.p`
    max-width: 190px;
    margin-top: 0px;
@@ -238,7 +227,6 @@ export const TextResult = styled.p`
       max-width: 328px;
    }
 `;
-
 export const Littres = styled.p`
    width: 57px;
    color: #407bff;
@@ -252,13 +240,12 @@ export const Littres = styled.p`
       width: 42px;
    }
 `;
-
-export const WriteInput = styled.label`
-   font-size: 18px;
-   font-weight: 500;
-   line-height: 20px;
+export const BoldLabel = styled.label`
+  position: relative;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 20px;
 `;
-
 export const Btn = styled.button`
    background-color: ${({ theme }) => theme.colors.primary.blue};
    color: ${({ theme }) => theme.colors.primary.white};

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 // import { getPortionsList } from "../../redux/todayOperations.js";
-import CalcModal from "../СalcModal/CalcModal";
+import {CalcModal} from "../СalcModal/CalcModal";
 import { selectUserNorma } from "../../redux/user/userSelectors";
 import {
   DailyNormaContainer,
