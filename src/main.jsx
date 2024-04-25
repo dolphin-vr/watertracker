@@ -38,15 +38,6 @@ const theme = {
   transition: "0.3s",
   spacing: (value) => `${value * 4}px`,
 };
-// padding: ${({ theme }) => theme.spacing(1)};
-// padding: ${({ theme }) => theme.spacing(3)} ${({ theme }) => theme.spacing(2)};
-// gap: ${({ theme }) => theme.spacing(3)};
-// margin-bottom: ${({ theme }) => theme.spacing(5)};
-// margin: ${({theme}) => theme.spacing(4)} auto ${({theme}) => theme.spacing(3)};
-// border-bottom: 4px solid ${({ theme }) => theme.colors.darkgray};
-// border-radius: ${({ theme }) => theme.radii.sm};
-// background-color: ${({ theme }) => theme.colors.primary.white};
-// color: ${({ theme }) => theme.colors.darkgray};
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

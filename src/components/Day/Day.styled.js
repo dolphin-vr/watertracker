@@ -27,19 +27,19 @@ const getFontColor = (props) => {
 };
 
 export const DayTile = styled.li`
-  width: ${({ theme }) => theme.spacing(10)};
+  width: ${({ theme }) => theme.spacing(12)};
   height: ${({ theme }) => theme.spacing(15)};
   padding: 4px;
   background-color: ${getTileBgr};
   border-radius: 4px;
 
   @media (min-width: 768px) {
-    width: 34px;
+    width: 42px;
     height: 58px;
   }
 
   @media (min-width: 1440px) {
-    width: 34px;
+    width: 42px;
     height: 58px;
   }
 `;
