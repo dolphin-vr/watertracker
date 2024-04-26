@@ -12,7 +12,7 @@ import { MainPagePortions, Main } from "./MainPage.styled";
 import { WaterModal } from "../../components/WaterModal/WaterModal";
 import { CalendarD } from "../../components/Calendar/CalendarD";
 // import sprite from "../../assets/sprite.svg";
-import { CalcModal } from "../../components/СalcModal/CalcModal";
+import { CalcModal } from "../../components/CalcModal/CalcModal";
 import { MainStat } from "../../components/MainStat/MainStat";
 // import { Loader } from "../../components/Loader/Loader";
 // import { selectIsLoading } from "../../redux/water/todaySelectors";

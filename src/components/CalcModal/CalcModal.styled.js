@@ -23,6 +23,9 @@ export const Container = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
   background-color: ${({ theme }) => theme.colors.primary.white};
   border-radius: 10px;
   margin: 0 auto;
@@ -49,7 +52,7 @@ export const Formulas = styled.ul`
    display: flex;
    flex-direction: column;
    gap: 16px;
-   margin-bottom: 12px;
+   /* margin-bottom: 12px; */
 `;
 export const Gender = styled.li`
    display: flex;
@@ -64,7 +67,7 @@ export const Formula = styled.span`
    line-height: calc(24 / 18);
 `;
 export const Description = styled.p`
-   max-width: 256px;
+   /* max-width: 256px; */
    width: 100%;
    padding: 10px;
    color: #8f8f8f;
@@ -228,17 +231,17 @@ export const TextResult = styled.p`
    }
 `;
 export const Littres = styled.p`
-   width: 57px;
+   /* width: 57px; */
    color: #407bff;
    font-size: 18px;
    font-weight: 700;
    line-height: 24px;
    margin-top: 0px;
    margin-bottom: 0px;
-
+/* 
    @media screen and (min-width: 768px) {
       width: 42px;
-   }
+   } */
 `;
 export const BoldLabel = styled.label`
   position: relative;
