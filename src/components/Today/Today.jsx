@@ -24,7 +24,7 @@ import { useState } from "react";
 import { DeleteWaterModal } from "../DeleteWaterModal/DeleteWaterModal.jsx";
 import { WaterModal } from "../WaterModal/WaterModal.jsx";
 import { selectUserNorma } from "../../redux/user/userSelectors.js";
-import { CalcModal } from "../СalcModal/CalcModal.jsx";
+import { CalcModal } from "../CalcModal/CalcModal.jsx";
 import toast from "react-hot-toast";
 
 export const Today = () => {

@@ -1,15 +1,8 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import {CalcModal} from "../СalcModal/CalcModal";
+import { CalcModal } from "../CalcModal/CalcModal";
 import { selectUserNorma } from "../../redux/user/userSelectors";
-import {
-  DailyNormaContainer,
-  DailyNormaTitle,
-  DailyNormaInfo,
-  DailyNormaSpan,
-  DailyNormaBth,
-  DailyNormaWrapper,
-} from "./DailyNorma.styled";
+import { DailyNormaContainer, DailyNormaTitle, DailyNormaInfo, DailyNormaSpan, DailyNormaBth, DailyNormaWrapper } from "./DailyNorma.styled";
 
 export const DailyNorma = () => {
   const dailyNorma = useSelector(selectUserNorma);

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Formik } from "formik";
 import { updateWaterNorma } from "../../redux/user/userOperations";
@@ -28,41 +28,40 @@ import {
   StyledModal,
   CalcInput,
 } from "./CalcModal.styled";
-import { Icon } from "../../components/Icon/Icon";
+import { Icon } from "../Icon/Icon";
 import { calcSchema } from "../../shared/utils/authValidate";
 import { ErrorMsg } from "../../pages/SignUpPage/AuthPages.styled";
-import { useMemo } from "react";
+// import { useMemo } from "react";
 
 export const CalcModal = ({ onClose }) => {
   const dispatch = useDispatch();
   const { waterNorma, gender: userGender } = useSelector(selectUserInfo);
   const [gender, setGender] = useState(userGender);
-  const [weight, setWeight] = useState(0);
-  const [time, setTime] = useState(0);
-  const [result, setResult] = useState(0);
+  // const [weight, setWeight] = useState(0);
+  // const [time, setTime] = useState(0);
+  // const [result, setResult] = useState(0);
   // const [isModalOpen, setIsModalOpen] = useState(true);
 
-  const rrr = useMemo(() => {
-    if (gender === "girl") {
-      // setResult((weight * 0.03 + time * 0.4).toFixed(1));
-      return weight * 0.03 + time * 0.4;
-    } else {
-      // setResult((weight * 0.04 + time * 0.6).toFixed(1));
-      return weight * 0.04 + time * 0.6;
-    }
-  }, [gender, time, weight]);
-  
-  useEffect(() => {
-    setResult(rrr)
-  }, [rrr]);
+  // const rrr = useMemo(() => {
+  //   if (gender === "girl") {
+  //     // setResult((weight * 0.03 + time * 0.4).toFixed(1));
+  //     return weight * 0.03 + time * 0.4;
+  //   } else {
+  //     // setResult((weight * 0.04 + time * 0.6).toFixed(1));
+  //     return weight * 0.04 + time * 0.6;
+  //   }
+  // }, [gender, time, weight]);
 
+  // useEffect(() => {
+  //   setResult(rrr);
+  // }, [rrr]);
 
   const handleClose = () => {
     // setIsModalOpen(false);
     onClose();
   };
 
-// console.log("result= ", rrr);
+  // console.log("result= ", rrr);
   return (
     <StyledModal isOpen={true} onRequestClose={handleClose} overlayClassName="overlay">
       <Backdrop onClick={handleClose} />
@@ -82,14 +81,14 @@ export const CalcModal = ({ onClose }) => {
           </Gender>
         </Formulas>
         <Description>
-          <Start>*</Start>V is the volume of the water norm in liters per day, M is your body weight, T is the time of active sports, or another type of activity
-          commensurate in terms of loads (in the absence of these, you must set 0)
+          <Start>*</Start>V is the volume of the water norm in liters per day, M is your body weight, T is the time of active sports, or another type of activity commensurate in terms of
+          loads (in the absence of these, you must set 0)
         </Description>
 
         <Formik
           initialValues={{ gender: gender, weight: "", time: "", rate: waterNorma / 1000 }}
           validationSchema={calcSchema}
-          onSubmit={(values) => {
+          onSubmit={values => {
             dispatch(updateWaterNorma(values.rate * 1000));
             onClose();
           }}>
@@ -98,22 +97,16 @@ export const CalcModal = ({ onClose }) => {
               <TitleLabel>Calculate Your Rate:</TitleLabel>
               <RadioBtn>
                 <GenderBtn>
-                  <GenderInput
-                    type="radio"
-                    value="girl"
-                    name="gender"
-                    onChange={() => setGender("girl")}
-                  />
-                  <GenderLabel htmlFor="Woman">For girl</GenderLabel>
+                  <GenderLabel>
+                    <GenderInput type="radio" value="girl" name="gender" onChange={() => setGender("girl")} />
+                    For girl
+                  </GenderLabel>
                 </GenderBtn>
                 <GenderBtn>
-                  <GenderInput
-                    type="radio"
-                    value="man"
-                    name="gender"
-                    onChange={() => setGender("man")}
-                  />
-                  <GenderLabel htmlFor="Man">For man</GenderLabel>
+                  <GenderLabel>
+                    <GenderInput type="radio" value="man" name="gender" onChange={() => setGender("man")} />
+                    For man
+                  </GenderLabel>
                 </GenderBtn>
               </RadioBtn>
 
@@ -123,9 +116,10 @@ export const CalcModal = ({ onClose }) => {
                   type="text"
                   name="weight"
                   className={touched.weight && errors.weight ? "invalid" : ""}
-                  onInput={(e) => {
+                  onInput={e => {
                     handleChange(e);
-                    setWeight(values.weight);
+                    // console.log(e);
+                    // setWeight(values.weight);
                   }}
                   value={values.weight}
                 />
@@ -133,14 +127,21 @@ export const CalcModal = ({ onClose }) => {
               </Label>
               <Label>
                 The time of active participation in sports or other activities with a high physical load:
-                <CalcInput type="text" name="time" className={touched.time && errors.time ? "invalid" : ""} onChange={() => setTime(values.time)} />
+                <CalcInput
+                  type="text"
+                  name="time"
+                  className={touched.time && errors.time ? "invalid" : ""}
+                  onInput={e => {
+                    handleChange(e);
+                    // setTime(values.time);
+                  }}
+                  value={values.time}
+                />
                 <ErrorMsg name="time" component="span" />
               </Label>
               <ResultCont>
                 <TextResult>The required amount of water in liters per day:</TextResult>
-                <Littres>
-                  {result}L
-                </Littres>
+                <Littres>{gender === "girl" ? (values.weight * 0.03 + values.time * 0.4).toFixed(2) : (values.weight * 0.04 + values.time * 0.6).toFixed(2)} L</Littres>
               </ResultCont>
               <BoldLabel>
                 Write down how much water you will drink:
